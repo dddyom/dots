@@ -1,10 +1,11 @@
 #! /bin/bash
-DOTS_DIR=$HOME/dot
+DOTS_DIR=$HOME/code/dots
 CONF_DIR=$HOME/.config
 
 DOTS_FOR_CONF_DIR=(
-	"nvim/"
-	# ".config/polybar/"
+	"nvim"
+	"wezterm"
+	# ".config/polybar"
 )
 
 DOTS_FOR_HOME_DIR=(
