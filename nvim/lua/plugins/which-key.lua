@@ -25,7 +25,8 @@ return {
         ["g"] = { "<cmd>ChatGPT<CR>", "ChatGPT" },
         ["w"] = { "<cmd>update!<CR>", "Save" },
         ["q"] = { "<cmd>q!<CR>", "Quit" }, 
-        ["e"] = { ":NeoTreeFocusToggle<cr>", "File explorer" }, 
+        ["e"] = { ":NeoTreeFocusToggle<cr>", "File explorer" },
+        [']'] = { "<cmd>CellularAutomaton make_it_rain<CR>", "rain" },
 
         f = {
           name = "Telescope",
