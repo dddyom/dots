@@ -69,6 +69,10 @@ return {
           c = {"<cmd>Lspsaga code_action<CR>", 'Code actions'},
           r = {"<cmd>Lspsaga rename<CR>", "Rename"},
           d = {"<cmd>Lspsaga show_line_diagnostics<CR>", 'Diagnostic'}
+        },
+        v = {
+          name = 'venv',
+          s = {"<cmd>:VenvSelect<cr>", 'selecte venv'},
         }
       }
       wk.setup(conf)

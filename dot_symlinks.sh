@@ -1,14 +1,14 @@
 #! /bin/bash
-DOTS_DIR=$HOME/dot
+DOTS_DIR=$HOME/code/dots
 CONF_DIR=$HOME/.config
 
 DOTS_FOR_CONF_DIR=(
-	"nvim/"
-	# ".config/polybar/"
+	"nvim"
+	"wezterm"
 )
 
 DOTS_FOR_HOME_DIR=(
-  # ".zshrc"
+  ".zshrc"
 )
 
 for dot in "${DOTS_FOR_CONF_DIR[@]}";do
