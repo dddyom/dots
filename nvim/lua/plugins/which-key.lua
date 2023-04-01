@@ -36,9 +36,11 @@ return {
           name = "Telescope",
           f = { "<cmd>Telescope find_files<cr>", "find file" },
           w = {"<cmd>Telescope live_grep<cr>", 'find by word'},
-          c = {"<cmd>Telescope grep_string<cr>", 'find by word under cursor'},
+          s = {"<cmd>Telescope grep_string<cr>", 'find by word under cursor'},
           b = {"<cmd>Telescope buffers<cr>", 'find in open buffers'},
           h = {"<cmd>Telescope help_tags<cr>", 'help tags'},
+          g = {"<cmd>Telescope git_status<cr>", 'git status'},
+          c = {"<cmd>Telescope git_commits<cr>", 'git commits'},
         },
         b = {
           name = 'Buffers',
@@ -50,10 +52,11 @@ return {
         },
         g = {
           name = "Git",
+          a = {":Git add .<CR>", "add all" },
           s = { ":Git status<CR>", "status" },
           p = { ":Git push<CR>", "push" },
           c = {":Git commit<CR>", "commit"},
-          d = {":Git diff<CR>", "diff"},
+          d = {":Gvdiff<CR>", "diff"},
 
         },
         c = {

@@ -47,6 +47,6 @@ return {
       { "<C-R>", mode = "i" }
     },
     cmd = "Registers",
-  }, 
+  },
 }
 
