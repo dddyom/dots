@@ -6,9 +6,9 @@ return {
   "christoomey/vim-tmux-navigator",
   "szw/vim-maximizer",
   "folke/lsp-colors.nvim",
+  "tpope/vim-fugitive",
   'jghauser/mkdir.nvim', {
   "numToStr/Comment.nvim",
-  "tpope/vim-fugitive",
     config = function()
       map("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
       map("v", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", opts)

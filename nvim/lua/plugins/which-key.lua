@@ -20,8 +20,8 @@ return {
         }
 
       local mappings = {
-        ["/"] = {"<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", 'comment'},
-        ["g"] = { "<cmd>ChatGPT<CR>", "chatGPT" },
+        -- ["/"] = {"<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", 'comment'},
+        ["x"] = { "<cmd>ChatGPT<CR>", "chatGPT" },
         ["w"] = { "<cmd>update!<CR>", "save" },
         ["q"] = { "<cmd>q!<CR>", "quit" }, 
         ["e"] = { ":NeoTreeFocusToggle<cr>", "file explorer" },
@@ -48,10 +48,14 @@ return {
           x = { ":close<cr>", "close current split window" },
           n = { ":tabnew<cr>", "open new tab" }
         },
-        -- g = {
-        --   name = "Git",
-        --   s = { "<cmd>Neogit<CR>", "Status" },
-        -- },
+        g = {
+          name = "Git",
+          s = { ":Git status<CR>", "status" },
+          p = { ":Git push<CR>", "push" },
+          c = {":Git commit<CR>", "commit"},
+          d = {":Git diff<CR>", "diff"},
+
+        },
         c = {
           name = 'Lspsaga',
           o = {"<cmd>LSoutlineToggle<CR>", 'Outline'},
