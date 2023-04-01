@@ -21,59 +21,50 @@ return {
 
       local mappings = {
         ["/"] = {"<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", 'comment'},
-
-        ["g"] = { "<cmd>ChatGPT<CR>", "ChatGPT" },
-        ["w"] = { "<cmd>update!<CR>", "Save" },
-        ["q"] = { "<cmd>q!<CR>", "Quit" }, 
-        ["e"] = { ":NeoTreeFocusToggle<cr>", "File explorer" },
+        ["g"] = { "<cmd>ChatGPT<CR>", "chatGPT" },
+        ["w"] = { "<cmd>update!<CR>", "save" },
+        ["q"] = { "<cmd>q!<CR>", "quit" }, 
+        ["e"] = { ":NeoTreeFocusToggle<cr>", "file explorer" },
         [']'] = { "<cmd>CellularAutomaton make_it_rain<CR>", "rain" },
-
+        ['m'] = {'<cmd>lua require("harpoon.mark").add_file()<CR>', 'add mark'},
+        ['M'] = {'<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', 'marks menu'},
+        ['h'] = {'<cmd>lua require("harpoon.ui").nav_prev()<CR>', "prev mark"},
+        ['l'] = {'<cmd>lua require("harpoon.ui").nav_next()<CR>', "next mark"},
+        ['v'] = {"<cmd>:VenvSelect<cr>", 'selecte venv'},
+        ['a'] = {"<cmd>AerialToggle!<CR>", 'code structure'},
         f = {
           name = "Telescope",
-          f = { "<cmd>Telescope find_files<cr>", "Find file" },
-          w = {"<cmd>Telescope live_grep<cr>", 'Find by word'},
-          c = {"<cmd>Telescope grep_string<cr>", 'Find by word under cursor'},
-          b = {"<cmd>Telescope buffers<cr>", 'Find in open buffers'},
-          h = {"<cmd>Telescope help_tags<cr>", 'Help tags'},
+          f = { "<cmd>Telescope find_files<cr>", "find file" },
+          w = {"<cmd>Telescope live_grep<cr>", 'find by word'},
+          c = {"<cmd>Telescope grep_string<cr>", 'find by word under cursor'},
+          b = {"<cmd>Telescope buffers<cr>", 'find in open buffers'},
+          h = {"<cmd>Telescope help_tags<cr>", 'help tags'},
         },
-        w = {
-          name = 'Windows',
+        b = {
+          name = 'Buffers',
           c = { ":bd<cr>", "close current buffer" },
           v = { "<c-w>v", "split window vertically" },
           h = { "<c-w>s", "split window horisontally" },
-          x = { ":close<cr>", "close current split window" }
-        },
-        t = {
-          name = 'Tabs',
+          x = { ":close<cr>", "close current split window" },
           n = { ":tabnew<cr>", "open new tab" }
-
-        },
-        h = {
-          name = 'Harpoon',
-          m  = {'<cmd>lua require("harpoon.mark").add_file()<CR>', 'Add mark'},
-          e = {'<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', 'Marks menu'},
-          -- 1 = {'<cmd>lua require("harpoon.ui").nav_file(1)<CR>', 'Move to mark 1'},
-          -- 2 = {'<cmd>lua require("harpoon.ui").nav_file(2)<CR>', 'Move to mark 2'},
-          -- 3 = {'<cmd>lua require("harpoon.ui").nav_file(3)<CR>', 'Move to mark 3'},
-          -- 4 = {'<cmd>lua require("harpoon.ui").nav_file(4)<CR>', 'Move to mark 4'},
-          h = {'<cmd>lua require("harpoon.ui").nav_prev()<CR>', "Prev mark"},
-          l = {'<cmd>lua require("harpoon.ui").nav_next()<CR>', "Next mark"},
-
         },
         -- g = {
         --   name = "Git",
         --   s = { "<cmd>Neogit<CR>", "Status" },
         -- },
-        l = {
+        c = {
           name = 'Lspsaga',
           o = {"<cmd>LSoutlineToggle<CR>", 'Outline'},
           c = {"<cmd>Lspsaga code_action<CR>", 'Code actions'},
           r = {"<cmd>Lspsaga rename<CR>", "Rename"},
           d = {"<cmd>Lspsaga show_line_diagnostics<CR>", 'Diagnostic'}
         },
-        v = {
-          name = 'venv',
-          s = {"<cmd>:VenvSelect<cr>", 'selecte venv'},
+        r = {
+          name = 'Replace',
+          r = {":SReplace", 'replace'},
+          g = {":SReplaceAll", 'replace including all ignored files'},
+          s = {":SReplaceAndSave", 'replace and save'},
+          a = {":SReplaceAllAndSave", 'replace and save including all ignored files'},
         }
       }
       wk.setup(conf)
