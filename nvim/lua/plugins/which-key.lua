@@ -57,6 +57,7 @@ return {
           p = { ":Git push<CR>", "push" },
           c = {":Git commit<CR>", "commit"},
           d = {":Gvdiff<CR>", "diff"},
+          w = {":Gwrite<CR>", "add current buffer to git"},
 
         },
         c = {

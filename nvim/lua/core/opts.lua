@@ -1,5 +1,5 @@
 local opt = vim.opt
-vim.cmd("syntax off")
+vim.cmd("syntax on")
 opt.backspace = vim.opt.backspace + { "nostop" } -- Don't stop backspace at insert
 -- opt.colorcolumn = "79"
 opt.clipboard = "unnamedplus" -- Connection to the system clipboard

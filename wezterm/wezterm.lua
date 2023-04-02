@@ -8,5 +8,5 @@ return {
     top = 0,
     bottom = 0,
   },
-  color_scheme = "Catppuccin Mocha", -- or Macchiato, Frappe, Latte
+  color_scheme = "Catppuccin Macchiato", -- Macchiato, Frappe, Latte, Mocha
 }
