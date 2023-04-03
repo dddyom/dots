@@ -6,7 +6,14 @@ return {
   "christoomey/vim-tmux-navigator",
   "szw/vim-maximizer",
   "folke/lsp-colors.nvim",
-  "tpope/vim-fugitive",
+  "tpope/vim-fugitive", {
+  "dense-analysis/ale",
+  config = function ()
+    vim.cmd("let g:ale_completion_enabled = 1")
+    map('n', '<C-CR>', ":ALEImport<cr>", opts)
+
+  end
+  },
   'jghauser/mkdir.nvim', {
   "numToStr/Comment.nvim",
     config = function()
@@ -47,6 +54,11 @@ return {
       { "<C-R>", mode = "i" }
     },
     cmd = "Registers",
-  },
+  }, {
+  "beauwilliams/focus.nvim",
+  config = function ()
+    require("focus").setup()
+  end
+  }
 }
 
