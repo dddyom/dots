@@ -1,9 +1,12 @@
-return {
+local M = {
   "jose-elias-alvarez/null-ls.nvim", -- configure formatters & linters
-  dependencies ={
+}
+
+M.dependencies = {
   "jayp0521/mason-null-ls.nvim" -- bridges gap b/w mason & null-ls
-  },
-  config = function()
+}
+
+M.config = function ()
     local null_ls = require("null-ls")
 
     local formatting = null_ls.builtins.formatting
@@ -56,6 +59,6 @@ return {
       sources = sources,
       on_attach = on_attach,
     })
+end
 
-  end
-}
+return M

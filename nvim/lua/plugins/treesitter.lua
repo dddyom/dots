@@ -1,13 +1,15 @@
-return {
+local M = {
   "nvim-treesitter/nvim-treesitter",
-  dependencies = {
+}
+
+M.dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
     'jeetsukumaran/vim-pythonsense'
+}
 
-  },
-  build=':TSUpdate',
-  event="BufRead",
-	config = function()
+M.build=':TSUpdate'
+M.event="BufRead"
+M.config = function()
 		require("nvim-treesitter.configs").setup {
       highlight = {
         enable = true,
@@ -47,6 +49,6 @@ return {
         },
      },
     }
+end
 
-  end
-}
+return M

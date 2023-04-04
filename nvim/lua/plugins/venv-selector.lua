@@ -1,9 +1,12 @@
-return {
+local M = {
 	"linux-cultist/venv-selector.nvim",
-	dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" },
-	config = true,
-	event = "VeryLazy", -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
-	keys = {{
-		"<leader>vs", "<cmd>:VenvSelect<cr>"
-	}}
 }
+
+M.dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" }
+M.config = true
+M.opts = {
+    parents=4
+}
+
+return M
+

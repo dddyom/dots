@@ -1,3 +1,52 @@
-return {
-
+local M = {
+  "ThePrimeagen/harpoon",
+  "eandrju/cellular-automaton.nvim",
+  "nvim-lua/plenary.nvim",
+  "christoomey/vim-tmux-navigator",
+  "szw/vim-maximizer",
+  "folke/lsp-colors.nvim",
+  "tpope/vim-fugitive",
+  "jghauser/mkdir.nvim",
 }
+
+local utils_with_config = {
+  "windwp/nvim-autopairs",
+  "m4xshen/smartcolumn.nvim",
+  "simrat39/symbols-outline.nvim",
+  "lewis6991/gitsigns.nvim",
+  "s1n7ax/nvim-search-and-replace",
+  "beauwilliams/focus.nvim",
+}
+
+for _, plug in pairs(utils_with_config) do
+  table.insert(M, {
+    plug, config=true
+  })
+end
+
+local utils_with_more_params = {
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function () require("colorizer").setup() end
+  },
+  {
+  "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    config = true
+  }, {
+  "jackMort/ChatGPT.nvim",
+      config = true,
+      dependencies = {
+        "MunifTanjim/nui.nvim",
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim"
+      }
+  }
+}
+
+for _, plug in pairs(utils_with_more_params) do
+  table.insert(M, plug)
+end
+
+return M
