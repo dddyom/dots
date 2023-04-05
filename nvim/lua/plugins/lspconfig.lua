@@ -5,7 +5,8 @@ local M = {
 M.branch = 'v2.x'
 
 M.dependencies = {
-  {'neovim/nvim-lspconfig'},
+
+  'neovim/nvim-lspconfig',
   {
     'williamboman/mason.nvim',
     build = function()
@@ -28,6 +29,7 @@ M.dependencies = {
 }
 
 M.config = function ()
+
     local lsp = require('lsp-zero').preset({})
     lsp.on_attach(function(client, bufnr)
       lsp.default_keymaps({buffer = bufnr})

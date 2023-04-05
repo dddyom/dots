@@ -9,18 +9,47 @@ M.leader_opts = {
   nowait = false,
 }
 
+M.normal_opts = {
+  mode = "n",
+  prefix = "",
+  buffer = nil,
+  silent = true,
+  noremap = true,
+  nowait = false,
+}
+
+M.normal_maps = {
+
+  ['H'] = {'<cmd>lua require("harpoon.ui").nav_prev()<CR>', "prev mark"},
+  ['L'] = {'<cmd>lua require("harpoon.ui").nav_next()<CR>', "next mark"},
+  ['M'] = {'<cmd>lua require("harpoon.mark").add_file()<CR>', 'add mark'},
+}
+
+M.surround_opts = {
+  mode = "v",
+  prefix = ",",
+  buffer = nil,
+  silent = true,
+  noremap = true,
+  nowait = false,
+}
+M.surround_maps = {
+  ["tn"] = {[[c{% trans %}<c-r>"{% endtrans %}<esc>]], "{% trans %}{% endtrans %}"},
+  ["cl"] = {[[cconsole.log(<c-r>")<esc>]], "console.log()"},
+  ['p'] = {[[cprint(<c-r>")<esc>]], "print()"},
+  ['pp'] = {[[cprint(f"\033[93m{<c-r>"}\033[0m")<esc>]], "color print"}
+}
+
 M.leader_maps = {
+  ['m'] = {'<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', 'marks menu'},
   ["x"] = { "<cmd>ChatGPT<CR>", "chatGPT" },
   ["w"] = { "<cmd>update!<CR>", "save" },
   ["q"] = { "<cmd>q!<CR>", "quit" },
   ["e"] = { ":NeoTreeFocusToggle<cr>", "file explorer" },
   [']'] = { "<cmd>CellularAutomaton make_it_rain<CR>", "rain" },
-  ['m'] = {'<cmd>lua require("harpoon.mark").add_file()<CR>', 'add mark'},
-  ['M'] = {'<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', 'marks menu'},
-  ['h'] = {'<cmd>lua require("harpoon.ui").nav_prev()<CR>', "prev mark"},
-  ['l'] = {'<cmd>lua require("harpoon.ui").nav_next()<CR>', "next mark"},
   ['v'] = {"<cmd>:VenvSelect<cr>", 'selecte venv'},
-  ['a'] = {"<cmd>AerialToggle!<CR>", 'code structure'},
+  ['a'] = {"<cmd>AerialToggle!<CR>", 'code objects'},
+  ['s'] = {"<cmd>:SymbolsOutline<CR>", 'code structure'},
   ['i'] = {":ALEImport<CR>", 'python import' },
   f = {
     name = "Telescope",
@@ -29,8 +58,7 @@ M.leader_maps = {
     s = {"<cmd>Telescope grep_string<cr>", 'find by word under cursor'},
     b = {"<cmd>Telescope buffers<cr>", 'find in open buffers'},
     h = {"<cmd>Telescope help_tags<cr>", 'help tags'},
-    g = {"<cmd>Telescope git_status<cr>", 'git status'},
-    c = {"<cmd>Telescope git_commits<cr>", 'git commits'},
+    c = {"<cmd>Telescope neoclip<cr>", 'clipboard'}
   },
   b = {
     name = 'Buffers',
@@ -39,16 +67,6 @@ M.leader_maps = {
     h = { "<c-w>s", "split window horisontally" },
     x = { ":close<cr>", "close current split window" },
     n = { ":tabnew<cr>", "open new tab" }
-  },
-  g = {
-    name = "Git",
-    a = {":Git add .<CR>", "add all" },
-    s = { ":Git status<CR>", "status" },
-    p = { ":Git push<CR>", "push" },
-    c = {":Git commit<CR>", "commit"},
-    d = {":Gvdiff<CR>", "diff"},
-    w = {":Gwrite<CR>", "add current buffer to git"},
-
   },
   c = {
     name = 'Lspsaga',
