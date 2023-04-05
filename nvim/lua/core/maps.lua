@@ -24,3 +24,4 @@ map("c", "<c-e>", "<end>", {})
 map('n', '<cr>', '@="m`o<c-v><esc>``"<cr>')
 map('n', '<s-cr>', '@="m`o<c-v><esc>``"<cr>')
 
+map("v", ",tn", [[c{% trans %}<c-r>"{% endtrans %}<esc>]], { noremap = true })

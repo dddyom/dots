@@ -42,3 +42,4 @@ bindkey '^j' down-line-or-history
 bindkey '^l' autosuggest-accept
 bindkey '^p' clear-screen
 bindkey '^H' backward-delete-word
+source $HOME/.connections/conn_aliases
