@@ -21,6 +21,7 @@ M.leader_maps = {
   ['l'] = {'<cmd>lua require("harpoon.ui").nav_next()<CR>', "next mark"},
   ['v'] = {"<cmd>:VenvSelect<cr>", 'selecte venv'},
   ['a'] = {"<cmd>AerialToggle!<CR>", 'code structure'},
+  ['i'] = {":ALEImport<CR>", 'python import' },
   f = {
     name = "Telescope",
     f = { "<cmd>Telescope find_files<cr>", "find file" },

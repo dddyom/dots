@@ -25,3 +25,7 @@ map('n', '<cr>', '@="m`o<c-v><esc>``"<cr>')
 map('n', '<s-cr>', '@="m`o<c-v><esc>``"<cr>')
 
 map("v", ",tn", [[c{% trans %}<c-r>"{% endtrans %}<esc>]], { noremap = true })
+map("v", ",cl", [[cconsole.log(<c-r>")<esc>]], { noremap = true })
+map("v", ",p", [[cprint(<c-r>")<esc>]], { noremap = true })
+map("v", ",pp", [[cprint(f"\033[93m{<c-r>"}\033[0m")<esc>]], { noremap = true })
+
