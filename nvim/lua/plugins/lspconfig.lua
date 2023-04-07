@@ -6,6 +6,7 @@ M.branch = 'v2.x'
 
 M.dependencies = {
 
+  'nvim-lua/lsp-status.nvim',
   'neovim/nvim-lspconfig',
   {
     'williamboman/mason.nvim',
@@ -32,6 +33,7 @@ M.config = function ()
 
     local lsp = require('lsp-zero').preset({})
     lsp.on_attach(function(client, bufnr)
+      require('lsp-status').on_attach(client)
       lsp.default_keymaps({buffer = bufnr})
     end)
     require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())

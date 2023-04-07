@@ -52,7 +52,8 @@ local utils_with_more_params = {
           }
       })
     end
-    }, }
+    },
+}
 
 for _, plug in pairs(utils_with_more_params) do
   table.insert(M, plug)

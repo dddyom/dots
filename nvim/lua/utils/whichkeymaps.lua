@@ -36,8 +36,10 @@ M.surround_opts = {
 M.surround_maps = {
   ["tn"] = {[[c{% trans %}<c-r>"{% endtrans %}<esc>]], "{% trans %}{% endtrans %}"},
   ["cl"] = {[[cconsole.log(<c-r>")<esc>]], "console.log()"},
-  ['p'] = {[[cprint(<c-r>")<esc>]], "print()"},
-  ['pp'] = {[[cprint(f"\033[93m{<c-r>"}\033[0m")<esc>]], "color print"}
+  ['pp'] = {[[cprint(<c-r>")<esc>]], "print()"},
+  ['pc'] = {[[cprint(f"\033[93m{<c-r>"}\033[0m")<esc>]], "color print"},
+  ['%'] = {[[c{% <c-r>" %}<esc>]], "jinja func"},
+  ['{'] = {[[c{{ <c-r>" }}<esc>]], "jinja tag"}
 }
 
 M.leader_maps = {
