@@ -6,6 +6,7 @@ local M = {
   "folke/lsp-colors.nvim",
   "tpope/vim-fugitive",
   "jghauser/mkdir.nvim",
+  "RRethy/vim-illuminate"
 }
 
 
