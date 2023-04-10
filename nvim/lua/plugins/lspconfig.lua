@@ -45,8 +45,8 @@ M.config = function ()
     lsp.set_sign_icons({
       error = '❌',
       warn = '⚠️',
-      hint = '❕',
-      info = '▶️'
+      hint = 'ℹ️',
+      info = '✏️'
     })
     require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
     lsp.setup()
