@@ -19,7 +19,6 @@ M.normal_opts = {
 }
 
 M.normal_maps = {
-
   ['H'] = {'<cmd>lua require("harpoon.ui").nav_prev()<CR>', "prev mark"},
   ['L'] = {'<cmd>lua require("harpoon.ui").nav_next()<CR>', "next mark"},
   ['M'] = {'<cmd>lua require("harpoon.mark").add_file()<CR>', 'add mark'},
@@ -47,11 +46,12 @@ M.leader_maps = {
   ["c"] = { "<cmd>ChatGPT<CR>", "chatGPT" },
   ["w"] = { "<cmd>update!<CR>", "save" },
   ["q"] = { "<cmd>q!<CR>", "quit" },
-  ["e"] = { ":NeoTreeFocusToggle<cr>", "file explorer" },
+  ["e"] = { "<cmd>NeoTreeFocusToggle<cr>", "file explorer" },
   [']'] = { "<cmd>CellularAutomaton make_it_rain<CR>", "rain" },
-  ['v'] = {"<cmd>:VenvSelect<cr>", 'selecte venv'},
-  ['s'] = {"<cmd>:SymbolsOutline<CR>", 'code structure'},
-  ['i'] = {":ALEImport<CR>", 'python import' },
+  ['v'] = {"<cmd>VenvSelect<cr>", 'selecte venv'},
+  ['s'] = {"<cmd>SymbolsOutline<CR>", 'code structure'},
+  ['i'] = {"<cmd>ALEImport<CR>", 'python import' },
+  ['a'] = {"<cmd>lua require('trevj').format_at_cursor()<cr>", "format args"},
   f = {
     name = "Telescope",
     f = { "<cmd>Telescope find_files<cr>", "find file" },
@@ -63,11 +63,13 @@ M.leader_maps = {
   },
   b = {
     name = 'Buffers',
-    c = { ":bd<cr>", "close current buffer" },
+    p = {'<cmd>bprevious<cr>', 'previous buffer'},
+    n = {'<cmd>bnext<cr>', 'next buffer'},
+    c = { "<cmd>bd<cr>", "close current buffer" },
     v = { "<c-w>v", "split window vertically" },
     h = { "<c-w>s", "split window horisontally" },
-    x = { ":close<cr>", "close current split window" },
-    n = { ":tabnew<cr>", "open new tab" }
+    x = { "<cmd>close<cr>", "close current split window" },
+    -- n = { "<cmd>tabnew<cr>", "open new tab" }
   },
   x = {
     name = 'LSP',
@@ -76,10 +78,10 @@ M.leader_maps = {
   },
   r = {
     name = 'Replace',
-    r = {":SReplace", 'replace'},
-    g = {":SReplaceAll", 'replace including all ignored files'},
-    s = {":SReplaceAndSave", 'replace and save'},
-    a = {":SReplaceAllAndSave", 'replace and save including all ignored files'},
+    r = {"<cmd>SReplace", 'replace'},
+    g = {"<cmd>SReplaceAll", 'replace including all ignored files'},
+    s = {"<cmd>SReplaceAndSave", 'replace and save'},
+    a = {"<cmd>SReplaceAllAndSave", 'replace and save including all ignored files'},
   }
 }
 

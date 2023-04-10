@@ -51,8 +51,33 @@ local utils_with_more_params = {
         config = function ()
           require('hlargs').setup()
         end
+    }, {
+        "mrjones2014/nvim-ts-rainbow",
+        config=function ()
+          require('nvim-treesitter.configs').setup({
+            highlight = {},
+            rainbow = {
+              enable = true,
+              extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+              max_file_lines = nil, -- Do not enable for files with more than n lines, int
+            },
+          })
+        end
+    }, {
+      "AckslD/nvim-trevJ.lua",
+      config = function ()
+          require('trevj').setup({
+            containers = {
+              lua = {
+                table_constructor = {final_separator = ',', final_end_line = true},
+                arguments = {final_separator = false, final_end_line = true},
+                parameters = {final_separator = false, final_end_line = true},
+              },
+            },
+          })
+      end
     }
-}
+  }
 
 for _, plug in pairs(utils_with_more_params) do
   table.insert(M, plug)
