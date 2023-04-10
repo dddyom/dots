@@ -34,7 +34,6 @@ M.dependencies = {
 M.config = function ()
 
     local lsp = require('lsp-zero').preset({})
-
     local navic = require("nvim-navic")
     lsp.on_attach(function(client, bufnr)
       require('lsp-status').on_attach(client)

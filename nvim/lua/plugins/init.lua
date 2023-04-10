@@ -15,9 +15,9 @@ local utils_with_config = {
   "simrat39/symbols-outline.nvim",
   "lewis6991/gitsigns.nvim",
   "s1n7ax/nvim-search-and-replace",
-  "beauwilliams/focus.nvim",
   'simrat39/symbols-outline.nvim',
-  'dnlhc/glance.nvim'
+  'dnlhc/glance.nvim',
+  "ThePrimeagen/harpoon",
 }
 
 for _, plug in pairs(utils_with_config) do
@@ -45,22 +45,12 @@ local utils_with_more_params = {
         "nvim-telescope/telescope.nvim"
       }
   }, {
-    "ThePrimeagen/harpoon",
-    config = function ()
-      require("harpoon").setup({
-          menu = {
-              width = vim.api.nvim_win_get_width(0) - 50,
-              height = vim.api.nvim_win_get_height(0) - 10
-          }
-      })
-    end
-    }, {
         'm-demare/hlargs.nvim',
         dependencies={ 'nvim-treesitter/nvim-treesitter' },
         config = function ()
           require('hlargs').setup()
         end
-    },
+    }
 }
 
 for _, plug in pairs(utils_with_more_params) do

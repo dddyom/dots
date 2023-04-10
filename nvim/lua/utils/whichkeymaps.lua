@@ -50,7 +50,6 @@ M.leader_maps = {
   ["e"] = { ":NeoTreeFocusToggle<cr>", "file explorer" },
   [']'] = { "<cmd>CellularAutomaton make_it_rain<CR>", "rain" },
   ['v'] = {"<cmd>:VenvSelect<cr>", 'selecte venv'},
-  ['a'] = {"<cmd>AerialToggle!<CR>", 'code objects'},
   ['s'] = {"<cmd>:SymbolsOutline<CR>", 'code structure'},
   ['i'] = {":ALEImport<CR>", 'python import' },
   f = {
