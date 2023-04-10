@@ -9,5 +9,5 @@ return {
     top = 0,
     bottom = 0,
   },
-  color_scheme = "Catppuccin Mocha", -- Macchiato, Frappe, Latte, Mocha
+  color_scheme = 'Orangish (terminal.sexy)'
 }

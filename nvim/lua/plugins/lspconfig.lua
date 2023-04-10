@@ -36,6 +36,12 @@ M.config = function ()
       require('lsp-status').on_attach(client)
       lsp.default_keymaps({buffer = bufnr})
     end)
+    lsp.set_sign_icons({
+      error = '❌',
+      warn = '⚠️',
+      hint = '❕',
+      info = '▶️'
+    })
     require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
     lsp.setup()
     vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })

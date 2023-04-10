@@ -44,7 +44,7 @@ M.surround_maps = {
 
 M.leader_maps = {
   ['m'] = {'<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', 'marks menu'},
-  ["x"] = { "<cmd>ChatGPT<CR>", "chatGPT" },
+  ["c"] = { "<cmd>ChatGPT<CR>", "chatGPT" },
   ["w"] = { "<cmd>update!<CR>", "save" },
   ["q"] = { "<cmd>q!<CR>", "quit" },
   ["e"] = { ":NeoTreeFocusToggle<cr>", "file explorer" },
@@ -70,12 +70,10 @@ M.leader_maps = {
     x = { ":close<cr>", "close current split window" },
     n = { ":tabnew<cr>", "open new tab" }
   },
-  c = {
-    name = 'Lspsaga',
-    o = {"<cmd>LSoutlineToggle<CR>", 'Outline'},
-    c = {"<cmd>Lspsaga code_action<CR>", 'Code actions'},
-    r = {"<cmd>Lspsaga rename<CR>", "Rename"},
-    d = {"<cmd>Lspsaga show_line_diagnostics<CR>", 'Diagnostic'}
+  x = {
+    name = 'LSP',
+    d = {"<CMD>Glance definitions<CR>", 'definitions'},
+    r = {"<CMD>Glance references<CR>", 'references'},
   },
   r = {
     name = 'Replace',
