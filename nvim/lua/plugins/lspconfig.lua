@@ -4,8 +4,10 @@ local M = {
 
 M.branch = 'v2.x'
 
+
 M.dependencies = {
 
+  "SmiteshP/nvim-navic",
   'nvim-lua/lsp-status.nvim',
   'neovim/nvim-lspconfig',
   {
@@ -32,8 +34,13 @@ M.dependencies = {
 M.config = function ()
 
     local lsp = require('lsp-zero').preset({})
+
+    local navic = require("nvim-navic")
     lsp.on_attach(function(client, bufnr)
       require('lsp-status').on_attach(client)
+      if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
+      end
       lsp.default_keymaps({buffer = bufnr})
     end)
     lsp.set_sign_icons({

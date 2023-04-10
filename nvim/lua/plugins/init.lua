@@ -60,16 +60,7 @@ local utils_with_more_params = {
         config = function ()
           require('hlargs').setup()
         end
-    }, {
-        "utilyre/barbecue.nvim",
-        name = "barbecue",
-        version = "*",
-        dependencies = {
-          "SmiteshP/nvim-navic",
-          "nvim-tree/nvim-web-devicons", -- optional dependency
-        },
-        config=true
-  }
+    },
 }
 
 for _, plug in pairs(utils_with_more_params) do

@@ -4,6 +4,7 @@ local M = {
 
 
 M.config = function ()
+  local navic = require("nvim-navic")
   require('lualine').setup({
     options = {
       icons_enabled = true,
@@ -14,7 +15,17 @@ M.config = function ()
     sections = {
       lualine_a = {
         'buffers',
-      }
+      },
+      lualine_c = {
+                  { 
+                    function()
+                        return navic.get_location()
+                    end, 
+                    cond = function() 
+                        return navic.is_available()
+                    end
+                  },
+              }
     }
   })
 end
