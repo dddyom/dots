@@ -43,10 +43,10 @@ M.config = function ()
       lsp.default_keymaps({buffer = bufnr})
     end)
     lsp.set_sign_icons({
-      error = '❌',
-      warn = '⚠️',
-      hint = 'ℹ️',
-      info = '✏️'
+      error = '',
+      warn = '',
+      hint = '',
+      info = 'פֿ'
     })
     require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
     lsp.setup()
