@@ -5,7 +5,7 @@ local M = {
 
 M.config = function ()
     require('onedark').setup {
-        style = 'deep', -- 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer'
+        style = 'darker', -- 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer'
       lualine = {
           transparent = true, -- lualine center bar transparency
       },
