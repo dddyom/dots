@@ -13,7 +13,7 @@ M.config = function()
     },
   }
   wk.setup(conf)
-  local params = require("utils.whichkeymaps")
+  local params = require("core.maps")
   wk.register(params.leader_maps, params.leader_opts)
   wk.register(params.surround_maps, params.surround_opts)
   wk.register(params.normal_maps, params.normal_opts)
