@@ -87,7 +87,8 @@ M.surround_maps = {
 }
 
 M.leader_maps = {
-  ['g'] = {"<cmd>SnipRun<CR>", 'run code'},
+  ['t'] = {"<cmd>ToggleTerm<CR>", 'terminal'},
+  ['g'] = {"<cmd>lua _lazygit_toggle()<CR>", 'git'},
   ['m'] = {'<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', 'marks menu'},
   ["c"] = { "<cmd>ChatGPT<CR>", "chatGPT" },
   ["w"] = { "<cmd>update!<CR>", "save" },
