@@ -88,6 +88,9 @@ local utils_with_more_params = {
       disable_legacy_commands = true
     })
   end,
+    }, {
+      'michaelb/sniprun',
+      build = "bash install.sh"
     }
   }
 

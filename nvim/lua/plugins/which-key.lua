@@ -17,6 +17,8 @@ M.config = function()
   wk.register(params.leader_maps, params.leader_opts)
   wk.register(params.surround_maps, params.surround_opts)
   wk.register(params.normal_maps, params.normal_opts)
+  wk.register(params.visual_maps, params.visual_opts)
+  wk.register(params.insert_maps, params.insert_opts)
 end
 
 return M

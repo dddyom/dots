@@ -16,6 +16,24 @@ map('n', '<S-cr>', '@="m`o<c-v><esc>``"<cr>')
 
 local M = {}
 
+M.insert_opts = {
+  mode = "i",
+  prefix = "",
+  buffer = nil,
+  silent = true,
+  noremap = true,
+  nowait = false,
+}
+
+M.visual_opts = {
+  mode = "v",
+  prefix = "",
+  buffer = nil,
+  silent = true,
+  noremap = true,
+  nowait = false,
+}
+
 
 M.normal_opts = {
   mode = "n",
@@ -44,10 +62,19 @@ M.leader_opts = {
   nowait = false,
 }
 
+M.insert_maps = {
+  ['<c-w>'] = {"<cmd>lua require('wrapper').wrap_variable()<cr>", "print variable"},
+}
+
+M.visual_maps = {
+  ['rc'] = {":'<,'>SnipRun<cr>", 'run code'}
+}
+
 M.normal_maps = {
   ['H'] = {'<cmd>lua require("harpoon.ui").nav_prev()<CR>', "prev mark"},
   ['L'] = {'<cmd>lua require("harpoon.ui").nav_next()<CR>', "next mark"},
   ['M'] = {'<cmd>lua require("harpoon.mark").add_file()<CR>', 'add mark'},
+  ['<c-w>'] = {"<cmd>lua require('wrapper').wrap_under_cursor()<cr>", "print variable"},
 }
 
 M.surround_maps = {
@@ -60,6 +87,7 @@ M.surround_maps = {
 }
 
 M.leader_maps = {
+  ['g'] = {"<cmd>SnipRun<CR>", 'run code'},
   ['m'] = {'<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', 'marks menu'},
   ["c"] = { "<cmd>ChatGPT<CR>", "chatGPT" },
   ["w"] = { "<cmd>update!<CR>", "save" },
@@ -70,6 +98,7 @@ M.leader_maps = {
   ['s'] = {"<cmd>SymbolsOutline<CR>", 'code structure'},
   ['i'] = {"<cmd>ALEImport<CR>", 'python import' },
   ['a'] = {"<cmd>lua require('trevj').format_at_cursor()<cr>", "format args"},
+  [','] = {"<cmd>SnipClose<cr>", 'SnipClose'},
   f = {
     name = "Telescope",
     f = { "<cmd>Telescope find_files<cr>", "find file" },
