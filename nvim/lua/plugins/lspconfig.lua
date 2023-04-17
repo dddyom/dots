@@ -25,8 +25,7 @@ M.dependencies = {
   {'saadparwaiz1/cmp_luasnip'},
   {'hrsh7th/cmp-nvim-lsp'},
   {'hrsh7th/cmp-nvim-lua'},
-
-  -- Snippets
+-- Snippets
   {'L3MON4D3/LuaSnip'},
   {'rafamadriz/friendly-snippets'},
 }
@@ -52,6 +51,27 @@ M.config = function ()
     lsp.setup()
     vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
     vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
+
+    local lspkind = require "lspkind"
+    lspkind.init({
+      preset='codicons'
+    })
+     require "cmp".setup {
+      formatting = {
+        format = function (entry, vim_item)
+          vim_item.kind = lspkind.presets.default[vim_item.kind]
+           vim_item.menu = ({
+            buffer = "[Buffer]",
+            nvim_lsp = "[LSP]",
+            luasnip = "[LuaSnip]",
+            nvim_lua = "[Lua]",
+            latex_symbols = "[LaTeX]",
+          })[entry.source.name]
+          return vim_item
+        end
+      }
+    }
+
 end
 
 return M

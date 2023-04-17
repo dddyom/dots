@@ -16,15 +16,6 @@ map('n', '<S-cr>', '@="m`o<c-v><esc>``"<cr>')
 
 local M = {}
 
-M.insert_opts = {
-  mode = "i",
-  prefix = "",
-  buffer = nil,
-  silent = true,
-  noremap = true,
-  nowait = false,
-}
-
 M.visual_opts = {
   mode = "v",
   prefix = "",
@@ -62,19 +53,16 @@ M.leader_opts = {
   nowait = false,
 }
 
-M.insert_maps = {
-  ['<c-w>'] = {"<cmd>lua require('wrapper').wrap_variable()<cr>", "print variable"},
-}
-
 M.visual_maps = {
-  ['rc'] = {":'<,'>SnipRun<cr>", 'run code'}
+  ['rc'] = {":'<,'>SnipRun<cr>", 'run code'},
+  ['<c-w>'] = {":'<,'> lua function() return require('debugprint').debugprint({variable = true}) end<cr>", 'print selected'}
 }
 
 M.normal_maps = {
   ['H'] = {'<cmd>lua require("harpoon.ui").nav_prev()<CR>', "prev mark"},
   ['L'] = {'<cmd>lua require("harpoon.ui").nav_next()<CR>', "next mark"},
   ['M'] = {'<cmd>lua require("harpoon.mark").add_file()<CR>', 'add mark'},
-  ['<c-w>'] = {"<cmd>lua require('wrapper').wrap_under_cursor()<cr>", "print variable"},
+
 }
 
 M.surround_maps = {
@@ -100,6 +88,7 @@ M.leader_maps = {
   ['i'] = {"<cmd>ALEImport<CR>", 'python import' },
   ['a'] = {"<cmd>lua require('trevj').format_at_cursor()<cr>", "format args"},
   [','] = {"<cmd>SnipClose<cr>", 'SnipClose'},
+  ['.'] = {"<cmd>DeleteDebugPrints<cr>", 'delete debug prints'},
   f = {
     name = "Telescope",
     f = { "<cmd>Telescope find_files<cr>", "find file" },
@@ -125,12 +114,12 @@ M.leader_maps = {
     r = {"<CMD>Glance references<CR>", 'references'},
   },
   r = {
-    name = 'Replace',
+    name = 'replace',
     r = {"<cmd>SReplace", 'replace'},
     g = {"<cmd>SReplaceAll", 'replace including all ignored files'},
     s = {"<cmd>SReplaceAndSave", 'replace and save'},
     a = {"<cmd>SReplaceAllAndSave", 'replace and save including all ignored files'},
-  }
+  },
 }
 
 return M

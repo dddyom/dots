@@ -37,15 +37,7 @@ local utils_with_more_params = {
     version = "*",
     event = "VeryLazy",
     config = true
-  }, {
-  "jackMort/ChatGPT.nvim",
-      config = true,
-      dependencies = {
-        "MunifTanjim/nui.nvim",
-        "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope.nvim"
-      }
-  }, {
+  },  {
         'm-demare/hlargs.nvim',
         dependencies={ 'nvim-treesitter/nvim-treesitter' },
         config = function ()

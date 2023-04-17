@@ -11,24 +11,29 @@ M.dependencies = {
 -- snippets
   "L3MON4D3/LuaSnip",
   "saadparwaiz1/cmp_luasnip",
-  "rafamadriz/friendly-snippets"
+  "rafamadriz/friendly-snippets",
+  "onsails/lspkind.nvim"
 }
 
 M.config = function ()
     require("luasnip.loaders/from_vscode").lazy_load()
     local cmp = require "cmp"
     local luasnip = require 'luasnip'
-
      cmp.setup {
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
       },
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+        winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuThumb,Search:None"
+      },
       mapping = cmp.mapping.preset.insert({
         ["<C-e>"] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm {
-        behavior = cmp.ConfirmBehavior.Replace,
+        -- behavior = cmp.ConfirmBehavior.Replace,
         select = true,
         },
         ['<Tab>'] = cmp.mapping(function(fallback)
@@ -55,7 +60,7 @@ M.config = function ()
           { name = 'luasnip' },
           { name = "buffer" }, -- text within current buffer
           { name = "path" }, -- file system paths
-        }
+        },
       }
 end
 
