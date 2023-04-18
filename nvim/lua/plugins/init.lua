@@ -26,8 +26,80 @@ for _, plug in pairs(utils_with_config) do
   })
 end
 
-local plugins_with_short_conf = require("utils.utils").plugins
-for _, plug in pairs(plugins_with_short_conf) do
+
+
+local plugins = {}
+
+
+plugins.colorizer = {
+    "norcalli/nvim-colorizer.lua",
+    config = function () require("colorizer").setup() end
+}
+
+
+plugins.surround = {
+  "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    config = true
+}
+
+plugins.hlargs = {
+  'm-demare/hlargs.nvim',
+  dependencies={ 'nvim-treesitter/nvim-treesitter' },
+  config = function () require('hlargs').setup() end
+
+}
+
+plugins.rainbow = {
+  "mrjones2014/nvim-ts-rainbow",
+  config=function ()
+    require('nvim-treesitter.configs').setup({
+      highlight = {},
+      rainbow = {
+        enable = true,
+        extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+        max_file_lines = nil, -- Do not enable for files with more than n lines, int
+      },
+    })
+  end
+}
+
+plugins.trevj = {
+  "AckslD/nvim-trevJ.lua",
+  config = function ()
+      require('trevj').setup({
+        containers = {
+          lua = {
+            table_constructor = {final_separator = ',', final_end_line = true},
+            arguments = {final_separator = false, final_end_line = true},
+            parameters = {final_separator = false, final_end_line = true},
+          },
+        },
+      })
+  end
+}
+
+plugins.icon_picker = {
+  "ziontee113/icon-picker.nvim",
+  dependencies = {
+    "stevearc/dressing.nvim",
+  },
+
+  config = function()
+    require("icon-picker").setup({
+      disable_legacy_commands = true
+    })
+  end,
+}
+
+plugins.sniprun = {
+  'michaelb/sniprun',
+  build = "bash install.sh"
+
+}
+
+for _, plug in pairs(plugins) do
   table.insert(M, plug)
 end
 

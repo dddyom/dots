@@ -60,6 +60,7 @@ M.config = function ()
           { name = 'luasnip' },
           { name = "buffer" }, -- text within current buffer
           { name = "path" }, -- file system paths
+          { name = 'cmp_tabnine' },
         },
       }
 end
