@@ -6,7 +6,7 @@ M.set_cmp_icons = function ()
         format = function (entry, vim_item)
           local icons = require("utils.icons")
           vim_item.kind = icons[vim_item.kind]
-         vim_item.menu = icons[entry.source.name]
+          vim_item.menu = icons[entry.source.name]
           return vim_item
         end
       }
