@@ -34,10 +34,7 @@ M.leader_maps = {
     c = {"<cmd>Telescope neoclip<cr>", 'clipboard'}
   },
   b = {
-    name = 'Buffers',
-    p = {'<cmd>bprevious<cr>', 'previous buffer'},
-    n = {'<cmd>bnext<cr>', 'next buffer'},
-    c = { "<cmd>bd<cr>", "close current buffer" },
+    name = 'buffers split',
     v = { "<c-w>v", "split window vertically" },
     h = { "<c-w>s", "split window horisontally" },
     x = { "<cmd>close<cr>", "close current split window" },
@@ -50,10 +47,10 @@ M.leader_maps = {
   },
   r = {
     name = 'replace',
-    r = {"<cmd>SReplace<cr>", 'replace'},
-    g = {"<cmd>SReplaceAll<cr>", 'replace including all ignored files'},
-    s = {"<cmd>SReplaceAndSave<cr>", 'replace and save'},
-    a = {"<cmd>SReplaceAllAndSave<cr>", 'replace and save including all ignored files'},
+    r = {"<cmd>SearchReplaceSingleBufferCWord<cr>", 'replace word under cursor (single buffer)'},
+    R = {"<cmd>SearchReplaceMultiBufferCWord<cr>", 'replace word under cursor (multiple buffers)'},
+    e = {"<cmd>SearchReplaceSingleBufferCWORD<cr>", 'replace expression under cursor (single buffer)'},
+    E = {"<cmd>SearchReplaceMultiBufferCWORD<cr>", 'replace expression under cursor (multiple buffer)'},
   },
 }
 return M

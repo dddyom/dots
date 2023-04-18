@@ -7,7 +7,6 @@ local M = {
   "tpope/vim-fugitive",
   "jghauser/mkdir.nvim",
   "RRethy/vim-illuminate",
-  'nvim-pack/nvim-spectre'
 }
 
 

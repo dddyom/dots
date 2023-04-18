@@ -6,6 +6,7 @@ local M = {
 M.branch = "0.1.x"
 M.dependencies = {
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    {'cljoly/telescope-repo.nvim'},
     { 'AckslD/nvim-neoclip.lua' },
 }
 M.config = function ()
@@ -22,7 +23,22 @@ M.config = function ()
           },
         },
       },
+     extensions = {
+        repo = {
+          list = {
+            -- fd_opts = {
+              -- "--no-ignore-vcs",
+            -- },
+            search_dirs = {
+              "~/code",
+              "~/WorkGit"
+            },
+          },
+        },
+      },
     })
+
+    telescope.load_extension'repo'
 end
 
 return M

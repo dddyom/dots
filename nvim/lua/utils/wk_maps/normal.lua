@@ -14,7 +14,9 @@ M.normal_maps = {
   ['H'] = {'<cmd>lua require("harpoon.ui").nav_prev()<CR>', "prev mark"},
   ['L'] = {'<cmd>lua require("harpoon.ui").nav_next()<CR>', "next mark"},
   ['M'] = {'<cmd>lua require("harpoon.mark").add_file()<CR>', 'add mark'},
-
+  ['<c-n>'] = {'<cmd>bnext<cr>', 'next buffer'},
+  ['<c-p>'] = {'<cmd>bprevious<cr>', 'previous buffer'},
+  ['<c-w>'] = {"<cmd>bd<cr>", "close current buffer"}
 }
 
 return M
