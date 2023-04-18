@@ -6,7 +6,8 @@ local M = {
   "folke/lsp-colors.nvim",
   "tpope/vim-fugitive",
   "jghauser/mkdir.nvim",
-  "RRethy/vim-illuminate"
+  "RRethy/vim-illuminate",
+  'nvim-pack/nvim-spectre'
 }
 
 
@@ -15,7 +16,6 @@ local utils_with_config = {
   "m4xshen/smartcolumn.nvim",
   "simrat39/symbols-outline.nvim",
   "lewis6991/gitsigns.nvim",
-  "s1n7ax/nvim-search-and-replace",
   'simrat39/symbols-outline.nvim',
   'dnlhc/glance.nvim',
   "ThePrimeagen/harpoon",

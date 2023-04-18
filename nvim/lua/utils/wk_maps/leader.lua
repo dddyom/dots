@@ -50,10 +50,10 @@ M.leader_maps = {
   },
   r = {
     name = 'replace',
-    r = {"<cmd>SReplace", 'replace'},
-    g = {"<cmd>SReplaceAll", 'replace including all ignored files'},
-    s = {"<cmd>SReplaceAndSave", 'replace and save'},
-    a = {"<cmd>SReplaceAllAndSave", 'replace and save including all ignored files'},
+    r = {"<cmd>SReplace<cr>", 'replace'},
+    g = {"<cmd>SReplaceAll<cr>", 'replace including all ignored files'},
+    s = {"<cmd>SReplaceAndSave<cr>", 'replace and save'},
+    a = {"<cmd>SReplaceAllAndSave<cr>", 'replace and save including all ignored files'},
   },
 }
 return M
