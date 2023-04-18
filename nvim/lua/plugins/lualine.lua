@@ -17,11 +17,11 @@ M.config = function ()
         'buffers',
       },
       lualine_c = {
-                  { 
+                  {
                     function()
                         return navic.get_location()
-                    end, 
-                    cond = function() 
+                    end,
+                    cond = function()
                         return navic.is_available()
                     end
                   },
