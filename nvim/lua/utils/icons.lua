@@ -29,6 +29,7 @@ return {
     buffer = "📑",
     nvim_lsp = "⚡",
     luasnip = "📔",
+    cmp_tabnine = "🚀"
     -- nvim_lua = "[Lua]",
 }
 

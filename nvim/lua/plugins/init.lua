@@ -26,8 +26,6 @@ for _, plug in pairs(utils_with_config) do
   })
 end
 
-
-
 local plugins = {}
 
 
@@ -97,6 +95,12 @@ plugins.sniprun = {
   'michaelb/sniprun',
   build = "bash install.sh"
 
+}
+
+plugins.tabnine = {
+  'tzachar/cmp-tabnine',
+  build = './install.sh',
+  config = function () require('cmp_tabnine.config'):setup() end
 }
 
 for _, plug in pairs(plugins) do
