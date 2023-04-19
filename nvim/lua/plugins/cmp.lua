@@ -57,7 +57,7 @@ M.config = function ()
         }),
         sources = {
           { name = 'nvim_lsp' },
-          { name = 'cmp_tabnine' },
+          -- { name = 'cmp_tabnine' },
           { name = 'luasnip' },
           { name = "buffer" }, -- text within current buffer
           { name = "path" }, -- file system paths

@@ -97,10 +97,15 @@ plugins.sniprun = {
 
 }
 
-plugins.tabnine = {
-  'tzachar/cmp-tabnine',
-  build = './install.sh',
-  config = function () require('cmp_tabnine.config'):setup() end
+plugins.codeium = {
+  "Exafunction/codeium.vim",
+  config = function ()
+    vim.keymap.set('i', '<C-a>', function () return vim.fn['codeium#Accept']() end, { expr = true })
+    vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+    vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+    vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+  end
+
 }
 
 for _, plug in pairs(plugins) do
