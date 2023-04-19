@@ -8,7 +8,6 @@ plugins=(
 	git
 	extract
 )
-export OPENAI_API_KEY=$(cat $HOME/.secrets/openai)
 setopt extendedglob
 
 source $ZSH/oh-my-zsh.sh
@@ -21,13 +20,10 @@ alias q="exit"
 alias :q="exit"
 alias c="cd"
 alias c.="cd $HOME/code/dots/"
-alias cw="cd $HOME/WorkGit"
 alias cc="cd $HOME/code/"
 alias cs="cd $HOME/code/drafts/"
 alias so.="source $HOME/.zshrc"
 alias vi="nvim"
-alias sso="cd $HOME/WorkGit/sso && $HOME/WorkGit/sso/venv/bin/python -m flask run"
-alias quarantine="export FLASK_ENV=development && export FLASK_DEBUG=1 && export FLASK_APP=quarantine &&  cd $HOME/WorkGit/quarantine && $HOME/WorkGit/quarantine/venv/bin/python -m flask run"
 alias env="nvim .env"
 alias venv="source venv/bin/activate"
 alias unzip="extract"
@@ -43,4 +39,11 @@ bindkey '^j' down-line-or-history
 bindkey '^l' autosuggest-accept
 bindkey '^p' clear-screen
 bindkey '^H' backward-delete-word
-source $HOME/.connections/conn_aliases
+
+if [ -f $HOME/.ico/ico.sh ]; then
+  source $HOME/.ico/ico.sh
+fi
+
+if [ -f $HOME/.secrets.sh ]; then
+  source $HOME/.secrets.sh
+fi
