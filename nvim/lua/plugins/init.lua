@@ -108,6 +108,40 @@ plugins.codeium = {
 
 }
 
+plugins.comments = {
+  "numToStr/Comment.nvim",
+  config = function ()
+    vim.keymap.set("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", { silent = true })
+    vim.keymap.set("v", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", { silent = true })
+  end
+}
+
+plugins.leap = {
+  "ggandor/leap.nvim",
+  config = function ()
+    vim.keymap.set({'n', 'x', 'o'}, 'f', '<Plug>(leap-forward-to)')
+    vim.keymap.set({'n', 'x', 'o'}, 'F', '<Plug>(leap-backward-to)')
+  end
+}
+
+plugins.replace = {
+  "roobert/search-replace.nvim",
+  config = function ()
+    require("search-replace").setup({
+      -- default_replace_single_buffer_options = "gcI",
+      -- default_replace_multi_buffer_options = "egcI",
+    })
+  vim.o.inccommand = "split"
+  end
+}
+
+plugins.venv_selector = {
+	"linux-cultist/venv-selector.nvim",
+  dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" },
+  config = true,
+  opts = { parents=4 },
+}
+
 for _, plug in pairs(plugins) do
   table.insert(M, plug)
 end
