@@ -7,5 +7,5 @@ bindkey '^H' backward-delete-word
 bindkey '^K' up-line-or-history
 bindkey '^J' down-line-or-history
 
-bindkey '^I' autosuggest-accept
+bindkey '^A' autosuggest-accept
 
