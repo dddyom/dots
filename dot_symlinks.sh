@@ -8,6 +8,7 @@ DOTS_FOR_CONF_DIR=(
 )
 
 DOTS_FOR_HOME_DIR=(
+  ".zsh"
   ".zshrc"
 )
 
@@ -20,3 +21,4 @@ for dot in "${DOTS_FOR_HOME_DIR[@]}";do
 	rm -rf "${HOME}/${dot}"
 	ln -sf "${DOTS_DIR}/${dot}" "${HOME}/${dot}"
 done
+
