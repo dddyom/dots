@@ -1,11 +1,11 @@
-bindkey '^[^[[D' backward-word
-bindkey '^[[1;5C' forward-word
-bindkey '^[OH' beginning-of-line
-bindkey '^[OF' end-of-line
-# For Control k and j
-bindkey '^k' up-line-or-history
-bindkey '^j' down-line-or-history
-bindkey '^l' autosuggest-accept
-bindkey '^p' clear-screen
+bindkey '^P' backward-word
+bindkey '^N' forward-word
+bindkey '^B' beginning-of-line
+bindkey '^E' end-of-line
 bindkey '^H' backward-delete-word
+
+bindkey '^K' up-line-or-history
+bindkey '^J' down-line-or-history
+
+bindkey '^I' autosuggest-accept
 
