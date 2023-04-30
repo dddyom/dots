@@ -6,11 +6,11 @@ M.dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
     'jeetsukumaran/vim-pythonsense'
 }
-
 M.build=':TSUpdate'
 M.event="BufRead"
 M.config = function()
 		require("nvim-treesitter.configs").setup {
+      markid = { enable = true },
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,

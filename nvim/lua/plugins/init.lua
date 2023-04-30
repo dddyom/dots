@@ -7,6 +7,8 @@ local M = {
   "tpope/vim-fugitive",
   "jghauser/mkdir.nvim",
   "RRethy/vim-illuminate",
+  'David-Kunz/markid',
+  'christoomey/vim-tmux-navigator'
 }
 
 

@@ -5,6 +5,7 @@ CONF_DIR=$HOME/.config
 DOTS_FOR_CONF_DIR=(
 	"nvim"
 	"wezterm"
+  "tmux"
 )
 
 DOTS_FOR_HOME_DIR=(

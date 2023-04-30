@@ -14,3 +14,7 @@ alias venv="source venv/bin/activate"
 alias unzip="extract"
 alias off="shutdown now"
 
+alias t="tmux"
+alias ta="t a -t"
+alias tls="t ls"
+alias tn="t new -t"
