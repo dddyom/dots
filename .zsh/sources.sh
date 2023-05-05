@@ -4,7 +4,18 @@
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 [ -d "$HOME/.local/share/JetBrains/Toolbox/scripts" ] && PATH="$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
+# [ -d "$HOME/.tmuxifier/bin" ] && PATH="$HOME/.tmuxifier/bin:$PATH"; eval "$(tmuxifier init -)"
+[ -d "$HOME/.tmuxifier/bin" ] && PATH="$HOME/.tmuxifier/bin:$PATH"; eval "$(tmuxifier init -)"
 
 export PATH=$PATH
-export WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
 export EDITOR=nvim
+
+export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
+export WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
+
+nvim_fzf() {
+  file=$(fzf)
+  echo $file
+  # [ -f "$file" ] && nvim "$file" || exit 1
+
+}

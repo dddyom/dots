@@ -9,3 +9,5 @@ bindkey '^J' down-line-or-history
 
 bindkey '^A' autosuggest-accept
 
+bindkey -s '^W' 'nvim $(fzf)^M'
+bindkey -s '^T' 'tmuxifier run^M'

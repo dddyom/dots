@@ -26,7 +26,7 @@ M.leader_maps = {
   ['.'] = {"<cmd>DeleteDebugPrints<cr>", 'delete debug prints'},
   f = {
     name = "Telescope",
-    f = { "<cmd>Telescope find_files<cr>", "find file" },
+    f = { "<cmd>Telescope find_files hidden=true<cr>", "find file" },
     w = {"<cmd>Telescope live_grep<cr>", 'find by word'},
     s = {"<cmd>Telescope grep_string<cr>", 'find by word under cursor'},
     b = {"<cmd>Telescope buffers<cr>", 'find in open buffers'},
