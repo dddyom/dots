@@ -12,10 +12,3 @@ export EDITOR=nvim
 
 export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
 export WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
-
-nvim_fzf() {
-  file=$(fzf)
-  echo $file
-  # [ -f "$file" ] && nvim "$file" || exit 1
-
-}
