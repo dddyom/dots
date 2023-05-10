@@ -4,4 +4,8 @@ plug "zap-zsh/supercharge"
 plug "zap-zsh/zap-prompt"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "le0me55i/zsh-extract"
-
+plug 'chivalryq/git-alias'
+plug 'zap-zsh/supercharge'
+plug "zap-zsh/exa"
+plug "hlissner/zsh-autopair"
+plug "MichaelAquilina/zsh-you-should-use"
