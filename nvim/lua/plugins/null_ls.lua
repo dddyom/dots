@@ -15,7 +15,8 @@ M.config = function ()
 
     local sources = {
       --[[ formatting ]]
-      -- formatting.eslint_d,
+      null_ls.builtins.code_actions.eslint,
+      formatting.eslint_d,
       formatting.autopep8,
       -- formatting.stylua,
       -- formatting.clang_format,

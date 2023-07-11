@@ -17,6 +17,8 @@ M.dependencies = {
 
 M.config = function ()
     require("luasnip.loaders/from_vscode").lazy_load()
+    -- require('luasnip').filetype_extend("javascript", { "javascriptreact" })
+    -- require('luasnip').filetype_extend("javascript", { "html" })
     local cmp = require "cmp"
     local luasnip = require 'luasnip'
      cmp.setup {
@@ -56,9 +58,8 @@ M.config = function ()
         end, { 'i', 's' }),
         }),
         sources = {
-          { name = 'nvim_lsp' },
-          -- { name = 'cmp_tabnine' },
           { name = 'luasnip' },
+          { name = 'nvim_lsp' },
           { name = "buffer" }, -- text within current buffer
           { name = "path" }, -- file system paths
         },
