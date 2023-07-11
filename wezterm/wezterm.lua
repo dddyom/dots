@@ -15,5 +15,12 @@ return {
     top = 0,
     bottom = 0,
   },
-  color_scheme = 'Orangish (terminal.sexy)'
+  color_scheme = 'Orangish (terminal.sexy)',
+  mouse_bindings = {
+    {
+      event={Up={streak=1, button="Left"}},
+      mods="CTRL",
+      action="OpenLinkAtMouseCursor",
+    },
+  },
 }
