@@ -14,7 +14,6 @@ local M = {
 
 local utils_with_config = {
   "windwp/nvim-autopairs",
-  "m4xshen/smartcolumn.nvim",
   "simrat39/symbols-outline.nvim",
   "lewis6991/gitsigns.nvim",
   'simrat39/symbols-outline.nvim',

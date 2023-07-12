@@ -14,14 +14,14 @@ M.normal_maps = {
   ['H'] = {'<cmd>lua require("harpoon.ui").nav_prev()<CR>', "prev mark"},
   ['L'] = {'<cmd>lua require("harpoon.ui").nav_next()<CR>', "next mark"},
   ['M'] = {'<cmd>lua require("harpoon.mark").add_file()<CR>', 'add mark'},
-  ['rc'] = {":SnipRun<cr>", 'run code'},
-  ['<m-l>'] = {'<cmd>bnext<cr>', 'next buffer'},
-  ['<m-h>'] = {'<cmd>bprevious<cr>', 'previous buffer'},
+  -- ['rc'] = {":SnipRun<cr>", 'run code'},
   ['<m-w>'] = {"<cmd>bd<cr>", "close current buffer"},
-  ['<c-h>'] = {':<C-U>TmuxNavigateLeft<cr>', 'tmux left'},
-  ['<c-l>'] = {':<C-U>TmuxNavigateRight<cr>', 'tmux right'},
-  ['<c-j>'] = {':<C-U>TmuxNavigateDown<cr>', 'tmux down'},
-  ['<c-k>'] = {':<C-U>TmuxNavigateUp<cr>', 'tmux up'},
+  ['<m-h>'] = {':<c-u>TmuxNavigateLeft<cr>', 'tmux left'},
+  ['<m-l>'] = {':<c-u>TmuxNavigateRight<cr>', 'tmux right'},
+  ['<m-j>'] = {':<c-u>TmuxNavigateDown<cr>', 'tmux down'},
+  ['<m-k>'] = {':<c-u>TmuxNavigateUp<cr>', 'tmux up'},
+  ['<m-n>'] = {'<cmd>bnext<cr>', 'next buffer'},
+  ['<m-p>'] = {'<cmd>bprevious<cr>', 'previous buffer'},
 
 }
 return M
