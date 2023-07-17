@@ -143,6 +143,12 @@ plugins.venv_selector = {
   opts = { parents=4 },
 }
 
+plugins.git_conflict = {
+  "akinsho/git-conflict.nvim",
+  version = "*",
+  config = true
+}
+
 for _, plug in pairs(plugins) do
   table.insert(M, plug)
 end
