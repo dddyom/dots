@@ -8,7 +8,8 @@ local M = {
   "jghauser/mkdir.nvim",
   "RRethy/vim-illuminate",
   'David-Kunz/markid',
-  'christoomey/vim-tmux-navigator'
+  'christoomey/vim-tmux-navigator',
+  "sindrets/diffview.nvim" 
 }
 
 
@@ -117,14 +118,6 @@ plugins.comments = {
   end
 }
 
-plugins.leap = {
-  "ggandor/leap.nvim",
-  config = function ()
-    vim.keymap.set({'n', 'x', 'o'}, 'f', '<Plug>(leap-forward-to)')
-    vim.keymap.set({'n', 'x', 'o'}, 'F', '<Plug>(leap-backward-to)')
-  end
-}
-
 plugins.replace = {
   "roobert/search-replace.nvim",
   config = function ()
@@ -147,6 +140,27 @@ plugins.git_conflict = {
   "akinsho/git-conflict.nvim",
   version = "*",
   config = true
+}
+plugins.format_on_save = {
+    "elentok/format-on-save.nvim",
+    config = function()
+      require('format-on-save').setup({
+        partial_update = true,
+      })
+    end
+}
+
+plugins.flash = {
+  "folke/flash.nvim",
+  event = "VeryLazy",
+  opts = {},
+  keys = {
+    { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+    { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+    { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+    { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+    { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+  },
 }
 
 for _, plug in pairs(plugins) do

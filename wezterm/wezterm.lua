@@ -7,6 +7,7 @@ end)
 
 return {
   font = wezterm.font 'JetBrains Mono',
+  font_size = 14,
   hide_tab_bar_if_only_one_tab = true,
   warn_about_missing_glyphs = false,
   window_padding = {
