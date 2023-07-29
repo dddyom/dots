@@ -9,6 +9,14 @@ M.build=':TSUpdate'
 M.event="BufRead"
 M.config = function()
 		require("nvim-treesitter.configs").setup {
+
+      ensure_installed = {
+        "rust", 'python', 'lua',
+        "http", "json", 'jq',
+        'html', 'htmldjango',
+        'javascript', 'typescript', 'css',
+        'vim', 'markdown', 'yaml'
+      },
       markid = { enable = true },
       highlight = {
         enable = true,

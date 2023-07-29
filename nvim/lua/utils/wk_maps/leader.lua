@@ -52,5 +52,11 @@ M.leader_maps = {
     e = {"<cmd>SearchReplaceSingleBufferCWORD<cr>", 'replace expression under cursor (single buffer)'},
     E = {"<cmd>SearchReplaceMultiBufferCWORD<cr>", 'replace expression under cursor (multiple buffer)'},
   },
+  h = {
+    name = 'Rest',
+    h = { "<cmd>lua require('rest-nvim').run()<cr>", "run current line http request" },
+    p = { "<cmd>lua require('rest-nvim').preview<cr>", "curl preview" },
+    l = { "<cmd>lua require('rest-nvim').last<cr>", "run last http request" },
+  }
 }
 return M

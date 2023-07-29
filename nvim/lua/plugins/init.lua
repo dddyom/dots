@@ -162,6 +162,7 @@ plugins.flash = {
   },
 }
 
+
 for _, plug in pairs(plugins) do
   table.insert(M, plug)
 end
