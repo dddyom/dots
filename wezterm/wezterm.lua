@@ -16,7 +16,7 @@ return {
     top = 0,
     bottom = 0,
   },
-  color_scheme = 'Orangish (terminal.sexy)',
+  color_scheme = 'Ayu Dark (Gogh)',
   mouse_bindings = {
     {
       event={Up={streak=1, button="Left"}},

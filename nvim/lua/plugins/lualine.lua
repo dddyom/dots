@@ -13,10 +13,15 @@ M.config = function ()
   vim.g.gitblame_date_format = '%d'
   local git_blame = require('gitblame')
 
+  local custom_ayu = require'lualine.themes.ayu'
+
+  -- Change the background of lualine_c section for normal mode
+  custom_ayu.normal.c.bg = '#0000000'
+
   require('lualine').setup({
     options = {
       icons_enabled = true,
-      theme = 'onedark',
+      theme = custom_ayu,
       component_separators = '|',
       section_separators = '',
     },
