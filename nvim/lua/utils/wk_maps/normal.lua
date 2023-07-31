@@ -20,8 +20,8 @@ M.normal_maps = {
   ['<m-l>'] = {':<c-u>TmuxNavigateRight<cr>', 'tmux right'},
   ['<m-j>'] = {':<c-u>TmuxNavigateDown<cr>', 'tmux down'},
   ['<m-k>'] = {':<c-u>TmuxNavigateUp<cr>', 'tmux up'},
-  ['<m-n>'] = {'<cmd>bnext<cr>', 'next buffer'},
-  ['<m-p>'] = {'<cmd>bprevious<cr>', 'previous buffer'},
+  ['<m-p>'] = {'<cmd>bnext<cr>', 'next buffer'},
+  ['<m-n>'] = {'<cmd>bprevious<cr>', 'previous buffer'},
 
 }
 return M

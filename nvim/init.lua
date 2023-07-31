@@ -18,3 +18,4 @@ require "core.maps"
 
 -- LOAD PLUGINS
 require("lazy").setup "plugins"
+-- vim.cmd('intro')

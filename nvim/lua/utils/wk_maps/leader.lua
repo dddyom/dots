@@ -11,6 +11,7 @@ M.leader_opts = {
 
 M.leader_maps = {
   ['t'] = {"<cmd>ToggleTerm<CR>", 'terminal'},
+  ['cw'] = {"<cmd>cd $HOME/WorkGit/<CR>", 'go to WorkGit'},
   ['g'] = {"<cmd>lua _lazygit_toggle()<CR>", 'git'},
   ['m'] = {'<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', 'marks menu'},
   ["c"] = { "<cmd>ChatGPT<CR>", "chatGPT" },

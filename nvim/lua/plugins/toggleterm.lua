@@ -5,7 +5,6 @@ M.config = function ()
   require("toggleterm").setup({
     direction = 'float'
   })
-  
 end
 
 function _lazygit_toggle()

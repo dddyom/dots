@@ -162,6 +162,18 @@ plugins.flash = {
   },
 }
 
+plugins.rooter = {
+    'notjedi/nvim-rooter.lua',
+    config = function() require'nvim-rooter'.setup({fallback_to_parent = false}) end
+}
+
+plugins.jk = {
+  "rainbowhxch/accelerated-jk.nvim",
+  config = function()
+    vim.api.nvim_set_keymap('n', 'j', '<Plug>(accelerated_jk_gj)', {})
+    vim.api.nvim_set_keymap('n', 'k', '<Plug>(accelerated_jk_gk)', {})
+  end
+}
 
 for _, plug in pairs(plugins) do
   table.insert(M, plug)

@@ -1,6 +1,7 @@
 local opt = vim.opt
 vim.cmd("syntax on")
 opt.backspace = vim.opt.backspace + { "nostop" } -- Don't stop backspace at insert
+opt.shortmess = vim.opt.shortmess + "I" -- Don't stop backspace at insert
 opt.clipboard = "unnamedplus" -- Connection to the system clipboard
 -- opt.cmdheight = 0 -- hide command line unless needed
 opt.completeopt = { "menu", "menuone", "noselect" } -- Options for insert mode completion
