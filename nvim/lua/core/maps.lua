@@ -1,8 +1,8 @@
 vim.g.mapleader = " "
 local map = vim.keymap.set
 
-map("n", "jk", "<esc>")
-map("n", "kj", "<esc>")
+map("i", "jk", "<esc>")
+map("i", "kj", "<esc>")
 map("n", "<c-d>", "<c-d>zz")
 map("n", "<c-u>", "<c-u>zz")
 map("n", "n", "nzzzv")

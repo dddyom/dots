@@ -102,10 +102,8 @@ plugins.sniprun = {
 plugins.codeium = {
   "Exafunction/codeium.vim",
   config = function ()
-    vim.keymap.set('i', '<C-a>', function () return vim.fn['codeium#Accept']() end, { expr = true })
-    vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
-    vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
-    vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+    vim.keymap.set('i', '<C-x>', function () return vim.fn['codeium#Accept']() end, { expr = true })
+    vim.keymap.set('i', '<c-S-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
   end
 
 }
@@ -173,6 +171,24 @@ plugins.jk = {
     vim.api.nvim_set_keymap('n', 'j', '<Plug>(accelerated_jk_gj)', {})
     vim.api.nvim_set_keymap('n', 'k', '<Plug>(accelerated_jk_gk)', {})
   end
+}
+
+plugins.db = {
+  'kristijanhusak/vim-dadbod-ui',
+  dependencies={'tpope/vim-dadbod', "kristijanhusak/vim-dadbod-completion"},
+  config = function ()
+    vim.g.dbs = require('utils.utils').get_dbs()
+  end
+}
+
+plugins.legendary = {
+  'mrjones2014/legendary.nvim',
+  -- since legendary.nvim handles all your keymaps/commands,
+  -- its recommended to load legendary.nvim before other plugins
+  priority = 10000,
+  lazy = false,
+  -- sqlite is only needed if you want to use frecency sorting
+  -- dependencies = { 'kkharji/sqlite.lua' }
 }
 
 for _, plug in pairs(plugins) do
