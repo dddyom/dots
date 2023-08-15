@@ -36,6 +36,7 @@ return {
       require("icon-picker").setup({ disable_legacy_commands = true })
     end,
   },
+  -- theme
   {
     "Shatur/neovim-ayu",
     config = function ()
