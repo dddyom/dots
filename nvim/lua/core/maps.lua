@@ -1,17 +1,40 @@
 vim.g.mapleader = " "
-local map = vim.keymap.set
 
-map("i", "jk", "<esc>")
-map("i", "kj", "<esc>")
-map("n", "<c-d>", "<c-d>zz")
-map("n", "<c-u>", "<c-u>zz")
-map("n", "n", "nzzzv")
-map("n", "n", "nzzzv")
-map("i", "<c-l>", "<esc>la") -- bend over the bracket
-map("n", "<esc><esc>", "<esc>:nohlsearch<cr>", { silent = true })
 
-map("c", "<c-a>", "<home>")
-map("c", "<c-e>", "<end>")
+local maps = {
+  i = {
+    { key = "jk", cmd = "<esc>", desc = "goto normal mode"},
+    { key = "kj", cmd = "<esc>", desc = "goto normal mode"},
+    { key = "<c-l>", cmd = "<esc>la", desc = "one step right"},
+  },
+  n = {
+    { key = "<c-d>", cmd = "<c-d>zz" },
+    { key = "<c-u>", cmd = "<c-u>zz" },
+    { key = "n", cmd = "nzzzv" },
+    { key = "<esc><esc>", cmd = "<esc>:nohlsearch<cr>", desc = "turn off highlight" },
+    { key = "L", cmd = "<cmd>bnext<cr>", desc = "next buffer" },
+    { key = "H", cmd = "<cmd>bprevious<cr>", desc = "previous buffer" },
+    { key = "<m-w>", cmd = "<cmd>bd<cr>", 'close current buffer'},
+  },
+  leader = {
+    { key = "q", cmd = "<cmd>q!<CR>", desc = "exit"},
+    { key = "cw", cmd = "<cmd>cd $HOME/WorkGit/<CR>", desc = "go to WorkGit"},
+    { key = "bv", cmd = "<c-w>v", desc = "split window vertically"},
+    { key = "bh", cmd = "<c-w>s", desc = "split window horisontally"},
+    { key = "bx", cmd = "<cmd>close<cr>", desc = "close current split window"},
+  },
+  leader_v = {
+    { key = "t", cmd = [[c{% trans %}<c-r>"{% endtrans %}<esc>]], desc = "{% trans %}{% endtrans %}"},
+    { key = "c", cmd = [[cconsole.log(<c-r>")<esc>]], desc = "console.log()"},
+    { key = "p", cmd = [[cprint(<c-r>")<esc>]], desc = "print()"},
+    { key = "P", cmd = [[cprint(f"\033[93m{<c-r>"}\033[0m")<esc>]], desc = "color print"},
+    { key = "%", cmd = [[c{% <c-r>" %}<esc>]], desc = "jinja func"},
+    { key = "{", cmd = [[c{{ <c-r>" }}<esc>]], desc = "jinja tag"},
+  }
+}
 
-map('n', '<cr>', '@="m`o<c-v><esc>``"<cr>')
-map('n', '<S-cr>', '@="m`o<c-v><esc>``"<cr>')
+
+
+for mode, map_table in pairs(maps) do
+  require("utils.map").set_maps(map_table, require("utils.map")[mode])
+end
