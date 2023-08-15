@@ -1,42 +1,23 @@
 local M = {
-  "jose-elias-alvarez/null-ls.nvim", -- configure formatters & linters
-}
-
-M.dependencies = {
-  "jayp0521/mason-null-ls.nvim" -- bridges gap b/w mason & null-ls
+  "jose-elias-alvarez/null-ls.nvim",
+  dependencies = {
+    "jayp0521/mason-null-ls.nvim"
+  }
 }
 
 M.config = function ()
     local null_ls = require("null-ls")
 
     local formatting = null_ls.builtins.formatting
-    -- local code_actions = null_ls.builtins.code_actions
-    -- local diagnostics = null_ls.builtins.diagnostics
-
     local sources = {
-      --[[ formatting ]]
       null_ls.builtins.code_actions.eslint,
       formatting.eslint_d,
       formatting.autopep8,
-      -- formatting.stylua,
-      -- formatting.clang_format,
-      -- formatting.stylelint,
-      -- formatting.prettier,
-      -- formatting.phpcbf,
-
-      --[[ code actions ]]
-      -- code_actions.eslint_d,
-
-      --[[ diagnostics ]]
-      -- diagnostics.eslint_d,
     }
 
     local lsp_formatting = function(bufnr)
       vim.lsp.buf.format({
-        filter = function(client)
-          -- apply whatever logic you want (in this example, we'll only use null-ls)
-          return client.name == "null-ls"
-        end,
+        filter = function(client) return client.name == "null-ls" end,
         bufnr = bufnr,
       })
     end

@@ -1,200 +1,81 @@
-local M = {
-  "eandrju/cellular-automaton.nvim",
+local map_n = require("utils.map").n
+local leader = require("utils.map").leader
+
+return {
   "nvim-lua/plenary.nvim",
-  "christoomey/vim-tmux-navigator",
   "szw/vim-maximizer",
-  "folke/lsp-colors.nvim",
-  "tpope/vim-fugitive",
   "jghauser/mkdir.nvim",
   "RRethy/vim-illuminate",
   'David-Kunz/markid',
-  'christoomey/vim-tmux-navigator',
-  "sindrets/diffview.nvim"
-}
-
-
-local utils_with_config = {
-  "windwp/nvim-autopairs",
-  "simrat39/symbols-outline.nvim",
-  "lewis6991/gitsigns.nvim",
-  'simrat39/symbols-outline.nvim',
-  'dnlhc/glance.nvim',
-  "ThePrimeagen/harpoon",
-}
-
-for _, plug in pairs(utils_with_config) do
-  table.insert(M, {
-    plug, config=true
-  })
-end
-
-local plugins = {}
-
-
-plugins.colorizer = {
-    "norcalli/nvim-colorizer.lua",
-    config = function () require("colorizer").setup() end
-}
-
-
-plugins.surround = {
-  "kylechui/nvim-surround",
-    version = "*",
-    event = "VeryLazy",
-    config = true
-}
-
-plugins.hlargs = {
-  'm-demare/hlargs.nvim',
-  dependencies={ 'nvim-treesitter/nvim-treesitter' },
-  config = function () require('hlargs').setup() end
-
-}
-
-plugins.rainbow = {
-  "mrjones2014/nvim-ts-rainbow",
-  config=function ()
-    require('nvim-treesitter.configs').setup({
-      highlight = {},
-      rainbow = {
-        enable = true,
-        extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-        max_file_lines = nil, -- Do not enable for files with more than n lines, int
-      },
-    })
-  end
-}
-
-plugins.trevj = {
-  "AckslD/nvim-trevJ.lua",
-  config = function ()
-      require('trevj').setup({
-        containers = {
-          lua = {
-            table_constructor = {final_separator = ',', final_end_line = true},
-            arguments = {final_separator = false, final_end_line = true},
-            parameters = {final_separator = false, final_end_line = true},
-          },
-        },
-      })
-  end
-}
-
-plugins.icon_picker = {
-  "ziontee113/icon-picker.nvim",
-  dependencies = {
-    "stevearc/dressing.nvim",
-  },
-
-  config = function()
-    require("icon-picker").setup({
-      disable_legacy_commands = true
-    })
-  end,
-}
-
-plugins.sniprun = {
-  'michaelb/sniprun',
-  build = "bash install.sh"
-
-}
-
-plugins.codeium = {
-  "Exafunction/codeium.vim",
-  config = function ()
-    vim.keymap.set('i', '<C-x>', function () return vim.fn['codeium#Accept']() end, { expr = true })
-    vim.keymap.set('i', '<c-S-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
-  end
-
-}
-
-plugins.comments = {
-  "numToStr/Comment.nvim",
-  config = function ()
-    vim.keymap.set("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", { silent = true })
-    vim.keymap.set("v", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", { silent = true })
-  end
-}
-
-plugins.replace = {
-  "roobert/search-replace.nvim",
-  config = function ()
-    require("search-replace").setup({
-      -- default_replace_single_buffer_options = "gcI",
-      -- default_replace_multi_buffer_options = "egcI",
-    })
-  vim.o.inccommand = "split"
-  end
-}
-
-plugins.venv_selector = {
-	"linux-cultist/venv-selector.nvim",
-  dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" },
-  config = true,
-  opts = { parents=4 },
-}
-
-plugins.git_conflict = {
-  "akinsho/git-conflict.nvim",
-  version = "*",
-  config = true
-}
-plugins.format_on_save = {
-    "elentok/format-on-save.nvim",
-    config = function()
-      require('format-on-save').setup({
-        partial_update = true,
-      })
-    end
-}
-
-plugins.flash = {
-  "folke/flash.nvim",
-  event = "VeryLazy",
-  opts = {},
-  keys = {
-    { "<c-s>", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-    { "<c-t>", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-    { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-    { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-  },
-}
-
-plugins.rooter = {
+  { "windwp/nvim-autopairs", config = true },
+  {
     'notjedi/nvim-rooter.lua',
-    config = function() require'nvim-rooter'.setup({fallback_to_parent = false}) end
+    config = function() require'nvim-rooter'.setup({ fallback_to_parent = false }) end,
+  },
+  {
+    "rainbowhxch/accelerated-jk.nvim",
+    config = function()
+      map_n('j', '<Plug>(accelerated_jk_gj)')
+      map_n('k', '<Plug>(accelerated_jk_gk)')
+    end
+  },
+  {
+    "linty-org/readline.nvim",
+    config = function ()
+        local readline = require 'readline'
+        vim.keymap.set('!', '<M-f>', readline.forward_word)
+        vim.keymap.set('!', '<M-b>', readline.backward_word)
+        vim.keymap.set('!', '<M-a>', readline.beginning_of_line)
+        vim.keymap.set('!', '<M-e>', readline.end_of_line)
+        vim.keymap.set('!', '<M-d>', readline.kill_word)
+        vim.keymap.set('!', '<M-BS>', readline.backward_kill_word)
+        vim.keymap.set('!', '<M-w>', readline.unix_word_rubout)
+        vim.keymap.set('!', '<M-k>', readline.kill_line)
+        vim.keymap.set('!', '<M-u>', readline.backward_kill_line)
+    end
+  },
+  {
+    "kwkarlwang/bufresize.nvim",
+    config = function()
+        require("bufresize").setup({register = {resize = {keys = {}, trigger_events = {"VimResized"}, increment = 5}}})
+        leader("H", "20<C-w>>", 'Resize right')
+        leader("L", "20<C-w><", 'Resize left')
+        leader("J", "10<C-w>+", 'Resize down')
+        leader("K", "10<C-w>-", 'Resize up')
+        leader("O", "<C-w>|<C-w>_", 'Resize to max')
+        leader("=", "<C-w>=", 'Resize to default')
+    end
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim", branch = "v2.x",
+    dependencies = {
+          "nvim-tree/nvim-web-devicons",
+          "MunifTanjim/nui.nvim",
+          "s1n7ax/nvim-window-picker"
+    },
+    config = function ()
+        require("neo-tree").setup {
+           event_handlers = {{
+             event = "file_opened",
+             handler = function() require("neo-tree").close_all() end
+             }
+           }
+        }
+        vim.g.neo_tree_remove_legacy_commands = 1
+        leader('e', '<cmd>NeoTreeFocusToggle<cr>', 'file explorer')
+    end
+  },
+  {
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      local wk = require("which-key")
+      wk.setup({
+        window = { border = "single", winblend = 20 },
+        hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }
+      })
+      wk.register({['<leader>'] = require('utils.map').prefixes })
+    end
+  }
 }
-
-plugins.jk = {
-  "rainbowhxch/accelerated-jk.nvim",
-  config = function()
-    vim.api.nvim_set_keymap('n', 'j', '<Plug>(accelerated_jk_gj)', {})
-    vim.api.nvim_set_keymap('n', 'k', '<Plug>(accelerated_jk_gk)', {})
-  end
-}
-
-plugins.db = {
-  'kristijanhusak/vim-dadbod-ui',
-  dependencies={'tpope/vim-dadbod', "kristijanhusak/vim-dadbod-completion"},
-  config = function ()
-    vim.g.dbs = require('utils.utils').get_dbs()
-  end
-}
-
-plugins.legendary = {
-  'mrjones2014/legendary.nvim',
-  -- since legendary.nvim handles all your keymaps/commands,
-  -- its recommended to load legendary.nvim before other plugins
-  priority = 10000,
-  lazy = false,
-  -- sqlite is only needed if you want to use frecency sorting
-  -- dependencies = { 'kkharji/sqlite.lua' }
-}
-
-for _, plug in pairs(plugins) do
-  table.insert(M, plug)
-end
-
-
-
-return M

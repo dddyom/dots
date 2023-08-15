@@ -1,15 +1,14 @@
 local M = {
   "nvim-treesitter/nvim-treesitter",
+  dependencies = {
+      'jeetsukumaran/vim-pythonsense'
+  },
+  build=':TSUpdate',
+  event="BufRead"
 }
 
-M.dependencies = {
-    'jeetsukumaran/vim-pythonsense'
-}
-M.build=':TSUpdate'
-M.event="BufRead"
 M.config = function()
 		require("nvim-treesitter.configs").setup {
-
       ensure_installed = {
         "rust", 'python', 'lua',
         "http", "json", 'jq',
@@ -17,6 +16,7 @@ M.config = function()
         'javascript', 'typescript', 'css',
         'vim', 'markdown', 'yaml'
       },
+
       markid = { enable = true },
       highlight = {
         enable = true,
@@ -34,7 +34,7 @@ M.config = function()
       },
       autotag = { enable = true },
       incremental_selection = { enable = true },
-      indent = { enable = false },
+      indent = { enable = true },
     }
 end
 

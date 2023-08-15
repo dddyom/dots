@@ -1,32 +1,24 @@
 local M = {
   "hrsh7th/nvim-cmp",
-}
+  dependencies = {
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-cmdline',
 
-M.dependencies = {
-  "hrsh7th/cmp-buffer",
-  "hrsh7th/cmp-path",
-  'hrsh7th/cmp-nvim-lsp',
-  'hrsh7th/cmp-cmdline',
-
--- snippets
-  "L3MON4D3/LuaSnip",
-  "saadparwaiz1/cmp_luasnip",
-  "rafamadriz/friendly-snippets",
-  "onsails/lspkind.nvim"
+    "L3MON4D3/LuaSnip",
+    "saadparwaiz1/cmp_luasnip",
+    "rafamadriz/friendly-snippets",
+    "onsails/lspkind.nvim"
+  }
 }
 
 M.config = function ()
     require("luasnip.loaders/from_vscode").lazy_load()
-    -- require('luasnip').filetype_extend("javascript", { "javascriptreact" })
-    -- require('luasnip').filetype_extend("javascript", { "html" })
     local cmp = require "cmp"
     local luasnip = require 'luasnip'
      cmp.setup {
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
-      },
+      snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
       window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
@@ -34,35 +26,15 @@ M.config = function ()
       },
       mapping = cmp.mapping.preset.insert({
         ["<C-e>"] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm {
-        -- behavior = cmp.ConfirmBehavior.Replace,
-        select = true,
-        },
+        ['<CR>'] = cmp.mapping.confirm { select = true },
         ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            else
-              fallback()
-            end
+            if cmp.visible() then cmp.select_next_item() elseif luasnip.expand_or_jumpable() then luasnip.expand_or_jump() else fallback() end
         end, { 'i', 's' }),
         ['<S-Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
+          if cmp.visible() then cmp.select_prev_item() elseif luasnip.jumpable(-1) then luasnip.jump(-1) else fallback() end
         end, { 'i', 's' }),
         }),
-        sources = {
-          { name = 'luasnip' },
-          { name = 'nvim_lsp' },
-          { name = "buffer" }, -- text within current buffer
-          { name = "path" }, -- file system paths
-        },
+        sources = { { name = 'luasnip' }, { name = 'nvim_lsp' }, { name = "buffer" }, { name = "path" } },
       }
 end
 return M
