@@ -75,7 +75,7 @@ return {
         window = { border = "single", winblend = 20 },
         hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }
       })
-      wk.register({['<leader>'] = require('utils.map').prefixes })
+      wk.register(require('utils.map').prefixes)
     end
   }
 }
