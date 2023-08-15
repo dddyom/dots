@@ -1,4 +1,4 @@
-local M = {
+return {
   'VonHeikemen/lsp-zero.nvim',
   branch = 'v2.x',
   dependencies = {
@@ -22,10 +22,8 @@ local M = {
       'williamboman/mason.nvim',
       build = function() pcall(vim.cmd, 'MasonUpdate') end,
     },
-  }
-}
-
-M.config = function ()
+  },
+  config = function ()
 
     local lsp = require('lsp-zero').preset({})
 
@@ -43,6 +41,5 @@ M.config = function ()
     map_n("gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration")
     map_n("gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition")
     require('utils.utils').set_cmp_icons()
-end
-
-return M
+  end
+}

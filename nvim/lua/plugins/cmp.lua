@@ -1,4 +1,4 @@
-local M = {
+return {
   "hrsh7th/nvim-cmp",
   dependencies = {
     "hrsh7th/cmp-buffer",
@@ -10,10 +10,8 @@ local M = {
     "saadparwaiz1/cmp_luasnip",
     "rafamadriz/friendly-snippets",
     "onsails/lspkind.nvim"
-  }
-}
-
-M.config = function ()
+  },
+  config = function ()
     require("luasnip.loaders/from_vscode").lazy_load()
     local cmp = require "cmp"
     local luasnip = require 'luasnip'
@@ -37,4 +35,4 @@ M.config = function ()
         sources = { { name = 'luasnip' }, { name = 'nvim_lsp' }, { name = "buffer" }, { name = "path" } },
       }
 end
-return M
+}

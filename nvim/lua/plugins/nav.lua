@@ -1,7 +1,7 @@
 local leader = require("utils.map").leader
 local map_n = require("utils.map").n
 
-local M = {
+return {
   {
     'christoomey/vim-tmux-navigator',
     config = function ()
@@ -22,5 +22,3 @@ local M = {
     end
   }
 }
-
-return M
