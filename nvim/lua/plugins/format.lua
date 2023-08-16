@@ -57,7 +57,7 @@ return {
             "http", "json", 'jq',
             'html', 'htmldjango',
             'javascript', 'typescript', 'css',
-            'vim', 'markdown', 'yaml'
+            'vim', 'markdown', 'yaml', 'sql'
           },
 
           markid = { enable = true },
