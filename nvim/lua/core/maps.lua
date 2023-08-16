@@ -7,6 +7,10 @@ local maps = {
     { key = "kj", cmd = "<esc>", desc = "goto normal mode"},
     { key = "<c-l>", cmd = "<esc>la", desc = "one step right"},
   },
+  v = {
+    { key = "jk", cmd = "<esc>", desc = "goto normal mode"},
+    { key = "kj", cmd = "<esc>", desc = "goto normal mode"},
+  },
   n = {
     { key = "<c-d>", cmd = "<c-d>zz" },
     { key = "<c-u>", cmd = "<c-u>zz" },
