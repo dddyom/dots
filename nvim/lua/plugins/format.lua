@@ -1,7 +1,6 @@
 local leader = require("utils.map").leader
 
 return {
-  { "kylechui/nvim-surround", version = "*", event = "VeryLazy", config = true },
   {
     "Wansmer/treesj",
     config = function()
@@ -9,6 +8,9 @@ return {
       leader('j', "<cmd>lua require('treesj').toggle()<cr>", 'toggle args split')
     end,
   },
+
+  { "kylechui/nvim-surround", version = "*", event = "VeryLazy",  config = true },
+
   {
     "roobert/search-replace.nvim",
     config = function ()
@@ -20,16 +22,19 @@ return {
       leader('rE', "<cmd>SearchReplaceMultiBufferCExpr<cr>", 'Replace in current buffer')
     end
   },
+
   {
       "elentok/format-on-save.nvim",
       config = function() require('format-on-save').setup({ partial_update = true }) end
   },
+
   {
     "folke/flash.nvim", event = "VeryLazy", opts = {},
     keys = {
       { "<c-s>", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
     },
   },
+
   {
     "andrewferrier/debugprint.nvim",
     config = function ()
@@ -38,11 +43,13 @@ return {
       require('debugprint').setup({filetypes = my_filetypes})
     end
   },
+
   {
       "sustech-data/wildfire.nvim",
       event = "VeryLazy",
       config = function() require("wildfire").setup() end
   },
+
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {

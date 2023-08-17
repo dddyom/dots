@@ -1,10 +1,31 @@
 local leader = require("utils.map").leader
 
 return {
+  "Theprimeagen/vim-be-good",
+
+  { "yamatsum/nvim-cursorline", config = true },
+
+  {
+  'lukas-reineke/indent-blankline.nvim',
+    config = function()
+      require("indent_blankline").setup {
+          show_current_context = true,
+          show_current_context_start = true,
+      }
+    end,
+  },
+
+  {
+     "m4xshen/hardtime.nvim",
+     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+     config = function() require("hardtime").setup() end
+  },
+
   {
     "eandrju/cellular-automaton.nvim",
     config = function() leader(']', '<cmd>CellularAutomaton make_it_rain<CR>', 'rain') end
   },
+
   {
     'simrat39/symbols-outline.nvim',
     config = function()
@@ -12,14 +33,17 @@ return {
       leader('a', '<cmd>SymbolsOutline<CR>', 'code structure')
     end
   },
+
   {
       "norcalli/nvim-colorizer.lua",
       config = function () require("colorizer").setup() end
   },
+
   {
     'm-demare/hlargs.nvim',
     config = function () require('hlargs').setup() end
   },
+
   {
     "mrjones2014/nvim-ts-rainbow",
     config=function ()
@@ -29,6 +53,7 @@ return {
       })
     end
   },
+
   {
     "ziontee113/icon-picker.nvim",
     dependencies = { "stevearc/dressing.nvim" },
@@ -36,18 +61,20 @@ return {
       require("icon-picker").setup({ disable_legacy_commands = true })
     end,
   },
+
   -- theme
   {
     "Shatur/neovim-ayu",
     config = function ()
       require('ayu').setup({
         overrides = {
-          NonText = { fg = '#CBCCCA' },
+          -- NonText = { fg = '#CBCCCA' },
         }
       })
       vim.cmd("colorscheme ayu")
     end
   },
+
   {
     'nvim-lualine/lualine.nvim',
     dependencies = {

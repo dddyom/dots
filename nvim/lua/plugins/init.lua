@@ -7,11 +7,14 @@ return {
   "jghauser/mkdir.nvim",
   "RRethy/vim-illuminate",
   'David-Kunz/markid',
+
   { "windwp/nvim-autopairs", config = true },
+
   {
     'notjedi/nvim-rooter.lua',
     config = function() require'nvim-rooter'.setup({ fallback_to_parent = false }) end,
   },
+
   {
     "rainbowhxch/accelerated-jk.nvim",
     config = function()
@@ -19,6 +22,7 @@ return {
       map_n('k', '<Plug>(accelerated_jk_gk)')
     end
   },
+
   {
     "linty-org/readline.nvim",
     config = function ()
@@ -34,6 +38,7 @@ return {
         vim.keymap.set('!', '<M-u>', readline.backward_kill_line)
     end
   },
+
   {
     "kwkarlwang/bufresize.nvim",
     config = function()
@@ -46,6 +51,7 @@ return {
         leader("=", "<C-w>=", 'Resize to default')
     end
   },
+
   {
     "nvim-neo-tree/neo-tree.nvim", branch = "v2.x",
     dependencies = {
@@ -65,6 +71,7 @@ return {
         leader('e', '<cmd>NeoTreeFocusToggle<cr>', 'file explorer')
     end
   },
+
   {
     "folke/which-key.nvim",
     config = function()

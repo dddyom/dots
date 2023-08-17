@@ -1,29 +1,43 @@
 local opt = vim.opt
-vim.cmd("syntax on")
-opt.backspace = vim.opt.backspace + { "nostop" }
-opt.shortmess = vim.opt.shortmess + "IS"
-opt.clipboard = "unnamedplus"
-opt.completeopt = { "menu", "menuone", "noselect" }
-opt.cursorline = true
-opt.expandtab = true
-opt.fileencoding = "utf-8"
-opt.history = 100
-opt.ignorecase = true
+
+-- General Options
+opt.termguicolors = true
 opt.mouse = "a"
-opt.number = true
-opt.pumheight = 10
-opt.scrolloff = 20
+opt.clipboard = "unnamedplus"
+opt.timeoutlen = 300
+opt.updatetime = 300
+opt.history = 100
+
+-- Text Editing Options
+opt.expandtab = true
 opt.shiftwidth = 2
-opt.sidescrolloff = 20
-opt.signcolumn = "yes"
+opt.tabstop = 2
 opt.smartcase = true
+opt.ignorecase = true
+opt.wrap = false
+
+-- Display Options
+opt.syntax = "on"
+opt.number = true
+opt.cursorline = true
+opt.signcolumn = "yes"
+opt.scrolloff = 20
+opt.sidescrolloff = 20
 opt.splitbelow = true
 opt.splitright = true
+opt.pumheight = 10
+
+-- File Options
+opt.fileencoding = "utf-8"
 opt.swapfile = false
-opt.tabstop = 2
-opt.termguicolors = true
-opt.timeoutlen = 300
-opt.undofile = true
-opt.updatetime = 300
-opt.wrap = false
 opt.writebackup = false
+opt.undofile = true
+
+-- Completion Options
+opt.completeopt = { "menu", "menuone", "noselect" }
+
+-- Set backspace behavior
+opt.backspace = vim.opt.backspace + { "nostop" }
+
+-- Short message settings
+opt.shortmess = vim.opt.shortmess + "IS"

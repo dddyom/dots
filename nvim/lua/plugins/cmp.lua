@@ -1,4 +1,5 @@
 return {
+
   "hrsh7th/nvim-cmp",
   dependencies = {
     "hrsh7th/cmp-buffer",
@@ -11,6 +12,7 @@ return {
     "rafamadriz/friendly-snippets",
     "onsails/lspkind.nvim"
   },
+
   config = function ()
     require("luasnip.loaders/from_vscode").lazy_load()
     local cmp = require "cmp"

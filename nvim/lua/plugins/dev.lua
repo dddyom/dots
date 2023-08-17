@@ -9,6 +9,7 @@ return {
       vim.keymap.set('i', '<c-S-a>', function() return vim.fn['codeium#Clear']() end, { expr = true })
     end
   },
+
   {
     "numToStr/Comment.nvim",
     config = function ()
@@ -16,6 +17,7 @@ return {
       leader_v('/', "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", 'Comment')
     end
   },
+
   {
     "linux-cultist/venv-selector.nvim",
     dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" },
@@ -25,6 +27,7 @@ return {
     end,
     opts = { parents=4 },
   },
+
   {
     'kristijanhusak/vim-dadbod-ui',
     dependencies={ 'tpope/vim-dadbod' },
@@ -34,6 +37,7 @@ return {
       leader('db', '<cmd>DBUIToggle<CR>', 'Open databases')
     end
   },
+
   {
     "rest-nvim/rest.nvim",
     config = function()
@@ -44,6 +48,7 @@ return {
       leader('hl', "<cmd>lua require('rest-nvim').last()<cr>", 'run last http request')
     end
   },
+
   {
     "akinsho/toggleterm.nvim",
     config = function ()
@@ -52,6 +57,7 @@ return {
       leader("g", "<cmd>lua require('toggleterm.terminal').Terminal:new({ cmd = 'lazygit', hidden = true }):toggle()<cr>", "GIT")
     end
   },
+
   {
     'simrat39/rust-tools.nvim',
     config = function()
@@ -66,6 +72,7 @@ return {
       })
     end
   },
+
   -- GIT
   "sindrets/diffview.nvim",
   {"lewis6991/gitsigns.nvim", config = true },

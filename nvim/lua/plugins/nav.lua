@@ -11,6 +11,7 @@ return {
       map_n('<m-k>', ':<c-u>TmuxNavigateUp<cr>', 'tmux up')
     end
   },
+
   {
     "ThePrimeagen/harpoon",
     config = function()
@@ -21,6 +22,7 @@ return {
       map_n('<m-n>', '<cmd>lua require("harpoon.ui").nav_next()<CR>', 'next mark')
     end
   },
+
   {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
