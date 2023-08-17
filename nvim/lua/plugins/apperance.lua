@@ -16,15 +16,6 @@ return {
   },
 
   {
-     "m4xshen/hardtime.nvim",
-     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-     config = function()
-      require("hardtime").setup()
-      leader('p', '<cmd>Hardtime toggle<CR>', 'hardtime toggle')
-     end
-  },
-
-  {
     "eandrju/cellular-automaton.nvim",
     config = function() leader(']', '<cmd>CellularAutomaton make_it_rain<CR>', 'rain') end
   },
