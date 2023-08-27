@@ -2,6 +2,7 @@ local leader = require("utils.map").leader
 local leader_v = require("utils.map").leader_v
 
 return {
+	"mg979/vim-visual-multi",
 	{
 		"Exafunction/codeium.vim",
 		config = function()
