@@ -1,27 +1,27 @@
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
 
 wezterm.on("gui-startup", function()
-  local tab, pane, window = wezterm.mux.spawn_window{}
-  window:gui_window():maximize()
+	local tab, pane, window = wezterm.mux.spawn_window({})
+	window:gui_window():maximize()
 end)
 
 return {
-  font = wezterm.font 'JetBrains Mono',
-  font_size = 14,
-  hide_tab_bar_if_only_one_tab = true,
-  warn_about_missing_glyphs = false,
-  window_padding = {
-    left = 0,
-    right = 0,
-    top = 0,
-    bottom = 0,
-  },
-  color_scheme = 'Ayu Dark (Gogh)',
-  mouse_bindings = {
-    {
-      event={Up={streak=1, button="Left"}},
-      mods="CTRL",
-      action="OpenLinkAtMouseCursor",
-    },
-  },
+	font = wezterm.font("JetBrains Mono"),
+	font_size = 12,
+	hide_tab_bar_if_only_one_tab = true,
+	warn_about_missing_glyphs = false,
+	window_padding = {
+		left = 0,
+		right = 0,
+		top = 0,
+		bottom = 0,
+	},
+	color_scheme = "Ayu Dark (Gogh)",
+	mouse_bindings = {
+		{
+			event = { Up = { streak = 1, button = "Left" } },
+			mods = "CTRL",
+			action = "OpenLinkAtMouseCursor",
+		},
+	},
 }
