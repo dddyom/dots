@@ -5,11 +5,10 @@ return {
   {
     "Exafunction/codeium.vim",
     config = function ()
-      vim.keymap.set('i', '<C-a>', function () return vim.fn['codeium#Accept']() end, { expr = true })
-      vim.keymap.set('i', '<c-S-a>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+      vim.g.codeium_disable_bindings = 1
+      vim.keymap.set('i', '<c-a>', function () return vim.fn['codeium#Accept']() end, { expr = true })
     end
   },
-
   {
     "numToStr/Comment.nvim",
     config = function ()
@@ -20,7 +19,7 @@ return {
 
   {
     "linux-cultist/venv-selector.nvim",
-    dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" },
+    dependencies = { "neovim/nvim-lspconfig" },
     config = function()
       require('venv-selector').setup()
       leader('v', '<cmd>VenvSelect<cr>', 'select venv')
@@ -34,7 +33,6 @@ return {
     config = function ()
       vim.g.dbs = require('utils.utils').get_dbs()
       vim.db_ui_save_location = '~/.queries'
-      leader('db', '<cmd>DBUIToggle<CR>', 'Open databases')
     end
   },
 
@@ -71,6 +69,27 @@ return {
         },
       })
     end
+  },
+  {
+    "Dhanus3133/LeetBuddy.nvim",
+    config = function()
+      require("leetbuddy").setup({
+        language = "py",
+      })
+      leader("lq", "<cmd>LBQuestions<cr>", "List Questions")
+      leader("ll", "<cmd>LBQuestion<cr>", "View Question")
+      leader("lr", "<cmd>LBReset<cr>", "Reset Code")
+      leader("lt", "<cmd>LBTest<cr>", "Run Code")
+      leader("ls", "<cmd>LBSubmit<cr>", "Submit Code")
+    end,
+  },
+  { -- macros
+    "chrisgrieser/nvim-recorder",
+    dependencies = "rcarriga/nvim-notify",
+    opts = {
+      slots = { "a", "b" },
+      lessNotifications = true
+    }
   },
 
   -- GIT

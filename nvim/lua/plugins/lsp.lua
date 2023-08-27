@@ -17,6 +17,7 @@ return {
     "SmiteshP/nvim-navic",
     'nvim-lua/lsp-status.nvim',
     { 'dnlhc/glance.nvim', config = true },
+    { "folke/neodev.nvim", opts = {} },
 
     {
       'williamboman/mason.nvim',
@@ -24,7 +25,7 @@ return {
     },
   },
   config = function ()
-
+    require("neodev").setup()
     local lsp = require('lsp-zero').preset({})
 
     lsp.on_attach(function(client, bufnr)
@@ -36,10 +37,6 @@ return {
 
     require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
     lsp.setup()
-
-    local map_n = require('utils.map').n
-    map_n("gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration")
-    map_n("gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition")
     require('utils.utils').set_cmp_icons()
   end
 }

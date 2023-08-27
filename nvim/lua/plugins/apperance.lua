@@ -2,9 +2,19 @@ local leader = require("utils.map").leader
 
 return {
   "Theprimeagen/vim-be-good",
-
   { "yamatsum/nvim-cursorline", config = true },
-
+  {
+      "NStefan002/speedtyper.nvim",
+      branch = "main",
+      cmd = "Speedtyper",
+      opts = { }
+  },
+  { 
+  "FabijanZulj/blame.nvim",
+    config = function()
+      leader('a', '<cmd>ToggleBlame window<cr>', 'Git blame')
+    end
+  },
   {
   'lukas-reineke/indent-blankline.nvim',
     config = function()
@@ -62,7 +72,8 @@ return {
     config = function ()
       require('ayu').setup({
         overrides = {
-          -- NonText = { fg = '#CBCCCA' },
+          CursorLine = { bg = '#232A4C', fg=''},
+          CurSearch = { fg = '#0A0E14',  bg = '#F07178'  },
         }
       })
       vim.cmd("colorscheme ayu")
@@ -71,15 +82,8 @@ return {
 
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = {
-    'f-person/git-blame.nvim'
-    },
     config = function ()
       local navic = require("nvim-navic")
-      vim.g.gitblame_display_virtual_text = 0
-      vim.g.gitblame_date_format = '%d:%M %Y'
-      local git_blame = require('gitblame')
-
       local custom_ayu = require'lualine.themes.ayu'
       custom_ayu.normal.c.bg = '#0000000'
 
@@ -91,19 +95,45 @@ return {
           section_separators = '',
         },
         sections = {
-          lualine_a = { { 'buffers' }
+          lualine_a = { { 'buffers' } },
+          lualine_b = { { function() return navic.get_location() end, cond = function() return navic.is_available() end },
           },
-          lualine_b = { { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available } },
-          lualine_c = { { function() return navic.get_location() end, cond = function() return navic.is_available() end },
-          }
         },
         tabline = {
           lualine_a = { {function() return require("utils.utils").get_project_name(vim.fn.getcwd()) end} },
           lualine_b = { 'branch' },
-          lualine_y = { {'filename', path = 1} },
-          lualine_z = { 'searchcount' },
+          lualine_c = { { 'filename', path = 1 } },
+          lualine_x = { require("recorder").displaySlots },
+          lualine_y = { require("recorder").recordingStatus },
+          lualine_z = { 'mode', 'searchcount' },
+        },
+        inactive_sections = {
+          lualine_c = {},
         }
       })
     end
+  },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      cmdline = {
+      view = "cmdline",
+         format = {
+              cmdline = {  icon = ">" },
+              search_down = { icon = "" },
+              search_up = { icon = "" },
+         }
+      },
+      messages = {
+        view = "mini",
+        view_warn = "mini",
+        view_error = "mini"
+      },
+    },
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      
+      }
   }
 }

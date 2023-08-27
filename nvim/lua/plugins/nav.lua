@@ -50,14 +50,17 @@ return {
         })
 
         telescope.load_extension'repo'
-
-        local leader = require("utils.map").leader
         leader('ff',  "<cmd>Telescope find_files hidden=true<cr>", "find file")
         leader('fw', "<cmd>Telescope live_grep<cr>", 'find by word')
         leader('fs', "<cmd>Telescope grep_string<cr>", 'find by word under cursor')
         leader('fb', "<cmd>Telescope buffers<cr>", 'find in open buffers')
-        leader('fh', "<cmd>Telescope help_tags<cr>", 'help tags')
-        leader('fc', "<cmd>Telescope neoclip<cr>", 'clipboard')
+        leader('fh', '<cmd>Telescope help_tags<cr>', 'help tags')
+        leader('fd', "<cmd>Telescope lsp_definitions<cr>", 'LSP definitions')
+        leader('fr', "<cmd>Telescope lsp_references<cr>", 'LSP references')
+        leader('ft', "<cmd>Telescope lsp_type_definitions<cr>", 'LSP type definitions')
+        leader('fv', "<cmd>Telescope lsp_document_symbols<cr>", 'LSP variables in file')
+        leader('fV', "<cmd>Telescope lsp_workspace_symbols<cr>", 'LSP variables in project')
+        map_n("gd", "<cmd>Telescope lsp_definitions<CR>", "Go to definition")
     end
   }
 }

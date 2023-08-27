@@ -1,7 +1,6 @@
 -- Set the map leader
 vim.g.mapleader = " "
 
-
 -- Define the mappings
 local maps = {
   i = {
@@ -36,6 +35,8 @@ local maps = {
     { key = "P", cmd = [[cprint(f"\033[93m{<c-r>"}\033[0m")<esc>]], desc = "color print"},
     { key = "%", cmd = [[c{% <c-r>" %}<esc>]], desc = "jinja func"},
     { key = "{", cmd = [[c{{ <c-r>" }}<esc>]], desc = "jinja tag"},
+    { key = 'd', cmd = [[:s/^[ \t]*$\n//<CR>]], desc = "delete empty lines"},
+
   }
 }
 

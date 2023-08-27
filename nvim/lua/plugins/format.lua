@@ -1,6 +1,20 @@
 local leader = require("utils.map").leader
+local map_n = require("utils.map").n
 
 return {
+
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = 'kevinhwang91/promise-async',
+    event = "VeryLazy",
+    config = function()
+        vim.o.foldlevel = 99
+        vim.o.foldlevelstart = 99
+        vim.o.foldenable = true
+        map_n('zR', "lua require('ufo').openAllFolds<cr>", 'open all folds')
+        map_n('zC', "lua require('ufo').closeAllFolds<cr>", 'close all folds')
+    end
+  },
   {
     "Wansmer/treesj",
     config = function()
@@ -39,21 +53,16 @@ return {
     "andrewferrier/debugprint.nvim",
     config = function ()
       local my_filetypes = {}
-      my_filetypes.python = {left = 'print("\x1b[6;30;42m" + f"', right = '" + "\033[0m")', mid_var = "{", right_var = '}" + "\x1b[0m")'}
+      my_filetypes.python = {left = 'print("\x1b[30;42m" + f"', right = '" + "\033[0m")', mid_var = "{", right_var = '}" + "\x1b[0m")'}
       require('debugprint').setup({filetypes = my_filetypes})
     end
   },
 
   {
-      "sustech-data/wildfire.nvim",
-      event = "VeryLazy",
-      config = function() require("wildfire").setup() end
-  },
-
-  {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
-        'jeetsukumaran/vim-pythonsense'
+        'jeetsukumaran/vim-pythonsense',
+        "RRethy/nvim-treesitter-textsubjects",
     },
     build=':TSUpdate',
     event="BufRead",
@@ -66,7 +75,15 @@ return {
             'javascript', 'typescript', 'css',
             'vim', 'markdown', 'yaml', 'sql'
           },
-
+          textsubjects = {
+              enable = true,
+              prev_selection = ',',
+              keymaps = {
+                  ['.'] = 'textsubjects-smart',
+                  [';'] = 'textsubjects-container-outer',
+                  ['i;'] = 'textsubjects-container-inner',
+              },
+          },
           markid = { enable = true },
           highlight = {
             enable = true,
@@ -86,6 +103,11 @@ return {
           incremental_selection = { enable = true },
           indent = { enable = true },
         }
+    require('ufo').setup({
+        provider_selector = function(bufnr, filetype, buftype) return {'treesitter', 'indent'} end
+    })
     end
   }
 }
+
+

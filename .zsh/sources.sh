@@ -3,8 +3,8 @@
 
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
+[ -d "$HOME/go/bin" ] && PATH="$HOME/go/bin:$PATH"
 [ -d "$HOME/.local/share/JetBrains/Toolbox/scripts" ] && PATH="$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
-# [ -d "$HOME/.tmuxifier/bin" ] && PATH="$HOME/.tmuxifier/bin:$PATH"; eval "$(tmuxifier init -)"
 [ -d "$HOME/.tmuxifier/bin" ] && PATH="$HOME/.tmuxifier/bin:$PATH"; eval "$(tmuxifier init -)"
 
 export PATH=$PATH
