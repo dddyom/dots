@@ -77,19 +77,6 @@ return {
 			})
 		end,
 	},
-	{
-		"Dhanus3133/LeetBuddy.nvim",
-		config = function()
-			require("leetbuddy").setup({
-				language = "py",
-			})
-			leader("lq", "<cmd>LBQuestions<cr>", "List Questions")
-			leader("ll", "<cmd>LBQuestion<cr>", "View Question")
-			leader("lr", "<cmd>LBReset<cr>", "Reset Code")
-			leader("lt", "<cmd>LBTest<cr>", "Run Code")
-			leader("ls", "<cmd>LBSubmit<cr>", "Submit Code")
-		end,
-	},
 	{ -- macros
 		"chrisgrieser/nvim-recorder",
 		dependencies = "rcarriga/nvim-notify",
@@ -103,4 +90,10 @@ return {
 	"sindrets/diffview.nvim",
 	{ "lewis6991/gitsigns.nvim", config = true },
 	{ "akinsho/git-conflict.nvim", version = "*", config = true },
+	{
+		"FabijanZulj/blame.nvim",
+		config = function()
+			leader("a", "<cmd>ToggleBlame window<cr>", "Git blame")
+		end,
+	},
 }

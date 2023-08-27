@@ -31,7 +31,6 @@ M.prefixes = {
 		d = { name = "DB" },
 		h = { name = "Http requests" },
 		r = { name = "Replace" },
-		l = { name = "Leetcode" },
 	},
 	["g"] = {
 		["?"] = { name = "Debug print" },

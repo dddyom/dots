@@ -16,7 +16,6 @@ return {
 
 		"SmiteshP/nvim-navic",
 		"nvim-lua/lsp-status.nvim",
-		{ "dnlhc/glance.nvim", config = true },
 		{ "folke/neodev.nvim", opts = {} },
 
 		{

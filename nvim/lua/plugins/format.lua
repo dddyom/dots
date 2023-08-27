@@ -42,13 +42,6 @@ return {
 	},
 
 	{
-		"elentok/format-on-save.nvim",
-		config = function()
-			require("format-on-save").setup({})
-		end,
-	},
-
-	{
 		"folke/flash.nvim",
 		event = "VeryLazy",
 		opts = {},

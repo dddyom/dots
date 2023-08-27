@@ -1,19 +1,12 @@
 local leader = require("utils.map").leader
 
 return {
-	"Theprimeagen/vim-be-good",
 	{ "yamatsum/nvim-cursorline", config = true },
 	{
 		"NStefan002/speedtyper.nvim",
 		branch = "main",
 		cmd = "Speedtyper",
 		opts = {},
-	},
-	{
-		"FabijanZulj/blame.nvim",
-		config = function()
-			leader("a", "<cmd>ToggleBlame window<cr>", "Git blame")
-		end,
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
@@ -64,14 +57,6 @@ return {
 		end,
 	},
 
-	{
-		"ziontee113/icon-picker.nvim",
-		dependencies = { "stevearc/dressing.nvim" },
-		config = function()
-			require("icon-picker").setup({ disable_legacy_commands = true })
-		end,
-	},
-
 	-- theme
 	{
 		"Shatur/neovim-ayu",
@@ -114,11 +99,13 @@ return {
 					},
 				},
 				tabline = {
-					lualine_a = { {
-						function()
-							return require("utils.utils").get_project_name(vim.fn.getcwd())
-						end,
-					} },
+					lualine_a = {
+						{
+							function()
+								return require("utils.utils").get_project_name(vim.fn.getcwd())
+							end,
+						},
+					},
 					lualine_b = { "branch" },
 					lualine_c = { { "filename", path = 1 } },
 					lualine_x = { require("recorder").displaySlots },
