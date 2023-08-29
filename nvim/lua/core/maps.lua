@@ -23,14 +23,14 @@ local maps = {
 	},
 	leader = {
 		{ key = "q", cmd = "<cmd>q!<CR>", desc = "exit" },
-		{ key = "cw", cmd = "<cmd>cd $HOME/WorkGit/<CR>", desc = "go to WorkGit" },
+		{ key = "w", cmd = "<cmd>cd $HOME/WorkGit/<CR>", desc = "go to WorkGit" },
 		{ key = "bv", cmd = "<c-w>v", desc = "split window vertically" },
 		{ key = "bh", cmd = "<c-w>s", desc = "split window horisontally" },
 		{ key = "bx", cmd = "<cmd>close<cr>", desc = "close current split window" },
 	},
 	leader_v = {
 		{ key = "t", cmd = [[c{% trans %}<c-r>"{% endtrans %}<esc>]], desc = "{% trans %}{% endtrans %}" },
-		{ key = "c", cmd = [[cconsole.log(<c-r>")<esc>]], desc = "console.log()" },
+		{ key = "C", cmd = [[cconsole.log(<c-r>")<esc>]], desc = "console.log()" },
 		{ key = "p", cmd = [[cprint(<c-r>")<esc>]], desc = "print()" },
 		{ key = "P", cmd = [[cprint(f"\033[93m{<c-r>"}\033[0m")<esc>]], desc = "color print" },
 		{ key = "%", cmd = [[c{% <c-r>" %}<esc>]], desc = "jinja func" },

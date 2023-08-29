@@ -27,10 +27,10 @@ M.prefixes = {
 	["<leader>"] = {
 		f = { name = "Telescope" },
 		b = { name = "Buffers" },
-		c = { name = "Change dir" },
 		d = { name = "DB" },
 		h = { name = "Http requests" },
 		r = { name = "Replace" },
+		c = { name = "ChatGPT" },
 	},
 	["g"] = {
 		["?"] = { name = "Debug print" },
