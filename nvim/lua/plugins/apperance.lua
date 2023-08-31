@@ -2,6 +2,7 @@ local leader = require("utils.map").leader
 
 return {
 	{ "yamatsum/nvim-cursorline", config = true },
+	"nvim-tree/nvim-web-devicons",
 	{
 		"NStefan002/speedtyper.nvim",
 		branch = "main",
@@ -47,16 +48,6 @@ return {
 		end,
 	},
 
-	{
-		"mrjones2014/nvim-ts-rainbow",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				highlight = {},
-				rainbow = { enable = true, extended_mode = true, max_file_lines = nil },
-			})
-		end,
-	},
-
 	-- theme
 	{
 		"Shatur/neovim-ayu",
@@ -97,6 +88,7 @@ return {
 							end,
 						},
 					},
+					lualine_c = { "diff" },
 				},
 				tabline = {
 					lualine_a = {

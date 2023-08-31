@@ -55,12 +55,10 @@ return {
 			leader("=", "<C-w>=", "Resize to default")
 		end,
 	},
-
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v2.x",
 		dependencies = {
-			"nvim-tree/nvim-web-devicons",
 			"MunifTanjim/nui.nvim",
 			"s1n7ax/nvim-window-picker",
 		},

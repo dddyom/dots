@@ -18,7 +18,7 @@ return {
 			diagnostics.djlint,
 			diagnostics.eslint_d,
 			diagnostics.zsh,
-			diagnostics.pylint,
+			-- diagnostics.pylint,
 
 			formatting.autopep8,
 			formatting.stylua,
