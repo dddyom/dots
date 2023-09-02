@@ -7,19 +7,7 @@ return {
 		local null_ls = require("null-ls")
 
 		local formatting = null_ls.builtins.formatting
-		local code_actions = null_ls.builtins.code_actions
-		local diagnostics = null_ls.builtins.diagnostics
 		local sources = {
-			code_actions.eslint_d,
-			code_actions.shellcheck,
-			code_actions.gitsigns,
-
-			diagnostics.dotenv_linter,
-			diagnostics.djlint,
-			diagnostics.eslint_d,
-			diagnostics.zsh,
-			-- diagnostics.pylint,
-
 			formatting.autopep8,
 			formatting.stylua,
 			formatting.eslint_d,
@@ -27,7 +15,6 @@ return {
 			formatting.djhtml,
 			formatting.jq,
 			formatting.sqlfluff,
-			formatting.shellharden,
 		}
 
 		local lsp_formatting = function(bufnr)
