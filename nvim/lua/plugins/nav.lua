@@ -29,6 +29,7 @@ return {
 		dependencies = {
 			"cljoly/telescope-repo.nvim",
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+			{ "nvim-telescope/telescope-ui-select.nvim" },
 		},
 		config = function()
 			local telescope = require("telescope")
@@ -50,6 +51,8 @@ return {
 			})
 
 			telescope.load_extension("repo")
+			telescope.load_extension("ui-select")
+
 			leader("ff", "<cmd>Telescope find_files hidden=true<cr>", "find file")
 			leader("fw", "<cmd>Telescope live_grep<cr>", "find by word")
 			leader("fs", "<cmd>Telescope grep_string<cr>", "find by word under cursor")
@@ -60,6 +63,8 @@ return {
 			leader("ft", "<cmd>Telescope lsp_type_definitions<cr>", "LSP type definitions")
 			leader("fv", "<cmd>Telescope lsp_document_symbols<cr>", "LSP variables in file")
 			leader("fV", "<cmd>Telescope lsp_workspace_symbols<cr>", "LSP variables in project")
+			leader("fa", "<cmd>lua vim.lsp.buf.code_action()<cr>", "LSP code actions")
+			leader("fd", "<cmd>lua vim.diagnostic.open_float()<cr>", "Show all diagnostic")
 			map_n("gd", "<cmd>Telescope lsp_definitions<CR>", "Go to definition")
 		end,
 	},

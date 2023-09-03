@@ -20,15 +20,15 @@ return {
 		end,
 	},
 
-	{
-		"linux-cultist/venv-selector.nvim",
-		dependencies = { "neovim/nvim-lspconfig" },
-		config = function()
-			require("venv-selector").setup()
-			leader("v", "<cmd>VenvSelect<cr>", "select venv")
-		end,
-		opts = { parents = 4 },
-	},
+	-- {
+	-- 	"linux-cultist/venv-selector.nvim",
+	-- 	dependencies = { "neovim/nvim-lspconfig" },
+	-- 	config = function()
+	-- 		require("venv-selector").setup()
+	-- 		leader("v", "<cmd>VenvSelect<cr>", "select venv")
+	-- 	end,
+	-- 	opts = { parents = 4 },
+	-- },
 
 	{
 		"kristijanhusak/vim-dadbod-ui",
