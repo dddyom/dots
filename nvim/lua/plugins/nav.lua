@@ -37,7 +37,7 @@ return {
 			telescope.setup({
 				defaults = {
 					layout_strategy = "vertical",
-					layout_config = { preview_cutoff = 0, preview_height = 0.6, prompt_position = "top" },
+					layout_config = { prompt_position = "top" },
 					mappings = {
 						i = {
 							["<C-k>"] = actions.move_selection_previous,

@@ -76,6 +76,7 @@ return {
 		dependencies = {
 			"jeetsukumaran/vim-pythonsense",
 			"RRethy/nvim-treesitter-textsubjects",
+			"HiPhish/nvim-ts-rainbow2",
 		},
 		build = ":TSUpdate",
 		event = "BufRead",
@@ -122,9 +123,9 @@ return {
 				},
 				rainbow = {
 					enable = true,
-					disable = { "html" },
-					extended_mode = false,
-					max_file_lines = nil,
+					disable = { "jsx", "tsx", "html" },
+					query = "rainbow-parens",
+					strategy = require("ts-rainbow").strategy.global,
 				},
 				autotag = { enable = true },
 				incremental_selection = { enable = true },

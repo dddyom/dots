@@ -7,8 +7,13 @@ return {
 	"jghauser/mkdir.nvim",
 	"RRethy/vim-illuminate",
 	"David-Kunz/markid",
-
-	{ "windwp/nvim-autopairs", config = true },
+	{
+		"altermo/ultimate-autopair.nvim",
+		event = { "InsertEnter", "CmdlineEnter" },
+		branch = "v0.6",
+		opts = {},
+	},
+	-- { "windwp/nvim-autopairs", config = true },
 
 	{
 		"notjedi/nvim-rooter.lua",
@@ -55,12 +60,10 @@ return {
 			leader("=", "<C-w>=", "Resize to default")
 		end,
 	},
-
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v2.x",
 		dependencies = {
-			"nvim-tree/nvim-web-devicons",
 			"MunifTanjim/nui.nvim",
 			"s1n7ax/nvim-window-picker",
 		},
