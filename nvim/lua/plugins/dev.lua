@@ -92,7 +92,7 @@ return {
 		config = function()
 			leader("gd", "<cmd>DiffviewOpen<cr>", "Diffview open")
 			leader("gD", "<cmd>DiffviewClose<cr>", "Diffview close")
-			leader("gH", "<cmd>DiffviewFileHistory %<cr>", "File history")
+			leader("gh", "<cmd>DiffviewFileHistory %<cr>", "File history")
 		end,
 	},
 	{ "lewis6991/gitsigns.nvim", config = true },
