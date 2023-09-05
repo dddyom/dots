@@ -6,7 +6,7 @@ return {
 	"szw/vim-maximizer",
 	"jghauser/mkdir.nvim",
 	"RRethy/vim-illuminate",
-	"David-Kunz/markid",
+	-- "David-Kunz/markid",
 	-- {
 	-- 	"altermo/ultimate-autopair.nvim",
 	-- 	event = { "InsertEnter", "CmdlineEnter" },
