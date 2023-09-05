@@ -7,10 +7,12 @@ return {
 		local null_ls = require("null-ls")
 
 		local formatting = null_ls.builtins.formatting
+		local diagnostics = null_ls.builtins.diagnostics
 		local sources = {
-			formatting.autopep8,
+			diagnostics.flake8,
+
+			formatting.black,
 			formatting.stylua,
-			formatting.eslint_d,
 			formatting.prettier,
 			formatting.djhtml,
 			formatting.jq,
@@ -42,6 +44,7 @@ return {
 		end
 
 		null_ls.setup({
+			debug = true,
 			sources = sources,
 			on_attach = on_attach,
 		})
