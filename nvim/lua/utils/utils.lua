@@ -121,26 +121,28 @@ local get_diffview_title = function()
 
 	if string.match(buffer_path, "diffview") then
 		if string.match(buffer_path, ".git") then
-			local commit_hash = string.match(buffer_path, "%.git/(.-)/nvim")
+			local commit_hash = string.match(buffer_path, "%.git/(.-)/")
+			vim.print(commit_hash)
+			if commit_hash == ":0:" then
+				return "Old version"
+			end
 
 			local success, commit_time = pcall(get_commit_time, commit_hash)
 			if success and commit_time ~= nil then
 				return "Commit hash " .. commit_hash .. " (" .. commit_time .. ")"
+			else
+				return "Commit hash " .. commit_hash
 			end
-		end
-		if string.match(buffer_path, ":0") then
-			return "Old version"
 		end
 	end
 end
 
 M.is_show_diffview_title = function()
 	local buffer_path = vim.fn.fnamemodify(vim.fn.bufname(vim.fn.bufnr("%")), ":p") or ""
-	if string.find(buffer_path, "diffview" and ".git") then
-		return true
+	if string.find(buffer_path, "panels") then
+		return false
 	end
-	local keywords = { "_BASE", "_LOCAL", "_REMOTE", "_BACKUP" }
-	for _, keyword in ipairs(keywords) do
+	for _, keyword in ipairs({ "_BASE", "_LOCAL", "_REMOTE", "_BACKUP", "diffview" }) do
 		if string.find(buffer_path, keyword) then
 			return true
 		end
