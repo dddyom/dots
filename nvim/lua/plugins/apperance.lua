@@ -108,6 +108,18 @@ return {
 				inactive_sections = {
 					lualine_c = {},
 				},
+				winbar = {
+					lualine_a = {
+						{
+							function()
+								return require("utils.utils").get_diffview_title()
+							end,
+							cond = function()
+								return require("utils.utils").is_show_diffview_title()
+							end,
+						},
+					},
+				},
 			})
 		end,
 	},
