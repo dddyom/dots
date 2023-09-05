@@ -31,6 +31,7 @@ M.prefixes = {
 		h = { name = "Http requests" },
 		r = { name = "Replace" },
 		c = { name = "ChatGPT" },
+		g = { name = "GIT" },
 	},
 	["g"] = {
 		["?"] = { name = "Debug print" },

@@ -25,7 +25,7 @@ return {
 	Operator = "",
 	TypeParameter = "",
 
-	buffer = "📑",
+	buffer = "🧮",
 	nvim_lsp = "⚡",
 	luasnip = "📔",
 	-- cmp_tabnine = "🚀"

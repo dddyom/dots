@@ -127,6 +127,9 @@ return {
 				view_warn = "mini",
 				view_error = "mini",
 			},
+			lsp = {
+				progress = { enabled = false },
+			},
 		},
 		dependencies = {
 			"MunifTanjim/nui.nvim",

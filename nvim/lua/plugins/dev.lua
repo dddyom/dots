@@ -57,9 +57,9 @@ return {
 			require("toggleterm").setup({ direction = "float" })
 			leader("t", "<cmd>ToggleTerm<cr>", "TERMINAL")
 			leader(
-				"g",
+				"gg",
 				"<cmd>lua require('toggleterm.terminal').Terminal:new({ cmd = 'lazygit', hidden = true }):toggle()<cr>",
-				"GIT"
+				"lazygit"
 			)
 		end,
 	},
@@ -86,15 +86,21 @@ return {
 			lessNotifications = true,
 		},
 	},
-
 	-- GIT
-	"sindrets/diffview.nvim",
+	{
+		"sindrets/diffview.nvim",
+		config = function()
+			leader("gd", "<cmd>DiffviewOpen<cr>", "Diffview open")
+			leader("gD", "<cmd>DiffviewClose<cr>", "Diffview close")
+			leader("gH", "<cmd>DiffviewFileHistory %<cr>", "File history")
+		end,
+	},
 	{ "lewis6991/gitsigns.nvim", config = true },
 	{ "akinsho/git-conflict.nvim", version = "*", config = true },
 	{
 		"FabijanZulj/blame.nvim",
 		config = function()
-			leader("a", "<cmd>ToggleBlame window<cr>", "Git blame")
+			leader("gc", "<cmd>ToggleBlame window<cr>", "Show commits")
 		end,
 	},
 }
