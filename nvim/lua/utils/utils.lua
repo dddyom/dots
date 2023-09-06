@@ -122,7 +122,6 @@ local get_diffview_title = function()
 	if string.match(buffer_path, "diffview") then
 		if string.match(buffer_path, ".git") then
 			local commit_hash = string.match(buffer_path, "%.git/(.-)/")
-			vim.print(commit_hash)
 			if commit_hash == ":0:" then
 				return "Old version"
 			end
