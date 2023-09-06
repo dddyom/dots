@@ -103,7 +103,20 @@ local get_commit_time = function(commit_hash)
 	)
 end
 
-local get_diffview_title = function()
+M.is_show_diffview_title = function()
+	local buffer_path = vim.fn.fnamemodify(vim.fn.bufname(vim.fn.bufnr("%")), ":p") or ""
+	if string.find(buffer_path, "panels") then
+		return false
+	end
+	for _, keyword in ipairs({ "_BASE", "_LOCAL", "_REMOTE", "_BACKUP", "diffview" }) do
+		if string.find(buffer_path, keyword) then
+			return true
+		end
+	end
+	return false
+end
+
+M.get_diffview_title = function()
 	local bufnr = vim.fn.bufnr("%")
 	local buffer_path = vim.fn.fnamemodify(vim.fn.bufname(bufnr), ":p") or ""
 	if string.match(buffer_path, "_LOCAL") then
@@ -135,20 +148,5 @@ local get_diffview_title = function()
 		end
 	end
 end
-
-M.is_show_diffview_title = function()
-	local buffer_path = vim.fn.fnamemodify(vim.fn.bufname(vim.fn.bufnr("%")), ":p") or ""
-	if string.find(buffer_path, "panels") then
-		return false
-	end
-	for _, keyword in ipairs({ "_BASE", "_LOCAL", "_REMOTE", "_BACKUP", "diffview" }) do
-		if string.find(buffer_path, keyword) then
-			return true
-		end
-	end
-	return false
-end
-
-M.get_diffview_title = get_diffview_title
 
 return M

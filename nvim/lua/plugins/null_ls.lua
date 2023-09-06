@@ -7,11 +7,10 @@ return {
 		local null_ls = require("null-ls")
 
 		local formatting = null_ls.builtins.formatting
-		-- local diagnostics = null_ls.builtins.diagnostics
+		local diagnostics = null_ls.builtins.diagnostics
 		local sources = {
-			-- diagnostics.flake8,
-
-			formatting.black.with({ extra_args = { "--max-line-length=120" } }),
+			diagnostics.flake8.with({ extra_args = { "--max-line-length=120" } }),
+			-- formatting.black.with({ extra_args = { "--line-length=120" } }),
 			formatting.stylua,
 			formatting.prettier,
 			formatting.djhtml,
