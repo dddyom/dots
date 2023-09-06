@@ -53,7 +53,8 @@ return {
 			telescope.load_extension("repo")
 			telescope.load_extension("ui-select")
 
-			leader("ff", "<cmd>Telescope find_files hidden=true<cr>", "find file")
+			leader("ff", "<cmd>Telescope find_files<cr>", "find file")
+			leader("fF", "<cmd>Telescope find_files hidden=true<cr>", "find file with hidden")
 			leader("fw", "<cmd>Telescope live_grep<cr>", "find by word")
 			leader("fs", "<cmd>Telescope grep_string<cr>", "find by word under cursor")
 			leader("fb", "<cmd>Telescope buffers<cr>", "find in open buffers")
