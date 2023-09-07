@@ -57,6 +57,7 @@ return {
 					CursorLine = { bg = "#232A4C", fg = "" },
 					CurSearch = { fg = "#0A0E14", bg = "#F07178" },
 					WildMenu = { fg = "#0A0E14", bg = "#FFCC66" },
+					TelescopePromptTitle = { fg = "#0A0E14", bg = "#F07178" },
 				},
 			})
 			vim.cmd("colorscheme ayu")

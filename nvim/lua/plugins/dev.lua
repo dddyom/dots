@@ -20,25 +20,12 @@ return {
 			leader_v("/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", "Comment")
 		end,
 	},
-
 	-- {
-	-- 	"linux-cultist/venv-selector.nvim",
-	-- 	dependencies = { "neovim/nvim-lspconfig" },
+	-- 	"AckslD/swenv.nvim",
 	-- 	config = function()
-	-- 		require("venv-selector").setup()
-	-- 		leader("v", "<cmd>VenvSelect<cr>", "select venv")
+	-- 		require("swenv").setup()
 	-- 	end,
-	-- 	opts = { parents = 4 },
 	-- },
-
-	{
-		"kristijanhusak/vim-dadbod-ui",
-		dependencies = { "tpope/vim-dadbod" },
-		config = function()
-			vim.g.dbs = require("utils.utils").get_dbs()
-			vim.db_ui_save_location = "~/.queries"
-		end,
-	},
 
 	{
 		"rest-nvim/rest.nvim",
@@ -131,6 +118,14 @@ return {
 		"FabijanZulj/blame.nvim",
 		config = function()
 			leader("gc", "<cmd>ToggleBlame window<cr>", "Show commits")
+		end,
+	},
+	{
+		"ahmedkhalf/project.nvim",
+		config = function()
+			require("project_nvim").setup()
+			require("telescope").load_extension("projects")
+			leader("fp", "<cmd>lua require'telescope'.extensions.projects.projects{}<cr>", "Find project")
 		end,
 	},
 }

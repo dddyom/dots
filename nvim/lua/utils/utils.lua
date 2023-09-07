@@ -24,51 +24,6 @@ M.set_cmp_icons = function()
 	})
 end
 
-local read_env_file = function(filename)
-	local env_vars = {}
-	local file = io.open(filename, "r")
-	if file then
-		for line in file:lines() do
-			local key, value = line:match("([^=]+)=(.+)")
-			if key and value then
-				env_vars[key] = value
-			end
-		end
-		file:close()
-	end
-	return env_vars
-end
-
-local drop_quotes = function(str)
-	return str:gsub("['\"]", "")
-end
-
-M.get_dbs = function()
-	local dbs = {}
-	local centers = os.getenv("CENTERS")
-	local conn_dir = os.getenv("CONNECTIONS_ROOT_DIR")
-	if centers ~= nil and conn_dir ~= nil then
-		for center in centers:gmatch("[^,]+") do
-			local env_file = conn_dir .. "/" .. center .. "/.env"
-
-			local cur_conn = read_env_file(env_file)
-
-			table.insert(dbs, {
-				name = center,
-				url = string.format(
-					"jdbc:sqlserver://%s:%s@%s:%s;database=%s",
-					drop_quotes(cur_conn["DB_USER"]),
-					drop_quotes(cur_conn["DB_PASSWORD"]),
-					drop_quotes(cur_conn["DB_HOST"]),
-					drop_quotes(cur_conn["DB_PORT"]),
-					drop_quotes(cur_conn["DB_NAME"])
-				),
-			})
-		end
-	end
-	return dbs
-end
-
 M.get_project_name = function(path)
 	while path and path ~= "" do
 		local git_dir = path .. "/.git"
