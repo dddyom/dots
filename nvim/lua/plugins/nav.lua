@@ -3,6 +3,13 @@ local map_n = require("utils.map").n
 
 return {
 	{
+		"stevearc/oil.nvim",
+		config = function()
+			require("oil").setup()
+		end,
+	},
+
+	{
 		"christoomey/vim-tmux-navigator",
 		config = function()
 			map_n("<m-h>", ":<c-u>TmuxNavigateLeft<cr>", "tmux left")
