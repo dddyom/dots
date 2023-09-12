@@ -11,8 +11,8 @@ return {
 		local sources = {
 			diagnostics.flake8.with({ extra_args = { "--max-line-length=120" } }),
 			formatting.black.with({ extra_args = { "--line-length=120" } }),
-			diagnostics.flake8,
-			formatting.black,
+			-- diagnostics.flake8,
+			-- formatting.black,
 			formatting.stylua,
 			formatting.prettier,
 			formatting.djhtml,

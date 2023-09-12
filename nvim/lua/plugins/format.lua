@@ -76,7 +76,6 @@ return {
 		dependencies = {
 			"jeetsukumaran/vim-pythonsense",
 			"RRethy/nvim-treesitter-textsubjects",
-			-- "HiPhish/nvim-ts-rainbow2",
 		},
 		build = ":TSUpdate",
 		event = "BufRead",
@@ -121,18 +120,12 @@ return {
 					enable = true,
 					enable_autocmd = false,
 				},
-				-- rainbow = {
-				-- 	enable = true,
-				-- 	disable = { "jsx", "tsx", "html" },
-				-- 	query = "rainbow-parens",
-				-- 	strategy = require("ts-rainbow").strategy.global,
-				-- },
 				autotag = { enable = true },
 				incremental_selection = { enable = true },
 				indent = { enable = true },
 			})
 			require("ufo").setup({
-				provider_selector = function(bufnr, filetype, buftype)
+				provider_selector = function(_, _, _)
 					return { "treesitter", "indent" }
 				end,
 			})

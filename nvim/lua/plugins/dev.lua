@@ -20,13 +20,6 @@ return {
 			leader_v("/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", "Comment")
 		end,
 	},
-	-- {
-	-- 	"AckslD/swenv.nvim",
-	-- 	config = function()
-	-- 		require("swenv").setup()
-	-- 	end,
-	-- },
-
 	{
 		"rest-nvim/rest.nvim",
 		config = function()
@@ -65,7 +58,7 @@ return {
 			})
 		end,
 	},
-	{ -- macros
+	{
 		"chrisgrieser/nvim-recorder",
 		dependencies = "rcarriga/nvim-notify",
 		opts = {
@@ -126,32 +119,6 @@ return {
 			require("project_nvim").setup()
 			require("telescope").load_extension("projects")
 			leader("fp", "<cmd>lua require'telescope'.extensions.projects.projects{}<cr>", "Find project")
-		end,
-	},
-	-- DEBUG
-	{
-		"mfussenegger/nvim-dap",
-		dependencies = {
-			"theHamsta/nvim-dap-virtual-text",
-			"mfussenegger/nvim-dap-python",
-			"nvim-telescope/telescope-dap.nvim",
-		},
-		config = function()
-			-- DAP Configuration
-			require("dap").virtual_text = true
-			require("dap").virtual_text_max_length = 100
-			require("dap").virtual_text_on_right = true
-			require("dap-python").setup(vim.fn.system("which python")) -- Replace with your Python executable path
-
-			-- Keybindings (customize as needed)
-			vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "ErrorMsg" })
-			leader("dc", '<cmd>lua require"dap".continue()<CR>', "continue")
-			leader("dn", '<cmd>lua require"dap".step_over()<CR>', "step over")
-			leader("di", '<cmd>lua require"dap".step_into()<CR>', "step into")
-			leader("do", '<cmd>lua require"dap".step_out()<CR>', "step out")
-			leader("db", '<cmd>lua require"dap".toggle_breakpoint()<CR>', "toggle breakpoint")
-			leader("dl", '<cmd>lua require"dap".list_breakpoints()<CR>', "list breakpoints")
-			leader("dr", '<cmd>lua require"dap".repl.open()<CR>', "open repl")
 		end,
 	},
 }

@@ -23,10 +23,15 @@ return {
 		"ThePrimeagen/harpoon",
 		config = function()
 			require("harpoon").setup()
-			leader("m", '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', "marks menu")
+			map_n("<m-m>", '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', "marks menu")
 			map_n("M", '<cmd>lua require("harpoon.mark").add_file()<CR>', "add mark")
 			map_n("<m-p>", '<cmd>lua require("harpoon.ui").nav_prev()<CR>', "prev mark")
 			map_n("<m-n>", '<cmd>lua require("harpoon.ui").nav_next()<CR>', "next mark")
+			map_n("<m-1>", '<cmd>lua require("harpoon.ui").nav_file(1)<CR>', "harpoon file 1")
+			map_n("<m-2>", '<cmd>lua require("harpoon.ui").nav_file(2)<CR>', "harpoon file 2")
+			map_n("<m-3>", '<cmd>lua require("harpoon.ui").nav_file(3)<CR>', "harpoon file 3")
+			map_n("<m-4>", '<cmd>lua require("harpoon.ui").nav_file(4)<CR>', "harpoon file 4")
+			map_n("<m-5>", '<cmd>lua require("harpoon.ui").nav_file(5)<CR>', "harpoon file 5")
 		end,
 	},
 
@@ -74,6 +79,29 @@ return {
 			leader("fa", "<cmd>lua vim.lsp.buf.code_action()<cr>", "LSP code actions")
 			leader("fd", "<cmd>lua vim.diagnostic.open_float()<cr>", "Show all diagnostic")
 			map_n("gd", "<cmd>Telescope lsp_definitions<CR>", "Go to definition")
+		end,
+	},
+	{
+		"ghillb/cybu.nvim",
+		branch = "main",
+		config = function()
+			require("cybu").setup()
+			vim.keymap.set("n", "H", "<Plug>(CybuPrev)")
+			vim.keymap.set("n", "L", "<Plug>(CybuNext)")
+		end,
+	},
+	{
+		"chrisgrieser/nvim-spider",
+		config = function()
+			vim.keymap.set({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
+			vim.keymap.set({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
+			vim.keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-b" })
+			vim.keymap.set(
+				{ "n", "o", "x" },
+				"ge",
+				"<cmd>lua require('spider').motion('ge')<CR>",
+				{ desc = "Spider-ge" }
+			)
 		end,
 	},
 }
