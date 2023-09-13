@@ -4,10 +4,14 @@ return {
 	{ "yamatsum/nvim-cursorline", config = true },
 	"nvim-tree/nvim-web-devicons",
 	{
-		"NStefan002/speedtyper.nvim",
-		branch = "main",
-		cmd = "Speedtyper",
-		opts = {},
+		"kwakzalver/duckytype.nvim",
+		config = function()
+			require("duckytype").setup({
+				expected = "python_keywords",
+				number_of_words = 20,
+				average_word_length = 5.69,
+			})
+		end,
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",

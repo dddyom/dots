@@ -1,3 +1,6 @@
+local leader = require("utils.map").leader
+local map_n = require("utils.map").n
+
 return {
 	"VonHeikemen/lsp-zero.nvim",
 	branch = "v2.x",
@@ -13,7 +16,7 @@ return {
 		"hrsh7th/cmp-nvim-lua",
 		"L3MON4D3/LuaSnip",
 		"rafamadriz/friendly-snippets",
-
+		"folke/trouble.nvim",
 		"SmiteshP/nvim-navic",
 		"nvim-lua/lsp-status.nvim",
 		{ "folke/neodev.nvim", opts = {} },
@@ -41,6 +44,13 @@ return {
 		require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
 		lsp.setup()
 		require("utils.utils").set_cmp_icons()
+		-- Lua
+		leader("xx", "<cmd>TroubleToggle<cr>", "Trouble")
+		leader("xw", "<cmd>lua require('trouble').open('workspace_diagnostics')<cr>", "workspace diagnostics")
+		leader("xd", "<cmd>lua require('trouble').open('document_diagnostics')<cr>", "document diagnostics")
+		leader("xq", "<cmd>lua require('trouble').open('quickfix')<cr>", "quickfix")
+		leader("xl", "<cmd>lua require('trouble').open('loclist')<cr>", "loclist")
+		map_n("gr", "<cmd>Trouble lsp_references<cr>", "LSP references")
 
 		require("lspconfig").pyright.setup({
 			settings = {
