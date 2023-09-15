@@ -2,7 +2,13 @@ local leader = require("utils.map").leader
 local leader_v = require("utils.map").leader_v
 
 return {
-	"mg979/vim-visual-multi",
+	{
+		"mg979/vim-visual-multi",
+		config = function()
+			vim.g.VM_leader = "|"
+		end,
+	},
+
 	"wintermute-cell/gitignore.nvim",
 	{
 		"Exafunction/codeium.vim",
