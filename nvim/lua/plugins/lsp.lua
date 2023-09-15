@@ -19,7 +19,6 @@ return {
 		"folke/trouble.nvim",
 		"SmiteshP/nvim-navic",
 		"nvim-lua/lsp-status.nvim",
-		{ "folke/neodev.nvim", opts = {} },
 
 		{
 			"williamboman/mason.nvim",
@@ -29,7 +28,6 @@ return {
 		},
 	},
 	config = function()
-		require("neodev").setup()
 		local lsp = require("lsp-zero").preset({})
 
 		lsp.on_attach(function(client, bufnr)
