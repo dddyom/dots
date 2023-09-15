@@ -195,4 +195,11 @@ return {
 			vim.keymap.set("n", "L", "<Plug>(CybuNext)")
 		end,
 	},
+	{
+		"folke/zen-mode.nvim",
+		opts = {},
+		config = function()
+			leader("z", "<cmd>ZenMode<CR>", "zen mode")
+		end,
+	},
 }
