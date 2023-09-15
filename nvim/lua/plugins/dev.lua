@@ -66,4 +66,19 @@ return {
 			lessNotifications = true,
 		},
 	},
+	{
+		"luckasRanarison/nvim-devdocs",
+		opts = {},
+		config = function()
+			require("nvim-devdocs").setup({
+				float_win = {
+					relative = "editor",
+					height = 40,
+					width = 150,
+					border = "rounded",
+				},
+			})
+			leader("?", "<cmd>DevdocsOpenFloat<cr>", "DevDocs")
+		end,
+	},
 }
