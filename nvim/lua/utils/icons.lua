@@ -27,5 +27,5 @@ return {
 
 	buffer = "📔",
 	nvim_lsp = "⚡",
-	luasnip = "🚀",
+	luasnip = "🔑",
 }
