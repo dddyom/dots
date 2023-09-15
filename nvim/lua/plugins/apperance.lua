@@ -185,4 +185,14 @@ return {
 			cmd_abbrev("helpclose", "FloatingHelpClose")
 		end,
 	},
+
+	{
+		"ghillb/cybu.nvim",
+		branch = "main",
+		config = function()
+			require("cybu").setup()
+			vim.keymap.set("n", "H", "<Plug>(CybuPrev)")
+			vim.keymap.set("n", "L", "<Plug>(CybuNext)")
+		end,
+	},
 }

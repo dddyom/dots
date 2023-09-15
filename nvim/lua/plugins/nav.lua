@@ -1,9 +1,7 @@
 local map_n = require("utils.map").n
+local leader = require("utils.map").leader
 return {
-	{
-		"stevearc/oil.nvim",
-		config = true,
-	},
+	{ "stevearc/oil.nvim", config = true },
 	{
 		"christoomey/vim-tmux-navigator",
 		config = function()
@@ -13,7 +11,6 @@ return {
 			map_n("<m-k>", ":<c-u>TmuxNavigateUp<cr>", "tmux up")
 		end,
 	},
-
 	{
 		"ThePrimeagen/harpoon",
 		config = function()
@@ -27,15 +24,6 @@ return {
 			map_n("<m-3>", '<cmd>lua require("harpoon.ui").nav_file(3)<CR>', "harpoon file 3")
 			map_n("<m-4>", '<cmd>lua require("harpoon.ui").nav_file(4)<CR>', "harpoon file 4")
 			map_n("<m-5>", '<cmd>lua require("harpoon.ui").nav_file(5)<CR>', "harpoon file 5")
-		end,
-	},
-	{
-		"ghillb/cybu.nvim",
-		branch = "main",
-		config = function()
-			require("cybu").setup()
-			vim.keymap.set("n", "H", "<Plug>(CybuPrev)")
-			vim.keymap.set("n", "L", "<Plug>(CybuNext)")
 		end,
 	},
 	{
@@ -64,5 +52,29 @@ return {
 
 			vim.api.nvim_set_keymap("n", "<Leader>l", "<Cmd>noh<CR>", kopts)
 		end,
+	},
+	{
+		"ahmedkhalf/project.nvim",
+		config = function()
+			require("project_nvim").setup()
+			require("telescope").load_extension("projects")
+			leader("fp", "<cmd>lua require'telescope'.extensions.projects.projects{}<cr>", "Find project")
+		end,
+	},
+
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		opts = {},
+		keys = {
+			{
+				"<c-f>",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").jump()
+				end,
+				desc = "Flash",
+			},
+		},
 	},
 }
