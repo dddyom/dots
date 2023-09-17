@@ -59,6 +59,9 @@ return {
 		dependencies = {
 			"jeetsukumaran/vim-pythonsense",
 			"RRethy/nvim-treesitter-textsubjects",
+			"nvim-treesitter/nvim-treesitter-context",
+
+			"JoosepAlviste/nvim-ts-context-commentstring",
 		},
 		build = ":TSUpdate",
 		event = "BufRead",
@@ -84,6 +87,7 @@ return {
 					"bash",
 					"dockerfile",
 					"markdown_inline",
+					"tsx",
 				},
 				textsubjects = {
 					enable = true,
@@ -112,6 +116,11 @@ return {
 					return { "treesitter", "indent" }
 				end,
 			})
+
+			require("treesitter-context").setup({
+				enable = true,
+			})
+			require("ts_context_commentstring").setup({})
 		end,
 	},
 }
