@@ -1,58 +1,6 @@
 local leader = require("utils.map").leader
 
 return {
-	{ "yamatsum/nvim-cursorline", config = true },
-	"nvim-tree/nvim-web-devicons",
-	{
-		"kwakzalver/duckytype.nvim",
-		config = function()
-			require("duckytype").setup({
-				expected = "python_keywords",
-				number_of_words = 20,
-				average_word_length = 5.69,
-			})
-		end,
-	},
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		config = function()
-			require("indent_blankline").setup({
-				show_current_context = true,
-				show_current_context_start = true,
-			})
-		end,
-	},
-
-	{
-		"eandrju/cellular-automaton.nvim",
-		config = function()
-			leader("]", "<cmd>CellularAutomaton make_it_rain<CR>", "rain")
-		end,
-	},
-
-	{
-		"simrat39/symbols-outline.nvim",
-		config = function()
-			require("symbols-outline").setup()
-			leader("a", "<cmd>SymbolsOutline<CR>", "code structure")
-		end,
-	},
-
-	{
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup()
-		end,
-	},
-
-	{
-		"m-demare/hlargs.nvim",
-		config = function()
-			require("hlargs").setup()
-		end,
-	},
-
-	-- theme
 	{
 		"Shatur/neovim-ayu",
 		config = function()
@@ -69,6 +17,22 @@ return {
 	},
 
 	{
+		"lukas-reineke/indent-blankline.nvim",
+		config = function()
+			require("indent_blankline").setup({
+				show_current_context = true,
+				show_current_context_start = true,
+			})
+		end,
+	},
+
+	{
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
+		end,
+	},
+	{
 		"nvim-lualine/lualine.nvim",
 		config = function()
 			local navic = require("nvim-navic")
@@ -77,7 +41,7 @@ return {
 
 			require("lualine").setup({
 				options = {
-					icons_enabled = true,
+					icons_enabled = false,
 					theme = custom_ayu,
 					component_separators = "|",
 					section_separators = "",
@@ -109,6 +73,7 @@ return {
 					lualine_x = { require("recorder").displaySlots },
 					lualine_y = { require("recorder").recordingStatus },
 					lualine_z = { "mode", "searchcount" },
+					lualin,
 				},
 				inactive_sections = {
 					lualine_c = {},
@@ -127,36 +92,6 @@ return {
 				},
 			})
 		end,
-	},
-	{
-		"folke/noice.nvim",
-		event = "VeryLazy",
-		opts = {
-			cmdline = {
-				view = "cmdline",
-				format = {
-					cmdline = { icon = ">" },
-					search_down = { icon = "" },
-					search_up = { icon = "" },
-				},
-			},
-			messages = {
-				view = "mini",
-				view_warn = "mini",
-				view_error = "mini",
-			},
-			lsp = {
-				progress = { enabled = false },
-				override = {
-					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-					["vim.lsp.util.stylize_markdown"] = true,
-					["cmp.entry.get_documentation"] = true,
-				},
-			},
-		},
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-		},
 	},
 	{
 		"Tyler-Barham/floating-help.nvim",
@@ -183,16 +118,6 @@ return {
 			cmd_abbrev("help", "FloatingHelp")
 			cmd_abbrev("helpc", "FloatingHelpClose")
 			cmd_abbrev("helpclose", "FloatingHelpClose")
-		end,
-	},
-
-	{
-		"ghillb/cybu.nvim",
-		branch = "main",
-		config = function()
-			require("cybu").setup()
-			vim.keymap.set("n", "H", "<Plug>(CybuPrev)")
-			vim.keymap.set("n", "L", "<Plug>(CybuNext)")
 		end,
 	},
 	{

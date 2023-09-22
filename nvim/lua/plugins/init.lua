@@ -1,35 +1,14 @@
-local map_n = require("utils.map").n
 local leader = require("utils.map").leader
+local map_n = require("utils.map").n
 
 return {
 	"nvim-lua/plenary.nvim",
-	"szw/vim-maximizer",
-	"jghauser/mkdir.nvim",
-	"RRethy/vim-illuminate",
-	-- "David-Kunz/markid",
-	-- {
-	-- 	"altermo/ultimate-autopair.nvim",
-	-- 	event = { "InsertEnter", "CmdlineEnter" },
-	-- 	branch = "v0.6",
-	-- 	opts = {},
-	-- },
-	-- { "windwp/nvim-autopairs", config = true },
-
 	{
 		"notjedi/nvim-rooter.lua",
 		config = function()
 			require("nvim-rooter").setup({ fallback_to_parent = false })
 		end,
 	},
-
-	{
-		"rainbowhxch/accelerated-jk.nvim",
-		config = function()
-			map_n("j", "<Plug>(accelerated_jk_gj)")
-			map_n("k", "<Plug>(accelerated_jk_gk)")
-		end,
-	},
-
 	{
 		"linty-org/readline.nvim",
 		config = function()
@@ -61,28 +40,12 @@ return {
 		end,
 	},
 	{
-		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v2.x",
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"s1n7ax/nvim-window-picker",
-		},
+		"stevearc/oil.nvim",
 		config = function()
-			require("neo-tree").setup({
-				event_handlers = {
-					{
-						event = "file_opened",
-						handler = function()
-							require("neo-tree").close_all()
-						end,
-					},
-				},
-			})
-			vim.g.neo_tree_remove_legacy_commands = 1
-			leader("e", "<cmd>NeoTreeFocusToggle<cr>", "file explorer")
+			require("oil").setup()
+			map_n("`", "<CMD>Oil<CR>", "Oil")
 		end,
 	},
-
 	{
 		"folke/which-key.nvim",
 		config = function()
@@ -94,19 +57,6 @@ return {
 				hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
 			})
 			wk.register(require("utils.map").prefixes)
-		end,
-	},
-	{
-		"Pocco81/auto-save.nvim",
-		config = function()
-			require("auto-save").setup({
-				execution_message = {
-					message = function()
-						return ""
-					end,
-				},
-			})
-			require("auto-save").off()
 		end,
 	},
 }

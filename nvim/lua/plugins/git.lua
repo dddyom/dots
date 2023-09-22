@@ -16,6 +16,7 @@ return {
 				default = {
 					layout = "diff2_horizontal",
 					winbar_info = true,
+					use_icons = false,
 				},
 				keymaps = {
 					view = {
@@ -40,10 +41,4 @@ return {
 	},
 	{ "lewis6991/gitsigns.nvim", config = true },
 	{ "akinsho/git-conflict.nvim", version = "*", config = true },
-	{
-		"FabijanZulj/blame.nvim",
-		config = function()
-			leader("gc", "<cmd>ToggleBlame window<cr>", "Show commits")
-		end,
-	},
 }

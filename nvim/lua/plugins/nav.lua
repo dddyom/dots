@@ -1,7 +1,6 @@
 local map_n = require("utils.map").n
 local leader = require("utils.map").leader
 return {
-	{ "stevearc/oil.nvim", config = true },
 	{
 		"christoomey/vim-tmux-navigator",
 		config = function()
@@ -24,33 +23,6 @@ return {
 			map_n("<m-3>", '<cmd>lua require("harpoon.ui").nav_file(3)<CR>', "harpoon file 3")
 			map_n("<m-4>", '<cmd>lua require("harpoon.ui").nav_file(4)<CR>', "harpoon file 4")
 			map_n("<m-5>", '<cmd>lua require("harpoon.ui").nav_file(5)<CR>', "harpoon file 5")
-		end,
-	},
-	{
-		"kevinhwang91/nvim-hlslens",
-		config = function()
-			require("hlslens").setup()
-
-			local kopts = { noremap = true, silent = true }
-
-			vim.api.nvim_set_keymap(
-				"n",
-				"n",
-				[[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
-				kopts
-			)
-			vim.api.nvim_set_keymap(
-				"n",
-				"N",
-				[[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
-				kopts
-			)
-			vim.api.nvim_set_keymap("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
-			vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
-			vim.api.nvim_set_keymap("n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
-			vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
-
-			vim.api.nvim_set_keymap("n", "<Leader>l", "<Cmd>noh<CR>", kopts)
 		end,
 	},
 	{

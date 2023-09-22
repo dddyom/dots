@@ -16,10 +16,12 @@ local maps = {
 		{ key = "<c-d>", cmd = "<c-d>zz" },
 		{ key = "<c-u>", cmd = "<c-u>zz" },
 		{ key = "n", cmd = "nzzzv" },
+		{ key = "W", cmd = "viw" },
 		{ key = "<esc><esc>", cmd = "<esc>:nohlsearch<cr>", desc = "turn off highlight" },
 		{ key = "L", cmd = "<cmd>bnext<cr>", desc = "next buffer" },
 		{ key = "H", cmd = "<cmd>bprevious<cr>", desc = "previous buffer" },
 		{ key = "<m-w>", cmd = "<cmd>bd<cr>", "close current buffer" },
+		{ key = "<m-q>", cmd = "<cmd>bd<cr>", "close current buffer" },
 	},
 	leader = {
 		{ key = "q", cmd = "<cmd>q!<CR>", desc = "exit" },
@@ -34,7 +36,12 @@ local maps = {
 		{ key = "p", cmd = [[cprint(<c-r>")<esc>]], desc = "print()" },
 		{ key = "P", cmd = [[cprint(f"\033[93m{<c-r>"}\033[0m")<esc>]], desc = "color print" },
 		{ key = "%", cmd = [[c{% <c-r>" %}<esc>]], desc = "jinja func" },
-		{ key = "{", cmd = [[c{{ <c-r>" }}<esc>]], desc = "jinja tag" },
+		{ key = "}", cmd = [[c{{ <c-r>" }}<esc>]], desc = "jinja tag" },
+		{ key = "{", cmd = [[c{<c-r>"}<esc>]], desc = "{" },
+		{ key = "(", cmd = [[c(<c-r>")<esc>]], desc = "(" },
+		{ key = "'", cmd = [[c'<c-r>"'<esc>]], desc = "'" },
+		{ key = '"', cmd = [[c"<c-r>""<esc>]], desc = '"' },
+		{ key = "[", cmd = [[c[<c-r>"]<esc>]], desc = "[" },
 		{ key = "d", cmd = [[:s/^[ \t]*$\n//<CR>]], desc = "delete empty lines" },
 	},
 }
@@ -43,3 +50,5 @@ local maps = {
 for mode, map_table in pairs(maps) do
 	require("utils.map").set_maps(map_table, require("utils.map")[mode])
 end
+
+require("utils.map").n("<Leader>gb", "<cmd>lua require('utils.utils').blame()<CR>", "git blame")

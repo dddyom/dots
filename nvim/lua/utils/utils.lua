@@ -7,17 +7,6 @@ M.set_cmp_icons = function()
 				local icons = require("utils.icons")
 				vim_item.kind = icons[vim_item.kind]
 				vim_item.menu = icons[entry.source.name]
-				if entry.source.name == "cmp_tabnine" then
-					local detail = (entry.completion_item.labelDetails or {}).detail
-					vim_item.kind = ""
-					if detail and detail:find(".*%%.*") then
-						vim_item.kind = vim_item.kind .. " " .. detail
-					end
-
-					if (entry.completion_item.data or {}).multiline then
-						vim_item.kind = vim_item.kind .. " " .. "[ML]"
-					end
-				end
 				return vim_item
 			end,
 		},
@@ -101,6 +90,65 @@ M.get_diffview_title = function()
 				return "Commit hash " .. commit_hash
 			end
 		end
+	end
+end
+
+local floating_window = function(content, winWidth, winHeight, ft)
+	local ui = vim.api.nvim_list_uis()[1]
+
+	local width = winWidth or 100
+	local height = winHeight or 10
+
+	local opts = {
+		relative = "editor",
+		style = "minimal",
+		width = width,
+		height = height,
+		row = math.ceil((ui.height - height) / 2) - 1,
+		col = math.ceil((ui.width - width) / 2),
+		border = "rounded",
+	}
+
+	local buf = vim.api.nvim_create_buf(false, true)
+	if ft then
+		vim.api.nvim_buf_set_option(buf, "filetype", ft)
+	end
+
+	local win = vim.api.nvim_open_win(buf, true, opts)
+	for index, line in ipairs(content) do
+		vim.fn.setbufline(buf, index, { line })
+	end
+	return { buf = buf, win = win }
+end
+
+M.floating_window = floating_window
+
+local git_blame_current_line = function()
+	local current_line = vim.fn.line(".")
+	local file_path = vim.fn.expand("%")
+	local git_log = {}
+
+	local raw_log = vim.fn.system(string.format("git log -L %d,%d:%s", current_line, current_line, file_path))
+
+	if not raw_log or raw_log:match("^fatal:") then
+		return
+	end
+
+	for line in raw_log:gmatch("[^\r\n]+") do
+		if line:match("^diff") then
+			break
+		end
+		table.insert(git_log, line)
+	end
+	return git_log
+end
+
+M.git_blame_current_line = git_blame_current_line
+
+M.blame = function()
+	local git_log = git_blame_current_line()
+	if git_log then
+		floating_window(git_log, 50, 5, "git")
 	end
 end
 
