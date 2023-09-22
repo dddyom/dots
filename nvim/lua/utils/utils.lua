@@ -135,6 +135,7 @@ local git_blame_current_line = function()
 	end
 
 	for line in raw_log:gmatch("[^\r\n]+") do
+		line = line:gsub("^%s+", "")
 		if line:match("^diff") then
 			break
 		end
@@ -148,7 +149,7 @@ M.git_blame_current_line = git_blame_current_line
 M.blame = function()
 	local git_log = git_blame_current_line()
 	if git_log then
-		floating_window(git_log, 50, 5, "git")
+		floating_window(git_log, 50, 4, "git")
 	end
 end
 
