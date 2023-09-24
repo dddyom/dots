@@ -15,6 +15,7 @@ return {
 			-- diagnostics.flake8,
 			-- formatting.black,
 			formatting.stylua,
+			formatting.rustfmt,
 			-- formatting.prettier,
 			-- formatting.djhtml,
 			formatting.jq,

@@ -29,7 +29,7 @@ M.prefixes = {
 		b = { name = "Buffers" },
 		h = { name = "Http requests" },
 		r = { name = "Replace" },
-		c = { name = "ChatGPT" },
+		c = { name = "Conflict" },
 		g = { name = "GIT" },
 		x = { name = "LSP" },
 	},

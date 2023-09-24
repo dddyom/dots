@@ -9,7 +9,6 @@ return {
 		"L3MON4D3/LuaSnip",
 		"saadparwaiz1/cmp_luasnip",
 	},
-
 	config = function()
 		require("luasnip.loaders/from_vscode").lazy_load()
 		local cmp = require("cmp")
@@ -23,7 +22,6 @@ return {
 			window = {
 				completion = cmp.config.window.bordered(),
 				documentation = cmp.config.window.bordered(),
-				winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuThumb,Search:None",
 			},
 			mapping = cmp.mapping.preset.insert({
 				["<C-e>"] = cmp.mapping.abort(),

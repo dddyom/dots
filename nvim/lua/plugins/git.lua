@@ -40,5 +40,17 @@ return {
 		end,
 	},
 	{ "lewis6991/gitsigns.nvim", config = true },
-	{ "akinsho/git-conflict.nvim", version = "*", config = true },
+	{
+		"akinsho/git-conflict.nvim",
+		version = "*",
+		config = function()
+			require("git-conflict").setup()
+			leader("co", "<CMD>GitConflictChooseOurs<CR>", "Ours")
+			leader("ct", "<CMD>GitConflictChooseTheirs<CR>", "Theirs")
+			leader("cb", "<CMD>GitConflictChooseBoth<CR>", "Both")
+			leader("c0", "<CMD>GitConflictChooseNone<CR>", "None")
+			leader("cj", "<CMD>GitConflictNextConflict<CR>", "Next")
+			leader("ck", "<CMD>GitConflictPrevConflict<CR>", "Prev")
+		end,
+	},
 }

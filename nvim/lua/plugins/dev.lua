@@ -4,6 +4,12 @@ local leader_v = require("utils.map").leader_v
 return {
 	"mg979/vim-visual-multi",
 	{
+		"simrat39/rust-tools.nvim",
+		config = function()
+			require("rust-tools").setup()
+		end,
+	},
+	{
 		"Exafunction/codeium.vim",
 		config = function()
 			vim.g.codeium_disable_bindings = 1
