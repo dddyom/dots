@@ -1,3 +1,25 @@
+local border = {
+	{ "┌", "FloatBorder" },
+	{ "─", "FloatBorder" },
+	{ "┐", "FloatBorder" },
+	{ "│", "FloatBorder" },
+	{ "┘", "FloatBorder" },
+	{ "─", "FloatBorder" },
+	{ "└", "FloatBorder" },
+	{ "│", "FloatBorder" },
+}
+-- Add border to the diagnostic popup window
+vim.diagnostic.config({
+	virtual_text = {
+		prefix = "■ ", -- Could be '●', '▎', 'x', '■', , 
+	},
+	float = { border = border },
+})
+local handlers = {
+	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+}
+
 return {
 	"VonHeikemen/lsp-zero.nvim",
 	branch = "v2.x",
@@ -28,6 +50,7 @@ return {
 		lsp.setup()
 		require("utils.utils").set_cmp_icons()
 		require("lspconfig").pyright.setup({
+			handlers = handlers,
 			settings = {
 				python = {
 					analysis = {

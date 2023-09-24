@@ -15,9 +15,6 @@ return {
 	{
 		"numToStr/Comment.nvim",
 		config = function()
-			require("Comment").setup({
-				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-			})
 			leader("/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", "Comment")
 			leader_v("/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", "Comment")
 		end,
