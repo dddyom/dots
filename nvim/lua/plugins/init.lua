@@ -40,13 +40,6 @@ return {
 		end,
 	},
 	{
-		"stevearc/oil.nvim",
-		config = function()
-			require("oil").setup()
-			map_n("`", "<CMD>Oil<CR>", "Oil")
-		end,
-	},
-	{
 		"folke/which-key.nvim",
 		config = function()
 			vim.o.timeout = true

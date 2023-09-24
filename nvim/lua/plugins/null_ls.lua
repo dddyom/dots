@@ -10,14 +10,14 @@ return {
 		local diagnostics = null_ls.builtins.diagnostics
 		local sources = {
 			diagnostics.flake8.with({ extra_args = { "--max-line-length=120" } }),
-			-- formatting.black.with({ extra_args = { "--line-length=120" } }),
-			-- formatting.isort,
+			formatting.black.with({ extra_args = { "--line-length=120" } }),
+			formatting.isort,
 			-- diagnostics.flake8,
 			-- formatting.black,
 			formatting.stylua,
 			formatting.rustfmt,
-			-- formatting.prettier,
-			-- formatting.djhtml,
+			formatting.prettier,
+			formatting.djhtml,
 			formatting.jq,
 			formatting.sqlfluff,
 		}

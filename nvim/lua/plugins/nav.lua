@@ -2,6 +2,13 @@ local map_n = require("utils.map").n
 local leader = require("utils.map").leader
 return {
 	{
+		"stevearc/oil.nvim",
+		config = function()
+			require("oil").setup()
+			map_n("`", "<CMD>lua require('oil').open_float()<CR>", "Oil")
+		end,
+	},
+	{
 		"christoomey/vim-tmux-navigator",
 		config = function()
 			map_n("<m-h>", ":<c-u>TmuxNavigateLeft<cr>", "tmux left")
@@ -33,7 +40,6 @@ return {
 			leader("fp", "<cmd>lua require'telescope'.extensions.projects.projects{}<cr>", "Find project")
 		end,
 	},
-
 	{
 		"folke/flash.nvim",
 		event = "VeryLazy",

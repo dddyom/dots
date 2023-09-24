@@ -27,6 +27,9 @@ return {
 						["<esc>"] = actions.close,
 						["<c-q>"] = actions.close,
 					},
+					n = {
+						["q"] = actions.close,
+					},
 				},
 			},
 			pickers = {
