@@ -28,6 +28,7 @@ opt.undofile = true
 opt.completeopt = { "menu", "menuone", "noselect" }
 opt.backspace = vim.opt.backspace + { "nostop" }
 opt.shortmess = vim.opt.shortmess + "IS"
+opt.cmdheight = 0
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "python",
