@@ -1,4 +1,5 @@
 local opt = vim.opt
+local inoreabbrev = vim.cmd.inoreabbrev
 opt.termguicolors = true
 opt.mouse = "a"
 opt.clipboard = "unnamedplus"
@@ -6,8 +7,8 @@ opt.timeoutlen = 300
 opt.updatetime = 300
 opt.history = 100
 opt.expandtab = true
-opt.shiftwidth = 4
-opt.tabstop = 4
+opt.shiftwidth = 2
+opt.tabstop = 2
 opt.softtabstop = 4
 opt.smartcase = true
 opt.ignorecase = true
@@ -33,13 +34,15 @@ opt.cmdheight = 0
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "python",
 	callback = function()
-		vim.cmd.inoreabbrev("<buffer> true True")
-		vim.cmd.inoreabbrev("<buffer> false False")
+		inoreabbrev("<buffer> true True")
+		inoreabbrev("<buffer> false False")
 
-		vim.cmd.inoreabbrev("<buffer> // #")
-		vim.cmd.inoreabbrev("<buffer> -- #")
-		vim.cmd.inoreabbrev("<buffer> null None")
-		vim.cmd.inoreabbrev("<buffer> none None")
-		vim.cmd.inoreabbrev("<buffer> nil None")
+		opt.shiftwidth = 4
+		opt.tabstop = 4
+		inoreabbrev("<buffer> // #")
+		inoreabbrev("<buffer> -- #")
+		inoreabbrev("<buffer> null None")
+		inoreabbrev("<buffer> none None")
+		inoreabbrev("<buffer> nil None")
 	end,
 })
