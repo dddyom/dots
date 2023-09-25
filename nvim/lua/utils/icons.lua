@@ -26,6 +26,7 @@ return {
 	TypeParameter = "",
 
 	buffer = "📔",
+	path = "📁",
 	nvim_lsp = "⚡",
 	luasnip = "🔑",
 }

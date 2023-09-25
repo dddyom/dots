@@ -117,4 +117,12 @@ return {
 			leader("z", "<cmd>ZenMode<CR>", "zen mode")
 		end,
 	},
+	{
+		"ziontee113/icon-picker.nvim",
+		config = function()
+			require("icon-picker").setup({
+				disable_legacy_commands = true,
+			})
+		end,
+	},
 }
