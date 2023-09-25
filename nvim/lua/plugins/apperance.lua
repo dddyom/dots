@@ -125,4 +125,34 @@ return {
 			})
 		end,
 	},
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			cmdline = {
+				view = "cmdline",
+				format = {
+					cmdline = { icon = ">" },
+					search_down = { icon = "" },
+					search_up = { icon = "" },
+				},
+			},
+			messages = {
+				view = "mini",
+				view_warn = "mini",
+				view_error = "mini",
+			},
+			lsp = {
+				progress = { enabled = false },
+				override = {
+					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+					["vim.lsp.util.stylize_markdown"] = true,
+					["cmp.entry.get_documentation"] = true,
+				},
+			},
+		},
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+		},
+	},
 }
