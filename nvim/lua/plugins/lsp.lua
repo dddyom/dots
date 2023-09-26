@@ -4,7 +4,6 @@ return {
 	dependencies = {
 		"neovim/nvim-lspconfig",
 		"williamboman/mason-lspconfig.nvim",
-		"SmiteshP/nvim-navic",
 		{
 			"williamboman/mason.nvim",
 			build = function()
@@ -15,10 +14,7 @@ return {
 	config = function()
 		local lsp = require("lsp-zero").preset({})
 
-		lsp.on_attach(function(client, bufnr)
-			if client.server_capabilities.documentSymbolProvider then
-				require("nvim-navic").attach(client, bufnr)
-			end
+		lsp.on_attach(function(_, bufnr)
 			lsp.default_keymaps({ buffer = bufnr })
 		end)
 		lsp.set_sign_icons({ error = "", warn = "", hint = "", info = "פֿ" })

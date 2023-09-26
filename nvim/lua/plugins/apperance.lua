@@ -15,7 +15,6 @@ return {
 			vim.cmd("colorscheme ayu")
 		end,
 	},
-
 	{
 		"norcalli/nvim-colorizer.lua",
 		config = function()
@@ -25,7 +24,6 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		config = function()
-			local navic = require("nvim-navic")
 			local custom_ayu = require("lualine.themes.ayu")
 			custom_ayu.normal.c.bg = "#0000000"
 
@@ -38,18 +36,13 @@ return {
 				},
 				sections = {
 					lualine_a = { { "buffers" } },
-					lualine_b = {
-						{
-							function()
-								return navic.get_location()
-							end,
-							cond = function()
-								return navic.is_available()
-							end,
-						},
-					},
-					lualine_c = { "diff" },
+					lualine_b = {},
+					lualine_c = {},
+					lualine_x = { "fileformat", "filetype" },
+					lualine_y = {},
+					lualine_z = { "location" },
 				},
+
 				tabline = {
 					lualine_a = {
 						{
@@ -58,15 +51,9 @@ return {
 							end,
 						},
 					},
-					lualine_b = { "branch" },
-					lualine_c = { { "filename", path = 1 } },
-					lualine_x = { require("recorder").displaySlots },
-					lualine_y = { require("recorder").recordingStatus },
-					lualine_z = { "mode", "searchcount" },
-					lualin,
-				},
-				inactive_sections = {
-					lualine_c = {},
+					lualine_b = { { "filename", path = 1 } },
+					lualine_y = { "diff", require("recorder").recordingStatus },
+					lualine_z = { "branch", "searchcount" },
 				},
 				winbar = {
 					lualine_a = {

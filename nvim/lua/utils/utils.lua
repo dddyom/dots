@@ -123,7 +123,7 @@ end
 
 M.floating_window = floating_window
 
-local git_blame_current_line = function()
+local git_log_current_line = function()
 	local current_line = vim.fn.line(".")
 	local file_path = vim.fn.expand("%")
 	local git_log = {}
@@ -144,10 +144,10 @@ local git_blame_current_line = function()
 	return git_log
 end
 
-M.git_blame_current_line = git_blame_current_line
+M.git_log_current_line = git_log_current_line
 
-M.blame = function()
-	local git_log = git_blame_current_line()
+M.show_commit = function()
+	local git_log = git_log_current_line()
 	if git_log then
 		floating_window(git_log, 50, 4, "git")
 	end

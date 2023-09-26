@@ -51,4 +51,8 @@ for mode, map_table in pairs(maps) do
 	require("utils.map").set_maps(map_table, require("utils.map")[mode])
 end
 
-require("utils.map").n("<Leader>gb", "<cmd>lua require('utils.utils').blame()<CR>", "git blame")
+require("utils.map").n(
+	"<Leader>gc",
+	"<cmd>lua require('utils.utils').show_commit()<CR>",
+	"show commit log of current file"
+)
