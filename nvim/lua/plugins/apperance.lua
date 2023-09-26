@@ -31,7 +31,7 @@ return {
 				options = {
 					icons_enabled = false,
 					theme = custom_ayu,
-					component_separators = "|",
+					component_separators = "",
 					section_separators = "",
 				},
 				sections = {
@@ -39,7 +39,23 @@ return {
 					lualine_b = {},
 					lualine_c = {},
 					lualine_x = { "fileformat", "filetype" },
-					lualine_y = {},
+					lualine_y = {
+						{
+							function()
+								local session_name = require("utils.utils").tmux_session_name()
+								if session_name == nil then
+									return ""
+								else
+									return "[" .. session_name .. "]"
+								end
+							end,
+							cond = function()
+								if os.getenv("TMUX") ~= nil then
+									return true
+								end
+							end,
+						},
+					},
 					lualine_z = { "location" },
 				},
 

@@ -153,4 +153,8 @@ M.show_commit = function()
 	end
 end
 
+M.tmux_session_name = function()
+	return vim.fn.system("tmux display-message -p '#S'"):gsub("\n", "")
+end
+
 return M
