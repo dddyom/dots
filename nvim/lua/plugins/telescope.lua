@@ -5,6 +5,8 @@ return {
 	"nvim-telescope/telescope.nvim",
 	branch = "0.1.x",
 	dependencies = {
+
+		"piersolenski/telescope-import.nvim",
 		"cljoly/telescope-repo.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		{ "nvim-telescope/telescope-ui-select.nvim" },
@@ -50,9 +52,15 @@ return {
 					end,
 				},
 			},
-			extensions = { repo = { list = { search_dirs = { "~/code", "~/WorkGit" } } } },
+			extensions = {
+				repo = { list = { search_dirs = { "~/code", "~/WorkGit" } } },
+				import = {
+					insert_at_top = true,
+				},
+			},
 		})
 
+		require("telescope").load_extension("import")
 		telescope.load_extension("repo")
 		telescope.load_extension("ui-select")
 		telescope.load_extension("luasnip")
@@ -69,6 +77,7 @@ return {
 		leader("ft", "<cmd>Telescope lsp_type_definitions<cr>", "LSP type definitions")
 		leader("fv", "<cmd>Telescope lsp_document_symbols<cr>", "LSP variables in file")
 		leader("fV", "<cmd>Telescope lsp_workspace_symbols<cr>", "LSP variables in project")
+		leader("fi", "<cmd>Telescope import<cr>", "Possible imports")
 		leader("fa", "<cmd>lua vim.lsp.buf.code_action()<cr>", "LSP code actions")
 		leader("fd", "<cmd>lua vim.diagnostic.open_float()<cr>", "Show all diagnostic")
 		map_n("gd", "<cmd>Telescope lsp_definitions<CR>", "Go to definition")
