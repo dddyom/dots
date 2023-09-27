@@ -96,8 +96,8 @@ end
 local floating_window = function(content, winWidth, winHeight, ft)
 	local ui = vim.api.nvim_list_uis()[1]
 
-	local width = winWidth or 100
-	local height = winHeight or 10
+	local width = winWidth or 120
+	local height = winHeight or 20
 
 	local opts = {
 		relative = "editor",
@@ -110,14 +110,16 @@ local floating_window = function(content, winWidth, winHeight, ft)
 	}
 
 	local buf = vim.api.nvim_create_buf(false, true)
+	local win = vim.api.nvim_open_win(buf, true, opts)
 	if ft then
 		vim.api.nvim_buf_set_option(buf, "filetype", ft)
 	end
-
-	local win = vim.api.nvim_open_win(buf, true, opts)
-	for index, line in ipairs(content) do
-		vim.fn.setbufline(buf, index, { line })
+	if content then
+		for index, line in ipairs(content) do
+			vim.fn.setbufline(buf, index, { line })
+		end
 	end
+
 	return { buf = buf, win = win }
 end
 

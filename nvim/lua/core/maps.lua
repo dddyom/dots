@@ -1,7 +1,5 @@
--- Set the map leader
 vim.g.mapleader = " "
 
--- Define the mappings
 local maps = {
 	i = {
 		{ key = "jk", cmd = "<esc>", desc = "goto normal mode" },
@@ -35,6 +33,11 @@ local maps = {
 			key = "gc",
 			cmd = "<cmd>lua require('utils.utils').show_commit()<CR>",
 			desc = "show commit log of current file",
+		},
+		{
+			key = "W",
+			cmd = "<cmd>lua require('utils.utils').floating_window(nil, 120, 20, 'markdown')<CR>",
+			desc = "floating window",
 		},
 	},
 	leader_v = {

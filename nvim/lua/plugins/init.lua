@@ -66,4 +66,10 @@ return {
 			require("auto-save").off()
 		end,
 	},
+	{
+		"gsuuon/llm.nvim",
+		config = function()
+            leader("l", "<cmd>Llm<CR>", "Lama!")
+		end,
+	},
 }
