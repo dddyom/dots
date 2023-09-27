@@ -6,13 +6,17 @@ local maps = {
 	i = {
 		{ key = "jk", cmd = "<esc>", desc = "goto normal mode" },
 		{ key = "kj", cmd = "<esc>", desc = "goto normal mode" },
-		{ key = "<c-l>", cmd = "<esc>la", desc = "one step right" },
 	},
 	v = {
 		{ key = "jk", cmd = "<esc>", desc = "goto normal mode" },
 		{ key = "kj", cmd = "<esc>", desc = "goto normal mode" },
 	},
 	n = {
+		{
+			key = "q",
+			cmd = "<cmd>lua require('utils.utils').remap_q()<CR>",
+			desc = "close floating window",
+		},
 		{ key = "<c-d>", cmd = "<c-d>zz" },
 		{ key = "<c-u>", cmd = "<c-u>zz" },
 		{ key = "n", cmd = "nzzzv" },
@@ -24,10 +28,14 @@ local maps = {
 		{ key = "<m-q>", cmd = "<cmd>bd<cr>", "close current buffer" },
 	},
 	leader = {
-		{ key = "q", cmd = "<cmd>q!<CR>", desc = "exit" },
-		{ key = "bv", cmd = "<c-w>v", desc = "split window vertically" },
-		{ key = "bh", cmd = "<c-w>s", desc = "split window horisontally" },
-		{ key = "bx", cmd = "<cmd>close<cr>", desc = "close current split window" },
+		{ key = "\\", cmd = "<c-w>v", desc = "split window vertically" },
+		{ key = "|", cmd = "<c-w>v", desc = "split window vertically" },
+		{ key = "-", cmd = "<c-w>s", desc = "split window horisontally" },
+		{
+			key = "gc",
+			cmd = "<cmd>lua require('utils.utils').show_commit()<CR>",
+			desc = "show commit log of current file",
+		},
 	},
 	leader_v = {
 		{ key = "t", cmd = [[c{% trans %}<c-r>"{% endtrans %}<esc>]], desc = "{% trans %}{% endtrans %}" },
@@ -49,9 +57,3 @@ local maps = {
 for mode, map_table in pairs(maps) do
 	require("utils.map").set_maps(map_table, require("utils.map")[mode])
 end
-
-require("utils.map").n(
-	"<Leader>gc",
-	"<cmd>lua require('utils.utils').show_commit()<CR>",
-	"show commit log of current file"
-)

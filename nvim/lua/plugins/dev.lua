@@ -40,6 +40,9 @@ return {
 		opts = {
 			slots = { "a", "b" },
 			lessNotifications = true,
+			mapping = {
+				startStopRecording = "<leader>q",
+			},
 		},
 	},
 }

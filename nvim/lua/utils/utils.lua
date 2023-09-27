@@ -157,4 +157,16 @@ M.tmux_session_name = function()
 	return vim.fn.system("tmux display-message -p '#S'"):gsub("\n", "")
 end
 
+local is_floating_window = function()
+	if vim.api.nvim_win_get_config(vim.fn.win_getid(vim.fn.winnr())).zindex then
+		return true
+	end
+end
+
+M.remap_q = function()
+	if is_floating_window() then
+		vim.cmd("close!")
+	end
+end
+
 return M
