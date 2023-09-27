@@ -25,7 +25,6 @@ local maps = {
 	},
 	leader = {
 		{ key = "q", cmd = "<cmd>q!<CR>", desc = "exit" },
-		{ key = "w", cmd = "<cmd>cd $HOME/WorkGit/<CR>", desc = "go to WorkGit" },
 		{ key = "bv", cmd = "<c-w>v", desc = "split window vertically" },
 		{ key = "bh", cmd = "<c-w>s", desc = "split window horisontally" },
 		{ key = "bx", cmd = "<cmd>close<cr>", desc = "close current split window" },
