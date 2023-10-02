@@ -21,6 +21,11 @@ return {
 		dependencies = {
 			"jeetsukumaran/vim-pythonsense",
 			"JoosepAlviste/nvim-ts-context-commentstring",
+			{
+				"chrisgrieser/nvim-various-textobjs",
+				lazy = false,
+				opts = { useDefaultKeymaps = true },
+			},
 		},
 		build = ":TSUpdate",
 		event = "BufRead",
