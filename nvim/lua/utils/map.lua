@@ -31,7 +31,8 @@ M.prefixes = {
 		r = { name = "Replace" },
 		c = { name = "Conflict" },
 		g = { name = "GIT" },
-		x = { name = "LSP" },
+		x = { name = "LLM" },
+    l = { name = "LeetCode" },
 	},
 	["g"] = {
 		["?"] = { name = "Debug print" },

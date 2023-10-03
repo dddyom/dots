@@ -32,13 +32,13 @@ return {
 				end,
 			},
 		})
-		leader_v("ll", "<cmd>Llm<cr>", "default llm")
-		leader("ll", "<cmd>Llm<cr>", "default llm")
-		leader_v("ld", "<cmd>Llm doc<cr>", "llm write doc")
-		leader_v("lr", "<cmd>Llm ru<cr>", "translate to russian")
-		leader_v("le", "<cmd>Llm en<cr>", "translate to english")
-		leader_v("lc", "<cmd>Llm code<cr>", "llm write code")
-		leader_v("ls", "<cmd>LlmSelect<cr>", "Select llm answer")
-		leader_v("ld", "<cmd>LlmDelete<cr>", "Delete llm answer")
+		leader_v("xl", "<cmd>Llm<cr>", "default llm")
+		leader("xl", "<cmd>Llm<cr>", "default llm")
+		leader_v("xd", "<cmd>Llm doc<cr>", "llm write doc")
+		leader_v("xr", "<cmd>Llm ru<cr>", "translate to russian")
+		leader_v("xe", "<cmd>Llm en<cr>", "translate to english")
+		leader_v("xc", "<cmd>Llm code<cr>", "llm write code")
+		leader_v("xs", "<cmd>LlmSelect<cr>", "Select llm answer")
+		leader_v("xd", "<cmd>LlmDelete<cr>", "Delete llm answer")
 	end,
 }

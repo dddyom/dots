@@ -171,4 +171,17 @@ M.remap_q = function()
 	end
 end
 
+M.format_toggle = function()
+	local title = "Format on save"
+	local msg = ""
+	if vim.g.disable_autoformat then
+		vim.g.disable_autoformat = false
+		msg = "on"
+	else
+		vim.g.disable_autoformat = true
+		msg = "off"
+	end
+	vim.notify(("%s: %s"):format(title, msg), vim.log.levels.INFO)
+end
+
 return M
