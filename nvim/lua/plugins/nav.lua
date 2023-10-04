@@ -2,6 +2,11 @@ local map_n = require("utils.map").n
 local leader = require("utils.map").leader
 return {
 	{
+		"junegunn/fzf.vim",
+		build = "fzf#install",
+	},
+
+	{
 		"stevearc/oil.nvim",
 		config = function()
 			require("oil").setup()
@@ -54,5 +59,15 @@ return {
 				desc = "Flash",
 			},
 		},
+	},
+	{
+		"ibhagwan/fzf-lua",
+		config = function()
+			require("fzf-lua").setup({})
+      leader('ff', "<cmd>lua require('fzf-lua').files()<CR>", "Find files")
+      leader('s', "<cmd>lua require('fzf-lua').blines()<CR>", "find in buffer")
+      leader('S', "<cmd>lua require('fzf-lua').lines()<CR>", "find in opened buffers")
+      leader('fH', "<cmd>lua require('fzf-lua').oldfiles()<CR>", "history")
+		end,
 	},
 }

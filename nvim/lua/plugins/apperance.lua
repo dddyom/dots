@@ -1,6 +1,7 @@
 local leader = require("utils.map").leader
 
 return {
+	"nvim-tree/nvim-web-devicons",
 	{
 		"Shatur/neovim-ayu",
 		config = function()
