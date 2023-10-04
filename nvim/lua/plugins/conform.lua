@@ -17,6 +17,9 @@ return {
 				yaml = { "prettier" },
 				sql = { "sqlfluff" },
 				markdown = { "prettier" },
+        typescript = { "prettier" },
+        typescriptreact = { "prettier" },
+        tsx = { "prettier" },
 			},
 		})
 
