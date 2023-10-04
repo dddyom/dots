@@ -29,7 +29,7 @@ return {
 		"rest-nvim/rest.nvim",
 		config = function()
 			require("rest-nvim").setup()
-			leader("h", "", "rest")
+			leader("h", "", "Http request")
 			leader("hh", "<cmd>lua require('rest-nvim').run()<cr>", "run current line http request")
 			leader("hp", "<cmd>lua require('rest-nvim').preview()<cr>", "curl preview")
 			leader("hl", "<cmd>lua require('rest-nvim').last()<cr>", "run last http request")
@@ -49,6 +49,7 @@ return {
 		"Dhanus3133/LeetBuddy.nvim",
 		config = function()
 			require("leetbuddy").setup({})
+      leader("l", "", "LeetCode")
 		end,
 		keys = {
 			{ "<leader>lq", "<cmd>LBQuestions<cr>", desc = "List Questions" },

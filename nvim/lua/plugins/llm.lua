@@ -32,6 +32,8 @@ return {
 				end,
 			},
 		})
+		leader_v("x", "", "LLM")
+		leader("x", "", "LLM")
 		leader_v("xl", "<cmd>Llm<cr>", "default llm")
 		leader("xl", "<cmd>Llm<cr>", "default llm")
 		leader_v("xd", "<cmd>Llm doc<cr>", "llm write doc")

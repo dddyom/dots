@@ -29,6 +29,7 @@ local maps = {
 		{ key = "\\", cmd = "<c-w>v", desc = "split window vertically" },
 		{ key = "|", cmd = "<c-w>v", desc = "split window vertically" },
 		{ key = "-", cmd = "<c-w>s", desc = "split window horisontally" },
+		{ key = "g", cmd = "", desc = "Git" },
 		{
 			key = "gc",
 			cmd = "<cmd>lua require('utils.utils').show_commit()<CR>",
@@ -47,11 +48,6 @@ local maps = {
 		{ key = "P", cmd = [[cprint(f"\033[93m{<c-r>"}\033[0m")<esc>]], desc = "color print" },
 		{ key = "%", cmd = [[c{% <c-r>" %}<esc>]], desc = "jinja func" },
 		{ key = "}", cmd = [[c{{ <c-r>" }}<esc>]], desc = "jinja tag" },
-		{ key = "{", cmd = [[c{<c-r>"}<esc>]], desc = "{" },
-		{ key = "(", cmd = [[c(<c-r>")<esc>]], desc = "(" },
-		{ key = "'", cmd = [[c'<c-r>"'<esc>]], desc = "'" },
-		{ key = '"', cmd = [[c"<c-r>""<esc>]], desc = '"' },
-		{ key = "[", cmd = [[c[<c-r>"]<esc>]], desc = "[" },
 		{ key = "d", cmd = [[:s/^[ \t]*$\n//<CR>]], desc = "delete empty lines" },
 	},
 }

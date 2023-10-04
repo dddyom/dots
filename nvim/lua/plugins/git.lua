@@ -45,6 +45,7 @@ return {
 		version = "*",
 		config = function()
 			require("git-conflict").setup()
+			leader("c", "", "Git conflict")
 			leader("co", "<CMD>GitConflictChooseOurs<CR>", "Ours")
 			leader("ct", "<CMD>GitConflictChooseTheirs<CR>", "Theirs")
 			leader("cb", "<CMD>GitConflictChooseBoth<CR>", "Both")
