@@ -22,23 +22,6 @@ local function create_map_fn(mode, base_key)
 	end
 end
 
--- Prefixes for key mappings
-M.prefixes = {
-	["<leader>"] = {
-		f = { name = "Telescope" },
-		b = { name = "Buffers" },
-		h = { name = "Http requests" },
-		r = { name = "Replace" },
-		c = { name = "Conflict" },
-		g = { name = "GIT" },
-		x = { name = "LLM" },
-    l = { name = "LeetCode" },
-	},
-	["g"] = {
-		["?"] = { name = "Debug print" },
-	},
-}
-
 -- Create mapping functions for different modes and prefixes
 M.n = create_map_fn("n")
 M.v = create_map_fn("v")

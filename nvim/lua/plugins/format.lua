@@ -1,4 +1,5 @@
 local leader = require("utils.map").leader
+local leader_v = require("utils.map").leader_v
 
 return {
 	{
@@ -84,5 +85,22 @@ return {
 		config = function()
 			require("nvim-surround").setup({})
 		end,
+	},
+	{
+		"willothy/moveline.nvim",
+		build = "make",
+		config = function()
+			leader("m", "", "Move line")
+			leader("mk", "<cmd>lua require('moveline').up()<cr>", "Move line up")
+			leader("mj", "<cmd>lua require('moveline').down()<cr>", "Move line down")
+
+			leader_v("m", "", "Move block")
+			leader_v("mk", "<cmd>lua require('moveline').block_up()<cr>", "move block up")
+			leader_v("mj", "<cmd>lua require('moveline').block_down()<cr>", "move block down")
+		end,
+	},
+	{
+		"yamatsum/nvim-cursorline",
+		config = true,
 	},
 }
