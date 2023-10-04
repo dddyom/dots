@@ -22,7 +22,8 @@ local maps = {
 		{ key = "<esc><esc>", cmd = "<esc>:nohlsearch<cr>", desc = "turn off highlight" },
 		{ key = "L", cmd = "<cmd>bnext<cr>", desc = "next buffer" },
 		{ key = "H", cmd = "<cmd>bprevious<cr>", desc = "previous buffer" },
-		{ key = "<m-w>", cmd = "<cmd>%bd|e#|bd#<cr>", desc = "close current buffer" },
+		{ key = "<m-e>", cmd = "<cmd>%bd|e#|bd#<cr>", desc = "close current buffer" },
+		{ key = "<m-w>", cmd = "<cmd>bd<cr>", desc = "close current buffer" },
 		{ key = "<m-q>", cmd = "<cmd>bd<cr>", desc = "close current buffer" },
 	},
 	leader = {
