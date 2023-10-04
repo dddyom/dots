@@ -2,15 +2,10 @@ local map_n = require("utils.map").n
 local leader = require("utils.map").leader
 return {
 	{
-		"junegunn/fzf.vim",
-		build = "fzf#install",
-	},
-
-	{
 		"stevearc/oil.nvim",
 		config = function()
 			require("oil").setup()
-			map_n("`", "<CMD>lua require('oil').open_float()<CR>", "Oil")
+			map_n("-", "<CMD>lua require('oil').open_float()<CR>", "Oil")
 		end,
 	},
 	{
