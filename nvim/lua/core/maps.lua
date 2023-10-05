@@ -25,7 +25,6 @@ local maps = {
 		{ key = "H", cmd = "<cmd>bprevious<cr>", desc = "previous buffer" },
 		{ key = "<m-e>", cmd = "<cmd>%bd|e#|bd#<cr>", desc = "close current buffer" },
 		{ key = "<m-w>", cmd = "<cmd>bd<cr>", desc = "close current buffer" },
-		{ key = "<m-q>", cmd = "<cmd>bd<cr>", desc = "close current buffer" },
 	},
 	leader = {
 		{ key = "\\", cmd = "<c-w>v", desc = "split window vertically" },
