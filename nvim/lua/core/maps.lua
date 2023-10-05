@@ -8,6 +8,7 @@ local maps = {
 	v = {
 		{ key = "jk", cmd = "<esc>", desc = "goto normal mode" },
 		{ key = "kj", cmd = "<esc>", desc = "goto normal mode" },
+		{ key = "/", cmd = "<Esc>/\\%V", desc = "search in block" },
 	},
 	n = {
 		{
@@ -22,13 +23,15 @@ local maps = {
 		{ key = "<esc><esc>", cmd = "<esc>:nohlsearch<cr>", desc = "turn off highlight" },
 		{ key = "L", cmd = "<cmd>bnext<cr>", desc = "next buffer" },
 		{ key = "H", cmd = "<cmd>bprevious<cr>", desc = "previous buffer" },
-		{ key = "<m-w>", cmd = "<cmd>%bd|e#|bd#<cr>", desc = "close all except this buffer" },
 		{ key = "<m-q>", cmd = "<cmd>bd<cr>", desc = "close current buffer" },
+		{ key = "<m-e>", cmd = "<cmd>%bd|e#|bd#<cr>", desc = "close current buffer" },
+		{ key = "<m-w>", cmd = "<cmd>bd<cr>", desc = "close current buffer" },
 	},
 	leader = {
 		{ key = "\\", cmd = "<c-w>v", desc = "split window vertically" },
 		{ key = "|", cmd = "<c-w>v", desc = "split window vertically" },
 		{ key = "-", cmd = "<c-w>s", desc = "split window horisontally" },
+		{ key = "g", cmd = "", desc = "Git" },
 		{
 			key = "gc",
 			cmd = "<cmd>lua require('utils.utils').show_commit()<CR>",
@@ -47,11 +50,6 @@ local maps = {
 		{ key = "P", cmd = [[cprint(f"\033[93m{<c-r>"}\033[0m")<esc>]], desc = "color print" },
 		{ key = "%", cmd = [[c{% <c-r>" %}<esc>]], desc = "jinja func" },
 		{ key = "}", cmd = [[c{{ <c-r>" }}<esc>]], desc = "jinja tag" },
-		{ key = "{", cmd = [[c{<c-r>"}<esc>]], desc = "{" },
-		{ key = "(", cmd = [[c(<c-r>")<esc>]], desc = "(" },
-		{ key = "'", cmd = [[c'<c-r>"'<esc>]], desc = "'" },
-		{ key = '"', cmd = [[c"<c-r>""<esc>]], desc = '"' },
-		{ key = "[", cmd = [[c[<c-r>"]<esc>]], desc = "[" },
 		{ key = "d", cmd = [[:s/^[ \t]*$\n//<CR>]], desc = "delete empty lines" },
 	},
 }

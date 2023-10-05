@@ -65,7 +65,7 @@ return {
 		telescope.load_extension("ui-select")
 		telescope.load_extension("luasnip")
 
-		leader("ff", "<cmd>Telescope find_files<cr>", "find file")
+		leader("f", "", "Find")
 		leader("fl", "<cmd>Telescope luasnip<cr>", "find file")
 		leader("fF", "<cmd>Telescope find_files hidden=true<cr>", "find file with hidden")
 		leader("fw", "<cmd>Telescope live_grep<cr>", "find by word")

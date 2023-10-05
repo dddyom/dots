@@ -1,11 +1,12 @@
 local map_n = require("utils.map").n
+local map_v = require("utils.map").v
 local leader = require("utils.map").leader
 return {
 	{
 		"stevearc/oil.nvim",
 		config = function()
 			require("oil").setup()
-			map_n("`", "<CMD>lua require('oil').open_float()<CR>", "Oil")
+			map_n("-", "<CMD>lua require('oil').open_float()<CR>", "Oil")
 		end,
 	},
 	{
@@ -54,5 +55,15 @@ return {
 				desc = "Flash",
 			},
 		},
+	},
+	{
+		"ibhagwan/fzf-lua",
+		config = function()
+			require("fzf-lua").setup({})
+			leader("ff", "<cmd>lua require('fzf-lua').files()<CR>", "Find files")
+			leader("s", "<cmd>lua require('fzf-lua').blines()<CR>", "find in buffer")
+			leader("S", "<cmd>lua require('fzf-lua').lines()<CR>", "find in opened buffers")
+			leader("fH", "<cmd>lua require('fzf-lua').oldfiles()<CR>", "history")
+		end,
 	},
 }
