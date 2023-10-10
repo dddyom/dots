@@ -21,6 +21,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
+			"windwp/nvim-ts-autotag",
 			"jeetsukumaran/vim-pythonsense",
 			"JoosepAlviste/nvim-ts-context-commentstring",
 			{

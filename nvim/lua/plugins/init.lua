@@ -97,4 +97,21 @@ return {
 			require("auto-save").off()
 		end,
 	},
+	--
+	-- {
+	-- 	"epwalsh/obsidian.nvim",
+	-- 	config = function()
+	-- 		require("obsidian").setup({
+	-- 			dir = "~/.sync",
+	-- 		})
+	-- 	end,
+	-- },
+	{
+		"uga-rosa/ccc.nvim",
+    config = function()
+      leader('C', '', 'colors')
+      leader('Cp', '<cmd>CccPick<cr>', 'picker')
+      leader('Cc', '<cmd>CccConvert<cr>', 'convert')
+    end
+	},
 }
