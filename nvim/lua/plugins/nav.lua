@@ -5,7 +5,7 @@ return {
 		"stevearc/oil.nvim",
 		config = function()
 			require("oil").setup()
-			map_n("\\", "<CMD>lua require('oil').open_float()<CR>", "Oil")
+			map_n("ee", "<CMD>lua require('oil').open_float()<CR>", "Oil")
 		end,
 	},
 	{
@@ -63,13 +63,6 @@ return {
 			leader("s", "<cmd>lua require('fzf-lua').blines()<CR>", "find in buffer")
 			leader("S", "<cmd>lua require('fzf-lua').lines()<CR>", "find in opened buffers")
 			leader("fH", "<cmd>lua require('fzf-lua').oldfiles()<CR>", "history")
-		end,
-	},
-	{
-		"dzfrias/arena.nvim",
-		config = function()
-			require("arena").setup()
-			leader("a", "<cmd>ArenaToggle<CR>", "Arena")
 		end,
 	},
 }
