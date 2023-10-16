@@ -23,7 +23,6 @@ return {
 		dependencies = {
 			"windwp/nvim-ts-autotag",
 			"jeetsukumaran/vim-pythonsense",
-			"JoosepAlviste/nvim-ts-context-commentstring",
 			{
 				"chrisgrieser/nvim-various-textobjs",
 				lazy = false,
@@ -58,17 +57,9 @@ return {
 					enable = true,
 					additional_vim_regex_highlighting = false,
 				},
-				context_commentstring = {
-					enable = true,
-					enable_autocmd = false,
-				},
 				autotag = { enable = true },
 				incremental_selection = { enable = true },
 				indent = { enable = true },
-			})
-			require("ts_context_commentstring").setup({})
-			require("Comment").setup({
-				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 			})
 		end,
 	},
@@ -85,19 +76,6 @@ return {
 		event = "VeryLazy",
 		config = function()
 			require("nvim-surround").setup({})
-		end,
-	},
-	{
-		"willothy/moveline.nvim",
-		build = "make",
-		config = function()
-			leader("m", "", "Move line")
-			leader("mk", "<cmd>lua require('moveline').up()<cr>", "Move line up")
-			leader("mj", "<cmd>lua require('moveline').down()<cr>", "Move line down")
-
-			leader_v("m", "", "Move block")
-			leader_v("mk", "<cmd>lua require('moveline').block_up()<cr>", "move block up")
-			leader_v("mj", "<cmd>lua require('moveline').block_down()<cr>", "move block down")
 		end,
 	},
 	{

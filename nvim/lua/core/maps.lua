@@ -8,7 +8,7 @@ local maps = {
 	v = {
 		{ key = "jk", cmd = "<esc>", desc = "goto normal mode" },
 		{ key = "kj", cmd = "<esc>", desc = "goto normal mode" },
-		{ key = "/", cmd = "<Esc>/\\%V", desc = "search in block" },
+		-- { key = "/", cmd = "<Esc>/\\%V", desc = "search in block" },
 	},
 	n = {
 		{

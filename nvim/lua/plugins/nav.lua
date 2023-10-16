@@ -5,7 +5,7 @@ return {
 		"stevearc/oil.nvim",
 		config = function()
 			require("oil").setup()
-			map_n("\\", "<CMD>lua require('oil').open_float()<CR>", "Oil")
+			map_n("``", "<CMD>lua require('oil').open_float()<CR>", "Oil")
 		end,
 	},
 	{
