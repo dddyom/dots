@@ -5,7 +5,7 @@ return {
 		"stevearc/oil.nvim",
 		config = function()
 			require("oil").setup()
-			map_n("ee", "<CMD>lua require('oil').open_float()<CR>", "Oil")
+			map_n("``", "<CMD>lua require('oil').open_float()<CR>", "Oil")
 		end,
 	},
 	{
@@ -33,14 +33,6 @@ return {
 		end,
 	},
 	{
-		"ahmedkhalf/project.nvim",
-		config = function()
-			require("project_nvim").setup()
-			require("telescope").load_extension("projects")
-			leader("fp", "<cmd>lua require'telescope'.extensions.projects.projects{}<cr>", "Find project")
-		end,
-	},
-	{
 		"folke/flash.nvim",
 		event = "VeryLazy",
 		opts = {},
@@ -59,10 +51,18 @@ return {
 		"ibhagwan/fzf-lua",
 		config = function()
 			require("fzf-lua").setup({})
+			leader("f", "", "Find")
 			leader("ff", "<cmd>lua require('fzf-lua').files()<CR>", "Find files")
 			leader("s", "<cmd>lua require('fzf-lua').blines()<CR>", "find in buffer")
-			leader("S", "<cmd>lua require('fzf-lua').lines()<CR>", "find in opened buffers")
-			leader("fH", "<cmd>lua require('fzf-lua').oldfiles()<CR>", "history")
+			leader("fw", "<cmd>lua require('fzf-lua').grep()<CR>", "find by word")
+			leader("fh", "<cmd>lua require('fzf-lua').help_tags()<CR>", "find by word")
+			leader("fs", "<cmd>lua require('fzf-lua').grep_cword()<CR>", "find by word under cursor")
+			leader("fb", "<cmd>lua require('fzf-lua').buffers()<CR>", "find open buffers")
+			leader("fd", "<cmd>lua require('fzf-lua').lsp_definitions()<CR>", "LSP definitions")
+			leader("fr", "<cmd>lua require('fzf-lua').lsp_references()<cr>", "LSP references")
+			leader("ft", "<cmd>lua require('fzf-lua').lsp_typedefs()<cr>", "LSP type definitions")
+			leader("fa", "<cmd>lua require('fzf-lua').lsp_code_actions()<cr>", "LSP code actions")
+			map_n("gd", "<cmd>lua require('fzf-lua').lsp_definitions()<CR>", "LSP definitions")
 		end,
 	},
 }

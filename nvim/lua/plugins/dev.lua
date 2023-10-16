@@ -45,16 +45,4 @@ return {
 			},
 		},
 	},
-	{
-		"Dhanus3133/LeetBuddy.nvim",
-		config = function()
-			require("leetbuddy").setup({})
-			leader("l", "", "LeetCode")
-			leader("lq", "<cmd>LBQuestions<cr>", "List Questions")
-			leader("ll", "<cmd>LBQuestion<cr>", "View Question")
-			leader("lr", "<cmd>LBReset<cr>", "Reset Code")
-			leader("lt", "<cmd>LBTest<cr>", "Run Code")
-			leader("ls", "<cmd>LBSubmit<cr>", "Submit Code")
-		end,
-	},
 }

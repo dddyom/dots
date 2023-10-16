@@ -10,7 +10,6 @@ return {
 					CursorLine = { bg = "#232A4C", fg = "" },
 					CurSearch = { fg = "#0A0E14", bg = "#F07178" },
 					WildMenu = { fg = "#0A0E14", bg = "#FFCC66" },
-					TelescopePromptTitle = { fg = "#0A0E14", bg = "#F07178" },
 				},
 			})
 			vim.cmd("colorscheme ayu")
@@ -47,7 +46,7 @@ return {
 								if session_name == nil then
 									return ""
 								else
-									return "[" .. session_name .. "]"
+									return "[ " .. session_name .. " ]"
 								end
 							end,
 							cond = function()
@@ -85,33 +84,6 @@ return {
 					},
 				},
 			})
-		end,
-	},
-	{
-		"Tyler-Barham/floating-help.nvim",
-		config = function()
-			local fh = require("floating-help")
-
-			fh.setup({
-				width = 140,
-				height = 0.9,
-				position = "C",
-			})
-
-			local function cmd_abbrev(abbrev, expansion)
-				local cmd = "cabbr "
-					.. abbrev
-					.. ' <c-r>=(getcmdpos() == 1 && getcmdtype() == ":" ? "'
-					.. expansion
-					.. '" : "'
-					.. abbrev
-					.. '")<CR>'
-				vim.cmd(cmd)
-			end
-			cmd_abbrev("h", "FloatingHelp")
-			cmd_abbrev("help", "FloatingHelp")
-			cmd_abbrev("helpc", "FloatingHelpClose")
-			cmd_abbrev("helpclose", "FloatingHelpClose")
 		end,
 	},
 	{
