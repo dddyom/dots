@@ -83,26 +83,4 @@ return {
 			})
 		end,
 	},
-	{
-		"Pocco81/auto-save.nvim",
-		config = function()
-			require("auto-save").setup({
-				enabled = false,
-				execution_message = {
-					message = function()
-						return ""
-					end,
-				},
-			})
-			require("auto-save").off()
-		end,
-	},
-	{
-		"uga-rosa/ccc.nvim",
-    config = function()
-      leader('C', '', 'colors')
-      leader('Cp', '<cmd>CccPick<cr>', 'picker')
-      leader('Cc', '<cmd>CccConvert<cr>', 'convert')
-    end
-	},
 }

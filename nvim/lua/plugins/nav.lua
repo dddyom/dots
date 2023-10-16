@@ -54,7 +54,7 @@ return {
 			leader("f", "", "Find")
 			leader("ff", "<cmd>lua require('fzf-lua').files()<CR>", "Find files")
 			leader("s", "<cmd>lua require('fzf-lua').blines()<CR>", "find in buffer")
-			leader("fw", "<cmd>lua require('fzf-lua').grep()<CR>", "find by word")
+			leader("fw", "<cmd>lua require('fzf-lua').live_grep()<CR>", "find by word")
 			leader("fh", "<cmd>lua require('fzf-lua').help_tags()<CR>", "find by word")
 			leader("fs", "<cmd>lua require('fzf-lua').grep_cword()<CR>", "find by word under cursor")
 			leader("fb", "<cmd>lua require('fzf-lua').buffers()<CR>", "find open buffers")
