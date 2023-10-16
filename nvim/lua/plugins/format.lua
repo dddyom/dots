@@ -1,6 +1,16 @@
 local leader = require("utils.map").leader
 
 return {
+	{ "yamatsum/nvim-cursorline", config = true },
+	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+	{
+		"kylechui/nvim-surround",
+		version = "*",
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup({})
+		end,
+	},
 	{
 		"roobert/search-replace.nvim",
 		config = function()
@@ -21,7 +31,6 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
 			"windwp/nvim-ts-autotag",
-			"jeetsukumaran/vim-pythonsense",
 			{
 				"chrisgrieser/nvim-various-textobjs",
 				lazy = false,
@@ -49,36 +58,13 @@ return {
 					"dockerfile",
 					"tsx",
 				},
-				matchup = {
-					enable = true,
-				},
 				highlight = {
 					enable = true,
-					additional_vim_regex_highlighting = false,
 				},
 				autotag = { enable = true },
 				incremental_selection = { enable = true },
 				indent = { enable = true },
 			})
 		end,
-	},
-	{
-		"andymass/vim-matchup",
-		config = function()
-			vim.g.matchup_matchparen_offscreen = { method = "popup" }
-		end,
-	},
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-	{
-		"kylechui/nvim-surround",
-		version = "*",
-		event = "VeryLazy",
-		config = function()
-			require("nvim-surround").setup({})
-		end,
-	},
-	{
-		"yamatsum/nvim-cursorline",
-		config = true,
 	},
 }
