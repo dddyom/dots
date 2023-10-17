@@ -4,7 +4,6 @@ return {
 	"VonHeikemen/lsp-zero.nvim",
 	branch = "v2.x",
 	dependencies = {
-		"hinell/lsp-timeout.nvim",
 		"neovim/nvim-lspconfig",
 		"williamboman/mason-lspconfig.nvim",
 		{
