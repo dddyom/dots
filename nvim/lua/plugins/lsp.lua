@@ -49,8 +49,8 @@ return {
 				client.server_capabilities.hoverProvider = false
 			end,
 		})
-		map_n("L", "<cmd>lua vim.diagnostic.goto_next()<CR>", "Next diagnostic")
-		map_n("H", "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Prev diagnostic")
+		map_n("x", "<cmd>lua vim.diagnostic.goto_next()<CR>", "Next diagnostic")
+		map_n("X", "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Prev diagnostic")
 		map_n("D", "<cmd>lua vim.diagnostic.open_float()<cr>", "Show all diagnostic")
 	end,
 }
