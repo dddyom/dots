@@ -8,21 +8,21 @@ return {
 			require("nvim-rooter").setup({ fallback_to_parent = false })
 		end,
 	},
-	{
-		"linty-org/readline.nvim",
-		config = function()
-			local readline = require("readline")
-			vim.keymap.set("!", "<M-f>", readline.forward_word)
-			vim.keymap.set("!", "<M-b>", readline.backward_word)
-			vim.keymap.set("!", "<M-a>", readline.beginning_of_line)
-			vim.keymap.set("!", "<M-e>", readline.end_of_line)
-			vim.keymap.set("!", "<M-d>", readline.kill_word)
-			vim.keymap.set("!", "<M-BS>", readline.backward_kill_word)
-			vim.keymap.set("!", "<M-w>", readline.unix_word_rubout)
-			vim.keymap.set("!", "<M-k>", readline.kill_line)
-			vim.keymap.set("!", "<M-u>", readline.backward_kill_line)
-		end,
-	},
+	-- {
+	-- 	"linty-org/readline.nvim",
+	-- 	config = function()
+	-- 		local readline = require("readline")
+	-- 		vim.keymap.set("!", "<M-f>", readline.forward_word)
+	-- 		vim.keymap.set("!", "<M-b>", readline.backward_word)
+	-- 		vim.keymap.set("!", "<M-a>", readline.beginning_of_line)
+	-- 		vim.keymap.set("!", "<M-e>", readline.end_of_line)
+	-- 		vim.keymap.set("!", "<M-d>", readline.kill_word)
+	-- 		vim.keymap.set("!", "<M-BS>", readline.backward_kill_word)
+	-- 		vim.keymap.set("!", "<M-w>", readline.unix_word_rubout)
+	-- 		vim.keymap.set("!", "<M-k>", readline.kill_line)
+	-- 		vim.keymap.set("!", "<M-u>", readline.backward_kill_line)
+	-- 	end,
+	-- },
 
 	{
 		"kwkarlwang/bufresize.nvim",

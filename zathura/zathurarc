@@ -1,0 +1,8 @@
+
+# general settings
+set page-padding 0
+
+set recolor true
+
+# color scheme
+include ocean

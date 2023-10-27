@@ -1,0 +1,64 @@
+configuration {
+  font: "JetBrains Nerd Font 12";
+
+  power-menu {
+    display-name: "";
+  }
+}
+
+
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+
+  bg: #151515;
+  bg-alt: #232323;
+  fg: #FFFFFF;
+  fg-alt: #424242;
+
+  background-color: @bg;
+  text-color: @fg;
+}
+
+#window {
+    anchor:     north;
+    transparency: "real";
+    location:   north;
+    width:      100%;
+    padding:    2px;
+    children:   [ horibox ];
+}
+
+mainbox {
+  children: [inputbar, listview];
+}
+
+
+#horibox {
+    orientation: horizontal;
+    children:   [ prompt, entry, listview ];
+}
+
+#listview {
+    layout:     horizontal;
+    lines:      100;
+}
+
+#entry {
+    expand:     false;
+}
+
+element {
+  children: [element-text];
+}
+
+element-text {
+  padding: 2px 8px;
+  text-color: @fg-alt;
+}
+
+element-text selected {
+  text-color: @fg;
+}
