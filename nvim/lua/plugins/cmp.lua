@@ -10,6 +10,7 @@ return {
 		"rafamadriz/friendly-snippets",
 	},
 	config = function()
+		local cmp_action = require("lsp-zero").cmp_action()
 		require("luasnip.loaders/from_vscode").lazy_load()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
@@ -44,6 +45,11 @@ return {
 						fallback()
 					end
 				end, { "i", "s" }),
+				["<C-f>"] = cmp_action.luasnip_jump_forward(),
+				["<C-b>"] = cmp_action.luasnip_jump_backward(),
+
+				["<C-u>"] = cmp.mapping.scroll_docs(-4),
+				["<C-d>"] = cmp.mapping.scroll_docs(4),
 			}),
 			sources = {
 				{ name = "luasnip" },

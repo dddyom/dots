@@ -1,6 +1,30 @@
 local map_n = require("utils.map").n
+local map_v = require("utils.map").v
 local leader = require("utils.map").leader
 return {
+	{
+		"backdround/improved-search.nvim",
+		config = function()
+			map_n("!", "<cmd>lua require('improved-search').current_word()<CR>", "Search the word under the cursor")
+			map_v("!", "<cmd>lua require('improved-search').in_place()<cr>", "Search selected word")
+			map_n("*", "g*", "Search a next word that matches the word under the cursor")
+			map_v(
+				"*",
+				"<cmd>lua require('improved-search').forward()<cr>",
+				"Search a next text that matches selected text"
+			)
+			map_n("#", "g#", "Search a previous word that matches the word under the cursor")
+			map_v(
+				"#",
+				"<cmd>lua require('improved-search').backward()<cr>",
+				"Search a next text that matches selected text"
+			)
+			map_n("]", "<cmd>lua require('improved-search').stable_next()<cr>", "Search next searched text")
+			map_v("]", "<cmd>lua require('improved-search').stable_next()<cr>", "Search next searched text")
+			map_n("[", "<cmd>lua require('improved-search').stable_previous()<cr>", "Search previous searched text")
+			map_v("[", "<cmd>lua require('improved-search').stable_previous()<cr>", "Search previous searched text")
+		end,
+	},
 	{
 		"stevearc/oil.nvim",
 		config = function()
