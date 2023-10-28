@@ -9,6 +9,12 @@ super + Return
 super + b
 	brave
 
+super + t
+	telegram-desktop
+
+super + e
+  thunar  
+
 # program launcher
 super + a
 	rofi -modi drun -show drun -line-padding 4 \
@@ -18,8 +24,12 @@ super + a
 # power-menu 
 super + Escape
   rofi -show power-menu \
-        -modi power-menu:~/.config/rofi/power \
-        -theme ~/.config/rofi/powermenu.rasi
+        -modi power-menu:~/.config/rofi/scripts/power \
+        -theme ~/.config/rofi/themes/powermenu.rasi
+
+# lockscreen
+alt + shift + x
+    betterlockscreen -l dim
 
 # make sxhkd reload its configuration files:
 super + shift + r
@@ -34,7 +44,7 @@ super + alt + {q,r}
 	bspc {quit,wm -r}
 
 # close and kill
-super + {_,shift + }q
+super + {_,shift + }w
 	bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
@@ -159,13 +169,5 @@ XF86MonBrightnessDown
 
 # Screenshot
 Print
-  scrot "$(xdg-user-dir PICTURES)/screenshot-$(date +%F_%T).png"
+  flameshot gui
 
-super + Print
-  ~/.config/bspwm/scripts/screenshot.sh
-
-super + e
-  thunar  
-
-super + F1
-  ~/.config/bspwm/scripts/keybindings_rofi.sh

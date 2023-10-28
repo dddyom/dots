@@ -7,7 +7,7 @@
 [ -d "$HOME/go/bin" ] && PATH="$HOME/go/bin:$PATH"
 [ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"
 [ -d "$HOME/.local/share/JetBrains/Toolbox/scripts" ] && PATH="$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
-[ -d "$HOME/tmuxifier/bin" ] && PATH="$HOME/tmuxifier/bin:$PATH"; eval "$(tmuxifier init -)"
+[ -d "$HOME/.tmuxifier/bin" ] && PATH="$HOME/.tmuxifier/bin:$PATH"; eval "$(tmuxifier init -)"
 
 export PATH=$PATH
 export EDITOR=nvim

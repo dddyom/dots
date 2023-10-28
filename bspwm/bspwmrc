@@ -10,6 +10,8 @@ nitrogen --set-scaled ~/Pictures/wallpapers/ocean.png
 $HOME/.config/polybar/launch.sh &
 pgrep -x sxhkd > /dev/null || sxhkd &
 xsetroot -cursor_name left_ptr & 
+crow &
+betterlockscreen -l dim
 
 bspc monitor -d 1 2 3 4 5
 

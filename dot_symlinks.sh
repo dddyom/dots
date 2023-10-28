@@ -6,6 +6,11 @@ DOTS_FOR_CONF_DIR=(
 	"nvim"
 	"wezterm"
   "tmux"
+  "betterlockscreen"
+  "bspwm"
+  "polybar"
+  "rofi"
+  "sxhkd"
 )
 
 DOTS_FOR_HOME_DIR=(
