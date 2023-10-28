@@ -16,6 +16,18 @@ return {
 	config = function()
 		local lsp = require("lsp-zero").preset({})
 
+		require("mason").setup({})
+		require("mason-lspconfig").setup({
+			ensure_installed = {
+				"emmet_language_server",
+				"lua_ls",
+				"pyright",
+				"ruff_lsp",
+				"sqlls",
+				"tsserver",
+			},
+		})
+
 		lsp.on_attach(function(_, bufnr)
 			lsp.default_keymaps({ buffer = bufnr })
 		end)
