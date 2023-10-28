@@ -7,6 +7,7 @@ DOTS_FOR_CONF_DIR=(
 	"wezterm"
   "tmux"
   "betterlockscreen"
+  "wallpapers"
   "bspwm"
   "polybar"
   "rofi"
