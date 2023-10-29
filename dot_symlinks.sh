@@ -10,6 +10,7 @@ DOTS_FOR_CONF_DIR=(
   "wallpapers"
   "bspwm"
   "polybar"
+  "dunst"
   "rofi"
   "sxhkd"
 )
