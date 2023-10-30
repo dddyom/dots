@@ -38,6 +38,7 @@ window {
   transparency: "real";
   width: 20%;
   height: 20%;
+	border-radius: 		8px;
 }
 
 mainbox {
