@@ -2,7 +2,11 @@ local leader = require("utils.map").leader
 
 return {
 	{ "yamatsum/nvim-cursorline", config = true },
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {},
+	},
 	{
 		"kylechui/nvim-surround",
 		version = "*",
