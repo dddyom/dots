@@ -31,6 +31,18 @@ end)
 return {
 	font = wezterm.font("JetBrains Mono"),
 	font_size = 12,
+	font_rules = {
+		{
+			intensity = "Bold",
+			italic = false,
+			font = wezterm.font("JetBrains Mono", { weight = "ExtraBold", stretch = "Normal", style = "Normal" }),
+		},
+		{
+			intensity = "Bold",
+			italic = true,
+			font = wezterm.font("JetBrains Mono", { weight = "ExtraBold", stretch = "Normal", style = "Normal" }),
+		},
+	},
 	hide_tab_bar_if_only_one_tab = true,
 	warn_about_missing_glyphs = false,
 	window_padding = {
