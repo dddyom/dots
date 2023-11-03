@@ -61,6 +61,7 @@ return {
 					"bash",
 					"dockerfile",
 					"tsx",
+          "norg"
 				},
 				highlight = {
 					enable = true,
