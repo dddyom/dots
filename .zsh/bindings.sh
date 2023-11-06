@@ -11,8 +11,5 @@ bindkey '^[[Z' autosuggest-accept
 bindkey '^A' autosuggest-accept
 
 
-bindkey -s '^W' 'file=$(find $HOME | fzf) ; [[ ! -z $file ]] && nvim $file^M'
-bindkey -s '^Y' 'session=$(tmuxifier list-sessions | fzf) ; [[ ! -z $session ]] && tmuxifier load-session $session ^M'
-bindkey -s '^T' 'tmuxifier run^M'
-
-function lk { cd "$(walk --icons "$@")" }
+bindkey -s '^W' 'file=$(fzf) ; [[ ! -z $file ]] && nvim $file^M'
+bindkey -s '^T' 'session=$(tmuxifier list-sessions | fzf) ; [[ ! -z $session ]] && tmuxifier load-session $session ^M'
