@@ -8,6 +8,17 @@ return {
 			require("nvim-rooter").setup({ fallback_to_parent = false })
 		end,
 	},
+
+	{
+		"coffebar/crowtranslate.nvim",
+		lazy = true,
+		cmd = { "CrowTranslate" },
+		opts = {
+			language = "ru",
+			default = "en",
+			engine = "google",
+		},
+	},
 	{
 		"kwkarlwang/bufresize.nvim",
 		config = function()

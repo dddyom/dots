@@ -57,6 +57,14 @@ local maps = {
 	},
 }
 
+vim.keymap.set("n", "i", function()
+	if #vim.fn.getline(".") == 0 then
+		return [["_cc]]
+	else
+		return "i"
+	end
+end, { expr = true, desc = "properly indent on empty line when insert" })
+
 -- Apply the mappings
 for mode, map_table in pairs(maps) do
 	require("utils.map").set_maps(map_table, require("utils.map")[mode])
