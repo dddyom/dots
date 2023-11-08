@@ -18,6 +18,7 @@ DOTS_FOR_CONF_DIR=(
 DOTS_FOR_HOME_DIR=(
   ".zsh"
   ".zshrc"
+  ".ideavimrc"
 )
 
 for dot in "${DOTS_FOR_CONF_DIR[@]}";do

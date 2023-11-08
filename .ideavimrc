@@ -1,0 +1,49 @@
+let mapleader=" "
+
+set number
+set noswapfile
+set fileformat=unix
+set backspace=indent,eol,start
+set ignorecase=true
+set clipboard+=unnamedplus
+set mouse=a
+set encoding=UTF-8
+set scrolloff=20
+set autoindent
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set softtabstop=4
+set cursorline
+set incsearch
+set ideastatusicon=gray
+set ideajoin
+set surround
+set argtextobj
+set commentary
+let g:argtextobj_pairs="[:],(:),<:>"
+
+map <leader>z <Action>(ToggleDistractionFreeMode)
+nmap [[ <Action>(MethodUp)
+nmap ]] <Action>(MethodDown)
+
+map <m-1> <Action>(GoToTab1)
+map <m-2> <Action>(GoToTab2)
+map <m-3> <Action>(GoToTab3)
+map <m-4> <Action>(GoToTab4)
+map <m-5> <Action>(GoToTab5)
+map <m-6> <Action>(GoToTab6)
+map <m-7> <Action>(GoToTab7)
+map <m-8> <Action>(GoToTab8)
+map <m-9> <Action>(GoToTab9)
+map <s-l> <Action>(NextTab)
+map <s-h> <Action>(PreviousTab)
+map <m-w> <Action>(CloseEditor)
+
+
+inoremap  <C-l> <C-o>l
+nnoremap <Esc><Esc> :nohlsearch<CR>
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzzzv
+nnoremap N Nzzzv
