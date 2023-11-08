@@ -1,8 +1,8 @@
 local leader = require("utils.map").leader
-local leader_v = require("utils.map").leader_v
 
 return {
 	"mg979/vim-visual-multi",
+	"b3nj5m1n/kommentary",
 	{
 		"simrat39/rust-tools.nvim",
 		config = function()
@@ -16,13 +16,6 @@ return {
 			vim.keymap.set("i", "<c-a>", function()
 				return vim.fn["codeium#Accept"]()
 			end, { expr = true })
-		end,
-	},
-	{
-		"numToStr/Comment.nvim",
-		config = function()
-			leader("/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", "Comment")
-			leader_v("/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", "Comment")
 		end,
 	},
 	{

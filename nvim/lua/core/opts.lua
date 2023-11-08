@@ -12,6 +12,7 @@ opt.tabstop = 2
 opt.softtabstop = 4
 opt.smartcase = true
 opt.ignorecase = true
+opt.incsearch = true
 opt.wrap = false
 opt.syntax = "on"
 opt.number = true
