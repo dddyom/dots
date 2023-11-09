@@ -6,7 +6,7 @@ picom -b &
 sxhkd &
 setxkbmap -layout us,ru
 setxkbmap -option grp:win_space_toggle
-nitrogen --set-scaled ~/.config/wallpapers/ocean.png
+nitrogen --set-scaled ~/.config/wallpapers/2.png
 $HOME/.config/polybar/launch.sh &
 pgrep -x sxhkd > /dev/null || sxhkd &
 xsetroot -cursor_name left_ptr & 
