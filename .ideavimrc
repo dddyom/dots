@@ -17,7 +17,6 @@ set softtabstop=4
 set cursorline
 set incsearch
 set ideastatusicon=gray
-set ideajoin
 set surround
 set argtextobj
 set commentary
