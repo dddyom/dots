@@ -42,8 +42,8 @@ map <m-w> <Action>(CloseEditor)
 
 inoremap  <C-l> <C-o>l
 nnoremap <Esc><Esc> :nohlsearch<CR>
-nnoremap jk <Esc>
-nnoremap kj <Esc>
+inoremap jk <Esc>
+inoremap kj <Esc>
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 nnoremap n nzzzv
