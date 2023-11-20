@@ -3,12 +3,6 @@ local map_v = require("utils.map").v
 local leader = require("utils.map").leader
 return {
 	{
-		"j-morano/buffer_manager.nvim",
-		config = function()
-			leader("e", '<cmd>lua require("buffer_manager.ui").toggle_quick_menu()<cr>', "buffer list")
-		end,
-	},
-	{
 		"backdround/improved-search.nvim",
 		config = function()
 			map_n("!", "<cmd>lua require('improved-search').current_word()<CR>", "Search the word under the cursor")

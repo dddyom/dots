@@ -3,6 +3,7 @@ local leader = require("utils.map").leader
 return {
 	"mg979/vim-visual-multi",
 	"b3nj5m1n/kommentary",
+	"AndrewRadev/tagalong.vim",
 	{
 		"simrat39/rust-tools.nvim",
 		config = function()
