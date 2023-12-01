@@ -1,5 +1,3 @@
-local leader = require("utils.map").leader
-
 return {
 	"nvim-lua/plenary.nvim",
 	{
@@ -8,35 +6,10 @@ return {
 			require("nvim-rooter").setup({ fallback_to_parent = false })
 		end,
 	},
-
-	{
-		"coffebar/crowtranslate.nvim",
-		lazy = true,
-		cmd = { "CrowTranslate" },
-		opts = {
-			language = "ru",
-			default = "en",
-			engine = "google",
-		},
-	},
-	{
-		"kwkarlwang/bufresize.nvim",
-		config = function()
-			require("bufresize").setup({
-				register = { resize = { keys = {}, trigger_events = { "VimResized" }, increment = 5 } },
-			})
-			leader("H", "20<C-w>>", "Resize right")
-			leader("L", "20<C-w><", "Resize left")
-			leader("J", "10<C-w>+", "Resize down")
-			leader("K", "10<C-w>-", "Resize up")
-			leader("O", "<C-w>|<C-w>_", "Resize to max")
-			leader("=", "<C-w>=", "Resize to default")
-		end,
-	},
 	{
 		"echasnovski/mini.clue",
 		version = false,
-		config = function()
+		init = function()
 			local miniclue = require("mini.clue")
 			miniclue.setup({
 				triggers = {
@@ -74,26 +47,6 @@ return {
 					miniclue.gen_clues.registers(),
 					miniclue.gen_clues.windows(),
 					miniclue.gen_clues.z(),
-				},
-			})
-		end,
-	},
-	{
-		"nvim-neorg/neorg",
-		build = ":Neorg sync-parsers",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("neorg").setup({
-				load = {
-					["core.defaults"] = {}, -- Loads default behaviour
-					["core.concealer"] = {}, -- Adds pretty icons to your documents
-					["core.dirman"] = { -- Manages Neorg workspaces
-						config = {
-							workspaces = {
-								notes = "~/notes",
-							},
-						},
-					},
 				},
 			})
 		end,

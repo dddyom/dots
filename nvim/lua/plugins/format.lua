@@ -1,78 +1,41 @@
-local leader = require("utils.map").leader
-
 return {
-	{ "yamatsum/nvim-cursorline", config = true },
-	{
-		"kylechui/nvim-surround",
-		version = "*",
-		event = "VeryLazy",
-		config = function()
-			require("nvim-surround").setup({})
-		end,
-	},
-	{
-		"roobert/search-replace.nvim",
-		config = function()
-			require("search-replace").setup()
-			vim.o.inccommand = "split"
-			leader("r", "", "Replace")
-			leader("rr", "<cmd>SearchReplaceSingleBufferCWord<cr>", "Replace in current buffer (word under cursor)")
-			leader("rR", "<cmd>SearchReplaceMultiBufferCWord<cr>", "Replace in all buffers")
-			leader(
-				"re",
-				"<cmd>SearchReplaceSingleBufferCExpr<cr>",
-				"Replace in current buffer (expession under cursor)"
-			)
-			leader("rE", "<cmd>SearchReplaceMultiBufferCExpr<cr>", "Replace in current buffer")
-		end,
-	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		dependencies = {
-			"windwp/nvim-ts-autotag",
-			{
-				"chrisgrieser/nvim-various-textobjs",
-				lazy = false,
-				opts = { useDefaultKeymaps = true },
+	"stevearc/conform.nvim",
+	config = function()
+		require("conform").setup({
+			format_on_save = false,
+			formatters_by_ft = {
+				lua = { "stylua" },
+				python = { "isort", "black" },
+				javascript = { { "prettier" } },
+
+				rust = { "rustfmt" },
+				html = { "djhtml" },
+
+				css = { "prettier" },
+				json = { "jq" },
+				yaml = { "prettier" },
+				sql = { "sqlfluff" },
+				markdown = { "prettier" },
+				typescript = { "prettier" },
+				typescriptreact = { "prettier" },
+				tsx = { "prettier" },
 			},
-		},
-		build = ":TSUpdate",
-		event = "BufRead",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				ensure_installed = {
-					"python",
-					"lua",
-					"http",
-					"json",
-					"html",
-					"htmldjango",
-					"javascript",
-					"typescript",
-					"css",
-					"yaml",
-					"sql",
-					"regex",
-					"bash",
-					"dockerfile",
-					"tsx",
-					"norg",
-				},
-				highlight = {
-					enable = true,
-					disable = function(lang, buf)
-						local max_filesize = 100 * 1024 -- 100 KB
-						local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-						if ok and stats and stats.size > max_filesize then
-							return true
-						end
-					end,
-				},
-				autotag = { enable = true },
-				incremental_selection = { enable = true },
-				indent = { enable = true },
-				additional_vim_regex_highlighting = false,
-			})
-		end,
-	},
+		})
+
+		require("conform.formatters.black").args = {
+			"--stdin-filename",
+			"$FILENAME",
+			"--quiet",
+			"-",
+			"--line-length",
+			"120",
+		}
+		vim.g.disable_autoformat = true
+		vim.api.nvim_set_keymap(
+			"n",
+			"<leader>w",
+			'<cmd>lua require("conform").format({ lsp_fallback = true })<cr>',
+			{ noremap = true, silent = true, desc = "Write with formatting" }
+		)
+	end,
 }

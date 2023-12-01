@@ -1,61 +1,89 @@
 vim.g.mapleader = " "
 
-local maps = {
-	i = {
-		{ key = "jk", cmd = "<esc>", desc = "goto normal mode" },
-		{ key = "kj", cmd = "<esc>", desc = "goto normal mode" },
-	},
-	v = {
-		{ key = "jk", cmd = "<esc>", desc = "goto normal mode" },
-		{ key = "kj", cmd = "<esc>", desc = "goto normal mode" },
-	},
-	n = {
-		{
-			key = "q",
-			cmd = "<cmd>lua require('utils.utils').remap_q()<CR>",
-			desc = "close floating window",
-		},
-		{ key = "<c-d>", cmd = "<c-d>zz" },
-		{ key = "<c-u>", cmd = "<c-u>zz" },
-		{ key = "<m-i>", cmd = "^" },
-		{ key = "<m-S-i>", cmd = "0" },
-		{ key = "<m-a>", cmd = "$" },
-		{ key = "n", cmd = "nzzzv" },
-		{ key = "W", cmd = "viw" },
-		{ key = "<esc><esc>", cmd = "<esc>:nohlsearch<cr>", desc = "turn off highlight" },
-		{ key = "L", cmd = "<cmd>bnext<cr>", desc = "next buffer" },
-		{ key = "H", cmd = "<cmd>bprevious<cr>", desc = "previous buffer" },
-		{ key = "<m-q>", cmd = "<cmd>bd<cr>", desc = "close current buffer" },
-		{ key = "<m-e>", cmd = "<cmd>%bd|e#|bd#<cr>", desc = "close current buffer" },
-		{ key = "<m-w>", cmd = "<cmd>bd<cr>", desc = "close current buffer" },
-	},
-	leader = {
-		{ key = "\\", cmd = "<c-w>v", desc = "split window vertically" },
-		{ key = "|", cmd = "<c-w>v", desc = "split window vertically" },
-		{ key = "-", cmd = "<c-w>s", desc = "split window horisontally" },
-		{ key = "g", cmd = "", desc = "Git" },
-		{
-			key = "gc",
-			cmd = "<cmd>lua require('utils.utils').show_commit()<CR>",
-			desc = "show commit log of current file",
-		},
-		{
-			key = "W",
-			cmd = "<cmd>lua require('utils.utils').floating_window(nil, 120, 20, 'markdown')<CR>",
-			desc = "floating window",
-		},
-	},
-	leader_v = {
-		{ key = "t", cmd = [[c{% trans %}<c-r>"{% endtrans %}<esc>]], desc = "{% trans %}{% endtrans %}" },
-		{ key = "C", cmd = [[cconsole.log(<c-r>")<esc>]], desc = "console.log()" },
-		{ key = "p", cmd = [[cprint(<c-r>")<esc>]], desc = "print()" },
-		{ key = "P", cmd = [[cprint(f"\033[93m{<c-r>"}\033[0m")<esc>]], desc = "color print" },
-		{ key = "%", cmd = [[c{% <c-r>" %}<esc>]], desc = "jinja func" },
-		{ key = "}", cmd = [[c{{ <c-r>" }}<esc>]], desc = "jinja tag" },
-		{ key = "d", cmd = [[:s/^[ \t]*$\n//<CR>]], desc = "delete empty lines" },
-	},
-}
--- Apply the mappings
-for mode, map_table in pairs(maps) do
-	require("utils.map").set_maps(map_table, require("utils.map")[mode])
-end
+local map = vim.keymap.set
+
+map("n", "<Up>", "<cmd>resize +1<cr>", { desc = "Resize Window" })
+map("n", "<Down>", "<cmd>resize -1<cr>", { desc = "Resize Window" })
+map("n", "<Left>", "<cmd>vertical resize +1<cr>", { desc = "Resize Window" })
+map("n", "<Right>", "<cmd>vertical resize -1<cr>", { desc = "Resize Window" })
+
+map("n", "gh", "g^")
+map("n", "gl", "g$")
+
+
+map("n", "]", "n")
+map("n", "[", "N")
+
+map("i", "kj", "<esc>")
+map("i", "jk", "<esc>")
+map("x", "kj", "<esc>")
+map("x", "jk", "<esc>")
+
+map("c", "<C-h>", "<Home>")
+map("c", "<C-l>", "<End>")
+map("c", "<C-f>", "<Right>")
+map("c", "<C-b>", "<Left>")
+
+map("n", "L", "<cmd>bnext<cr>", { desc = "next buffer" })
+map("n", "H", "<cmd>bprevious<cr>", { desc = "previous buffer" })
+map("n", "b]", "<cmd>bnext<cr>", { desc = "next buffer" })
+map("n", "b[", "<cmd>bprevious<cr>", { desc = "previous buffer" })
+map("n", "<m-q>", "<cmd>bd<cr>", { desc = "close current buffer" })
+map("n", "<m-w>", "<cmd>bd<cr>", { desc = "close current buffer" })
+
+map("n", "<leader>\\", "<cmd>vsplit<cr>", { desc = "split window vertically" })
+map("n", "<leader>|", "<cmd>vsplit<cr>", { desc = "split window vertically" })
+map("n", "<leader>-", "<cmd>split<cr>", { desc = "split window horisontally" })
+
+map("v", "<leader>t", [[c{% trans %}<c-r>"{% endtrans %}<esc>]], { desc = "{% trans %}{% endtrans %}" })
+map("v", "<leader>C", [[cconsole.log(<c-r>")<esc>]], { desc = "console.log()" })
+map("v", "<leader>p", [[cprint(<c-r>")<esc>]], { desc = "print()" })
+map("v", "<leader>P", [[cprint(f"\033[93m{<c-r>"}\033[0m")<esc>]], { desc = "color print" })
+map("v", "<leader>%", [[c{% <c-r>" %}<esc>]], { desc = "jinja func" })
+map("v", "<leader>}", [[c{{ <c-r>" }}<esc>]], { desc = "jinja tag" })
+map("v", "<leader>d", [[:s/^[ \t]*$\n//<CR>]], { desc = "delete empty lines" })
+
+map("n", "<Leader>y", function()
+	local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":~:.")
+	vim.fn.setreg("+", path)
+	vim.notify(path, vim.log.levels.INFO, { title = "Yanked relative path" })
+end, { silent = true, desc = "Yank relative path" })
+
+-- Yank absolute path
+map("n", "<Leader>Y", function()
+	local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p")
+	vim.fn.setreg("+", path)
+	vim.notify(path, vim.log.levels.INFO, { title = "Yanked absolute path" })
+end, { silent = true, desc = "Yank absolute path" })
+
+-- Paste in visual-mode without pushing to register
+map("x", "p", 'p:let @+=@0<CR>:let @"=@0<CR>', { silent = true, desc = "Paste" })
+map("x", "P", 'P:let @+=@0<CR>:let @"=@0<CR>', { silent = true, desc = "Paste In-place" })
+
+map("x", "<Tab>", ">gv|", { desc = "Indent Left" })
+map("x", "<S-Tab>", "<gv", { desc = "Indent Right" })
+
+map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear Search Highlight" })
+
+map({ "n", "x" }, "<BS>", "%", { remap = true, desc = "Jump to Paren" })
+
+map(
+	"x",
+	"<C-r>",
+	":<C-u>%s/\\V<C-R>=v:lua.require'rafi.lib.edit'.get_visual_selection()<CR>" .. "//gc<Left><Left><Left>",
+	{ desc = "Replace Selection" }
+)
+
+map("n", "!", ":sp term://", { desc = "Execute Shell Command" })
+
+map("c", "<Up>", "<C-p>")
+map("c", "<Down>", "<C-n>")
+
+-- Allow misspellings
+vim.cmd.cnoreabbrev("qw", "wq")
+vim.cmd.cnoreabbrev("Wq", "wq")
+vim.cmd.cnoreabbrev("WQ", "wq")
+vim.cmd.cnoreabbrev("Qa", "qa")
+vim.cmd.cnoreabbrev("Bd", "bd")
+vim.cmd.cnoreabbrev("bD", "bd")
+

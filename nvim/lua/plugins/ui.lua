@@ -1,7 +1,15 @@
-local leader = require("utils.map").leader
-
 return {
-	"nvim-tree/nvim-web-devicons",
+	-----------------------------------------------------------------------------
+	{ "nvim-tree/nvim-web-devicons", lazy = false },
+	{ "MunifTanjim/nui.nvim", lazy = false },
+	-----------------------------------------------------------------------------
+	{
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
+		end,
+	},
+	-----------------------------------------------------------------------------
 	{
 		"Shatur/neovim-ayu",
 		config = function()
@@ -15,17 +23,22 @@ return {
 			vim.cmd("colorscheme ayu")
 		end,
 	},
+	-----------------------------------------------------------------------------
 	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		opts = {},
+		"chentoast/marks.nvim",
+		dependencies = "lewis6991/gitsigns.nvim",
+		keys = {
+			{ "m/", "<cmd>MarksListAll<CR>", desc = "Marks from all opened buffers" },
+		},
+		opts = {
+			sign_priority = { lower = 10, upper = 15, builtin = 8, bookmark = 20 },
+			bookmark_1 = { sign = "󰈼" }, -- ⚐ ⚑ 󰈻 󰈼 󰈽 󰈾 󰈿 󰉀
+			mappings = {
+				annotate = "m<Space>",
+			},
+		},
 	},
-	{
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup()
-		end,
-	},
+	-----------------------------------------------------------------------------
 	{
 		"nvim-lualine/lualine.nvim",
 		config = function()
@@ -47,7 +60,7 @@ return {
 					lualine_y = {
 						{
 							function()
-								local session_name = require("utils.utils").tmux_session_name()
+								local session_name = require("core.utils").tmux_session_name()
 								if session_name == nil then
 									return ""
 								else
@@ -68,22 +81,21 @@ return {
 					lualine_a = {
 						{
 							function()
-								return require("utils.utils").get_project_name(vim.fn.getcwd())
+								return require("core.utils").get_project_name(vim.fn.getcwd())
 							end,
 						},
 					},
 					lualine_b = { { "filename", path = 1 } },
-					lualine_y = { "diff", require("recorder").recordingStatus },
 					lualine_z = { "branch", "searchcount" },
 				},
 				winbar = {
 					lualine_a = {
 						{
 							function()
-								return require("utils.utils").get_diffview_title()
+								return require("core.utils").get_diffview_title()
 							end,
 							cond = function()
-								return require("utils.utils").is_show_diffview_title()
+								return require("core.utils").is_show_diffview_title()
 							end,
 						},
 					},
@@ -91,14 +103,7 @@ return {
 			})
 		end,
 	},
-	{
-		"folke/zen-mode.nvim",
-		opts = {},
-		config = function()
-			leader("z", "<cmd>ZenMode<CR>", "zen mode")
-		end,
-	},
-	{
+{
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		opts = {

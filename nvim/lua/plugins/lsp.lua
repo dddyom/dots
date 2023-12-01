@@ -1,5 +1,3 @@
-local map_n = require("utils.map").n
-
 return {
 	"VonHeikemen/lsp-zero.nvim",
 	branch = "v2.x",
@@ -22,7 +20,6 @@ return {
 				"emmet_language_server",
 				"lua_ls",
 				"pyright",
-				"ruff_lsp",
 				"sqlls",
 				"tsserver",
 			},
@@ -31,11 +28,10 @@ return {
 		lsp.on_attach(function(_, bufnr)
 			lsp.default_keymaps({ buffer = bufnr })
 		end)
-		lsp.set_sign_icons({ error = "", warn = "", hint = "", info = "פֿ" })
+		lsp.set_sign_icons(require("core.icons").diagnostics)
 
 		require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
 		lsp.setup()
-		require("utils.utils").set_cmp_icons()
 		require("lspconfig").pyright.setup({
 			settings = {
 				python = {
@@ -53,16 +49,14 @@ return {
 				},
 			},
 		})
-		require("lspconfig").ruff_lsp.setup({
-			settings = {
-				organizeImports = false,
-			},
-			on_attach = function(client)
-				client.server_capabilities.hoverProvider = false
-			end,
-		})
-		map_n("z", "<cmd>lua vim.diagnostic.goto_next()<CR>", "Next diagnostic")
-		map_n("Z", "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Prev diagnostic")
-		map_n("D", "<cmd>lua vim.diagnostic.open_float()<cr>", "Show all diagnostic")
+		vim.keymap.set("n", "z", function()
+			vim.diagnostic.goto_next()
+		end, { desc = "Next diagnostic", silent = true, nowait = true, noremap = true })
+		vim.keymap.set("n", "Z", function()
+			vim.diagnostic.goto_prev()
+		end, { desc = "prev diagnostic", silent = true, nowait = true, noremap = true })
+		vim.keymap.set("n", "D", function()
+			vim.diagnostic.open_float()
+		end, { desc = "Diagnostic window", silent = true, nowait = true, noremap = true })
 	end,
 }
