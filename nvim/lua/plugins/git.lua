@@ -1,18 +1,25 @@
-local leader = require("utils.map").leader
 return {
+	-----------------------------------------------------------------------------
 	{
 		"sindrets/diffview.nvim",
-		config = function()
+		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+		keys = {
+			{ "<Leader>gh", "<cmd>DiffviewFileHistory<CR>", desc = "Diff File" },
+			{ "<Leader>gd", "<cmd>DiffviewOpen<CR>", desc = "Diff View" },
+		},
+		opts = function()
 			local actions = require("diffview.actions")
 			vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
-				group = vim.api.nvim_create_augroup("rafi_diffview", {}),
+				group = vim.api.nvim_create_augroup("diffview", {}),
 				pattern = "diffview:///panels/*",
 				callback = function()
 					vim.opt_local.cursorline = true
 					vim.opt_local.winhighlight = "CursorLine:WildMenu"
 				end,
 			})
-			require("diffview").setup({
+
+			return {
+				enhanced_diff_hl = true, -- See ':h diffview-config-enhanced_diff_hl'
 				hooks = {
 					diff_buf_win_enter = function(bufnr, winid, ctx)
 						if ctx.layout_name:match("^diff2") then
@@ -50,24 +57,70 @@ return {
 						{ "n", "o", actions.focus_entry },
 					},
 				},
-			})
-			leader("gd", "<cmd>DiffviewOpen<cr>", "Diffview open")
-			leader("gh", "<cmd>DiffviewFileHistory %<cr>", "File history")
+			}
 		end,
 	},
-	{ "lewis6991/gitsigns.nvim", config = true },
+	-----------------------------------------------------------------------------
+  {
+		"lewis6991/gitsigns.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		-- See: https://github.com/lewis6991/gitsigns.nvim#usage
+		-- stylua: ignore
+		opts = {
+			signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
+			numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
+			linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
+			word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+			current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+			attach_to_untracked = true,
+			watch_gitdir = {
+				interval = 1000,
+				follow_files = true,
+			},
+			preview_config = {
+				border = 'rounded',
+			},
+			on_attach = function(bufnr)
+				local gs = package.loaded.gitsigns
+
+				local function map(mode, l, r, opts)
+					opts = opts or {}
+					opts.buffer = bufnr
+					vim.keymap.set(mode, l, r, opts)
+				end
+
+				-- Navigation
+				---@return string
+				map('n', 'g]', function()
+					if vim.wo.diff then return ']c' end
+					vim.schedule(function() gs.next_hunk() end)
+					return '<Ignore>'
+				end, { expr = true, desc = 'Git hunk forward'  })
+
+				map('n', 'g[', function()
+					if vim.wo.diff then return '[c' end
+					vim.schedule(function() gs.prev_hunk() end)
+					return '<Ignore>'
+				end, { expr = true, desc = 'Git hunk last' })
+
+				map('n', '<leader>hb', function() gs.blame_line({ full=true }) end, { desc = 'Show blame commit' })
+				map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'Toggle Git line blame' })
+			end,
+		},
+	},
+	-----------------------------------------------------------------------------
 	{
 		"akinsho/git-conflict.nvim",
 		version = "*",
-		config = function()
-			require("git-conflict").setup()
-			leader("c", "", "Git conflict")
-			leader("co", "<CMD>GitConflictChooseOurs<CR>", "Ours")
-			leader("ct", "<CMD>GitConflictChooseTheirs<CR>", "Theirs")
-			leader("cb", "<CMD>GitConflictChooseBoth<CR>", "Both")
-			leader("c0", "<CMD>GitConflictChooseNone<CR>", "None")
-			leader("cj", "<CMD>GitConflictNextConflict<CR>", "Next")
-			leader("ck", "<CMD>GitConflictPrevConflict<CR>", "Prev")
-		end,
+		event = "BufReadPre ",
+		config = true,
+		keys = {
+			{ "co", "<Plug>(git-conflict-ours)", "ours" },
+			{ "ct", "<Plug>(git-conflict-theirs)", "theirs" },
+			{ "cb", "<Plug>(git-conflict-both)", "both" },
+			{ "c0", "<Plug>(git-conflict-none)", "none" },
+			{ "[x", "<Plug>(git-conflict-prev-conflict)", "prev conflict" },
+			{ "]x", "<Plug>(git-conflict-next-conflict)", "next conflict" },
+		},
 	},
 }

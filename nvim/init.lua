@@ -15,6 +15,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("core.opts")
 require("core.maps")
+require("core.autocmds")
 
 -- LOAD PLUGINS
 require("lazy").setup("plugins")

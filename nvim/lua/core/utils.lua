@@ -1,18 +1,5 @@
 local M = {}
 
-M.set_cmp_icons = function()
-	require("cmp").setup({
-		formatting = {
-			format = function(entry, vim_item)
-				local icons = require("utils.icons")
-				vim_item.kind = icons[vim_item.kind]
-				vim_item.menu = icons[entry.source.name]
-				return vim_item
-			end,
-		},
-	})
-end
-
 M.get_project_name = function(path)
 	while path and path ~= "" do
 		local git_dir = path .. "/.git"
@@ -93,95 +80,8 @@ M.get_diffview_title = function()
 	end
 end
 
-local floating_window = function(content, winWidth, winHeight, ft)
-	local ui = vim.api.nvim_list_uis()[1]
-
-	local width = winWidth or 120
-	local height = winHeight or 20
-
-	local opts = {
-		relative = "editor",
-		style = "minimal",
-		width = width,
-		height = height,
-		row = math.ceil((ui.height - height) / 2) - 1,
-		col = math.ceil((ui.width - width) / 2),
-		border = "rounded",
-	}
-
-	local buf = vim.api.nvim_create_buf(false, true)
-	local win = vim.api.nvim_open_win(buf, true, opts)
-	if ft then
-		vim.api.nvim_buf_set_option(buf, "filetype", ft)
-	end
-	if content then
-		for index, line in ipairs(content) do
-			vim.fn.setbufline(buf, index, { line })
-		end
-	end
-
-	return { buf = buf, win = win }
-end
-
-M.floating_window = floating_window
-
-local git_log_current_line = function()
-	local current_line = vim.fn.line(".")
-	local file_path = vim.fn.expand("%")
-	local git_log = {}
-
-	local raw_log = vim.fn.system(string.format("git log -L %d,%d:%s", current_line, current_line, file_path))
-
-	if not raw_log or raw_log:match("^fatal:") then
-		return
-	end
-
-	for line in raw_log:gmatch("[^\r\n]+") do
-		line = line:gsub("^%s+", "")
-		if line:match("^diff") then
-			break
-		end
-		table.insert(git_log, line)
-	end
-	return git_log
-end
-
-M.git_log_current_line = git_log_current_line
-
-M.show_commit = function()
-	local git_log = git_log_current_line()
-	if git_log then
-		floating_window(git_log, 50, 4, "git")
-	end
-end
-
 M.tmux_session_name = function()
 	return vim.fn.system("tmux display-message -p '#S'"):gsub("\n", "")
-end
-
-local is_floating_window = function()
-	if vim.api.nvim_win_get_config(vim.fn.win_getid(vim.fn.winnr())).zindex then
-		return true
-	end
-end
-
-M.remap_q = function()
-	if is_floating_window() then
-		vim.cmd("close!")
-	end
-end
-
-M.format_toggle = function()
-	local title = "Format on save"
-	local msg = ""
-	if vim.g.disable_autoformat then
-		vim.g.disable_autoformat = false
-		msg = "on"
-	else
-		vim.g.disable_autoformat = true
-		msg = "off"
-	end
-	vim.notify(("%s: %s"):format(title, msg), vim.log.levels.INFO)
 end
 
 return M
