@@ -1,6 +1,6 @@
 return {
 	-----------------------------------------------------------------------------
-	"AndrewRadev/tagalong.vim",
+	{ "AndrewRadev/tagalong.vim", event = "BufEnter *.html" },
 	{ "echasnovski/mini.pairs", event = "VeryLazy", opts = {} },
 	-----------------------------------------------------------------------------
 	{
