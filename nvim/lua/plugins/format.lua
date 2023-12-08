@@ -19,6 +19,7 @@ return {
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
 				tsx = { "prettier" },
+				htmldjango = { "prettier" },
 			},
 		})
 
