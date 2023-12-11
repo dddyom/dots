@@ -7,9 +7,9 @@ map("n", "<Down>", "<cmd>resize -1<cr>", { desc = "Resize Window" })
 map("n", "<Left>", "<cmd>vertical resize +1<cr>", { desc = "Resize Window" })
 map("n", "<Right>", "<cmd>vertical resize -1<cr>", { desc = "Resize Window" })
 
-map("n", "gh", "g^")
-map("n", "gl", "g$")
-
+map({ "n", "v" }, "H", "0^")
+map({ "n", "v" }, "L", "$")
+map({ "n", "v" }, "M", "gm")
 
 map("n", "]", "n")
 map("n", "[", "N")
@@ -24,8 +24,6 @@ map("c", "<C-l>", "<End>")
 map("c", "<C-f>", "<Right>")
 map("c", "<C-b>", "<Left>")
 
-map("n", "L", "<cmd>bnext<cr>", { desc = "next buffer" })
-map("n", "H", "<cmd>bprevious<cr>", { desc = "previous buffer" })
 map("n", "b]", "<cmd>bnext<cr>", { desc = "next buffer" })
 map("n", "b[", "<cmd>bprevious<cr>", { desc = "previous buffer" })
 map("n", "<m-q>", "<cmd>bd<cr>", { desc = "close current buffer" })
@@ -86,4 +84,3 @@ vim.cmd.cnoreabbrev("WQ", "wq")
 vim.cmd.cnoreabbrev("Qa", "qa")
 vim.cmd.cnoreabbrev("Bd", "bd")
 vim.cmd.cnoreabbrev("bD", "bd")
-
