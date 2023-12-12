@@ -24,6 +24,8 @@ map("c", "<C-l>", "<End>")
 map("c", "<C-f>", "<Right>")
 map("c", "<C-b>", "<Left>")
 
+map("n", "bl", "<cmd>bnext<cr>", { desc = "next buffer" })
+map("n", "bh", "<cmd>bprevious<cr>", { desc = "previous buffer" })
 map("n", "b]", "<cmd>bnext<cr>", { desc = "next buffer" })
 map("n", "b[", "<cmd>bprevious<cr>", { desc = "previous buffer" })
 map("n", "<m-q>", "<cmd>bd<cr>", { desc = "close current buffer" })
