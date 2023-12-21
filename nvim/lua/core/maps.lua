@@ -68,13 +68,6 @@ map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear Search Highlight" })
 
 map({ "n", "x" }, "<BS>", "%", { remap = true, desc = "Jump to Paren" })
 
-map(
-	"x",
-	"<C-r>",
-	":<C-u>%s/\\V<C-R>=v:lua.require'rafi.lib.edit'.get_visual_selection()<CR>" .. "//gc<Left><Left><Left>",
-	{ desc = "Replace Selection" }
-)
-
 map("n", "!", ":sp term://", { desc = "Execute Shell Command" })
 
 map("c", "<Up>", "<C-p>")
