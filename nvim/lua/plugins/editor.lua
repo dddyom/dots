@@ -1,6 +1,5 @@
 return {
 	-----------------------------------------------------------------------------
-  "tpope/vim-rsi",
 	{ "yamatsum/nvim-cursorline", config = true },
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	-----------------------------------------------------------------------------
