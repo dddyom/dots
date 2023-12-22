@@ -48,4 +48,12 @@ nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 nnoremap n nzzzv
 nnoremap N Nzzzv
+nnoremap ] n
+nnoremap [ N
+
+
+nnoremap gh 0^
+nnoremap gl $
+
+
 set ideajoin
