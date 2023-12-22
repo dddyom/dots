@@ -13,7 +13,7 @@ super + t
 	telegram-desktop
 
 super + e
-  thunar  
+  thunar
 
 # program launcher
 super + a
@@ -21,7 +21,7 @@ super + a
                 -columns 2 -padding 50 -hide-scrollbar -terminal wezterm \
                 -show-icons -drun-icon-theme "Qogir-dark" -font "Droid Sans Regular 10"
 
-# power-menu 
+# power-menu
 super + Escape
   rofi -show power-menu \
         -modi power-menu:~/.config/rofi/scripts/power \
@@ -155,7 +155,7 @@ XF86AudioLowerVolume
 # still
 XF86AudioMute
   amixer -D pulse sset Master toggle-mute
-  
+
 # amixer -q set Master toggle
 # Simple amixer command seems to have problems unmuting device
 
