@@ -57,7 +57,6 @@ map("n", "<Leader>Y", function()
 	vim.notify(path, vim.log.levels.INFO, { title = "Yanked absolute path" })
 end, { silent = true, desc = "Yank absolute path" })
 
--- Paste in visits_id without pushing to register
 map("x", "p", 'p:let @+=@0<CR>:let @"=@0<CR>', { silent = true, desc = "Paste" })
 map("x", "P", 'P:let @+=@0<CR>:let @"=@0<CR>', { silent = true, desc = "Paste In-place" })
 
