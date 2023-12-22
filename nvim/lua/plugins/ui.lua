@@ -25,21 +25,6 @@ return {
 	},
 	-----------------------------------------------------------------------------
 	{
-		"chentoast/marks.nvim",
-		dependencies = "lewis6991/gitsigns.nvim",
-		keys = {
-			{ "m/", "<cmd>MarksListAll<CR>", desc = "Marks from all opened buffers" },
-		},
-		opts = {
-			sign_priority = { lower = 10, upper = 15, builtin = 8, bookmark = 20 },
-			bookmark_1 = { sign = "󰈼" }, -- ⚐ ⚑ 󰈻 󰈼 󰈽 󰈾 󰈿 󰉀
-			mappings = {
-				annotate = "m<Space>",
-			},
-		},
-	},
-	-----------------------------------------------------------------------------
-	{
 		"nvim-lualine/lualine.nvim",
 		config = function()
 			local custom_ayu = require("lualine.themes.ayu")
