@@ -1,7 +1,7 @@
 return {
 	-----------------------------------------------------------------------------
 	{ "AndrewRadev/tagalong.vim", event = "BufEnter *.html" },
-	{ "echasnovski/mini.pairs", event = "VeryLazy", opts = {} },
+	{ "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
 	-----------------------------------------------------------------------------
 	{
 
