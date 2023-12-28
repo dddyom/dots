@@ -209,19 +209,22 @@ return {
 			},
 		},
 	},
-
+	-----------------------------------------------------------------------------
 	{
-		"echasnovski/mini.comment",
+		"b3nj5m1n/kommentary",
 		event = "VeryLazy",
-		dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
-		opts = {
-			options = {
-				custom_commentstring = function()
-					return require("ts_context_commentstring.internal").calculate_commentstring()
-						or vim.bo.commentstring
+		config = function()
+			local comments = require("kommentary.config")
+
+			comments.use_extended_mappings()
+			comments.configure_language("default", {
+				single_line_comment_string = "auto",
+				multi_line_comment_strings = "auto",
+				hook_function = function()
+					require("ts_context_commentstring").update_commentstring()
 				end,
-			},
-		},
+			})
+		end,
 	},
 
 	-----------------------------------------------------------------------------
