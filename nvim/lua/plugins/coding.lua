@@ -230,7 +230,11 @@ return {
 	-----------------------------------------------------------------------------
 	{
 		"echasnovski/mini.trailspace",
-		opts = {},
+		config = function()
+			require("mini.trailspace").setup({})
+		  -- stylua: ignore
+			vim.keymap.set( "n", "<leader>C", "<cmd>lua require('mini.trailspace').trim()<CR>", { desc = "Trim trailing whitespace" })
+		end,
 	},
 
 	-----------------------------------------------------------------------------
