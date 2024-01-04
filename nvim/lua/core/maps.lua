@@ -37,7 +37,8 @@ map("n", "<leader>|", "<cmd>vsplit<cr>", { desc = "split window vertically" })
 map("n", "<leader>-", "<cmd>split<cr>", { desc = "split window horisontally" })
 
 map("v", "<leader>t", [[c{% trans %}<c-r>"{% endtrans %}<esc>]], { desc = "{% trans %}{% endtrans %}" })
-map("v", "<leader>C", [[cconsole.log('%c<c-r>"', 'color: red; font-size: larger');<esc>]], { desc = "console.log()" })
+map("v", "<leader>C", [[cconsole.log(`%c${<c-r>"}`, 'color: red; font-size: larger');<esc>]], { desc = "console.log()" })
+
 map("v", "<leader>p", [[cprint(<c-r>")<esc>]], { desc = "print()" })
 map("v", "<leader>P", [[cprint(f'\033[93m{<c-r>"}\033[0m')<esc>]], { desc = "color print" })
 map("v", "<leader>%", [[c{% <c-r>" %}<esc>]], { desc = "jinja func" })
