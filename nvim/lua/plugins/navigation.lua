@@ -21,22 +21,6 @@ return {
 	},
 	-----------------------------------------------------------------------------
 	{
-		"ThePrimeagen/harpoon",
-		config = true,
-		keys = {
-			{ "<m-m>", '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "marks" },
-			{ "M", '<cmd>lua require("harpoon.mark").add_file()<cr>', "add mark" },
-			{ "<m-p>", '<cmd>lua require("harpoon.ui").nav_prev()<cr>', "prev mark" },
-			{ "<m-n>", '<cmd>lua require("harpoon.ui").nav_next()<cr>', "next mark" },
-			{ "<m-1>", '<cmd>lua require("harpoon.ui").nav_file(1)<cr>', "harpoon file 1" },
-			{ "<m-2>", '<cmd>lua require("harpoon.ui").nav_file(2)<cr>', "harpoon file 2" },
-			{ "<m-3>", '<cmd>lua require("harpoon.ui").nav_file(3)<cr>', "harpoon file 3" },
-			{ "<m-4>", '<cmd>lua require("harpoon.ui").nav_file(4)<cr>', "harpoon file 4" },
-			{ "<m-5>", '<cmd>lua require("harpoon.ui").nav_file(5)<cr>', "harpoon file 5" },
-		},
-	},
-	-----------------------------------------------------------------------------
-	{
 		"backdround/improved-ft.nvim",
 		config = function()
 			require("improved-ft").setup({ use_default_mappings = true })
@@ -57,6 +41,13 @@ return {
 			{ "<leader>fr", "<cmd>lua require('fzf-lua').lsp_references()<CR>", desc = "Lsp references" },
 			{ "<leader>fa", "<cmd>lua require('fzf-lua').lsp_code_actions()<CR>", desc = "Lsp code actions" },
 			{ "<M-CR>", "<cmd>lua require('fzf-lua').lsp_code_actions()<CR>", desc = "Lsp code actions" },
+		},
+	},
+	{
+		"otavioschwanck/arrow.nvim",
+		opts = {
+			show_icons = true,
+			leader_key = "m",
 		},
 	},
 }
