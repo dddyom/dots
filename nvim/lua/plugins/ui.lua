@@ -71,6 +71,7 @@ return {
 						},
 					},
 					lualine_b = { { "filename", path = 1 } },
+					lualine_y = { require("recorder").recordingStatus },
 					lualine_z = { "branch", "searchcount" },
 				},
 				winbar = {
@@ -88,7 +89,7 @@ return {
 			})
 		end,
 	},
-{
+	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		opts = {

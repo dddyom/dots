@@ -257,4 +257,11 @@ return {
 			end, { expr = true })
 		end,
 	},
+
+	{
+		"chrisgrieser/nvim-recorder",
+		opts = {
+			lessNotifications = true,
+		},
+	},
 }
