@@ -65,6 +65,7 @@ map("x", "<Tab>", ">gv|", { desc = "Indent Left" })
 map("x", "<S-Tab>", "<gv", { desc = "Indent Right" })
 
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear Search Highlight" })
+map("n", "\\", "m", { desc = "set mark" })
 
 map({ "n", "x" }, "<BS>", "%", { remap = true, desc = "Jump to Paren" })
 

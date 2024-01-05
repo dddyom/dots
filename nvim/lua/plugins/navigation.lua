@@ -50,4 +50,5 @@ return {
 			leader_key = "m",
 		},
 	},
+	"kshenoy/vim-signature",
 }
