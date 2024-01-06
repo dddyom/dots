@@ -61,16 +61,16 @@ return {
 		end,
 	},
 	-----------------------------------------------------------------------------
-  {
+	{
 		"lewis6991/gitsigns.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		-- See: https://github.com/lewis6991/gitsigns.nvim#usage
-		-- stylua: ignore
 		opts = {
-			signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
-			numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
-			linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
-			word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+			signs = require("core.icons").git.signs,
+			signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+			numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
+			linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+			word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
 			current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
 			attach_to_untracked = true,
 			watch_gitdir = {
@@ -78,7 +78,7 @@ return {
 				follow_files = true,
 			},
 			preview_config = {
-				border = 'rounded',
+				border = "rounded",
 			},
 			on_attach = function(bufnr)
 				local gs = package.loaded.gitsigns
@@ -91,20 +91,32 @@ return {
 
 				-- Navigation
 				---@return string
-				map('n', 'g]', function()
-					if vim.wo.diff then return ']c' end
-					vim.schedule(function() gs.next_hunk() end)
-					return '<Ignore>'
-				end, { expr = true, desc = 'Git hunk forward'  })
+				map("n", "g]", function()
+					if vim.wo.diff then
+						return "]c"
+					end
+					vim.schedule(function()
+						gs.next_hunk()
+					end)
+					return "<Ignore>"
+				end, { expr = true, desc = "Git hunk forward" })
 
-				map('n', 'g[', function()
-					if vim.wo.diff then return '[c' end
-					vim.schedule(function() gs.prev_hunk() end)
-					return '<Ignore>'
-				end, { expr = true, desc = 'Git hunk last' })
+				map("n", "g[", function()
+					if vim.wo.diff then
+						return "[c"
+					end
+					vim.schedule(function()
+						gs.prev_hunk()
+					end)
+					return "<Ignore>"
+				end, { expr = true, desc = "Git hunk last" })
 
-				map('n', '<leader>gc', function() gs.blame_line({ full=true }) end, { desc = 'Show blame commit' })
-				-- map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'Toggle Git line blame' })
+				map("n", "<leader>gc", function()
+					gs.blame_line()
+				end, { desc = "Show blame commit" })
+				map("n", "<leader>gC", function()
+					gs.blame_line({ full = true })
+				end, { desc = "Show blame commit for block" })
 			end,
 		},
 	},
@@ -119,8 +131,8 @@ return {
 			{ "ct", "<Plug>(git-conflict-theirs)", "theirs" },
 			{ "cb", "<Plug>(git-conflict-both)", "both" },
 			{ "c0", "<Plug>(git-conflict-none)", "none" },
-			{ "[x", "<Plug>(git-conflict-prev-conflict)", "prev conflict" },
-			{ "]x", "<Plug>(git-conflict-next-conflict)", "next conflict" },
+			{ "c[", "<Plug>(git-conflict-prev-conflict)", "prev conflict" },
+			{ "c]", "<Plug>(git-conflict-next-conflict)", "next conflict" },
 		},
 	},
 }

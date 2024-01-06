@@ -1,30 +1,34 @@
 return {
-	git = " ",
 	diagnostics = {
-		Error = "✘", --   ✘
-		Warn = "󰀪", -- 󰀪 󰳤 󱦄 󱗓 
-		Info = "ⁱ", --    ⁱ 󰋼 󰋽
-		Hint = "", --  󰌶 
+		error = "✘", --   ✘
+		warn = "󰀪", -- 󰀪 󰳤 󱦄 󱗓 
+		info = "ⁱ", --    ⁱ 󰋼 󰋽
+		hint = "", --  󰌶 
 	},
-	status = {
-		git = {
-			added = "₊", --  ₊
-			modified = "∗", --  ∗
-			removed = "₋", --  ₋
-		},
-		diagnostics = {
-			error = " ",
-			warn = " ",
-			info = " ",
-			hint = "󰌶 ",
-		},
-		filename = {
-			modified = "+",
-			readonly = "🔒",
-			zoomed = "🔎",
+	buffers = {
+		modified = " 󰇤", -- ● 󰇤
+		alternate_file = "#",
+		directory = "",
+	},
+
+	git = {
+		added = "", --  ₊
+		modified = "", --  ∗
+		removed = "", --  ₋
+		ignored = "",
+		rename = "",
+		diff = "",
+		repo = "",
+		untracked = "",
+		signs = {
+			add = { text = "│" },
+			change = { text = "│" },
+			delete = { text = "┘" },
+			topdelete = { text = "┐" },
+			changedelete = { text = "├" },
+			untracked = { text = "┤" },
 		},
 	},
-	-- Default completion kind symbols.
 	kinds = {
 		Array = "󰅪 ", --  󰅪 󰅨 󱃶
 		Boolean = "◩ ", --  ◩ 󰔡 󱃙 󰟡 󰨙
