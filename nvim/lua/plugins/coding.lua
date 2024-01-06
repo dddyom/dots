@@ -10,11 +10,11 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
+			"lukas-reineke/cmp-under-comparator",
 			{ "saadparwaiz1/cmp_luasnip", dependencies = "L3MON4D3/LuaSnip" },
 		},
 		opts = function()
 			local cmp = require("cmp")
-			local defaults = require("cmp.config.default")()
 			local luasnip = require("luasnip")
 
 			local function has_words_before()
@@ -28,7 +28,18 @@ return {
 
 			return {
 				preselect = cmp.PreselectMode.None,
-				sorting = defaults.sorting,
+				sorting = {
+					comparators = {
+						cmp.config.compare.offset,
+						cmp.config.compare.exact,
+						cmp.config.compare.score,
+						require("cmp-under-comparator").under,
+						cmp.config.compare.kind,
+						cmp.config.compare.sort_text,
+						cmp.config.compare.length,
+						cmp.config.compare.order,
+					},
+				},
 				experimental = {
 					ghost_text = {
 						hl_group = "Comment",
