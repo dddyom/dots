@@ -10,6 +10,9 @@ map("n", "<Right>", "<cmd>vertical resize -1<cr>", { desc = "Resize Window" })
 map({ "n", "v" }, "gh", "0^")
 map({ "n", "v" }, "gl", "$")
 
+map({ "n" }, "hh", "0^")
+map({ "n" }, "ll", "$")
+
 map("n", "]", "n")
 map("n", "[", "N")
 
