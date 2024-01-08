@@ -43,6 +43,12 @@ map("v", "<leader>p", [[cprint(<c-r>")<esc>]], { desc = "print()" })
 map("v", "<leader>P", [[cprint(f'\033[93m{<c-r>"}\033[0m')<esc>]], { desc = "color print" })
 map("v", "<leader>%", [[c{% <c-r>" %}<esc>]], { desc = "jinja func" })
 map("v", "<leader>}", [[c{{ <c-r>" }}<esc>]], { desc = "jinja tag" })
+
+map("v", '<leader>"',
+[[c"""
+<c-r>"
+"""<esc>]], { desc = "triple quotes" })
+
 map("v", "<leader>d", [[:s/^[ \t]*$\n//<CR>]], { desc = "delete empty lines" })
 
 map("n", "<Leader>y", function()
