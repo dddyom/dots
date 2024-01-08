@@ -33,11 +33,11 @@ map("n", "bh", "<cmd>bprevious<cr>", { desc = "previous buffer" })
 map("n", "b]", "<cmd>bnext<cr>", { desc = "next buffer" })
 map("n", "b[", "<cmd>bprevious<cr>", { desc = "previous buffer" })
 map("n", "<m-q>", "<cmd>bd<cr>", { desc = "close current buffer" })
-map("n", "<m-w>", "<cmd>bd<cr>", { desc = "close current buffer" })
 
 map("n", "<leader>\\", "<cmd>vsplit<cr>", { desc = "split window vertically" })
 map("n", "<leader>|", "<cmd>vsplit<cr>", { desc = "split window vertically" })
 map("n", "<leader>-", "<cmd>split<cr>", { desc = "split window horisontally" })
+map("n", "<m-Q>", "<c-w>q", { desc = "close current" })
 
 map("v", "<leader>t", [[c{% trans %}<c-r>"{% endtrans %}<esc>]], { desc = "{% trans %}{% endtrans %}" })
 map("v", "<leader>C", [[cconsole.log(`%c${<c-r>"}`, 'color: red; font-size: larger');<esc>]], { desc = "console.log()" })

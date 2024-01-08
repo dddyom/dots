@@ -36,7 +36,13 @@ return {
 			"n",
 			"<leader>w",
 			'<cmd>lua require("conform").format({ lsp_fallback = true })<cr>',
-			{ noremap = true, silent = true, desc = "Write with formatting" }
+			{ noremap = true, silent = true, desc = "format" }
+		)
+		vim.api.nvim_set_keymap(
+			"n",
+			"<m-w>",
+			'<cmd>lua require("conform").format({ lsp_fallback = true })<cr>',
+			{ noremap = true, silent = true, desc = "format" }
 		)
 	end,
 }
