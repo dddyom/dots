@@ -22,10 +22,15 @@ return {
 	},
 	-----------------------------------------------------------------------------
 	{
-		"backdround/improved-ft.nvim",
+		"ggandor/leap.nvim",
 		config = function()
-			require("improved-ft").setup({ use_default_mappings = true })
+			vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-forward-to)")
+			vim.keymap.set({ "n", "x", "o" }, "S", "<Plug>(leap-backward-to)")
 		end,
+	},
+	{
+		"ggandor/flit.nvim",
+		opts = {},
 	},
 	-----------------------------------------------------------------------------
 	{
