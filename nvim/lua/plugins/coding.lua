@@ -13,6 +13,7 @@ return {
 			"lukas-reineke/cmp-under-comparator",
 			{ "saadparwaiz1/cmp_luasnip", dependencies = "L3MON4D3/LuaSnip" },
 		},
+		event = "BufEnter",
 		opts = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
@@ -167,6 +168,7 @@ return {
 	{
 		"danymat/neogen",
 		-- stylua: ignore
+		event = "BufEnter",
 		keys = {
 			{
 				'<leader>cc',
