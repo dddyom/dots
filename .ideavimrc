@@ -51,9 +51,4 @@ nnoremap N Nzzzv
 nnoremap ] n
 nnoremap [ N
 
-
-nnoremap gh 0^
-nnoremap gl $
-
-
 set ideajoin

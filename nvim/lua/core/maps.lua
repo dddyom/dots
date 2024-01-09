@@ -8,13 +8,11 @@ map("n", "<Left>", "<cmd>vertical resize +1<cr>", { desc = "Resize Window" })
 map("n", "<Right>", "<cmd>vertical resize -1<cr>", { desc = "Resize Window" })
 
 map("n", "]", "n")
-map("n", ";", ":")
 map("n", "[", "N")
+map("n", ";", ":")
 
-map("i", "kj", "<esc>")
-map("i", "jk", "<esc>")
-map("x", "kj", "<esc>")
-map("x", "jk", "<esc>")
+map({"i", "x"}, "kj", "<esc>")
+map({"i", "x"}, "jk", "<esc>")
 
 map("c", "<C-h>", "<Home>")
 map("c", "<C-l>", "<End>")
