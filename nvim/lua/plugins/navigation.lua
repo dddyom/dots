@@ -9,9 +9,7 @@ return {
 		},
 	},
 	-----------------------------------------------------------------------------
-	{
-		"christoomey/vim-tmux-navigator",
-		lazy = false,
+	{ "christoomey/vim-tmux-navigator", lazy = false,
 		-- stylua: ignore
 		keys = {
 			{ '<M-h>', '<cmd>TmuxNavigateLeft<CR>', mode = { 'n', 't' }, silent = true, desc = 'Jump to left pane' },
@@ -24,8 +22,8 @@ return {
 	{
 		"ggandor/leap.nvim",
 		config = function()
-			vim.keymap.set({ "n", "x", "o" }, "c", "<Plug>(leap-forward-to)")
-			vim.keymap.set({ "n", "x", "o" }, "C", "<Plug>(leap-backward-to)")
+			vim.keymap.set({ "n", "x", "o" }, "f", "<Plug>(leap-forward-to)")
+			vim.keymap.set({ "n", "x", "o" }, "F", "<Plug>(leap-backward-to)")
 		end,
 	},
 	{

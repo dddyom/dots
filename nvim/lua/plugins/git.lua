@@ -5,6 +5,7 @@ return {
 		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
 		keys = {
 			{ "<Leader>gh", "<cmd>DiffviewFileHistory<CR>", desc = "Diff File" },
+			{ "<Leader>g", "", desc = "git" },
 			{ "<Leader>gd", "<cmd>DiffviewOpen<CR>", desc = "Diff View" },
 		},
 		opts = function()

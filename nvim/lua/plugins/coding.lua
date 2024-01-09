@@ -171,10 +171,13 @@ return {
 		event = "BufEnter",
 		keys = {
 			{
-				'<leader>cc',
-				function() require('neogen').generate({}) end,
-				desc = 'Neogen Comment',
+				"<leader>cc",
+				function()
+					require("neogen").generate({})
+				end,
+				desc = "doc string",
 			},
+			{ "<leader>c", "", desc = "neogen" },
 		},
 		opts = {
 			snippet_engine = "luasnip",
@@ -276,5 +279,11 @@ return {
 		opts = {
 			lessNotifications = true,
 		},
+	},
+	-----------------------------------------------------------------------------
+	{
+		"gregorias/coerce.nvim",
+		tag = "v0.1.1",
+		config = true,
 	},
 }

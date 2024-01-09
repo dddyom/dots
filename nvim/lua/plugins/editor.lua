@@ -8,7 +8,8 @@ return {
 		opts = {},
 		-- stylua: ignore
 		keys = {
-			{ '<leader>bd', function() require('mini.bufremove').delete(0, false) end, desc = 'Delete Buffer', },
+			{ '<leader>b', function() require('mini.bufremove').delete(0, false) end, desc = 'Buffer', },
+			{ '<leader>bd', function() require('mini.bufremove').delete(0, false) end, desc = 'Delete', },
 		},
 	},
 	-----------------------------------------------------------------------------
@@ -16,7 +17,7 @@ return {
 		"folke/zen-mode.nvim",
 		cmd = "ZenMode",
 		keys = {
-			{ "<Leader>zz", "<cmd>ZenMode<CR>", noremap = true, desc = "Zen Mode" },
+			{ "<Leader>z", "<cmd>ZenMode<CR>", noremap = true, desc = "Zen Mode" },
 		},
 		opts = {
 			plugins = {
@@ -30,6 +31,9 @@ return {
 		"nvim-pack/nvim-spectre",
 		event = "BufRead",
 		init = function()
+			vim.keymap.set("n", "<leader>r", '', {
+				desc = "replace (spectre)",
+			})
 			vim.keymap.set("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
 				desc = "Toggle Spectre",
 			})
