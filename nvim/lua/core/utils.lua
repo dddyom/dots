@@ -84,4 +84,12 @@ M.tmux_session_name = function()
 	return vim.fn.system("tmux display-message -p '#S'"):gsub("\n", "")
 end
 
+M.close = function()
+	if (vim.fn.winnr("$") > 1) then
+    vim.cmd("wincmd c")
+  else
+    vim.cmd("bdelete!")
+	end
+end
+
 return M
