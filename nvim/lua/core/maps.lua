@@ -32,8 +32,8 @@ map("n", "<leader>|", "<cmd>vsplit<cr>", { desc = "split window vertically" })
 map("n", "<leader>-", "<cmd>split<cr>", { desc = "split window horisontally" })
 
 map("v", "<leader>t", [[c{% trans %}<c-r>"{% endtrans %}<esc>]], { desc = "{% trans %}{% endtrans %}" })
-map(
-	"v",
+map( "v", "<leader>c", [[cconsole.warn(<c-r>");<esc>]], { desc = "console.log()" })
+map( "v",
 	"<leader>C",
 	[[cconsole.log(`%c${<c-r>"}`, 'color: red; font-size: larger');<esc>]],
 	{ desc = "console.log()" }

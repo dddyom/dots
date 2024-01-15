@@ -1,5 +1,6 @@
 return {
 	-----------------------------------------------------------------------------
+	"sheerun/vim-polyglot",
 	{ "yamatsum/nvim-cursorline", config = true },
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	-----------------------------------------------------------------------------
@@ -8,7 +9,7 @@ return {
 		opts = {},
 		-- stylua: ignore
 		keys = {
-			{ '<leader>b', function() require('mini.bufremove').delete(0, false) end, desc = 'Buffer', },
+			{ '<leader>b', "", desc = 'Buffer', },
 			{ '<leader>bd', function() require('mini.bufremove').delete(0, false) end, desc = 'Delete', },
 		},
 	},
@@ -31,7 +32,7 @@ return {
 		"nvim-pack/nvim-spectre",
 		event = "BufRead",
 		init = function()
-			vim.keymap.set("n", "<leader>r", '', {
+			vim.keymap.set("n", "<leader>r", "", {
 				desc = "replace (spectre)",
 			})
 			vim.keymap.set("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
