@@ -5,6 +5,13 @@ return {
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	-----------------------------------------------------------------------------
 	{
+		"Wansmer/treesj",
+		keys = { { "<space>j", "<cmd>lua require('treesj').toggle()<cr>", desc = "Split/join" } },
+		config = true,
+		opts = { use_default_keymaps = false },
+	},
+	-----------------------------------------------------------------------------
+	{
 		"echasnovski/mini.bufremove",
 		opts = {},
 		-- stylua: ignore
