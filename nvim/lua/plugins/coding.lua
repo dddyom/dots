@@ -2,6 +2,7 @@ return {
 	-----------------------------------------------------------------------------
 	{ "AndrewRadev/tagalong.vim", event = "BufEnter *.html" },
 	{ "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
+	{ "vidocqh/auto-indent.nvim", opts = {} },
 	-----------------------------------------------------------------------------
 	{
 
