@@ -287,4 +287,9 @@ return {
 		tag = "v0.1.1",
 		config = true,
 	},
+	-----------------------------------------------------------------------------
+	{
+		"chrisgrieser/nvim-puppeteer",
+		lazy = false,
+	},
 }
