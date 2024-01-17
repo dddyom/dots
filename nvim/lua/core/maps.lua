@@ -10,9 +10,10 @@ map("n", "<Right>", "<cmd>vertical resize -1<cr>", { desc = "Resize Window" })
 map("n", "]", "n")
 map("n", "[", "N")
 map("n", ";", ":")
+map({ "n", "x" }, "$", "g_")
 
-map({"i", "x"}, "kj", "<esc>")
-map({"i", "x"}, "jk", "<esc>")
+map({ "i", "x" }, "kj", "<esc>")
+map({ "i", "x" }, "jk", "<esc>")
 
 map("c", "<C-h>", "<Home>")
 map("c", "<C-l>", "<End>")
@@ -31,28 +32,8 @@ map("n", "<leader>\\", "<cmd>vsplit<cr>", { desc = "split window vertically" })
 map("n", "<leader>|", "<cmd>vsplit<cr>", { desc = "split window vertically" })
 map("n", "<leader>-", "<cmd>split<cr>", { desc = "split window horisontally" })
 
-map("v", "<leader>t", [[c{% trans %}<c-r>"{% endtrans %}<esc>]], { desc = "{% trans %}{% endtrans %}" })
-map( "v", "<leader>c", [[cconsole.warn(<c-r>");<esc>]], { desc = "console.log()" })
-map( "v",
-	"<leader>C",
-	[[cconsole.log(`%c${<c-r>"}`, 'color: red; font-size: larger');<esc>]],
-	{ desc = "console.log()" }
-)
-
-map("v", "<leader>p", [[cprint(<c-r>")<esc>]], { desc = "print()" })
-map("v", "<leader>P", [[cprint(f'\033[93m{<c-r>"}\033[0m')<esc>]], { desc = "color print" })
-map("v", "<leader>%", [[c{% <c-r>" %}<esc>]], { desc = "jinja func" })
-map("v", "<leader>}", [[c{{ <c-r>" }}<esc>]], { desc = "jinja tag" })
-
-map(
-	"v",
-	'<leader>"',
-	[[c"""
-<c-r>"
-"""<esc>]],
-	{ desc = "triple quotes" }
-)
-
+map("n", '<leader>"', [[i""""""<esc>hhi<cr><esc>kA<cr>]], { desc = "triple quotes" })
+map("v", '<leader>"', [[c""""""<esc>hhi<cr><esc>i<c-r>"<esc>k$]], { desc = "triple quotes" })
 map("v", "<leader>d", [[:s/^[ \t]*$\n//<CR>]], { desc = "delete empty lines" })
 
 map("n", "<Leader>y", function()

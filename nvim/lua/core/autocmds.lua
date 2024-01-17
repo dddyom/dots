@@ -68,23 +68,59 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-
-
 local opt = vim.opt
 local inoreabbrev = vim.cmd.inoreabbrev
+local map = vim.keymap.set
 vim.api.nvim_create_autocmd("FileType", {
 
 	pattern = "python",
 	callback = function()
 		inoreabbrev("<buffer> true True")
 		inoreabbrev("<buffer> false False")
-
 		opt.shiftwidth = 4
 		opt.tabstop = 4
-		inoreabbrev("<buffer> // #")
-		inoreabbrev("<buffer> -- #")
-		inoreabbrev("<buffer> null None")
-		inoreabbrev("<buffer> none None")
-		inoreabbrev("<buffer> nil None")
+
+		map("v", "<leader>p", [[cprint(<c-r>")<esc>]], { desc = "print()" })
+		map("n", "<leader>p", [[iprint()<esc>i]], { desc = "print()" })
+
+		map("v", "<leader>P", [[cprint(f'\033[93m{<c-r>"}\033[0m')<esc>]], { desc = "color print" })
+		map("n", "<leader>P", [[iprint(f'\033[93m{}\033[0m')<esc>F{a]], { desc = "color print" })
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+
+	pattern = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
+	callback = function()
+		map("v", "<leader>p", [[cconsole.warn(<c-r>")<esc>]], { desc = "console.log()" })
+		map("n", "<leader>p", [[iconsole.warn()<esc>i]], { desc = "log" })
+
+		map(
+			"v",
+			"<leader>P",
+			[[cconsole.log(`%c${<c-r>"}`, 'color: red; font-size: larger')<esc>]],
+			{ desc = "color log" }
+		)
+		map(
+			"n",
+			"<leader>P",
+			[[iconsole.log(`%c${}`, 'color: red; font-size: larger')<esc>F{a]],
+			{ desc = "color log" }
+		)
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+
+	pattern = "html",
+	callback = function()
+		map("v", "<leader>t", [[c{% trans %}<c-r>"{% endtrans %}<esc>]], { desc = "{% trans %}{% endtrans %}" })
+		map("n", "<leader>t", [[i{% trans %}{% endtrans %}<esc>F{i]], { desc = "{% trans %}{% endtrans %}" })
+
+		map("v", "<leader>%", [[c{% <c-r>" %}<esc>]], { desc = "jinja func" })
+		map("n", "<leader>%", [[i{%  %}<esc>hhi]], { desc = "jinja func" })
+
+		map("v", "<leader>}", [[c{{ <c-r>" }}<esc>]], { desc = "jinja tag" })
+		map("n", "<leader>}", [[i{{  }}<esc>hhi]], { desc = "jinja func" })
 	end,
 })
