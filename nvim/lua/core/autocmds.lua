@@ -90,7 +90,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
 
-	pattern = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
+	pattern = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html" },
 	callback = function()
 		map("v", "<leader>p", [[cconsole.warn(<c-r>")<esc>]], { desc = "console.log()" })
 		map("n", "<leader>p", [[iconsole.warn()<esc>i]], { desc = "log" })

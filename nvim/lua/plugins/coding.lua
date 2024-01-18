@@ -86,12 +86,10 @@ return {
 						select = true,
 					}),
 					["<C-Space>"] = cmp.mapping.complete(),
-					["<C-n>"] = cmp.mapping.select_next_item(),
-					["<C-p>"] = cmp.mapping.select_prev_item(),
 					["<C-d>"] = cmp.mapping.select_next_item({ count = 5 }),
 					["<C-u>"] = cmp.mapping.select_prev_item({ count = 5 }),
-					["<C-f>"] = cmp.mapping.scroll_docs(4),
-					["<C-b>"] = cmp.mapping.scroll_docs(-4),
+					["<Down>"] = cmp.mapping.scroll_docs(4),
+					["<Up>"] = cmp.mapping.scroll_docs(-4),
 					["<C-c>"] = function(fallback)
 						cmp.close()
 						fallback()

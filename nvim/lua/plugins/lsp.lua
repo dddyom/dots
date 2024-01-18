@@ -26,7 +26,6 @@ return {
 					"tsserver",
 				},
 			})
-
 			lsp.on_attach(function(_, bufnr)
 				lsp.default_keymaps({ buffer = bufnr })
 			end)
@@ -51,23 +50,22 @@ return {
 					},
 				},
 			})
-			vim.keymap.set("n", "z", function()
-				vim.diagnostic.goto_next()
-			end, { desc = "Next diagnostic", silent = true, nowait = true, noremap = true })
-			vim.keymap.set("n", "Z", function()
-				vim.diagnostic.goto_prev()
-			end, { desc = "prev diagnostic", silent = true, nowait = true, noremap = true })
+			vim.keymap.set("n", "z[", function() vim.diagnostic.goto_prev() end, { desc = "prev diagnostic", silent = true, nowait = true, noremap = true })
+			vim.keymap.set("n", "z]", function() vim.diagnostic.goto_next() end, { desc = "next diagnostic", silent = true, nowait = true, noremap = true })
 			vim.keymap.set("n", "D", function()
-				vim.diagnostic.open_float()
-			end, { desc = "Diagnostic window", silent = true, nowait = true, noremap = true })
+				local diagnostics = vim.diagnostic.get(0, { lnum = vim.api.nvim_win_get_cursor(0)[1] - 1 })
+				if #diagnostics > 0 then
+					vim.diagnostic.open_float()
+				else
+					vim.diagnostic.goto_next()
+				end
+			end, { desc = "Diagnostic float or next diagnostic", silent = true, nowait = true, noremap = true })
 		end,
 	},
 	-----------------------------------------------------------------------------
 	{
 		"Wansmer/symbol-usage.nvim",
 		event = "LspAttach",
-		config = function()
-			require("symbol-usage").setup()
-		end,
+		config = true,
 	},
 }

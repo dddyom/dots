@@ -1,15 +1,16 @@
 local M = {}
 
-M.get_project_name = function(path)
+M.get_project_name = function(source_path)
+	local path = source_path
 	while path and path ~= "" do
 		local git_dir = path .. "/.git"
 		local is_directory = vim.fn.isdirectory(git_dir)
 		if is_directory == 1 then
 			return vim.fn.fnamemodify(path, ":t")
 		end
-		path = path:match("(.*)/[^/]*$") -- Move up one directory level
+		path = path:match("(.*)/[^/]*$")
 	end
-	return path
+	return vim.fn.fnamemodify(source_path, ":t")
 end
 
 local get_commit_time = function(commit_hash)
@@ -85,10 +86,10 @@ M.tmux_session_name = function()
 end
 
 M.close = function()
-	if (vim.fn.winnr("$") > 1) then
-    vim.cmd("wincmd c")
-  else
-    vim.cmd("bdelete!")
+	if vim.fn.winnr("$") > 1 then
+		vim.cmd("wincmd c")
+	else
+		vim.cmd("bdelete!")
 	end
 end
 

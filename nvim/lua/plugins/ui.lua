@@ -55,9 +55,7 @@ return {
 								end
 							end,
 							cond = function()
-								if os.getenv("TMUX") ~= nil then
-									return true
-								end
+								return os.getenv("TMUX") ~= nil
 							end,
 						},
 					},
