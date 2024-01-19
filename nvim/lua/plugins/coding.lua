@@ -3,6 +3,9 @@ return {
 	{ "AndrewRadev/tagalong.vim", event = "BufEnter *.html" },
 	{ "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
 	{ "vidocqh/auto-indent.nvim", opts = {} },
+	{ "chrisgrieser/nvim-recorder", opts = { lessNotifications = true } },
+	{ "gregorias/coerce.nvim", tag = "v0.1.1", config = true },
+	{ "chrisgrieser/nvim-puppeteer", lazy = false },
 	-----------------------------------------------------------------------------
 	{
 
@@ -271,23 +274,5 @@ return {
 				return vim.fn["codeium#Accept"]()
 			end, { expr = true })
 		end,
-	},
-
-	{
-		"chrisgrieser/nvim-recorder",
-		opts = {
-			lessNotifications = true,
-		},
-	},
-	-----------------------------------------------------------------------------
-	{
-		"gregorias/coerce.nvim",
-		tag = "v0.1.1",
-		config = true,
-	},
-	-----------------------------------------------------------------------------
-	{
-		"chrisgrieser/nvim-puppeteer",
-		lazy = false,
 	},
 }

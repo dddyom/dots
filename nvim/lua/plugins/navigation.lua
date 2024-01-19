@@ -1,5 +1,6 @@
 return {
 	"kshenoy/vim-signature",
+	{ "otavioschwanck/arrow.nvim", opts = { show_icons = true, leader_key = "m" } },
 	-----------------------------------------------------------------------------
 	{
 		"stevearc/oil.nvim",
@@ -9,7 +10,9 @@ return {
 		},
 	},
 	-----------------------------------------------------------------------------
-	{ "christoomey/vim-tmux-navigator", lazy = false,
+	{
+		"christoomey/vim-tmux-navigator",
+		lazy = false,
 		-- stylua: ignore
 		keys = {
 			{ '<M-h>', '<cmd>TmuxNavigateLeft<CR>', mode = { 'n', 't' }, silent = true, desc = 'Jump to left pane' },
@@ -26,10 +29,7 @@ return {
 			vim.keymap.set({ "n", "x", "o" }, "F", "<Plug>(leap-backward-to)")
 		end,
 	},
-	{
-		"ggandor/flit.nvim",
-		opts = {},
-	},
+	{ "ggandor/flit.nvim", opts = {} },
 	-----------------------------------------------------------------------------
 	{
 		"ibhagwan/fzf-lua",
@@ -45,14 +45,6 @@ return {
 			{ "gd", "<cmd>lua require('fzf-lua').lsp_definitions({jump_to_single_result = true})<CR>", desc = "Lsp definitions" },
 			{ "<leader>fr", "<cmd>lua require('fzf-lua').lsp_references({jump_to_single_result = true})<CR>", desc = "Lsp references" },
 			{ "<leader>fa", "<cmd>lua require('fzf-lua').lsp_code_actions()<CR>", desc = "Lsp code actions" },
-		},
-	},
-	-----------------------------------------------------------------------------
-	{
-		"otavioschwanck/arrow.nvim",
-		opts = {
-			show_icons = true,
-			leader_key = "m",
 		},
 	},
 }

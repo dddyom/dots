@@ -32,7 +32,6 @@ return {
 			lsp.set_sign_icons(require("core.icons").diagnostics)
 
 			require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
-			lsp.setup()
 			require("lspconfig").pyright.setup({
 				settings = {
 					python = {
@@ -50,8 +49,14 @@ return {
 					},
 				},
 			})
-			vim.keymap.set("n", "z[", function() vim.diagnostic.goto_prev() end, { desc = "prev diagnostic", silent = true, nowait = true, noremap = true })
-			vim.keymap.set("n", "z]", function() vim.diagnostic.goto_next() end, { desc = "next diagnostic", silent = true, nowait = true, noremap = true })
+			lsp.setup()
+
+			vim.keymap.set("n", "z[", function()
+				vim.diagnostic.goto_prev()
+			end, { desc = "prev diagnostic", silent = true, nowait = true, noremap = true })
+			vim.keymap.set("n", "z]", function()
+				vim.diagnostic.goto_next()
+			end, { desc = "next diagnostic", silent = true, nowait = true, noremap = true })
 			vim.keymap.set("n", "D", function()
 				local diagnostics = vim.diagnostic.get(0, { lnum = vim.api.nvim_win_get_cursor(0)[1] - 1 })
 				if #diagnostics > 0 then
@@ -63,9 +68,5 @@ return {
 		end,
 	},
 	-----------------------------------------------------------------------------
-	{
-		"Wansmer/symbol-usage.nvim",
-		event = "LspAttach",
-		config = true,
-	},
+	{ "Wansmer/symbol-usage.nvim", event = "LspAttach", config = true },
 }

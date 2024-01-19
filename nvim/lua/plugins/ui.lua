@@ -115,8 +115,6 @@ return {
 				},
 			},
 		},
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-		},
+		dependencies = { "MunifTanjim/nui.nvim" },
 	},
 }

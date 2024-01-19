@@ -2,6 +2,7 @@ return {
 	-----------------------------------------------------------------------------
 	"sheerun/vim-polyglot",
 	{ "yamatsum/nvim-cursorline", config = true },
+	{ "vladdoster/remember.nvim", config = true },
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	-----------------------------------------------------------------------------
 	{
@@ -54,12 +55,6 @@ return {
 			vim.keymap.set("n", "<leader>rr", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
 				desc = "Search on current file",
 			})
-		end,
-	},
-	{
-		"vladdoster/remember.nvim",
-		config = function()
-			require("remember")
 		end,
 	},
 }
