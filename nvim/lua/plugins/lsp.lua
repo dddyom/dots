@@ -30,9 +30,10 @@ return {
 				lsp.default_keymaps({ buffer = bufnr })
 			end)
 			lsp.set_sign_icons(require("core.icons").diagnostics)
+			local lspconfig = require("lspconfig")
 
-			require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
-			require("lspconfig").pyright.setup({
+			lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
+			lspconfig.pyright.setup({
 				settings = {
 					python = {
 						analysis = {
@@ -48,6 +49,7 @@ return {
 						},
 					},
 				},
+				root_dir = lspconfig.util.root_pattern("pyproject.toml", ".git", "setup.py"),
 			})
 			lsp.setup()
 
