@@ -6,12 +6,16 @@ alias c="cd"
 alias c.="cd $HOME/code/dots/"
 alias cc="cd $HOME/code/"
 alias so.="source $HOME/.zshrc"
-alias v="nvim" 
-alias vi="nvim" 
-alias env="nvim .env" 
-alias venv="source venv/bin/activate" 
-alias off="shutdown now" 
-alias t="tmuxifier" 
+alias v="nvim"
+alias vi="nvim"
+alias env="nvim .env"
+alias venv="source venv/bin/activate"
+alias off="shutdown now"
+alias t="tmuxifier"
 alias merge="git mergetool"
-alias qq="tmuxifier load-session qq"
-alias dots="tmuxifier load-session dots"
+
+tmuxifier list-sessions | while read -r session; do
+    cmd_string=$(printf "alias %s='tmuxifier load-session %s'" "$session" "$session")
+    eval $cmd_string
+done
+
