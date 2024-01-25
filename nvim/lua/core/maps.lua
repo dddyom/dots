@@ -55,6 +55,8 @@ map("x", "P", 'P:let @+=@0<CR>:let @"=@0<CR>', { silent = true, desc = "Paste In
 map("x", "<Tab>", ">gv|", { desc = "Indent Left" })
 map("x", "<S-Tab>", "<gv", { desc = "Indent Right" })
 
+map("n", "<TAB>", "<C-^>", { desc = "Prev buffer" })
+
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear Search Highlight" })
 map("n", "\\", "m", { desc = "set mark" })
 
