@@ -8,6 +8,7 @@
 [ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"
 [ -d "$HOME/.local/share/JetBrains/Toolbox/scripts" ] && PATH="$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
 [ -d "$HOME/.tmuxifier/bin" ] && PATH="$HOME/.tmuxifier/bin:$PATH"; eval "$(tmuxifier init -)"
+[ -d "$HOME/.yarn/bin" ] && PATH="$HOME/.yarn/bin:$PATH";
 
 export PATH=$PATH
 export EDITOR=nvim
