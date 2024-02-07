@@ -86,11 +86,20 @@ M.tmux_session_name = function()
 end
 
 M.close = function()
-	if vim.fn.winnr("$") > 1 then
-		vim.cmd("wincmd c")
-	else
-		vim.cmd("bdelete!")
-	end
+  local bufs = vim.api.nvim_list_bufs()
+  local active_bufs = {}
+
+  for _, buf in ipairs(bufs) do
+    if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_is_valid(buf) then
+      table.insert(active_bufs, buf)
+    end
+  end
+
+  if #active_bufs > 1 then
+    vim.cmd('bd')
+  else
+    vim.cmd('q')
+  end
 end
 
 return M

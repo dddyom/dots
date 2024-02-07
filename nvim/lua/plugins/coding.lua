@@ -275,4 +275,5 @@ return {
 			end, { expr = true })
 		end,
 	},
+	{ "klen/nvim-test", config = true, },
 }
