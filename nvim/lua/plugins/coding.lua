@@ -275,5 +275,15 @@ return {
 			end, { expr = true })
 		end,
 	},
-	{ "klen/nvim-test", config = true, },
+	{
+		"klen/nvim-test",
+		config = true,
+		keys = {
+			{ "<leader>tf", "<cmd>TestFile<cr>", desc = "Test File" },
+			{ "<leader>tt", "<cmd>TestSuite<cr>", desc = "Test Suite" },
+			{ "<leader>tl", "<cmd>TestLast<cr>", desc = "Test Last" },
+			{ "<leader>tg", "<cmd>TestVisit<cr>", desc = "Test Visit" },
+			{ "<leader>tn", "<cmd>TestNearest<cr>", desc = "Test Nearest" },
+		},
+	},
 }
