@@ -26,10 +26,6 @@ map("c", "<C-j>", "<Down>")
 
 map("n", "L", "<cmd>bnext<cr>", { desc = "next buffer" })
 map("n", "H", "<cmd>bprevious<cr>", { desc = "previous buffer" })
-map("n", "bl", "<cmd>bnext<cr>", { desc = "next buffer" })
-map("n", "bh", "<cmd>bprevious<cr>", { desc = "previous buffer" })
-map("n", "b]", "<cmd>bnext<cr>", { desc = "next buffer" })
-map("n", "b[", "<cmd>bprevious<cr>", { desc = "previous buffer" })
 map("n", "<m-q>", "<cmd>lua require('core.utils').close()<cr>", { desc = "close current buffer" })
 
 map("n", "<leader>\\", "<cmd>vsplit<cr>", { desc = "split window vertically" })
