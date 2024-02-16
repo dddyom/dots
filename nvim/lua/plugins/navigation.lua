@@ -4,7 +4,18 @@ return {
 	-----------------------------------------------------------------------------
 	{
 		"stevearc/oil.nvim",
-		config = true,
+		dependencies = { "SirZenith/oil-vcs-status" },
+		config = function()
+			require("oil").setup({
+				win_options = {
+					signcolumn = "number",
+				},
+			})
+			require("oil-vcs-status").setup({
+				status_symbol = require("core.icons").git,
+        status_hl_group = require("core.colors").oil_vcs_status,
+			})
+		end,
 		keys = {
 			{ "``", "<CMD>lua require('oil').open_float()<CR>", desc = "Open Oil" },
 		},

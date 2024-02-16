@@ -1,0 +1,26 @@
+return {
+	oil_vcs_status = {
+		added = "GitSignsAddLn",
+		copied = "DiffAdd",
+		deleted = "GitSignsDeleteLn",
+		ignored = "DiffText",
+		modified = "GitSignsChange",
+		renamed = "DiffChange",
+		typechanged = "DiffChange",
+		unmodified = "DiffText",
+		unmerged = "DiffAdd",
+		untracked = "GitSignsChange",
+		external = "DiffChange",
+
+		upstream_added = "GitSignsAddLn",
+		upstream_copied = "DiffAdd",
+		upstream_deleted = "GitSignsDeleteLn",
+		upstream_ignored = "DiffText",
+		upstream_modified = "GitSignsChange",
+		upstream_renamed = "DiffChange",
+		upstream_typechanged = "DiffChange",
+		upstream_unmodified = "DiffText",
+		upstream_unmerged = "DiffAdd",
+		upstream_untracked = "GitSignsChange",
+	},
+}
