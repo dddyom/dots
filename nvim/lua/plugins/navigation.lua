@@ -13,7 +13,7 @@ return {
 			})
 			require("oil-vcs-status").setup({
 				status_symbol = require("core.icons").git,
-        status_hl_group = require("core.colors").oil_vcs_status,
+				status_hl_group = require("core.colors").oil_vcs_status,
 			})
 		end,
 		keys = {
@@ -34,13 +34,15 @@ return {
 	},
 	-----------------------------------------------------------------------------
 	{
-		"ggandor/leap.nvim",
-		config = function()
-			vim.keymap.set({ "n", "x", "o" }, "f", "<Plug>(leap-forward-to)")
-			vim.keymap.set({ "n", "x", "o" }, "F", "<Plug>(leap-backward-to)")
-		end,
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		opts = {},
+  -- stylua: ignore
+		keys = {
+			{ "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+		},
 	},
-	{ "ggandor/flit.nvim", opts = {} },
 	-----------------------------------------------------------------------------
 	{
 		"ibhagwan/fzf-lua",

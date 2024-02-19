@@ -60,7 +60,7 @@ return {
 		},
 	},
 	colors = {
-		cursor_bg = "#FFCC66",
+		cursor_bg = "#F07178",
 		cursor_fg = "#0A0E14",
 	},
 }
