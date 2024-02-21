@@ -71,7 +71,7 @@ return {
 						},
 					},
 					lualine_b = { { "filename", path = 1 } },
-					lualine_y = { require("recorder").recordingStatus },
+					lualine_y = { require("recorder").recordingStatus, require("recorder").displaySlots },
 					lualine_z = { "branch", "searchcount" },
 				},
 				winbar = {
