@@ -12,8 +12,8 @@ map("n", "[", "N")
 map("n", ";", ":")
 map({ "n", "x" }, "$", "g_")
 
-map({ "i", "x" }, "kj", "<esc>")
-map({ "i", "x" }, "jk", "<esc>")
+map({ "x" }, "kj", "<esc>")
+map({ "x" }, "jk", "<esc>")
 
 map("c", "<C-^>", "<Home>")
 map("c", "<C-4>", "<End>")

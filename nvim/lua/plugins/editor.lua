@@ -57,12 +57,16 @@ return {
 			})
 		end,
 	},
+	-----------------------------------------------------------------------------
 	{
 		"nil70n/floating-help",
-		-- optional
-		opts = {
-			border = "double",
-			ratio = 0.8,
-		},
+		opts = { border = "double", ratio = 0.8 },
+	},
+	-----------------------------------------------------------------------------
+	{
+		"max397574/better-escape.nvim",
+		config = function()
+			require("better_escape").setup({ mapping = { "jk", "jj", "kk", "kj" } })
+		end,
 	},
 }
