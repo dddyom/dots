@@ -9,7 +9,6 @@ return {
 	{
 		"chrisgrieser/nvim-recorder",
 		opts = {
-			lessNotifications = true,
 			mapping = {
 				startStopRecording = "<leader>q",
 				playMacro = "@q",

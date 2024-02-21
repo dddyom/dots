@@ -10,7 +10,13 @@ return {
 		alternate_file = "#",
 		directory = "",
 	},
-
+	notify = {
+		DEBUG = "",
+		ERROR = "",
+		INFO = "",
+		TRACE = "✎",
+		WARN = "",
+	},
 	git = {
 		added = "", --  ₊
 		copied = "󰆏",

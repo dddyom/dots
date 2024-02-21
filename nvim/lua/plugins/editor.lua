@@ -61,8 +61,8 @@ return {
 		"nil70n/floating-help",
 		-- optional
 		opts = {
-			border = "single",
-			ratio = 0.6,
+			border = "double",
+			ratio = 0.8,
 		},
 	},
 }

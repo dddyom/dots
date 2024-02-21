@@ -71,7 +71,7 @@ return {
 						},
 					},
 					lualine_b = { { "filename", path = 1 } },
-					lualine_y = { require("recorder").recordingStatus, require("recorder").displaySlots },
+					lualine_y = { require("recorder").recordingStatus },
 					lualine_z = { "branch", "searchcount" },
 				},
 				winbar = {
@@ -116,5 +116,22 @@ return {
 			},
 		},
 		dependencies = { "MunifTanjim/nui.nvim" },
+	},
+	{
+		"rcarriga/nvim-notify",
+
+		opts = {
+			icons = require("core.icons").notify,
+			level = 2,
+			minimum_width = 50,
+			render = "compact",
+			stages = "static",
+			time_formats = {
+				notification = "%T",
+				notification_history = "%FT%T",
+			},
+			timeout = 1000,
+			top_down = false,
+		},
 	},
 }
