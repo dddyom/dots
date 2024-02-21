@@ -9,3 +9,4 @@ plug 'zap-zsh/supercharge'
 plug "zap-zsh/exa"
 plug "hlissner/zsh-autopair"
 plug "MichaelAquilina/zsh-you-should-use"
+plug "Aloxaf/fzf-tab"
