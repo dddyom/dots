@@ -85,21 +85,4 @@ M.tmux_session_name = function()
 	return vim.fn.system("tmux display-message -p '#S'"):gsub("\n", "")
 end
 
-M.close = function()
-  local bufs = vim.api.nvim_list_bufs()
-  local active_bufs = {}
-
-  for _, buf in ipairs(bufs) do
-    if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_is_valid(buf) then
-      table.insert(active_bufs, buf)
-    end
-  end
-
-  if #active_bufs > 1 then
-    vim.cmd('bd')
-  else
-    vim.cmd('q')
-  end
-end
-
 return M
