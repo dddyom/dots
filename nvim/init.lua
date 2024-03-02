@@ -19,3 +19,4 @@ require("core.autocmds")
 
 -- LOAD PLUGINS
 require("lazy").setup("plugins")
+require("core.intro")
