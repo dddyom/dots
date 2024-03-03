@@ -4,8 +4,6 @@
 pulseaudio --start &
 picom -b &
 sxhkd &
-setxkbmap -layout us,ru
-setxkbmap -option grp:win_space_toggle
 nitrogen --set-scaled ~/.config/wallpapers/2.png
 $HOME/.config/polybar/launch.sh &
 pgrep -x sxhkd > /dev/null || sxhkd &

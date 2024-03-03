@@ -46,7 +46,7 @@ vim.api.nvim_create_autocmd("VimResized", {
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup("close_with_q"),
 	pattern = {
-		"",
+		"toggleterm",
 		"blame",
 		"checkhealth",
 		"fugitive",
@@ -93,19 +93,19 @@ vim.api.nvim_create_autocmd("FileType", {
 
 	pattern = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html" },
 	callback = function()
-		map("v", "<leader>p", [[cconsole.warn(<c-r>")<esc>]], { desc = "console.log()" })
-		map("n", "<leader>p", [[iconsole.warn()<esc>i]], { desc = "log" })
+		map("v", "<leader>p", [[cconsole.log(<c-r>")<esc>]], { desc = "console.log()" })
+		map("n", "<leader>p", [[iconsole.log()<esc>i]], { desc = "log" })
 
 		map(
 			"v",
 			"<leader>P",
-			[[cconsole.log(`%c${<c-r>"}`, 'color: red; font-size: larger')<esc>]],
+			[[cconsole.warn(<c-r>")<esc>]],
 			{ desc = "color log" }
 		)
 		map(
 			"n",
 			"<leader>P",
-			[[iconsole.log(`%c${}`, 'color: red; font-size: larger')<esc>F{a]],
+			[[iconsole.warn()<esc>F(a]],
 			{ desc = "color log" }
 		)
 	end,

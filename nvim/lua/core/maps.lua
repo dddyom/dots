@@ -62,8 +62,6 @@ map("n", "\\", "m", { desc = "set mark" })
 
 map({ "n", "x" }, "<BS>", "%", { remap = true, desc = "Jump to Paren" })
 
-map("n", "!", ":sp term://", { desc = "Execute Shell Command" })
-
 map("c", "<Up>", "<C-p>")
 map("c", "<Down>", "<C-n>")
 

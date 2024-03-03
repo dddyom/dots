@@ -7,6 +7,13 @@ return {
 	{ "chrisgrieser/nvim-puppeteer", lazy = false },
 	-----------------------------------------------------------------------------
 	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		config = true,
+		keys = { { "!", "<cmd>ToggleTerm<CR>", desc = "Toggle terminal" } },
+	},
+	-----------------------------------------------------------------------------
+	{
 		"chrisgrieser/nvim-recorder",
 		opts = {
 			mapping = {
@@ -290,13 +297,14 @@ return {
 	},
 	{
 		"klen/nvim-test",
-		config = true,
+		config = function()
+			require("nvim-test").setup({ term = "toggleterm" })
+		end,
 		keys = {
 			{ "<leader>tf", "<cmd>TestFile<cr>", desc = "Test File" },
-			{ "<leader>tt", "<cmd>TestSuite<cr>", desc = "Test Suite" },
+			{ "<leader>ta", "<cmd>TestSuite<cr>", desc = "Test all" },
 			{ "<leader>tl", "<cmd>TestLast<cr>", desc = "Test Last" },
-			{ "<leader>tg", "<cmd>TestVisit<cr>", desc = "Test Visit" },
-			{ "<leader>tn", "<cmd>TestNearest<cr>", desc = "Test Nearest" },
+			{ "<leader>tt", "<cmd>TestNearest<cr>", desc = "Test current" },
 		},
 	},
 }
