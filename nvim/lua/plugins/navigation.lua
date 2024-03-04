@@ -10,6 +10,11 @@ return {
 				win_options = {
 					signcolumn = "number",
 				},
+				view_options = {
+					is_always_hidden = function(name, bufnr)
+						return name == ".." or name == '__pycache__'
+					end,
+				},
 			})
 			require("oil-vcs-status").setup({
 				status_symbol = require("core.icons").git,
