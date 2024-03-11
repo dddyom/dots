@@ -15,7 +15,6 @@ return {
 	{
 		"echasnovski/mini.bufremove",
 		opts = {},
-		-- stylua: ignore
 		keys = {
 			{ '<leader>b', "", desc = 'Buffer', },
 			{ '<leader>bd', function() require('mini.bufremove').delete(0, false) end, desc = 'Delete', },
@@ -67,6 +66,16 @@ return {
 		"max397574/better-escape.nvim",
 		config = function()
 			require("better_escape").setup({ mapping = { "jk", "jj", "kk", "kj" } })
+		end,
+	},
+	-----------------------------------------------------------------------------
+	{
+		"bloznelis/before.nvim",
+		config = function()
+			local before = require("before")
+			before.setup()
+			vim.keymap.set("n", "<C-o>", before.jump_to_last_edit, {})
+			vim.keymap.set("n", "<C-i>", before.jump_to_next_edit, {})
 		end,
 	},
 }
