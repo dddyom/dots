@@ -2,7 +2,7 @@
 DOTS_DIR=$HOME/code/dots
 CONF_DIR=$HOME/.config
 
-DOTS_FOR_CONF_DIR=(
+CONF_DIR_DOTS=(
 	"nvim"
 	"wezterm"
   "tmux"
@@ -15,18 +15,18 @@ DOTS_FOR_CONF_DIR=(
   "sxhkd"
 )
 
-DOTS_FOR_HOME_DIR=(
+HOME_DIR_DOTS=(
   ".zsh"
   ".zshrc"
   ".ideavimrc"
 )
 
-for dot in "${DOTS_FOR_CONF_DIR[@]}";do
+for dot in "${CONF_DIR_DOTS[@]}";do
 	rm -rf "${CONF_DIR}/${dot}"
 	ln -sf "${DOTS_DIR}/${dot}" "${CONF_DIR}/${dot}"
 done
 
-for dot in "${DOTS_FOR_HOME_DIR[@]}";do
+for dot in "${HOME_DIR_DOTS[@]}";do
 	rm -rf "${HOME}/${dot}"
 	ln -sf "${DOTS_DIR}/${dot}" "${HOME}/${dot}"
 done
