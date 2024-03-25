@@ -21,8 +21,7 @@ return {
 				ensure_installed = {
 					"emmet_language_server",
 					"lua_ls",
-					"pyright",
-					"sqlls",
+					"basedpyright",
 					"tsserver",
 				},
 			})
@@ -33,7 +32,14 @@ return {
 			local lspconfig = require("lspconfig")
 
 			lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
-			lspconfig.pyright.setup({
+			lspconfig.basedpyright.setup({
+				settings = {
+					basedpyright = {
+						typeCheckingMode = "standard",
+					},
+				},
+			})
+			--[[ lspconfig.pyright.setup({
 				settings = {
 					python = {
 						analysis = {
@@ -50,7 +56,7 @@ return {
 					},
 				},
 				root_dir = lspconfig.util.root_pattern("pyproject.toml", ".git", "setup.py"),
-			})
+			}) ]]
 			lsp.setup()
 
 			vim.keymap.set("n", "z[", function()
