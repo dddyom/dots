@@ -144,6 +144,7 @@ M.log_print = function(mode)
 
 	if mode == "v" then
 		vim.cmd("normal! P")
+		vim.cmd("normal! I ")
 	else
 		vim.cmd("startinsert")
 	end
