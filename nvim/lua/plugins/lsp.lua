@@ -77,5 +77,4 @@ return {
 	},
 	-----------------------------------------------------------------------------
 	{ "Wansmer/symbol-usage.nvim", event = "LspAttach", config = true },
-	{ "LukasPietzschmann/boo.nvim", opts = {}, keys = { { "K", "<cmd>lua require('boo').boo()<cr>", desc = "Boo" } } },
 }

@@ -80,34 +80,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		inoreabbrev("<buffer> false False")
 		opt.shiftwidth = 4
 		opt.tabstop = 4
-
-		map("v", "<leader>p", [[cprint(<c-r>")<esc>]], { desc = "print()" })
-		map("n", "<leader>p", [[iprint()<esc>i]], { desc = "print()" })
-
-		map("v", "<leader>P", [[cprint(f'\033[93m{<c-r>"}\033[0m')<esc>]], { desc = "color print" })
-		map("n", "<leader>P", [[iprint(f'\033[93m{}\033[0m')<esc>F{a]], { desc = "color print" })
-	end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-
-	pattern = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html" },
-	callback = function()
-		map("v", "<leader>p", [[cconsole.log(<c-r>")<esc>]], { desc = "console.log()" })
-		map("n", "<leader>p", [[iconsole.log()<esc>i]], { desc = "log" })
-
-		map(
-			"v",
-			"<leader>P",
-			[[cconsole.warn(<c-r>")<esc>]],
-			{ desc = "color log" }
-		)
-		map(
-			"n",
-			"<leader>P",
-			[[iconsole.warn()<esc>F(a]],
-			{ desc = "color log" }
-		)
 	end,
 })
 

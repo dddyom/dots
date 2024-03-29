@@ -72,3 +72,7 @@ vim.cmd.cnoreabbrev("WQ", "wq")
 vim.cmd.cnoreabbrev("Qa", "qa")
 vim.cmd.cnoreabbrev("Bd", "bd")
 vim.cmd.cnoreabbrev("bD", "bd")
+-- stylua: ignore
+map("n", "<leader>p", "<cmd>lua require('core.utils').log_print()<CR>", { noremap = true, silent = true, desc = "Print" })
+-- stylua: ignore
+map("v", "<leader>p", "<cmd>lua require('core.utils').log_print('v')<CR>", { noremap = true, silent = true, desc = "Print" })
