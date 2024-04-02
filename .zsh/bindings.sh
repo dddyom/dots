@@ -12,4 +12,3 @@ bindkey '^A' autosuggest-accept
 
 
 bindkey -s '^W' 'file=$(fzf) ; [[ ! -z $file ]] && nvim $file^M'
-bindkey -s '^T' 'session=$(tmuxifier list-sessions | fzf) ; [[ ! -z $session ]] && tmuxifier load-session $session ^M'

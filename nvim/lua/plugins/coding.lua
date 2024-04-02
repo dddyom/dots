@@ -301,12 +301,14 @@ return {
 	},
 	-----------------------------------------------------------------------------
 	{
-		"Exafunction/codeium.vim",
+		"monkoose/neocodeium",
+		event = "VeryLazy",
 		config = function()
-			vim.g.codeium_disable_bindings = 1
-			vim.keymap.set("i", "<c-a>", function()
-				return vim.fn["codeium#Accept"]()
-			end, { expr = true })
+			local neocodeium = require("neocodeium")
+			neocodeium.setup()
+			vim.keymap.set("i", "<c-a>", neocodeium.complete)
+			vim.keymap.set("i", "<c-s-a>", neocodeium.complete_word)
+			-- vim.keymap.set("i", "<A-w>", neocodeium.complete_line)
 		end,
 	},
 	{

@@ -12,5 +12,4 @@
 export PATH=$PATH
 export EDITOR=nvim
 
-export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
 export WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
