@@ -1,5 +1,6 @@
 return {
 	-----------------------------------------------------------------------------
+	"gennaro-tedesco/nvim-peekup",
 	"sheerun/vim-polyglot",
 	{ "yamatsum/nvim-cursorline", config = true },
 	{ "vladdoster/remember.nvim", config = true },
@@ -16,8 +17,14 @@ return {
 		"echasnovski/mini.bufremove",
 		opts = {},
 		keys = {
-			{ '<leader>b', "", desc = 'Buffer', },
-			{ '<leader>bd', function() require('mini.bufremove').delete(0, false) end, desc = 'Delete', },
+			{ "<leader>b", "", desc = "Buffer" },
+			{
+				"<leader>bd",
+				function()
+					require("mini.bufremove").delete(0, false)
+				end,
+				desc = "Delete",
+			},
 		},
 	},
 	-----------------------------------------------------------------------------
@@ -78,4 +85,5 @@ return {
 			vim.keymap.set("n", "<C-i>", before.jump_to_next_edit, {})
 		end,
 	},
+	-----------------------------------------------------------------------------
 }
