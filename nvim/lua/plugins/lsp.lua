@@ -36,6 +36,12 @@ return {
 				settings = {
 					basedpyright = {
 						typeCheckingMode = "standard",
+						analysis = {
+							diagnosticSeverityOverrides = {
+								reportAssignmentType = "none",
+								reportIncompatibleMethodOverride = "none",
+							},
+						},
 					},
 				},
 			})
