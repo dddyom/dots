@@ -305,10 +305,10 @@ return {
 		event = "VeryLazy",
 		config = function()
 			local neocodeium = require("neocodeium")
-			neocodeium.setup()
-			vim.keymap.set("i", "<c-a>", neocodeium.complete)
-			vim.keymap.set("i", "<c-s-a>", neocodeium.complete_word)
-			-- vim.keymap.set("i", "<A-w>", neocodeium.complete_line)
+			neocodeium.setup({ silent = true })
+			vim.keymap.set("i", "<c-a>", neocodeium.accept)
+			vim.keymap.set("i", "<c-w>", neocodeium.accept_word)
+			vim.keymap.set("i", "<c-e>", neocodeium.accept_line)
 		end,
 	},
 	{
