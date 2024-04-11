@@ -16,8 +16,8 @@ return {
 					vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
 				end,
 			})
-			vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
 		end,
+		keys = { { "<leader>a", "<cmd>AerialToggle!<CR>", desc = "Show code structure" } },
 	},
 	-----------------------------------------------------------------------------
 	{
@@ -310,6 +310,9 @@ return {
 			vim.keymap.set("i", "<c-w>", neocodeium.accept_word)
 			vim.keymap.set("i", "<c-e>", neocodeium.accept_line)
 		end,
+		keys = {
+			{ "<leader>x", "<cmd>NeoCodeium toggle<cr>", desc = "Toggle codeium" },
+		},
 	},
 	{
 		"klen/nvim-test",
@@ -317,6 +320,7 @@ return {
 			require("nvim-test").setup({ term = "toggleterm" })
 		end,
 		keys = {
+			{ "<leader>t", "", desc = "Tests" },
 			{ "<leader>tf", "<cmd>TestFile<cr>", desc = "Test File" },
 			{ "<leader>ta", "<cmd>TestSuite<cr>", desc = "Test all" },
 			{ "<leader>tl", "<cmd>TestLast<cr>", desc = "Test Last" },
