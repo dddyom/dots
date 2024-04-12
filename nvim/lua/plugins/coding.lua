@@ -309,10 +309,16 @@ return {
 			vim.keymap.set("i", "<c-a>", neocodeium.accept)
 			vim.keymap.set("i", "<c-w>", neocodeium.accept_word)
 			vim.keymap.set("i", "<c-e>", neocodeium.accept_line)
+
+			local toggle = function()
+				require("neocodeium.commands").toggle()
+
+				local is_enabled = require("neocodeium.options").options.enabled
+				local message = "AI completion " .. (is_enabled and "enabled" or "disabled") .. "."
+				vim.notify(message, vim.log.levels.INFO, { title = "NeoCodeium" })
+			end
+			vim.keymap.set("n", "<leader>x", toggle, { desc = "Toggle neocodeium" })
 		end,
-		keys = {
-			{ "<leader>x", "<cmd>NeoCodeium toggle<cr>", desc = "Toggle codeium" },
-		},
 	},
 	{
 		"klen/nvim-test",
