@@ -3,6 +3,7 @@ return {
 	{ "AndrewRadev/tagalong.vim", event = "BufEnter *.html" },
 	{ "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
 	{ "vidocqh/auto-indent.nvim", opts = {} },
+	"Vimjas/vim-python-pep8-indent",
 	{ "gregorias/coerce.nvim", tag = "v0.1.1", config = true },
 	{ "chrisgrieser/nvim-puppeteer", lazy = false },
 	-----------------------------------------------------------------------------
@@ -320,6 +321,7 @@ return {
 			vim.keymap.set("n", "<leader>x", toggle, { desc = "Toggle neocodeium" })
 		end,
 	},
+	-----------------------------------------------------------------------------
 	{
 		"klen/nvim-test",
 		config = function()
@@ -332,5 +334,6 @@ return {
 			{ "<leader>tl", "<cmd>TestLast<cr>", desc = "Test Last" },
 			{ "<leader>tt", "<cmd>TestNearest<cr>", desc = "Test current" },
 		},
+		-----------------------------------------------------------------------------
 	},
 }
