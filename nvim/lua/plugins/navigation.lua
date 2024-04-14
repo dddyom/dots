@@ -1,6 +1,5 @@
 return {
-	"kshenoy/vim-signature",
-	{ "otavioschwanck/arrow.nvim", opts = { show_icons = true, leader_key = "m" } },
+	{ "otavioschwanck/arrow.nvim", opts = { show_icons = true } },
 	-----------------------------------------------------------------------------
 	{
 		"stevearc/oil.nvim",
@@ -12,7 +11,7 @@ return {
 				},
 				view_options = {
 					is_always_hidden = function(name, bufnr)
-						return name == ".." or name == '__pycache__'
+						return name == ".." or name == "__pycache__"
 					end,
 				},
 			})
