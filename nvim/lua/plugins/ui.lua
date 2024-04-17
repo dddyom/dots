@@ -143,4 +143,9 @@ return {
 			top_down = false,
 		},
 	},
+	{
+		"NStefan002/screenkey.nvim",
+		cmd = "Screenkey",
+		config = true,
+	},
 }
