@@ -3,7 +3,7 @@ return {
 	{
 		"gennaro-tedesco/nvim-peekup",
 		config = function()
-			require("nvim-peekup.config").on_keystroke["paste_reg"] = '+'
+			require("nvim-peekup.config").on_keystroke["paste_reg"] = "+"
 		end,
 	},
 
@@ -11,6 +11,13 @@ return {
 	{ "yamatsum/nvim-cursorline", config = true },
 	{ "vladdoster/remember.nvim", config = true },
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+	-----------------------------------------------------------------------------
+	{
+		"yorickpeterse/nvim-tree-pairs",
+		config = function()
+			require("tree-pairs").setup()
+		end,
+	},
 	-----------------------------------------------------------------------------
 	{
 		"Wansmer/treesj",
