@@ -13,13 +13,6 @@ return {
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	-----------------------------------------------------------------------------
 	{
-		"yorickpeterse/nvim-tree-pairs",
-		config = function()
-			require("tree-pairs").setup()
-		end,
-	},
-	-----------------------------------------------------------------------------
-	{
 		"Wansmer/treesj",
 		keys = { { "<space>j", "<cmd>lua require('treesj').toggle()<cr>", desc = "Split/join" } },
 		config = true,
