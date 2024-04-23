@@ -92,6 +92,7 @@ local get_print_text = function(filetype)
 		or filetype == "javascriptreact"
 		or filetype == "typescriptreact"
 		or filetype == "html"
+		or filetype == "htmldjango"
 	then
 		return {
 			print_text = [[console.warn()]],
