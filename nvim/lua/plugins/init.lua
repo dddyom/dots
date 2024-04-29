@@ -9,7 +9,6 @@ return {
 				auto_resize_splited_window = true,
 				remove_whitespace_on_save = true,
 				no_autocomment_newline = true,
-				clear_last_used_search = true,
 				open_file_last_position = true,
 				smart_dd = true,
 				visually_codeblock_shift = true,
