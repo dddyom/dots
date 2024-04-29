@@ -31,17 +31,12 @@ map("n", "<leader>\\", "<cmd>vsplit<cr>", { desc = "split window vertically" })
 map("n", "<leader>|", "<cmd>vsplit<cr>", { desc = "split window vertically" })
 map("n", "<leader>-", "<cmd>split<cr>", { desc = "split window horisontally" })
 
-map("n", '<leader>"', [[i""""""<esc>hhi<cr><esc>kA<cr>]], { desc = "triple quotes" })
-map("v", '<leader>"', [[c""""""<esc>hhi<cr><esc>i<c-r>"<esc>k$]], { desc = "triple quotes" })
-map("v", "<leader>d", [[:s/^[ \t]*$\n//<CR>]], { desc = "delete empty lines" })
-
 map("n", "<Leader>y", function()
 	local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":~:.")
 	vim.fn.setreg("+", path)
 	vim.notify(path, vim.log.levels.INFO, { title = "Yanked relative path" })
 end, { silent = true, desc = "Yank relative path" })
 
--- Yank absolute path
 map("n", "<Leader>Y", function()
 	local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p")
 	vim.fn.setreg("+", path)
@@ -54,17 +49,11 @@ map("x", "P", 'P:let @+=@0<CR>:let @"=@0<CR>', { silent = true, desc = "Paste In
 map("x", "<Tab>", ">gv|", { desc = "Indent Left" })
 map("x", "<S-Tab>", "<gv", { desc = "Indent Right" })
 
-map("n", "<TAB>", "<C-^>", { desc = "Prev buffer" })
-
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear Search Highlight" })
-map("n", "\\", "m", { desc = "set mark" })
-
-map({ "n", "x" }, "<BS>", "%", { remap = true, desc = "Jump to Paren" })
 
 map("c", "<Up>", "<C-p>")
 map("c", "<Down>", "<C-n>")
 
--- Allow misspellings
 vim.cmd.cnoreabbrev("qw", "wq")
 vim.cmd.cnoreabbrev("Wq", "wq")
 vim.cmd.cnoreabbrev("WQ", "wq")

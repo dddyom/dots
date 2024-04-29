@@ -17,32 +17,6 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
 	end,
 })
 
--- Highlight on yank
-vim.api.nvim_create_autocmd("TextYankPost", {
-	group = augroup("highlight_yank"),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-})
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-	group = augroup("auto_create_dir"),
-	callback = function(event)
-		if event.match:match("^%w%w+://") then
-			return
-		end
-		local file = vim.loop.fs_realpath(event.match) or event.match
-		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
-	end,
-})
-
-vim.api.nvim_create_autocmd("VimResized", {
-	group = augroup("resize_splits"),
-	callback = function()
-		vim.cmd("wincmd =")
-	end,
-})
-
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup("close_with_q"),
 	pattern = {
@@ -69,23 +43,10 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-local opt = vim.opt
-local inoreabbrev = vim.cmd.inoreabbrev
 local map = vim.keymap.set
 vim.api.nvim_create_autocmd("FileType", {
 
-	pattern = "python",
-	callback = function()
-		inoreabbrev("<buffer> true True")
-		inoreabbrev("<buffer> false False")
-		opt.shiftwidth = 4
-		opt.tabstop = 4
-	end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-
-	pattern = "html",
+	pattern = "html,htmldjango,jinja",
 	callback = function()
 		map("v", "<leader>t", [[c{% trans %}<c-r>"{% endtrans %}<esc>]], { desc = "{% trans %}{% endtrans %}" })
 		map("n", "<leader>t", [[i{% trans %}{% endtrans %}<esc>F{i]], { desc = "{% trans %}{% endtrans %}" })

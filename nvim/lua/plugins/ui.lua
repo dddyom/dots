@@ -2,7 +2,6 @@ return {
 	-----------------------------------------------------------------------------
 	{ "nvim-tree/nvim-web-devicons", lazy = false },
 	{ "MunifTanjim/nui.nvim", lazy = false },
-
 	-----------------------------------------------------------------------------
 	{
 		"norcalli/nvim-colorizer.lua",
@@ -82,18 +81,6 @@ return {
 						},
 					},
 					lualine_z = { "branch", "searchcount" },
-				},
-				winbar = {
-					lualine_a = {
-						{
-							function()
-								return require("core.utils").get_diffview_title()
-							end,
-							cond = function()
-								return require("core.utils").is_show_diffview_title()
-							end,
-						},
-					},
 				},
 			})
 		end,

@@ -45,24 +45,6 @@ return {
 					},
 				},
 			})
-			--[[ lspconfig.pyright.setup({
-				settings = {
-					python = {
-						analysis = {
-							autoSearchPaths = true,
-							diagnosticMode = "workspace",
-							useLibraryCodeForTypes = true,
-							diagnosticSeverityOverrides = {
-								reportGeneralTypeIssues = "none",
-								reportOptionalMemberAccess = "none",
-								reportOptionalSubscript = "none",
-								reportPrivateImportUsage = "none",
-							},
-						},
-					},
-				},
-				root_dir = lspconfig.util.root_pattern("pyproject.toml", ".git", "setup.py"),
-			}) ]]
 			lsp.setup()
 
 			vim.keymap.set("n", "z[", function()

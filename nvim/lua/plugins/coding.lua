@@ -1,15 +1,15 @@
 return {
 	-----------------------------------------------------------------------------
-	{ "AndrewRadev/tagalong.vim", event = "BufEnter *.html" },
+	{ "AndrewRadev/tagalong.vim", event = "BufEnter *.html,*.htmldjango" },
 	{ "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
-	{ "vidocqh/auto-indent.nvim", opts = {} },
-	"Vimjas/vim-python-pep8-indent",
-	{ "gregorias/coerce.nvim", tag = "v0.1.1", config = true },
-	{ "chrisgrieser/nvim-puppeteer", lazy = false },
+	{ "vidocqh/auto-indent.nvim", opts = {}, event = "VimEnter" },
+	{ "Vimjas/vim-python-pep8-indent", event = "BufEnter *.py" },
+	{ "gregorias/coerce.nvim", tag = "v0.1.1", config = true, event = "VimEnter" },
 	-----------------------------------------------------------------------------
 	{
 		"stevearc/aerial.nvim",
 		opts = {},
+		event = "LspAttach",
 		config = function()
 			require("aerial").setup({
 				on_attach = function(bufnr)
@@ -23,6 +23,7 @@ return {
 	-----------------------------------------------------------------------------
 	{
 		"akinsho/toggleterm.nvim",
+		event = "VimEnter",
 		version = "*",
 		config = true,
 		keys = { { "!", "<cmd>ToggleTerm<CR>", desc = "Toggle terminal" } },
@@ -30,6 +31,7 @@ return {
 	-----------------------------------------------------------------------------
 	{
 		"chrisgrieser/nvim-recorder",
+		event = "VimEnter",
 		opts = {
 			mapping = {
 				startStopRecording = "<leader>q",
@@ -204,33 +206,22 @@ return {
 	-----------------------------------------------------------------------------
 	{
 		"danymat/neogen",
-		-- stylua: ignore
 		event = "BufEnter",
+		-- stylua: ignore
 		keys = {
-			{
-				"<leader>cc",
-				function()
-					require("neogen").generate({})
-				end,
-				desc = "doc string",
-			},
 			{ "<leader>c", "", desc = "neogen" },
+			{ "<leader>cc", function() require("neogen").generate({}) end, desc = "doc string", },
 		},
 		opts = {
 			snippet_engine = "luasnip",
 			enabled = true,
-			languages = {
-				python = {
-					template = {
-						annotation_convention = "reST",
-					},
-				},
-			},
+			languages = { python = { template = { annotation_convention = "reST" } } },
 		},
 	},
 	-----------------------------------------------------------------------------
 	{
 		"echasnovski/mini.surround",
+		event = "VimEnter",
 		-- stylua: ignore
 		keys = function(_, keys)
 			-- Populate the keys based on the user's options
@@ -279,26 +270,17 @@ return {
 			})
 		end,
 	},
-
-	-----------------------------------------------------------------------------
-	{
-		"echasnovski/mini.trailspace",
-		config = function()
-			require("mini.trailspace").setup({})
-		  -- stylua: ignore
-			vim.keymap.set( "n", "<leader>C", "<cmd>lua require('mini.trailspace').trim()<CR>", { desc = "Trim trailing whitespace" })
-		end,
-	},
-
 	-----------------------------------------------------------------------------
 	{
 		"rest-nvim/rest.nvim",
+		event = "BufEnter *.http",
 		ft = "http",
-		keys = {
-			{ "<Leader>h", "", desc = "HTTP request" },
-			{ "<Leader>hh", "<Plug>RestNvim<CR>", desc = "Execute" },
-		},
 		opts = { skip_ssl_verification = true },
+		config = function()
+			require("rest-nvim").setup()
+			vim.keymap.set("n", "<Leader>h", "", { desc = "HTTP request" })
+			vim.keymap.set("n", "<Leader>hh", "<Plug>RestNvim<CR>", { desc = "Execute" })
+		end,
 	},
 	-----------------------------------------------------------------------------
 	{
@@ -310,20 +292,20 @@ return {
 			vim.keymap.set("i", "<c-a>", neocodeium.accept)
 			vim.keymap.set("i", "<c-w>", neocodeium.accept_word)
 			vim.keymap.set("i", "<c-e>", neocodeium.accept_line)
-
 			local toggle = function()
 				require("neocodeium.commands").toggle()
-
 				local is_enabled = require("neocodeium.options").options.enabled
 				local message = "AI completion " .. (is_enabled and "enabled" or "disabled") .. "."
 				vim.notify(message, vim.log.levels.INFO, { title = "NeoCodeium" })
 			end
+
 			vim.keymap.set("n", "<leader>x", toggle, { desc = "Toggle neocodeium" })
 		end,
 	},
 	-----------------------------------------------------------------------------
 	{
 		"klen/nvim-test",
+		event = "BufEnter *.py",
 		config = function()
 			require("nvim-test").setup({ term = "toggleterm" })
 		end,

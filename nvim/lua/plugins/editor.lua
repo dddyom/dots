@@ -2,6 +2,7 @@ return {
 	-----------------------------------------------------------------------------
 	{
 		"gennaro-tedesco/nvim-peekup",
+		event = "VimEnter",
 		config = function()
 			require("nvim-peekup.config").on_keystroke["paste_reg"] = "+"
 		end,
@@ -9,7 +10,6 @@ return {
 
 	"sheerun/vim-polyglot",
 	{ "yamatsum/nvim-cursorline", config = true },
-	{ "vladdoster/remember.nvim", config = true },
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	-----------------------------------------------------------------------------
 	{
@@ -70,10 +70,7 @@ return {
 		end,
 	},
 	-----------------------------------------------------------------------------
-	{
-		"nil70n/floating-help",
-		opts = { border = "double", ratio = 0.8 },
-	},
+	{ "nil70n/floating-help", opts = { border = "double", ratio = 0.8 } },
 	-----------------------------------------------------------------------------
 	{
 		"max397574/better-escape.nvim",
@@ -81,15 +78,4 @@ return {
 			require("better_escape").setup({ mapping = { "jk", "jj", "kk", "kj" } })
 		end,
 	},
-	-----------------------------------------------------------------------------
-	{
-		"bloznelis/before.nvim",
-		config = function()
-			local before = require("before")
-			before.setup()
-			vim.keymap.set("n", "<C-o>", before.jump_to_last_edit, {})
-			vim.keymap.set("n", "<C-i>", before.jump_to_next_edit, {})
-		end,
-	},
-	-----------------------------------------------------------------------------
 }

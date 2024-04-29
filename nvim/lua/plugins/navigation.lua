@@ -2,7 +2,6 @@ return {
 	{
 		"otavioschwanck/arrow.nvim",
 		opts = {
-
 			show_icons = true,
 			leader_key = ";",
 			buffer_leader_key = "m",
@@ -49,15 +48,16 @@ return {
 		"folke/flash.nvim",
 		event = "VeryLazy",
 		opts = {},
-  -- stylua: ignore
+        -- stylua: ignore
 		keys = {
 			{ "q", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "Q", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+            { "Q", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
 		},
 	},
 	-----------------------------------------------------------------------------
 	{
 		"ibhagwan/fzf-lua",
+		event = { "VimEnter" },
 		config = function()
 			local fzf = require("fzf-lua")
 			fzf.setup()
