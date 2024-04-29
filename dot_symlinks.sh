@@ -3,8 +3,8 @@ DOTS_DIR=$HOME/code/dots
 CONF_DIR=$HOME/.config
 
 CONF_DIR_DOTS=(
-	"nvim"
-	"wezterm"
+  "nvim"
+  "wezterm"
   "tmux"
   "betterlockscreen"
   "wallpapers"
