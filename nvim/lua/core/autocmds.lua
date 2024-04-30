@@ -17,6 +17,21 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
 	end,
 })
 
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	group = augroup("getdiff_map"),
+	callback = function(event)
+		if vim.wo.diff then
+			vim.keymap.set("n", "gdh", "<cmd>diffget //2<cr>", { buffer = event.buf, silent = true })
+			vim.keymap.set("n", "gdl", "<cmd>diffget //3<cr>", { buffer = event.buf, silent = true })
+		else
+			vim.keymap.set("n", "gdh", "<cmd>diffget //2<cr>", { buffer = event.buf, silent = true })
+			vim.keymap.set("n", "gdl", "<cmd>diffget //3<cr>", { buffer = event.buf, silent = true })
+
+
+		end
+	end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup("close_with_q"),
 	pattern = {

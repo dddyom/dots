@@ -5,8 +5,6 @@ return {
 		keys = {
 			{ "<leader>g", "", desc = "git" },
 			{ "<leader>gd", "<cmd>Gvdiffsplit!<cr>", desc = "git diff" },
-			{ "gdh", "<cmd>diffget //2<cr>", desc = "merge from left" },
-			{ "gdl", "<cmd>diffget //3<cr>", desc = "merge from right" },
 		},
 	},
 	-----------------------------------------------------------------------------
