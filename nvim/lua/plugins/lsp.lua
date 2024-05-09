@@ -35,22 +35,7 @@ return {
 			lspconfig.basedpyright.setup({
 				settings = {
 					basedpyright = {
-						typeCheckingMode = "none",
-						analysis = {
-							diagnosticSeverityOverrides = {
-								reportAssignmentType = "none",
-								reportIncompatibleMethodOverride = "none",
-								reportInvalidTypeForm = "none",
-								reportGeneralTypeIssues = "none",
-								reportArgumentType = "none",
-								reportAttributeAccessIssue = "none",
-								reportReturnType = "none",
-								reportOptionalMemberAccess = "none",
-								reportCallIssue = "none",
-								reportInvalidTypeArguments = "none",
-								reportOperatorIssue = "none",
-							},
-						},
+						typeCheckingMode = "basic",
 					},
 				},
 			})
