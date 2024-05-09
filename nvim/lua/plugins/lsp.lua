@@ -38,17 +38,17 @@ return {
 						typeCheckingMode = "none",
 						analysis = {
 							diagnosticSeverityOverrides = {
-								reportAssignmentType = "none",
+								--[[ reportAssignmentType = "none",
 								reportIncompatibleMethodOverride = "none",
 								reportInvalidTypeForm = "none",
 								reportGeneralTypeIssues = "none",
-                                reportArgumentType = "none",
-                                reportAttributeAccessIssue = "none",
-                                reportReturnType = "none",
-                                reportOptionalMemberAccess = "none",
-                                reportCallIssue = "none",
-                                reportInvalidTypeArguments = "none",
-                                reportOperatorIssue = "none"
+								reportArgumentType = "none",
+								reportAttributeAccessIssue = "none",
+								reportReturnType = "none",
+								reportOptionalMemberAccess = "none",
+								reportCallIssue = "none",
+								reportInvalidTypeArguments = "none",
+								reportOperatorIssue = "none", ]]
 							},
 						},
 					},
@@ -63,13 +63,8 @@ return {
 				vim.diagnostic.goto_next()
 			end, { desc = "next diagnostic", silent = true, nowait = true, noremap = true })
 			vim.keymap.set("n", "D", function()
-				local diagnostics = vim.diagnostic.get(0, { lnum = vim.api.nvim_win_get_cursor(0)[1] - 1 })
-				if #diagnostics > 0 then
-					vim.diagnostic.open_float()
-				else
-					vim.diagnostic.goto_next()
-				end
-			end, { desc = "Diagnostic float or next diagnostic", silent = true, nowait = true, noremap = true })
+				vim.diagnostic.open_float()
+			end, { desc = "Diagnostic float", silent = true, nowait = true, noremap = true })
 		end,
 	},
 	-----------------------------------------------------------------------------

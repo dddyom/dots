@@ -24,7 +24,45 @@ return {
 			{ "V", desc = "Shrink selection", mode = "x" },
 		},
 		opts = {
+			textobjects = {
+				select = {
+					enable = true,
+					lookahead = true,
 
+					keymaps = {
+						["af"] = "@function.outer",
+						["if"] = "@function.inner",
+						["am"] = "@function.outer",
+						["im"] = "@function.inner",
+						["ac"] = "@class.outer",
+						["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+					},
+					selection_modes = {
+						["@parameter.outer"] = "v",
+						["@function.outer"] = "V",
+						["@class.outer"] = "<c-v>",
+					},
+					include_surrounding_whitespace = true,
+				},
+			},
+			move = {
+				enable = true,
+				set_jumps = true,
+				goto_next_start = {
+					["]m"] = "@function.outer",
+					["]]"] = { query = "@class.outer", desc = "Next class start" },
+				},
+				goto_previous_start = {
+					["[m"] = "@function.outer",
+					["[["] = "@class.outer",
+				},
+				goto_next = {
+					["]d"] = "@conditional.outer",
+				},
+				goto_previous = {
+					["[d"] = "@conditional.outer",
+				},
+			},
 			highlight = { enable = true },
 			indent = { enable = true },
 			refactor = {
@@ -34,7 +72,6 @@ return {
 			endwise = { enable = true },
 			autotag = {
 				enable = true,
-				-- Removed markdown due to errors
 				filetypes = {
 					"glimmer",
 					"handlebars",
