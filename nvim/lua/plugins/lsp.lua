@@ -42,23 +42,21 @@ return {
 								reportIncompatibleMethodOverride = "none",
 								reportInvalidTypeForm = "none",
 								reportGeneralTypeIssues = "none",
-                                reportArgumentType = "none",
-                                reportAttributeAccessIssue = "none",
-                                reportReturnType = "none",
-                                reportOptionalMemberAccess = "none",
-                                reportCallIssue = "none",
-                                reportInvalidTypeArguments = "none",
-                                reportOperatorIssue = "none"
+								reportArgumentType = "none",
+								reportAttributeAccessIssue = "none",
+								reportReturnType = "none",
+								reportOptionalMemberAccess = "none",
+								reportCallIssue = "none",
+								reportInvalidTypeArguments = "none",
+								reportOperatorIssue = "none",
 							},
 						},
 					},
 				},
 			})
 			lsp.setup()
-
-			vim.keymap.set("n", "z[", function()
-				vim.diagnostic.goto_prev()
-			end, { desc = "prev diagnostic", silent = true, nowait = true, noremap = true })
+            -- stylua: ignore
+			vim.keymap.set("n", "z[", function() vim.diagnostic.goto_prev() end, { desc = "prev diagnostic", silent = true, nowait = true, noremap = true })
 			vim.keymap.set("n", "z]", function()
 				vim.diagnostic.goto_next()
 			end, { desc = "next diagnostic", silent = true, nowait = true, noremap = true })
@@ -74,4 +72,27 @@ return {
 	},
 	-----------------------------------------------------------------------------
 	{ "Wansmer/symbol-usage.nvim", event = "LspAttach", config = true },
+	-----------------------------------------------------------------------------
+	{
+		"rmagatti/goto-preview",
+		event = "LspAttach",
+		config = true,
+		opts = {
+
+			post_open_hook = function(buf, _)
+				vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = buf, silent = true })
+				vim.keymap.set("n", "go", function()
+					vim.api.nvim_buf_attach(buf, true, {})
+				end, { buffer = buf, silent = true })
+			end,
+		},
+        -- stylua: ignore
+		keys = {
+			{ "gd", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", desc = "Preview definition", },
+			{ "gt", "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>", desc = "Preview type definition", },
+			{ "gi", "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", desc = "Preview implementation", },
+			{ "gD", "<cmd>lua require('goto-preview').goto_preview_declaration()<CR>", desc = "Preview declaration", },
+			{ "gpq", "<cmd>lua require('goto-preview').close_all_win()<CR>", desc = "close all lsp previews", },
+		},
+	},
 }
