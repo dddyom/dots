@@ -1,24 +1,14 @@
 return {
 
 	{
-		"NeogitOrg/neogit",
-		dependencies = {
-			"sindrets/diffview.nvim", -- optional - Diff integration
-		},
-		config = true,
-		keys = {
-			{ "<leader>g", "", desc = "git" },
-			{ "<leader>gg", "<cmd>Neogit<cr>", desc = "git status" },
-		},
-	},
-	--[[ {
 		"tpope/vim-fugitive",
 		event = { "VimEnter" },
 		keys = {
 			{ "<leader>g", "", desc = "git" },
+			{ "<leader>gg", "<cmd>Git<cr>", desc = "git" },
 			{ "<leader>gd", "<cmd>Gvdiffsplit!<cr>", desc = "git diff" },
 		},
-	}, ]]
+	},
 	-----------------------------------------------------------------------------
 	{
 		"lewis6991/gitsigns.nvim",
