@@ -35,7 +35,7 @@ return {
 		opts = {
 			mapping = {
 				startStopRecording = "<leader>q",
-				playMacro = "@q",
+				playMacro = "@Q",
 				switchSlot = "<C-q>",
 				editMacro = "cq",
 				deleteAllMacros = "dq",
