@@ -2,13 +2,7 @@ return {
 	-----------------------------------------------------------------------------
 	{ "nvim-tree/nvim-web-devicons", lazy = false },
 	{ "MunifTanjim/nui.nvim", lazy = false },
-	-----------------------------------------------------------------------------
-	{
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup()
-		end,
-	},
+	{ "brenoprata10/nvim-highlight-colors", config = true },
 	-----------------------------------------------------------------------------
 	{
 		"Shatur/neovim-ayu",
