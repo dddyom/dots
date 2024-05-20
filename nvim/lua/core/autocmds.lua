@@ -10,6 +10,15 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
 		end
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "LspAttach", "InsertEnter", "InsertLeave" }, {
+	group = augroup("lsp_inlay_hints"),
+	callback = function(event)
+		local enabled = event.event ~= "InsertEnter"
+		vim.lsp.inlay_hint.enable(enabled, { bufnr = event.buf })
+	end,
+})
+
 vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
 	group = augroup("auto_cursorline_hide"),
 	callback = function(_)
@@ -17,13 +26,15 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd('CursorMoved', {
-  group = augroup('auto-hlsearch'),
-  callback = function ()
-    if vim.v.hlsearch == 1 and vim.fn.searchcount().exact_match == 0 then
-      vim.schedule(function () vim.cmd.nohlsearch() end)
-    end
-  end
+vim.api.nvim_create_autocmd("CursorMoved", {
+	group = augroup("auto-hlsearch"),
+	callback = function()
+		if vim.v.hlsearch == 1 and vim.fn.searchcount().exact_match == 0 then
+			vim.schedule(function()
+				vim.cmd.nohlsearch()
+			end)
+		end
+	end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
