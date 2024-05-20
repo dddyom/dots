@@ -9,7 +9,7 @@ return {
 		config = function()
 			require("ayu").setup({
 				overrides = {
-					CursorLine = { bg = "#2D2220", fg = "" },
+					CursorLine = { bg = "#0F1D3E", fg = "" },
 					CurSearch = { fg = "#0A0E14", bg = "#F07178" },
 					WildMenu = { fg = "#0A0E14", bg = "#FFCC66" },
 					Visual = { fg = "#0A0E14", bg = "#FFCC66" },
