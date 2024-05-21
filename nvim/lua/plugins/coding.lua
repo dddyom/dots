@@ -4,7 +4,6 @@ return {
 	{ "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
 	{ "vidocqh/auto-indent.nvim", opts = {}, event = "VimEnter" },
 	{ "Vimjas/vim-python-pep8-indent", event = "BufEnter *.py" },
-	{ "gregorias/coerce.nvim", tag = "v0.1.1", config = true, event = "VimEnter" },
 	-----------------------------------------------------------------------------
 	{
 		"stevearc/aerial.nvim",
@@ -82,11 +81,7 @@ return {
 						cmp.config.compare.order,
 					},
 				},
-				experimental = {
-					ghost_text = {
-						hl_group = "Comment",
-					},
-				},
+				experimental = { ghost_text = { hl_group = "Comment" } },
 				snippet = {
 					expand = function(args)
 						require("luasnip").lsp_expand(args.body)
@@ -105,8 +100,6 @@ return {
 					{ name = "buffer", priority = 50, keyword_length = 3 },
 				}),
 				mapping = cmp.mapping.preset.insert({
-					-- <CR> accepts currently selected item.
-					-- Set `select` to `false` to only confirm explicitly selected items.
 					["<CR>"] = cmp.mapping({
 						i = function(fallback)
 							if cmp.visible() and cmp.get_active_entry() then
@@ -119,12 +112,8 @@ return {
 							select = true,
 							behavior = cmp.ConfirmBehavior.Replace,
 						}),
-						-- Do not set command mode, it will interfere with noice popmenu.
 					}),
-					["<S-CR>"] = cmp.mapping.confirm({
-						behavior = cmp.ConfirmBehavior.Replace,
-						select = true,
-					}),
+					["<S-CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-d>"] = cmp.mapping.select_next_item({ count = 5 }),
 					["<C-u>"] = cmp.mapping.select_prev_item({ count = 5 }),
@@ -180,18 +169,11 @@ return {
 		event = "InsertEnter",
 		dependencies = { "rafamadriz/friendly-snippets" },
 		keys = {
-			{
-				"<C-l>",
-				function()
-					require("luasnip").expand_or_jump()
-				end,
-				mode = { "i", "s" },
-			},
+            -- stylua: ignore
+			{ "<C-l>", function() require("luasnip").expand_or_jump() end, mode = { "i", "s" } },
 		},
 		opts = {
-			-- Don't store snippet history for less overhead
 			history = false,
-			-- Event on which to check for exiting a snippet's region
 			region_check_events = "InsertEnter",
 			delete_check_events = "InsertLeave",
 			ft_func = function()
@@ -224,7 +206,6 @@ return {
 		event = "VimEnter",
 		-- stylua: ignore
 		keys = function(_, keys)
-			-- Populate the keys based on the user's options
 			local plugin = require('lazy.core.config').spec.plugins['mini.surround']
 			local opts = require('lazy.core.plugin').values(plugin, 'opts', false)
 			local mappings = {
@@ -252,23 +233,6 @@ return {
 				update_n_lines = "gzn", -- Update `n_lines`
 			},
 		},
-	},
-	-----------------------------------------------------------------------------
-	{
-		"b3nj5m1n/kommentary",
-		event = "VeryLazy",
-		config = function()
-			local comments = require("kommentary.config")
-
-			comments.use_extended_mappings()
-			comments.configure_language("default", {
-				single_line_comment_string = "auto",
-				multi_line_comment_strings = "auto",
-				hook_function = function()
-					require("ts_context_commentstring").update_commentstring()
-				end,
-			})
-		end,
 	},
 	-----------------------------------------------------------------------------
 	{

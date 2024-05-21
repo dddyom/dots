@@ -1,12 +1,5 @@
 return {
-	{
-		"otavioschwanck/arrow.nvim",
-		opts = {
-			show_icons = true,
-			leader_key = ";",
-			buffer_leader_key = "m",
-		},
-	},
+	{ "otavioschwanck/arrow.nvim", opts = { show_icons = true, leader_key = ";", buffer_leader_key = "m" } },
 	-----------------------------------------------------------------------------
 	{
 		"stevearc/oil.nvim",
@@ -27,9 +20,7 @@ return {
 				status_hl_group = require("core.colors").oil_vcs_status,
 			})
 		end,
-		keys = {
-			{ "``", "<CMD>lua require('oil').open_float()<CR>", desc = "Open Oil" },
-		},
+		keys = { { "``", "<CMD>lua require('oil').open_float()<CR>", desc = "Open Oil" } },
 	},
 	-----------------------------------------------------------------------------
 	{

@@ -1,13 +1,5 @@
 return {
 	-----------------------------------------------------------------------------
-	{
-		"gennaro-tedesco/nvim-peekup",
-		event = "VimEnter",
-		config = function()
-			require("nvim-peekup.config").on_keystroke["paste_reg"] = "+"
-		end,
-	},
-
 	"sheerun/vim-polyglot",
 	{ "yamatsum/nvim-cursorline", config = true },
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
@@ -17,21 +9,6 @@ return {
 		keys = { { "<space>j", "<cmd>lua require('treesj').toggle()<cr>", desc = "Split/join" } },
 		config = true,
 		opts = { use_default_keymaps = false },
-	},
-	-----------------------------------------------------------------------------
-	{
-		"echasnovski/mini.bufremove",
-		opts = {},
-		keys = {
-			{ "<leader>b", "", desc = "Buffer" },
-			{
-				"<leader>bd",
-				function()
-					require("mini.bufremove").delete(0, false)
-				end,
-				desc = "Delete",
-			},
-		},
 	},
 	-----------------------------------------------------------------------------
 	{
@@ -52,26 +29,19 @@ return {
 		"nvim-pack/nvim-spectre",
 		event = "BufRead",
 		init = function()
-			vim.keymap.set("n", "<leader>r", "", {
-				desc = "replace (spectre)",
-			})
-			vim.keymap.set("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
-				desc = "Toggle Spectre",
-			})
-			vim.keymap.set("n", "<leader>rR", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
-				desc = "Search current word",
-			})
-			vim.keymap.set("v", "<leader>rR", '<esc><cmd>lua require("spectre").open_visual()<CR>', {
-				desc = "Search current word",
-			})
-			vim.keymap.set("n", "<leader>rr", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
-				desc = "Search on current file",
-			})
+            -- stylua: ignore
+			vim.keymap.set("n", "<leader>r", "", { desc = "replace (spectre)" })
+            -- stylua: ignore
+			vim.keymap.set("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', { desc = "Toggle Spectre" })
+            -- stylua: ignore
+			vim.keymap.set("n", "<leader>rR", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', { desc = "Search current word" })
+            -- stylua: ignore
+			vim.keymap.set("v", "<leader>rR", '<esc><cmd>lua require("spectre").open_visual()<CR>', { desc = "Search current word" })
+            -- stylua: ignore
+			vim.keymap.set("n", "<leader>rr", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', { desc = "Search on current file" })
 		end,
 	},
-	-----------------------------------------------------------------------------
-	{ "nil70n/floating-help", opts = { border = "double", ratio = 0.8 } },
-	-----------------------------------------------------------------------------
+	-- -----------------------------------------------------------------------------
 	{
 		"max397574/better-escape.nvim",
 		config = function()

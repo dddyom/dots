@@ -13,9 +13,7 @@ return {
 	{
 		"lewis6991/gitsigns.nvim",
 		event = { "BufReadPre", "BufNewFile" },
-		opts = {
-			signs = require("core.icons").git.signs,
-		},
+		opts = { signs = require("core.icons").git.signs },
 		keys = {
 			{ "g]", "<cmd>Gitsigns next_hunk<cr>", desc = "next git hunk" },
 			{ "g[", "<cmd>Gitsigns prev_hunk<cr>", desc = "next git hunk" },

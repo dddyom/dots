@@ -32,17 +32,7 @@ return {
 			"120",
 		}
 		vim.g.disable_autoformat = true
-		vim.api.nvim_set_keymap(
-			"n",
-			"<leader>w",
-			'<cmd>lua require("conform").format({ lsp_fallback = true })<cr>',
-			{ noremap = true, silent = true, desc = "format" }
-		)
-		vim.api.nvim_set_keymap(
-			"n",
-			"<m-w>",
-			'<cmd>lua require("conform").format({ lsp_fallback = true })<cr>',
-			{ noremap = true, silent = true, desc = "format" }
-		)
+		-- stylua: ignore
+		vim.api.nvim_set_keymap( "n", "<leader>w", '<cmd>lua require("conform").format({ lsp_fallback = true })<cr>', { noremap = true, silent = true, desc = "format" })
 	end,
 }

@@ -3,7 +3,6 @@ return {
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v2.x",
 		dependencies = {
-
 			"neovim/nvim-lspconfig",
 			"williamboman/mason-lspconfig.nvim",
 			{
@@ -18,12 +17,7 @@ return {
 
 			require("mason").setup({})
 			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"emmet_language_server",
-					"lua_ls",
-					"basedpyright",
-					"tsserver",
-				},
+				ensure_installed = { "emmet_language_server", "lua_ls", "basedpyright", "tsserver" },
 			})
 			lsp.on_attach(function(_, bufnr)
 				lsp.default_keymaps({ buffer = bufnr })
@@ -32,19 +26,13 @@ return {
 			local lspconfig = require("lspconfig")
 
 			lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
-			lspconfig.basedpyright.setup({
-				settings = {
-					basedpyright = {
-						typeCheckingMode = "basic",
-					},
-				},
-			})
+			lspconfig.basedpyright.setup({ settings = { basedpyright = { typeCheckingMode = "basic" } } })
 			lsp.setup()
             -- stylua: ignore
 			vim.keymap.set("n", "z[", function() vim.diagnostic.goto_prev() end, { desc = "prev diagnostic", silent = true, nowait = true, noremap = true })
-			vim.keymap.set("n", "z]", function()
-				vim.diagnostic.goto_next()
-			end, { desc = "next diagnostic", silent = true, nowait = true, noremap = true })
+            -- stylua: ignore
+			vim.keymap.set("n", "z]", function() vim.diagnostic.goto_next() end, { desc = "next diagnostic", silent = true, nowait = true, noremap = true })
+
 			vim.keymap.set("n", "D", function()
 				local diagnostics = vim.diagnostic.get(0, { lnum = vim.api.nvim_win_get_cursor(0)[1] - 1 })
 				if #diagnostics > 0 then
