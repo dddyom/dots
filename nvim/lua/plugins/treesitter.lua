@@ -6,7 +6,7 @@ return {
 		build = ":TSUpdate",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
-			{ "nvim-treesitter/nvim-treesitter-context", opts = { enable = false } },
+			{ "nvim-treesitter/nvim-treesitter-context", opts = { enable = true } },
 			{
 				"folke/ts-comments.nvim",
 				opts = {},
@@ -70,39 +70,8 @@ return {
 			},
 			highlight = { enable = true },
 			indent = { enable = true },
-			refactor = {
-				highlight_definitions = { enable = true },
-				highlight_current_scope = { enable = true },
-			},
 			endwise = { enable = true },
-			autotag = {
-				enable = true,
-				filetypes = {
-					"glimmer",
-					"handlebars",
-					"hbs",
-					"html",
-					"javascript",
-					"javascriptreact",
-					"jsx",
-					"rescript",
-					"svelte",
-					"tsx",
-					"typescript",
-					"typescriptreact",
-					"vue",
-					"xml",
-				},
-			},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = false,
-					node_incremental = "v",
-					scope_incremental = false,
-					node_decremental = "V",
-				},
-			},
+			autotag = { enable = true, enable_rename = true, enable_close_on_slash = false },
 			ensure_installed = {
 				"python",
 				"bash",
