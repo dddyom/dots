@@ -7,12 +7,7 @@ return {
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			{ "nvim-treesitter/nvim-treesitter-context", opts = { enable = true } },
-			{
-				"folke/ts-comments.nvim",
-				opts = {},
-				event = "VeryLazy",
-				enabled = vim.fn.has("nvim-0.10.0") == 1,
-			},
+			{ "folke/ts-comments.nvim", opts = {}, event = "VeryLazy" },
 			"RRethy/nvim-treesitter-endwise",
 			{ "windwp/nvim-ts-autotag", config = true },
 		},
