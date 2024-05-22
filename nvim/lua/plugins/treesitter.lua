@@ -14,7 +14,7 @@ return {
 				enabled = vim.fn.has("nvim-0.10.0") == 1,
 			},
 			"RRethy/nvim-treesitter-endwise",
-			"windwp/nvim-ts-autotag",
+			{ "windwp/nvim-ts-autotag", config = true },
 		},
 		cmd = {
 			"TSUpdate",
@@ -71,7 +71,6 @@ return {
 			highlight = { enable = true },
 			indent = { enable = true },
 			endwise = { enable = true },
-			autotag = { enable = true, enable_rename = true, enable_close_on_slash = false },
 			ensure_installed = {
 				"python",
 				"bash",
