@@ -1,13 +1,10 @@
 return {
 	-----------------------------------------------------------------------------
-	{ "AndrewRadev/tagalong.vim", event = "BufEnter *.html,*.htmldjango" },
 	{ "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
 	{ "vidocqh/auto-indent.nvim", opts = {}, event = "VimEnter" },
-	{ "Vimjas/vim-python-pep8-indent", event = "BufEnter *.py" },
 	-----------------------------------------------------------------------------
 	{
 		"stevearc/aerial.nvim",
-		opts = {},
 		event = "LspAttach",
 		config = function()
 			require("aerial").setup({
