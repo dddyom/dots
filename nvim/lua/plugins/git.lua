@@ -21,8 +21,8 @@ return {
 			{ "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<cr>", desc = "undo stage hunk" },
 			{ "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>", desc = "reset hunk" },
 			{ "<leader>gR", "<cmd>Gitsigns reset_buffer<cr>", desc = "reset buffer" },
-			{ "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", desc = "Toggle signs" },
-			{ "<leader>gc", "<cmd>Gitsigns blame_line<cr>", desc = "Line blame" },
+			{ "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", desc = "preview hunk" },
+			{ "<leader>gc", "<cmd>Gitsigns blame_line<cr>", desc = "line blame" },
 		},
 	},
 }
