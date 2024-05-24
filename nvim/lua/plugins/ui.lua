@@ -93,7 +93,7 @@ return {
 				},
 			},
 			messages = {
-				view = "messages",
+				view = "mini",
 				view_warn = "mini",
 				view_error = "mini",
 			},
