@@ -58,8 +58,11 @@ return {
 		keys = {
 			{ "<leader>f", "", desc = "Find" },
 			{ "<leader>ff", "<cmd>lua require('fzf-lua').files()<CR>", desc = "Find files" },
+			{ "<leader>fg", "<cmd>lua require('fzf-lua').git_files()<CR>", desc = "Find git files" },
 			{ "<leader>fw", "<cmd>lua require('fzf-lua').live_grep()<CR>", desc = "Find by word" },
-			{ "<leader>s", "<cmd>lua require('fzf-lua').blines()<CR>", desc = "Find in buffer" },
+			{ "<leader><leader>", "<cmd>lua require('fzf-lua').buffers()<CR>", desc = "opened buffers" },
+			{ "<leader>fs", "<cmd>lua require('fzf-lua').blines()<CR>", desc = "Find in buffer" },
+			{ "<leader>fS", "<cmd>lua require('fzf-lua').blines()<CR>", desc = "Find in opened buffers" },
 			{ "<leader>fh", "<cmd>lua require('fzf-lua').help_tags()<CR>", desc = "Find help tags" },
 			{ "<leader>fd", "<cmd>lua require('fzf-lua').lsp_definitions({jump_to_single_result = true})<CR>", desc = "Lsp definitions" },
 			{ "gD", "<cmd>lua require('fzf-lua').lsp_definitions({jump_to_single_result = true})<CR>", desc = "Lsp definitions" },
