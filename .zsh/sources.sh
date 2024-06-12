@@ -10,6 +10,9 @@
 [ -d "$HOME/.yarn/bin" ] && PATH="$HOME/.yarn/bin:$PATH";
 
 export PATH=$PATH
+export NOTES="$HOME/.sync/notes/"
+export CODE="$HOME/code/"
+export DOTS="$HOME/code/dots/"
 export EDITOR=nvim
 
 export WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
