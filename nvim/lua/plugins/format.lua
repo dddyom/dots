@@ -5,7 +5,7 @@ return {
 			format_on_save = false,
 			formatters_by_ft = {
 				lua = { "stylua" },
-				python = { "isort", "black" },
+				python = { "isort", "black", "autopep8" },
 				javascript = { { "prettier" } },
 
 				rust = { "rustfmt" },
