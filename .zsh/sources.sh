@@ -1,4 +1,3 @@
-[ -f "$HOME"/.ico/ico.sh ] && source "$HOME"/.ico/ico.sh
 [ -f "$HOME"/.work/init.sh ] && source "$HOME"/.work/init.sh
 [ -f "$HOME"/.secrets.sh ] && source "$HOME"/.secrets.sh
 
