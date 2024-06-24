@@ -11,6 +11,7 @@
 export PATH=$PATH
 export NOTES="$HOME/.sync/notes/"
 export CODE="$HOME/code/"
+export STATIC="$HOME/static/"
 export DOTS="$HOME/code/dots/"
 export EDITOR=nvim
 
