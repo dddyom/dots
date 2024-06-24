@@ -10,7 +10,8 @@ return {
 					signcolumn = "number",
 				},
 				view_options = {
-					is_always_hidden = function(name, bufnr)
+					show_hidden = true,
+					is_always_hidden = function(name, _)
 						return name == ".." or name == "__pycache__"
 					end,
 				},
