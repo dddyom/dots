@@ -1,4 +1,5 @@
-alias l="ls -a"
+alias ls="ls -a"
+alias l="ls"
 alias mkdir="mkdir -p"
 alias q="exit"
 alias :q="exit"
