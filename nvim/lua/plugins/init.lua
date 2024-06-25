@@ -22,7 +22,7 @@ return {
 	{
 		"notjedi/nvim-rooter.lua",
 		config = function()
-			require("nvim-rooter").setup({ fallback_to_parent = false })
+			require("nvim-rooter").setup({ manual = true })
 		end,
 	},
 	-----------------------------------------------------------------------------

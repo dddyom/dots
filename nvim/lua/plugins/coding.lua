@@ -189,13 +189,9 @@ return {
 		-- stylua: ignore
 		keys = {
 			{ "<leader>c", "", desc = "neogen" },
-			{ "<leader>cc", function() require("neogen").generate({}) end, desc = "doc string", },
+			{ "<leader>cc", function() require("neogen").generate({}) end, desc = "doc string" },
 		},
-		opts = {
-			snippet_engine = "luasnip",
-			enabled = true,
-			languages = { python = { template = { annotation_convention = "reST" } } },
-		},
+		opts = { snippet_engine = "luasnip", enabled = true },
 	},
 	-----------------------------------------------------------------------------
 	{

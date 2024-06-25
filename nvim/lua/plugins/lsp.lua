@@ -27,6 +27,7 @@ return {
 
 			lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 			lspconfig.basedpyright.setup({ settings = { basedpyright = { typeCheckingMode = "basic" } } })
+
 			lsp.setup()
             -- stylua: ignore
 			vim.keymap.set("n", "z[", function() vim.diagnostic.goto_prev() end, { desc = "prev diagnostic", silent = true, nowait = true, noremap = true })

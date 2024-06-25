@@ -28,6 +28,7 @@ return {
 			"$FILENAME",
 			"--quiet",
 			"-",
+            "--skip-string-normalization",
 			"--line-length",
 			"120",
 		}
