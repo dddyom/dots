@@ -1,6 +1,5 @@
 return {
 	-----------------------------------------------------------------------------
-	-- "numirias/semshi",
 	"sheerun/vim-polyglot",
 	{ "yamatsum/nvim-cursorline", config = true },
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },

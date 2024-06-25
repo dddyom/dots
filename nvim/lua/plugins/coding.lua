@@ -229,18 +229,6 @@ return {
 	},
 	-----------------------------------------------------------------------------
 	{
-		"rest-nvim/rest.nvim",
-		event = "BufEnter *.http",
-		ft = "http",
-		opts = { skip_ssl_verification = true },
-		config = function()
-			require("rest-nvim").setup()
-			vim.keymap.set("n", "<Leader>h", "", { desc = "HTTP request" })
-			vim.keymap.set("n", "<Leader>hh", "<Plug>RestNvim<CR>", { desc = "Execute" })
-		end,
-	},
-	-----------------------------------------------------------------------------
-	{
 		"monkoose/neocodeium",
 		event = "VeryLazy",
 		config = function()
