@@ -12,6 +12,9 @@ super + b
 super + t
 	telegram-desktop
 
+super + p
+	pachca
+
 super + e
   thunar
 

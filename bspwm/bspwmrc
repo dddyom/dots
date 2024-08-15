@@ -38,18 +38,10 @@ bspc config urgent_border_color         "#73b8ff"
 
 
 ## APPLICATION RULES ##
-
-
-bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a brave-browser desktop='^1'
-bspc rule -a mplayer2 state=floating
+bspc rule -a Brave-browser desktop='^1' follow=on
+bspc rule -a org.wezfurlong.wezterm desktop='^2' follow=on
+bspc rule -a Pachca desktop='^3' follow=on
+bspc rule -a TelegramDesktop desktop='^3' follow=on
 bspc rule -a matplotlib state=floating
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off
-bspc rule -a Pavucontrol state=floating
-bspc rule -a Spotify state=floating
-bspc rule -a Lxappearance state=floating
-bspc rule -a Gpick state=floating
 bspc rule -a Thunar state=floating
 bspc rule -a crow-translate state=floating
-bspc rule -a Zathura state=tiled
