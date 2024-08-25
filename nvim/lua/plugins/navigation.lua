@@ -37,17 +37,6 @@ return {
 	},
 	-----------------------------------------------------------------------------
 	{
-		"folke/flash.nvim",
-		event = "VeryLazy",
-		opts = {},
-        -- stylua: ignore
-		keys = {
-			{ "q", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-            { "Q", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-		},
-	},
-	-----------------------------------------------------------------------------
-	{
 		"ibhagwan/fzf-lua",
 		event = { "VimEnter" },
 		config = function()

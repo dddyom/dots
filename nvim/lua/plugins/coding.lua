@@ -4,50 +4,12 @@ return {
 	{ "vidocqh/auto-indent.nvim", opts = {}, event = "VimEnter" },
 	-----------------------------------------------------------------------------
 	{
-		"stevearc/aerial.nvim",
-		event = "LspAttach",
-		config = function()
-			require("aerial").setup({
-				on_attach = function(bufnr)
-					vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-					vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
-				end,
-			})
-		end,
-		keys = { { "<leader>a", "<cmd>AerialToggle!<CR>", desc = "Show code structure" } },
-	},
-	-----------------------------------------------------------------------------
-	{
-		"akinsho/toggleterm.nvim",
-		event = "VimEnter",
-		version = "*",
-		config = true,
-		keys = { { "!", "<cmd>ToggleTerm<CR>", desc = "Toggle terminal" } },
-	},
-	-----------------------------------------------------------------------------
-	{
-		"chrisgrieser/nvim-recorder",
-		event = "VimEnter",
-		opts = {
-			mapping = {
-				startStopRecording = "<leader>q",
-				playMacro = "@Q",
-				switchSlot = "<C-q>",
-				editMacro = "cq",
-				deleteAllMacros = "dq",
-				yankMacro = "yq",
-			},
-		},
-	},
-	-----------------------------------------------------------------------------
-	{
 
 		"hrsh7th/nvim-cmp",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
-			"lukas-reineke/cmp-under-comparator",
 			{ "saadparwaiz1/cmp_luasnip", dependencies = "L3MON4D3/LuaSnip" },
 		},
 		event = "BufEnter",
@@ -66,19 +28,6 @@ return {
 
 			return {
 				preselect = cmp.PreselectMode.None,
-				sorting = {
-					comparators = {
-						cmp.config.compare.offset,
-						cmp.config.compare.exact,
-						cmp.config.compare.score,
-						require("cmp-under-comparator").under,
-						cmp.config.compare.kind,
-						cmp.config.compare.sort_text,
-						cmp.config.compare.length,
-						cmp.config.compare.order,
-					},
-				},
-				experimental = { ghost_text = { hl_group = "Comment" } },
 				snippet = {
 					expand = function(args)
 						require("luasnip").lsp_expand(args.body)
@@ -246,21 +195,5 @@ return {
 
 			vim.keymap.set("n", "<leader>x", toggle, { desc = "Toggle neocodeium" })
 		end,
-	},
-	-----------------------------------------------------------------------------
-	{
-		"klen/nvim-test",
-		event = "BufEnter *.py",
-		config = function()
-			require("nvim-test").setup({ term = "toggleterm" })
-		end,
-		keys = {
-			{ "<leader>t", "", desc = "Tests" },
-			{ "<leader>tf", "<cmd>TestFile<cr>", desc = "Test File" },
-			{ "<leader>ta", "<cmd>TestSuite<cr>", desc = "Test all" },
-			{ "<leader>tl", "<cmd>TestLast<cr>", desc = "Test Last" },
-			{ "<leader>tt", "<cmd>TestNearest<cr>", desc = "Test current" },
-		},
-		-----------------------------------------------------------------------------
 	},
 }

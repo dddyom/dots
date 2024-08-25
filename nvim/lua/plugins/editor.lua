@@ -3,20 +3,12 @@ return {
 	"sheerun/vim-polyglot",
 	{ "yamatsum/nvim-cursorline", config = true },
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-	{ "max397574/better-escape.nvim", config = true },
 	-----------------------------------------------------------------------------
 	{
 		"Wansmer/treesj",
 		keys = { { "<space>j", "<cmd>lua require('treesj').toggle()<cr>", desc = "Split/join" } },
 		config = true,
 		opts = { use_default_keymaps = false },
-	},
-	-----------------------------------------------------------------------------
-	{
-		"folke/zen-mode.nvim",
-		cmd = "ZenMode",
-		keys = { { "<Leader>z", "<cmd>ZenMode<CR>", noremap = true, desc = "Zen Mode" } },
-		opts = { plugins = { gitsigns = { enabled = true }, tmux = { enabled = vim.env.TMUX ~= nil } } },
 	},
 	-----------------------------------------------------------------------------
 	{
