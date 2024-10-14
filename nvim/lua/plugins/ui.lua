@@ -14,6 +14,8 @@ return {
 					WildMenu = { fg = "#0A0E14", bg = "#FFCC66" },
 					Visual = { fg = "#0A0E14", bg = "#FFCC66" },
 					LspInlayHint = { fg = "#464D5E" },
+					Pmenu = { bg = "#0F131A", fg = "#BFBDB6" },
+					PmenuSel = { bg = "#FFCC66", fg = "#0A0E14" },
 				},
 			})
 			vim.cmd("colorscheme ayu")
