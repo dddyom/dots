@@ -19,6 +19,13 @@ return {
 			vim.cmd("colorscheme ayu")
 		end,
 	},
+	{
+		"shellRaining/hlchunk.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("hlchunk").setup({ chunk = { enable = true } })
+		end,
+	},
 	-----------------------------------------------------------------------------
 	{
 		"nvim-lualine/lualine.nvim",
