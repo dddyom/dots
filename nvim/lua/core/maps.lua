@@ -71,6 +71,9 @@ map("x", "P", 'P:let @+=@0<CR>:let @"=@0<CR>', { silent = true, desc = "Paste In
 map("v", "<", "<gv", { noremap = true, silent = true })
 map("v", ">", ">gv", { noremap = true, silent = true })
 
+map("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
+map("v", "<Tab>", ">gv", { noremap = true, silent = true })
+
 -- Clear Search Highlight
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear Search Highlight" })
 
@@ -89,6 +92,7 @@ map("c", "<Down>", "<C-n>")
 
 -- Command Abbreviations
 local abbreviations = {
+	{ "W", "w" },
 	{ "qw", "wq" },
 	{ "Wq", "wq" },
 	{ "WQ", "wq" },
