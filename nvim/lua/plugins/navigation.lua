@@ -41,7 +41,11 @@ return {
 		event = { "VimEnter" },
 		config = function()
 			local fzf = require("fzf-lua")
-			fzf.setup()
+			fzf.setup({
+				grep = {
+					rg_opts = "--column --line-number --no-heading --color=always --smart-case --glob '!node_modules/*' --glob '!dist/*'",
+				},
+			})
 			fzf.register_ui_select()
 		end,
 		-- stylua: ignore

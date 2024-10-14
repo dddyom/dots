@@ -3,6 +3,7 @@ return {
 	"sheerun/vim-polyglot",
 	{ "yamatsum/nvim-cursorline", config = true },
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+	{ "OXY2DEV/markview.nvim", lazy = false },
 	-----------------------------------------------------------------------------
 	{
 		"Wansmer/treesj",
