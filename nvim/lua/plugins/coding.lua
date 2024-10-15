@@ -42,6 +42,21 @@ return {
 	},
 	-----------------------------------------------------------------------------
 	{
+		"chrisgrieser/nvim-recorder",
+		event = "VimEnter",
+		opts = {
+			mapping = {
+				startStopRecording = "<leader>q",
+				playMacro = "<S-q>",
+				switchSlot = "<C-q>",
+				editMacro = "cq",
+				deleteAllMacros = "dq",
+				yankMacro = "yq",
+			},
+		},
+	},
+	-----------------------------------------------------------------------------
+	{
 		"danymat/neogen",
 		event = "BufEnter",
 		-- stylua: ignore
