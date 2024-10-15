@@ -12,10 +12,11 @@ return {
 			highlight = {
 				use_nvim_cmp_as_default = true,
 			},
+			nerd_font_variant = "mono",
 			keymap = {
 				show = "<C-space>",
 				hide = "<C-e>",
-				accept = "<C-Enter>",
+				accept = "<Enter>",
 				select_prev = { "<S-Tab>" },
 				select_next = { "<Tab>" },
 				show_documentation = "<C-space>",
@@ -25,6 +26,16 @@ return {
 
 				snippet_forward = "<C-n>",
 				snippet_backward = "<C-p>",
+			},
+			accept = { auto_brackets = { enable = true } },
+			trigger = {
+				signature_help = {
+					enable = true,
+					show_on_insert_on_trigger_character = false,
+				},
+				completion = {
+					show_on_insert_on_trigger_character = false,
+				},
 			},
 			kind_icons = require("core.icons").kinds,
 		},
