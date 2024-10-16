@@ -65,4 +65,15 @@ return {
 			{ "<leader>fa", "<cmd>lua require('fzf-lua').lsp_code_actions()<CR>", desc = "Lsp code actions" },
 		},
 	},
+	-----------------------------------------------------------------------------
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		opts = {},
+		-- stylua: ignore
+		keys = {
+			{ "c", mode = { "n" }, function() require("flash").jump() end, desc = "Flash" },
+			{ "C", mode = { "n" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+		},
+	},
 }
