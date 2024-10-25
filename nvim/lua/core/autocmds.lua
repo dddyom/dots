@@ -136,3 +136,23 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		})
 	end,
 })
+
+vim.api.nvim_create_autocmd("RecordingLeave", {
+
+	callback = function()
+		if vim.v.event.regcontents ~= "" then
+			vim.schedule_wrap(vim.notify)("Recorded macro: " .. vim.fn.keytrans(vim.v.event.regcontents))
+		else
+			vim.schedule_wrap(vim.notify)("Empty macro, previous recoding is kept")
+			vim.schedule_wrap(function(prev)
+				vim.fn.setreg("q", prev)
+			end)(vim.fn.getreg("q"))
+		end
+	end,
+})
+vim.api.nvim_create_autocmd("RecordingEnter", {
+
+	callback = function()
+		vim.schedule_wrap(vim.notify)("Recording macro")
+	end,
+})

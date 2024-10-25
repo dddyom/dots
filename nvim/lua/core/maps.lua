@@ -117,3 +117,7 @@ map(
 	"<cmd>lua require('core.utils').log_print('v')<CR>",
 	{ noremap = true, silent = true, desc = "Print" }
 )
+vim.keymap.set("n", "q", '(reg_recording()==""?"qq":"q")', { expr = true })
+vim.keymap.set("n", "Q", '(reg_recording()==""&&reg_executing()==""?":norm! @q\r":"")', { expr = true })
+-- stylua: ignore
+vim.keymap.set("n", "cq", ':let b:_t=input(">",keytrans(@q))|let @q=(trim(b:_t)!=""?nvim_replace_termcodes(b:_t,1,1,1):@q)\r')
