@@ -42,22 +42,6 @@ return {
 	},
 	----------------------------------------------------------------------------
 	{
-		"akinsho/flutter-tools.nvim",
-		lazy = false,
-		config = function()
-			require("flutter-tools").setup({
-				open_cmd = "edit",
-			})
-			vim.keymap.set(
-				"n",
-				"<leader>a",
-				"<cmd>lua require('core.utils').toggle_log()<CR>",
-				{ noremap = true, silent = true, desc = "Toggle Log" }
-			)
-		end,
-	},
-	-----------------------------------------------------------------------------
-	{
 		"danymat/neogen",
 		event = "BufEnter",
 		-- stylua: ignore

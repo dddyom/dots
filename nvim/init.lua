@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 require("core.opts")
 require("core.maps")
 require("core.autocmds")
+require("core.dart_maps")
 
 -- LOAD PLUGINS
 require("lazy").setup("plugins")

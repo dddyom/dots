@@ -1,5 +1,13 @@
 local M = {}
 
+M.get_project_root = function()
+	local project_root = vim.fn.system("git rev-parse --show-toplevel"):gsub("\n", "")
+	if project_root:match("fatal: not a git repository") then
+		project_root = vim.fn.getcwd()
+	end
+	return project_root
+end
+
 M.get_project_name = function(source_path)
 	local path = source_path
 	while path and path ~= "" do
@@ -38,6 +46,11 @@ local get_print_text = function(filetype)
 	elseif filetype == "lua" then
 		return {
 			print_text = [[vim.print()]],
+			start_insert = "%(",
+		}
+	elseif filetype == "dart" then
+		return {
+			print_text = [[print();]],
 			start_insert = "%(",
 		}
 	else
@@ -85,20 +98,18 @@ end
 
 local api = vim.api
 M.toggle_log = function()
-  local wins = api.nvim_list_wins()
+	local wins = api.nvim_list_wins()
 
-  for _, id in pairs(wins) do
-    local bufnr = api.nvim_win_get_buf(id)
-    if api.nvim_buf_get_name(bufnr):match '.*/([^/]+)$' == '__FLUTTER_DEV_LOG__' then
-      return vim.api.nvim_win_close(id, true)
-    end
-  end
+	for _, id in pairs(wins) do
+		local bufnr = api.nvim_win_get_buf(id)
+		if api.nvim_buf_get_name(bufnr):match(".*/([^/]+)$") == "__FLUTTER_DEV_LOG__" then
+			return vim.api.nvim_win_close(id, true)
+		end
+	end
 
-  pcall(function()
-    vim.api.nvim_command 'sb + __FLUTTER_DEV_LOG__ | resize 15'
-  end)
+	pcall(function()
+		vim.api.nvim_command("sb + __FLUTTER_DEV_LOG__ | resize 15")
+	end)
 end
 
 return M
-
-

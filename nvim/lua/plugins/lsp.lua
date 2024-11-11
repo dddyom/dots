@@ -23,6 +23,7 @@ return {
 
 			lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 			lspconfig.basedpyright.setup({ settings = { basedpyright = { typeCheckingMode = "basic" } } })
+			lspconfig.dartls.setup({})
 
 			lsp.setup()
             -- stylua: ignore

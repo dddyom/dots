@@ -27,6 +27,7 @@ return {
 			textobjects = {
 				select = {
 					enable = true,
+					disable = { "dart", "markdown" },
 					lookahead = true,
 
 					keymaps = {
@@ -47,6 +48,7 @@ return {
 			},
 			move = {
 				enable = true,
+				disable = { "dart", "markdown" },
 				set_jumps = true,
 				goto_next_start = {
 					["]m"] = "@function.outer",
@@ -63,9 +65,9 @@ return {
 					["[d"] = "@conditional.outer",
 				},
 			},
-			highlight = { enable = true },
-			indent = { enable = true },
-			endwise = { enable = true },
+			highlight = { enable = true, disable = { "markdown" } },
+			indent = { enable = true, disable = { "markdown" } },
+			endwise = { enable = true, disable = { "markdown" } },
 			ensure_installed = {
 				"python",
 				"bash",
