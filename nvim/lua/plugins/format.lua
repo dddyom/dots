@@ -10,7 +10,7 @@ return {
 
 				rust = { "rustfmt" },
 				html = { "djhtml" },
-
+				dart = { "dart" },
 				css = { "prettier" },
 				json = { "jq" },
 				yaml = { "prettier" },
@@ -28,7 +28,7 @@ return {
 			"$FILENAME",
 			"--quiet",
 			"-",
-            "--skip-string-normalization",
+			"--skip-string-normalization",
 			"--line-length",
 			"120",
 		}
