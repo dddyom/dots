@@ -4,15 +4,14 @@
 pulseaudio --start &
 picom -b &
 sxhkd &
+bspc monitor -d 1 2 3 4 5
+betterlockscreen -l dim
 nitrogen --set-scaled ~/.config/wallpapers/ocean.png
 $HOME/.config/polybar/launch.sh &
 pgrep -x sxhkd > /dev/null || sxhkd &
 xsetroot -cursor_name left_ptr &
 crow &
-betterlockscreen -l dim
 $HOME/.config/bspwm/scripts/updates.sh
-
-bspc monitor -d 1 2 3 4 5
 
 
 
