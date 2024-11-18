@@ -16,7 +16,7 @@ return {
 			local lsp = require("lsp-zero").preset({})
 
 			require("mason").setup()
-			require("mason-lspconfig").setup({ ensure_installed = { "emmet_language_server", "lua_ls", "basedpyright", "ts_ls" } })
+			require("mason-lspconfig").setup({ ensure_installed = { "emmet_language_server", "lua_ls", "basedpyright", "ts_ls", "rust_analyzer" } })
 			lsp.on_attach(function(_, bufnr) lsp.default_keymaps({ buffer = bufnr }) end)
 			lsp.set_sign_icons(require("core.icons").diagnostics)
 			local lspconfig = require("lspconfig")
