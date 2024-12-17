@@ -59,7 +59,7 @@ return {
 			{ "<leader>fS", "<cmd>lua require('fzf-lua').blines()<CR>", desc = "Find in opened buffers" },
 			{ "<leader>fh", "<cmd>lua require('fzf-lua').help_tags()<CR>", desc = "Find help tags" },
 			{ "<leader>fd", "<cmd>lua require('fzf-lua').lsp_definitions({jump_to_single_result = true})<CR>", desc = "Lsp definitions" },
-			{ "gD", "<cmd>lua require('fzf-lua').lsp_definitions({jump_to_single_result = true})<CR>", desc = "Lsp definitions" },
+			-- { "gD", "<cmd>lua require('fzf-lua').lsp_definitions({jump_to_single_result = true})<CR>", desc = "Lsp definitions" },
 			{ "<leader>fr", "<cmd>lua require('fzf-lua').lsp_references({jump_to_single_result = true})<CR>", desc = "Lsp references" },
 			{ "gr", "<cmd>lua require('fzf-lua').lsp_references({jump_to_single_result = true})<CR>", desc = "Lsp references" },
 			{ "<leader>fa", "<cmd>lua require('fzf-lua').lsp_code_actions()<CR>", desc = "Lsp code actions" },

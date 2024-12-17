@@ -5,101 +5,40 @@ return {
 		main = "nvim-treesitter.configs",
 		build = ":TSUpdate",
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
 			{ "nvim-treesitter/nvim-treesitter-context", opts = { enable = true } },
 			{ "folke/ts-comments.nvim", opts = {}, event = "VeryLazy" },
-			"RRethy/nvim-treesitter-endwise",
-			{ "windwp/nvim-ts-autotag", config = true },
-		},
-		cmd = {
-			"TSUpdate",
-			"TSInstall",
-			"TSInstallInfo",
-			"TSModuleInfo",
-			"TSConfigInfo",
-			"TSUpdateSync",
-		},
-		keys = {
-			{ "v", desc = "Increment selection", mode = "x" },
-			{ "V", desc = "Shrink selection", mode = "x" },
 		},
 		opts = {
-			textobjects = {
-				select = {
-					enable = true,
-					disable = { "dart", "markdown" },
-					lookahead = true,
-
-					keymaps = {
-						["af"] = "@function.outer",
-						["if"] = "@function.inner",
-						["am"] = "@function.outer",
-						["im"] = "@function.inner",
-						["ac"] = "@class.outer",
-						["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
-					},
-					selection_modes = {
-						["@parameter.outer"] = "v",
-						["@function.outer"] = "V",
-						["@class.outer"] = "<c-v>",
-					},
-					include_surrounding_whitespace = true,
-				},
-			},
-			move = {
-				enable = true,
-				disable = { "dart", "markdown" },
-				set_jumps = true,
-				goto_next_start = {
-					["]m"] = "@function.outer",
-					["]]"] = { query = "@class.outer", desc = "Next class start" },
-				},
-				goto_previous_start = {
-					["[m"] = "@function.outer",
-					["[["] = "@class.outer",
-				},
-				goto_next = {
-					["]d"] = "@conditional.outer",
-				},
-				goto_previous = {
-					["[d"] = "@conditional.outer",
-				},
-			},
 			highlight = { enable = true, disable = { "markdown" } },
 			indent = { enable = true, disable = { "markdown" } },
-			endwise = { enable = true, disable = { "markdown" } },
 			ensure_installed = {
 				"python",
 				"bash",
-				"comment",
 				"css",
-				"diff",
-				"git_config",
-				"git_rebase",
-				"gitcommit",
-				"gitignore",
-				"gitattributes",
 				"html",
 				"json",
 				"htmldjango",
 				"http",
 				"javascript",
 				"lua",
-				"luadoc",
 				"make",
-				"markdown",
-				"markdown_inline",
 				"regex",
 				"rust",
-				"sql",
-				"toml",
 				"tsx",
 				"typescript",
-				"vim",
-				"vimdoc",
-				"norg",
 				"dockerfile",
 			},
 		},
 	},
+	{
+		"aaronik/treewalker.nvim",
+		config = function()
+			require("treewalker").setup({ { highlight = true } })
+			vim.api.nvim_set_keymap("n", "<Down>", ":Treewalker Down<CR>", { noremap = true })
+			vim.api.nvim_set_keymap("n", "<Up>", ":Treewalker Up<CR>", { noremap = true })
+			vim.api.nvim_set_keymap("n", "<Left>", ":Treewalker Left<CR>", { noremap = true })
+			vim.api.nvim_set_keymap("n", "<Right>", ":Treewalker Right<CR>", { noremap = true })
+		end,
+	},
+	{ "tronikelis/ts-autotag.nvim", opts = {}, event = "VeryLazy" },
 }

@@ -32,6 +32,7 @@ return {
 			vim.keymap.set("n", "z]", function() vim.diagnostic.goto_next() end, { desc = "next diagnostic", silent = true, nowait = true, noremap = true })
             -- stylua: ignore
 			vim.keymap.set("n", "D", function() vim.diagnostic.open_float() end, { desc = "Diagnostic float", silent = true, nowait = true, noremap = true })
+			vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true, desc = "Lsp definitions" })
 		end,
 	},
 	-----------------------------------------------------------------------------

@@ -3,12 +3,11 @@ vim.g.mapleader = " "
 
 local map = vim.keymap.set
 
--- Window Resizing Mappings
 local resize_mappings = {
-	{ "<Up>", "<cmd>resize +1<cr>" },
-	{ "<Down>", "<cmd>resize -1<cr>" },
-	{ "<Left>", "<cmd>vertical resize +1<cr>" },
-	{ "<Right>", "<cmd>vertical resize -1<cr>" },
+	{ "<C-Up>", "<cmd>resize +1<cr>" },
+	{ "<C-Down>", "<cmd>resize -1<cr>" },
+	{ "<C-Left>", "<cmd>vertical resize +1<cr>" },
+	{ "<C-Right>", "<cmd>vertical resize -1<cr>" },
 }
 for _, keymap in ipairs(resize_mappings) do
 	map("n", keymap[1], keymap[2], { desc = "Resize Window" })
