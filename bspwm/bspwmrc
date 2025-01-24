@@ -4,10 +4,11 @@
 pulseaudio --start &
 picom -b &
 sxhkd &
+dunst &
 bspc monitor -d 1 2 3 4 5
-betterlockscreen -l dim
 $HOME/.config/polybar/launch.sh &
-nitrogen --set-scaled ~/.config/wallpapers/ocean.png
+
+$HOME/.config/bspwm/scripts/wallpaper.sh &
 pgrep -x sxhkd > /dev/null || sxhkd &
 xsetroot -cursor_name left_ptr &
 crow &
@@ -38,8 +39,8 @@ bspc config urgent_border_color         "#73b8ff"
 ## APPLICATION RULES ##
 bspc rule -a Brave-browser desktop='^1' follow=on
 # bspc rule -a org.wezfurlong.wezterm desktop='^2' follow=on
-bspc rule -a Pachca desktop='^3' follow=on
-bspc rule -a TelegramDesktop desktop='^3' follow=on
+bspc rule -a Pachca desktop='^3' follow=on state=floating
+bspc rule -a TelegramDesktop desktop='^3' follow=on state=floating
 bspc rule -a matplotlib state=floating
 bspc rule -a Viewnior rectangle=1350x900+285+90 state=floating
 bspc rule -a Thunar state=floating

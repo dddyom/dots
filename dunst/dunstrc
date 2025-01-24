@@ -51,10 +51,10 @@
     # Draw a line of "separator_height" pixel height between two
     # notifications.
     # Set to 0 to disable.
-    separator_height = 2
+    separator_height = 1
 
     # Padding between text and separator.
-    padding = 8
+    padding = 4
 
     # Horizontal padding.
     horizontal_padding = 8
@@ -86,7 +86,7 @@
 
     ### Text ###
 
-    font = JetBrains Mono Nerd Font
+    font = JetBrains Mono Nerd Font 12
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -213,7 +213,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 6
+    corner_radius = 2
 
     ### Legacy
 
@@ -273,28 +273,20 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#1F2430"
-    foreground = "#CBCCC6"
-    timeout = 5
-    # Icon for notifications with low urgency, uncomment to enable
-    icon = /usr/share/icons/Arc-X-D/status/16/dialog-information.png
+background = "#1F2430"
+foreground = "#CCCAC2"
+timeout = 5
 
 [urgency_normal]
-    background = "#1F2430"
-    foreground = "#CBCCC6"
-    timeout = 5
-    # Icon for notifications with normal urgency, uncomment to enable
-    icon = /usr/share/icons/Arc-X-D/status/16/dialog-question.png
+background = "#1F2430"
+foreground = "#CCCAC2"
+timeout = 10
 
 [urgency_critical]
-    background = "#1F2430"
-    foreground = "#CBCCC6"
-    frame_color = "#F28779"
-    timeout = 120
-    # Icon for notifications with critical urgency, uncomment to enable
-    icon = /usr/share/icons/Arc-X-D/status/16/dialog-warning.png
+background = "#1F2430"
+foreground = "#FFCC66"
+frame_color = "#F07178"
+timeout = 20
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.

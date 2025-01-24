@@ -6,7 +6,6 @@ CONF_DIR_DOTS=(
   "nvim"
   "wezterm"
   "tmux"
-  "betterlockscreen"
   "wallpapers"
   "bspwm"
   "polybar"
@@ -19,6 +18,7 @@ HOME_DIR_DOTS=(
   ".zsh"
   ".zshrc"
   ".ideavimrc"
+  ".xprofile"
 )
 
 for dot in "${CONF_DIR_DOTS[@]}";do

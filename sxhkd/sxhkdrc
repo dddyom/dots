@@ -11,12 +11,15 @@ super + e
   thunar
 
 super + Delete
-  betterlockscreen -l dim
+    dm-tool lock
 # program launcher
 super + a
 	rofi -modi drun -show drun -line-padding 4 \
                 -columns 2 -padding 50 -hide-scrollbar -terminal wezterm \
                 -show-icons -drun-icon-theme "Qogir-dark" -font "Droid Sans Regular 10"
+
+super + r
+	$HOME/.config/bspwm/scripts/wallpaper.sh &
 
 # power-menu
 super + Escape
@@ -26,7 +29,7 @@ super + Escape
 
 # lockscreen
 alt + shift + x
-    betterlockscreen -l dim
+    dm-tool lock
 
 # make sxhkd reload its configuration files:
 super + shift + r

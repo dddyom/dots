@@ -1,5 +1,6 @@
 return {
 	"nvim-lua/plenary.nvim",
+	"lambdalisue/vim-suda",
 	-----------------------------------------------------------------------------
 	{
 		"notjedi/nvim-rooter.lua",
