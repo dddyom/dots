@@ -39,8 +39,8 @@ bspc config urgent_border_color         "#73b8ff"
 ## APPLICATION RULES ##
 bspc rule -a Brave-browser desktop='^1' follow=on
 # bspc rule -a org.wezfurlong.wezterm desktop='^2' follow=on
-bspc rule -a Pachca desktop='^3' follow=on state=floating
-bspc rule -a TelegramDesktop desktop='^3' follow=on state=floating
+bspc rule -a Pachca desktop='^3' follow=on state=floating rectangle=800x600-90+70;
+bspc rule -a TelegramDesktop desktop='^3' follow=on state=floating rectangle=900x500+30+60
 bspc rule -a matplotlib state=floating
 bspc rule -a Viewnior rectangle=1350x900+285+90 state=floating
 bspc rule -a Thunar state=floating
