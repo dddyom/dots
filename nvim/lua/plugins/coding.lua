@@ -42,14 +42,14 @@ return {
 	},
 	----------------------------------------------------------------------------
 	{
-		"danymat/neogen",
-		event = "BufEnter",
-		-- stylua: ignore
+		"jeangiraldoo/codedocs.nvim",
 		keys = {
-			{ "<leader>c", "", desc = "neogen" },
-			{ "<leader>cc", function() require("neogen").generate({}) end, desc = "doc string" },
+			{
+				"<leader>k",
+				"<cmd>lua require('codedocs').insert_docs()<CR>",
+				desc = "Inserts a docstring into the buffer",
+			},
 		},
-		opts = { snippet_engine = "luasnip", enabled = true },
 	},
 	-----------------------------------------------------------------------------
 	{ "echasnovski/mini.surround", opts = {} },
