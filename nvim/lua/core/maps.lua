@@ -74,7 +74,7 @@ map("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
 map("v", "<Tab>", ">gv", { noremap = true, silent = true })
 
 -- Clear Search Highlight
-map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear Search Highlight" })
+map("n", "<Esc><Esc>", "<cmd>noh<CR>", { desc = "Clear Search Highlight" })
 
 -- Smart Delete in Normal Mode
 map("n", "dd", function()
