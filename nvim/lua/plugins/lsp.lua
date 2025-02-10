@@ -22,7 +22,24 @@ return {
 			local lspconfig = require("lspconfig")
 
 			lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
-			lspconfig.basedpyright.setup({ settings = { basedpyright = { typeCheckingMode = "basic" } } })
+			lspconfig.basedpyright.setup({
+				settings = {
+					basedpyright = {
+						typeCheckingMode = "basic",
+					},
+				},
+				on_init = function(client)
+					local venv_path = vim.fn.trim(vim.fn.system("poetry env info -p"))
+					local python_path = venv_path .. "/bin/python"
+
+					if vim.fn.filereadable(python_path) == 1 then
+						client.config.settings.python = {
+							pythonPath = python_path,
+						}
+						client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+					end
+				end,
+			})
 			lspconfig.dartls.setup({})
 
 			lsp.setup()
