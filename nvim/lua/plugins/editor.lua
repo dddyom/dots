@@ -6,7 +6,7 @@ return {
 	{ "OXY2DEV/markview.nvim", lazy = false },
 	-----------------------------------------------------------------------------
 	-- stylua: ignore
-	{ "axkirillov/hbac.nvim", config = function() require("hbac").setup({ threshold = 7 }) end },
+	{ "axkirillov/hbac.nvim", config = function() require("hbac").setup({ threshold = 4 }) end },
 	-----------------------------------------------------------------------------
 	{
 		"Wansmer/treesj",
