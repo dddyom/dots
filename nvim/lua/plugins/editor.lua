@@ -4,7 +4,9 @@ return {
 	{ "yamatsum/nvim-cursorline", config = true },
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	{ "OXY2DEV/markview.nvim", lazy = false },
-	{ "axkirillov/hbac.nvim", config = true },
+	-----------------------------------------------------------------------------
+	-- stylua: ignore
+	{ "axkirillov/hbac.nvim", config = function() require("hbac").setup({ threshold = 7 }) end },
 	-----------------------------------------------------------------------------
 	{
 		"Wansmer/treesj",
