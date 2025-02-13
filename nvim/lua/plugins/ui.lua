@@ -44,7 +44,23 @@ return {
 				},
 				sections = {
 					lualine_a = {
-						{ "buffers", symbols = require("core.icons").buffers },
+						{
+							"buffers",
+							symbols = require("core.icons").buffers,
+							fmt = function(name, bufnr)
+								if bufnr and bufnr.file then
+									if bufnr.file == "" then
+										return require("core.icons").buffers.no_name
+									end
+									return vim.fn.fnamemodify(bufnr.file, ":h:t")
+										.. "/"
+										.. vim.fn.fnamemodify(bufnr.file, ":t")
+								else
+									return name
+								end
+							end,
+							max_length = vim.o.columns * 2 / 3,
+						},
 					},
 					lualine_b = {},
 					lualine_c = {},

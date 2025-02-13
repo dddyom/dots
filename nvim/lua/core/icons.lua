@@ -7,8 +7,9 @@ return {
 	},
 	buffers = {
 		modified = " 󰇤", -- ● 󰇤
-		alternate_file = "#",
+		alternate_file = "", -- #
 		directory = "",
+		no_name = "[No name]", --  󱗆 󰇥
 	},
 	notify = {
 		DEBUG = "",

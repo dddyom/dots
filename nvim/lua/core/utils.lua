@@ -97,6 +97,7 @@ M.log_print = function(mode)
 end
 
 local api = vim.api
+
 M.toggle_log = function()
 	local wins = api.nvim_list_wins()
 
@@ -110,6 +111,13 @@ M.toggle_log = function()
 	pcall(function()
 		vim.api.nvim_command("sb + __FLUTTER_DEV_LOG__ | resize 15")
 	end)
+end
+
+M.get_buf_name = function(name)
+	local home = vim.fn.expand("~")
+	local path = vim.fn.fnamemodify(name, ":p") -- Получаем полный путь
+	path = path:gsub("^" .. home, "~") -- Заменяем домашнюю папку на ~
+	return path
 end
 
 return M
