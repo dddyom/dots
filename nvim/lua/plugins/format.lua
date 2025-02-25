@@ -1,39 +1,39 @@
 return {
-	"stevearc/conform.nvim",
+	"nvimdev/guard.nvim",
+	dependencies = { "nvimdev/guard-collection" },
 	config = function()
-		require("conform").setup({
-			format_on_save = false,
-			formatters_by_ft = {
-				lua = { "stylua" },
-				python = { "isort", "black", "autopep8" },
-				javascript = { { "prettier" } },
+		local ft = require("guard.filetype")
 
-				rust = { "rustfmt" },
-				html = { "djhtml" },
-				dart = { "dart" },
-				css = { "prettier" },
-				json = { "jq" },
-				yaml = { "prettier" },
-				sql = { "sqlfluff" },
-				markdown = { "prettier" },
-				typescript = { "prettier" },
-				typescriptreact = { "prettier" },
-				tsx = { "prettier" },
-				htmldjango = { "prettier" },
+		ft("lua"):fmt("stylua")
+		ft("python"):fmt({
+			cmd = "ruff",
+			args = {
+				"--config",
+				'format.quote-style="preserve"',
+				"--config",
+				"line-length=128",
+				"format",
 			},
+			fname = true,
 		})
-
-		require("conform.formatters.black").args = {
-			"--stdin-filename",
-			"$FILENAME",
-			"--quiet",
-			"-",
-			"--skip-string-normalization",
-			"--line-length",
-			"120",
+		ft("javascript", "typescript", "typescriptreact", "tsx"):fmt("prettier")
+		ft("rust"):fmt("rustfmt")
+		ft("html", "htmldjango"):fmt("djhtml")
+		ft("css", "yaml", "markdown"):fmt("prettier")
+		ft("json"):fmt("jq")
+		ft("dart"):fmt("dart")
+		vim.g.guard_config = {
+			fmt_on_save = false,
+			lsp_as_default_formatter = false,
+			-- whether or not to save the buffer after formatting
+			save_on_fmt = true,
+			auto_lint = true,
+			lint_interval = 500,
 		}
-		vim.g.disable_autoformat = true
-		-- stylua: ignore
-		vim.api.nvim_set_keymap( "n", "<leader>w", '<cmd>lua require("conform").format({ lsp_fallback = true })<cr>', { noremap = true, silent = true, desc = "format" })
+
+		-- 	-- Клавиша для форматирования
+		vim.keymap.set("n", "<leader>w", function()
+			vim.cmd("Guard fmt")
+		end, { noremap = true, silent = true, desc = "Format file" })
 	end,
 }

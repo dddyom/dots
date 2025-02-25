@@ -1,35 +1,33 @@
 return {
+	-- Библиотека Lua-функций для Neovim (требуется многими плагинами)
 	"nvim-lua/plenary.nvim",
-	"lambdalisue/vim-suda",
+
 	-----------------------------------------------------------------------------
+	-- Автоматическое определение корня проекта
 	{
 		"notjedi/nvim-rooter.lua",
 		config = function()
 			require("nvim-rooter").setup({ manual = true })
 		end,
 	},
+
+	-----------------------------------------------------------------------------
+	-- Интеграция с Obsidian (менеджер заметок)
 	{
 		"ada0l/obsidian",
 		lazy = "VeryLazy",
 		keys = {
-			{ "<leader>nn", '<cmd>lua require("obsidian").new_note_prompt()<cr>', desc = "New note" },
-			{ "<leader>fn", '<cmd>lua require("obsidian").note_picker()<cr>', desc = "Note picker" },
-			{
-				"gf",
-				function()
-					if require("obsidian").found_wikilink_under_cursor() ~= nil then
-						return '<cmd>lua require("obsidian").go_to()<CR>'
-					else
-						return "gf"
-					end
-				end,
-				noremap = false,
-				expr = true,
-			},
+            -- stylua: ignore start
+			{ "<leader>nn", function() require("obsidian").new_note_prompt() end, desc = "Create new note" },
+			{ "<leader>fn", function() require("obsidian").note_picker() end, desc = "Open note picker" },
+			{ "gf", function() if require("obsidian").found_wikilink_under_cursor() ~= nil then require("obsidian").go_to() else return "gf" end end, noremap = false, expr = true },
+			-- stylua: ignore end
 		},
 		opts = { vaults = { { dir = "~/.sync/notes" } } },
 	},
 
+	-----------------------------------------------------------------------------
+	-- Подсказки при нажатии клавиш (аналог WhichKey)
 	{
 		"echasnovski/mini.clue",
 		version = false,
@@ -37,24 +35,24 @@ return {
 			local miniclue = require("mini.clue")
 			miniclue.setup({
 				triggers = {
-					-- Leader triggers
+					-- Лидер-клавиши
 					{ mode = "n", keys = "<Leader>" },
 					{ mode = "x", keys = "<Leader>" },
 
-					-- Built-in completion
+					-- Встроенное автодополнение
 					{ mode = "i", keys = "<C-x>" },
 
-					-- `g` key
+					-- Клавиши `g`
 					{ mode = "n", keys = "g" },
 					{ mode = "x", keys = "g" },
 
-					-- Marks
+					-- Метки
 					{ mode = "n", keys = "'" },
 					{ mode = "n", keys = "`" },
 					{ mode = "x", keys = "'" },
 					{ mode = "x", keys = "`" },
 
-					-- Registers
+					-- Регистры
 					{ mode = "n", keys = '"' },
 					{ mode = "x", keys = '"' },
 					{ mode = "i", keys = "<C-r>" },

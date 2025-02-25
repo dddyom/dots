@@ -1,34 +1,31 @@
 return {
 	-----------------------------------------------------------------------------
-	"sheerun/vim-polyglot",
+	-- Подчеркивание слова под курсором
 	{ "yamatsum/nvim-cursorline", config = true },
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-	{ "OXY2DEV/markview.nvim", lazy = false },
 	-----------------------------------------------------------------------------
-	-- stylua: ignore
-	{ "axkirillov/hbac.nvim", config = function() require("hbac").setup({ threshold = 4 }) end },
-	-----------------------------------------------------------------------------
+	-- Разделение и объединение конструкций в коде (например, массивов, объектов, условий)
 	{
 		"Wansmer/treesj",
-		keys = { { "<space>j", "<cmd>lua require('treesj').toggle()<cr>", desc = "Split/join" } },
+		keys = {
+			-- stylua: ignore
+			{ "<space>j", function() require("treesj").toggle() end, desc = "Toggle split/join" },
+		},
 		config = true,
 		opts = { use_default_keymaps = false },
 	},
 	-----------------------------------------------------------------------------
+	-- Поиск и замена с предварительным просмотром
 	{
 		"nvim-pack/nvim-spectre",
 		event = "BufRead",
 		init = function()
-            -- stylua: ignore
-			vim.keymap.set("n", "<leader>r", "", { desc = "replace (spectre)" })
-            -- stylua: ignore
-			vim.keymap.set("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', { desc = "Toggle Spectre" })
-            -- stylua: ignore
-			vim.keymap.set("n", "<leader>rR", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', { desc = "Search current word" })
-            -- stylua: ignore
-			vim.keymap.set("v", "<leader>rR", '<esc><cmd>lua require("spectre").open_visual()<CR>', { desc = "Search current word" })
-            -- stylua: ignore
-			vim.keymap.set("n", "<leader>rr", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', { desc = "Search on current file" })
+			-- stylua: ignore start
+			vim.keymap.set("n", "<leader>r", "", { desc = "Replace (Spectre)" })
+			vim.keymap.set("n", "<leader>S", function() require("spectre").toggle() end, { desc = "Toggle Spectre" })
+			vim.keymap.set("n", "<leader>rR", function() require("spectre").open_visual({ select_word = true }) end, { desc = "Search current word" })
+			vim.keymap.set("v", "<leader>rR", function() vim.cmd("esc") require("spectre").open_visual() end, { desc = "Search current word" })
+			vim.keymap.set("n", "<leader>rr", function() require("spectre").open_file_search({ select_word = true }) end, { desc = "Search in current file" })
+			-- stylua: ignore end
 		end,
 	},
 }

@@ -6,7 +6,9 @@ local function set_cursorline(show)
 	vim.opt_local.cursorline = show
 end
 
--- Auto Cursorline Show/Hide
+-----------------------------------------------------------------------------
+-- Авто-подсветка строки курсора (CursorLine)
+-----------------------------------------------------------------------------
 vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
 	group = augroup("auto_cursorline_show"),
 	callback = function(event)
@@ -23,7 +25,9 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
 	end,
 })
 
--- LSP Inlay Hints Toggle
+-----------------------------------------------------------------------------
+-- Авто-переключение LSP Inlay Hints
+-----------------------------------------------------------------------------
 vim.api.nvim_create_autocmd({ "LspAttach", "InsertEnter", "InsertLeave" }, {
 	group = augroup("lsp_inlay_hints"),
 	callback = function(event)
@@ -32,7 +36,9 @@ vim.api.nvim_create_autocmd({ "LspAttach", "InsertEnter", "InsertLeave" }, {
 	end,
 })
 
--- Auto Disable Highlight Search
+-----------------------------------------------------------------------------
+-- Авто-отключение подсветки поиска при движении курсора
+-----------------------------------------------------------------------------
 vim.api.nvim_create_autocmd("CursorMoved", {
 	group = augroup("auto_hlsearch"),
 	callback = function()
@@ -44,7 +50,9 @@ vim.api.nvim_create_autocmd("CursorMoved", {
 	end,
 })
 
--- Close Certain Filetypes with 'q'
+-----------------------------------------------------------------------------
+-- Закрытие определённых типов буферов по `q`
+-----------------------------------------------------------------------------
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup("close_with_q"),
 	pattern = {
@@ -70,7 +78,9 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- HTML, Django, Jinja Keymaps
+-----------------------------------------------------------------------------
+-- Keymaps для HTML, Django, Jinja
+-----------------------------------------------------------------------------
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup("html_django_jinja_keymaps"),
 	pattern = "html,htmldjango,jinja",
@@ -85,48 +95,55 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- Set filetype for Django HTML files
+-----------------------------------------------------------------------------
+-- Установка filetype для Django HTML
+-----------------------------------------------------------------------------
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	group = augroup("set_filetype_htmldjango"),
 	pattern = { "*.html" },
 	command = "set filetype=htmldjango",
 })
 
--- Auto Resize Split Windows
+-----------------------------------------------------------------------------
+-- Авто-изменение размеров окон при изменении размеров Neovim
+-----------------------------------------------------------------------------
 vim.api.nvim_create_autocmd("VimResized", {
 	group = augroup("auto_resize_windows"),
-	desc = "Auto resize split windows",
 	command = "tabdo wincmd =",
 })
 
--- Remove Trailing Whitespace on Save
+-----------------------------------------------------------------------------
+-- Удаление лишних пробелов при сохранении
+-----------------------------------------------------------------------------
 vim.api.nvim_create_autocmd("BufWritePre", {
 	group = augroup("remove_trailing_whitespace"),
-	desc = "Remove trailing whitespace on save",
 	pattern = "*",
 	command = "%s/\\s\\+$//e",
 })
 
--- Prevent Auto Commenting New Line
+-----------------------------------------------------------------------------
+-- Отключение авто-комментирования новой строки
+-----------------------------------------------------------------------------
 vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
 	group = augroup("no_auto_comment"),
-	desc = "Don't auto comment new line",
 	pattern = "*",
 	command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
 })
 
--- Jump to Last Position When Reopening a File
+-----------------------------------------------------------------------------
+-- Перемещение к последней позиции в файле при открытии
+-----------------------------------------------------------------------------
 vim.api.nvim_create_autocmd("BufWinEnter", {
 	group = augroup("jump_to_last_position"),
-	desc = "Jump to the last position when reopening a file",
 	pattern = "*",
 	command = [[ if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif ]],
 })
 
--- Highlight on Yank
+-----------------------------------------------------------------------------
+-- Подсветка текста при копировании (Yank)
+-----------------------------------------------------------------------------
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = augroup("highlight_on_yank"),
-	desc = "Highlight on yank",
 	pattern = "*",
 	callback = function()
 		vim.highlight.on_yank({
@@ -137,21 +154,27 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("RecordingLeave", {
+-----------------------------------------------------------------------------
+-- Уведомления при записи макросов (`q`)
+-----------------------------------------------------------------------------
+vim.api.nvim_create_augroup("macro_notifications", { clear = true })
 
+vim.api.nvim_create_autocmd("RecordingLeave", {
+	group = "macro_notifications",
 	callback = function()
 		if vim.v.event.regcontents ~= "" then
 			vim.schedule_wrap(vim.notify)("Recorded macro: " .. vim.fn.keytrans(vim.v.event.regcontents))
 		else
-			vim.schedule_wrap(vim.notify)("Empty macro, previous recoding is kept")
+			vim.schedule_wrap(vim.notify)("Empty macro, previous recording is kept")
 			vim.schedule_wrap(function(prev)
 				vim.fn.setreg("q", prev)
 			end)(vim.fn.getreg("q"))
 		end
 	end,
 })
-vim.api.nvim_create_autocmd("RecordingEnter", {
 
+vim.api.nvim_create_autocmd("RecordingEnter", {
+	group = "macro_notifications",
 	callback = function()
 		vim.schedule_wrap(vim.notify)("Recording macro")
 	end,

@@ -1,9 +1,16 @@
 return {
 	-----------------------------------------------------------------------------
+	-- Поддержка иконок для плагинов и файловых типов
 	{ "nvim-tree/nvim-web-devicons", lazy = false },
+
+	-- Фреймворк для создания UI-компонентов в Neovim
 	{ "MunifTanjim/nui.nvim", lazy = false },
+
+	-- Подсветка цветов внутри кода (например, `#FF0000` будет подсвечен красным)
 	{ "brenoprata10/nvim-highlight-colors", config = true },
+
 	-----------------------------------------------------------------------------
+	-- Цветовая схема Ayu с пользовательскими настройками
 	{
 		"Shatur/neovim-ayu",
 		config = function()
@@ -21,19 +28,14 @@ return {
 			vim.cmd("colorscheme ayu")
 		end,
 	},
-	{
-		"shellRaining/hlchunk.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			require("hlchunk").setup({ chunk = { enable = true } })
-		end,
-	},
+
 	-----------------------------------------------------------------------------
+	-- Статусная строка Lualine с кастомной темой и отображением буферов
 	{
 		"nvim-lualine/lualine.nvim",
 		config = function()
 			local custom_ayu = require("lualine.themes.ayu")
-			custom_ayu.normal.c.bg = "#0000000"
+			custom_ayu.normal.c.bg = "#0000000" -- Прозрачный фон
 
 			require("lualine").setup({
 				options = {
@@ -42,29 +44,31 @@ return {
 					component_separators = "",
 					section_separators = "",
 				},
+
 				sections = {
+					-- Отображение количества открытых буферов и изменённых буферов
 					lualine_a = {
 						{
-							"buffers",
-							symbols = require("core.icons").buffers,
-							fmt = function(name, bufnr)
-								if bufnr and bufnr.file then
-									if bufnr.file == "" then
-										return require("core.icons").buffers.no_name
+							function()
+								local buffers = vim.fn.getbufinfo({ buflisted = 1 })
+								local total = #buffers
+								local modified = 0
+
+								for _, buf in ipairs(buffers) do
+									if buf.changed == 1 then
+										modified = modified + 1
 									end
-									return vim.fn.fnamemodify(bufnr.file, ":h:t")
-										.. "/"
-										.. vim.fn.fnamemodify(bufnr.file, ":t")
-								else
-									return name
 								end
+
+								return string.format("● %d | 󰇤 %d", total, modified)
 							end,
-							max_length = vim.o.columns * 2 / 3,
 						},
 					},
 					lualine_b = {},
 					lualine_c = {},
 					lualine_x = { "fileformat", "filetype" },
+
+					-- Отображение имени текущей TMUX-сессии, если TMUX запущен
 					lualine_y = {
 						{
 							function()
@@ -83,6 +87,7 @@ return {
 					lualine_z = { "location" },
 				},
 
+				-- Верхняя панель с названием проекта и буферов
 				tabline = {
 					lualine_a = {
 						{
@@ -103,50 +108,5 @@ return {
 				},
 			})
 		end,
-	},
-	{
-		"folke/noice.nvim",
-		event = "VeryLazy",
-		opts = {
-			cmdline = {
-				view = "cmdline",
-				format = {
-					cmdline = { icon = ">" },
-					search_down = { icon = "" },
-					search_up = { icon = "" },
-				},
-			},
-			messages = {
-				view = "mini",
-				view_warn = "mini",
-				view_error = "mini",
-			},
-			lsp = {
-				progress = { enabled = false },
-				override = {
-					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-					["vim.lsp.util.stylize_markdown"] = true,
-					["cmp.entry.get_documentation"] = true,
-				},
-			},
-		},
-		dependencies = { "MunifTanjim/nui.nvim" },
-	},
-	{
-		"rcarriga/nvim-notify",
-
-		opts = {
-			icons = require("core.icons").notify,
-			level = 2,
-			minimum_width = 50,
-			render = "compact",
-			stages = "static",
-			time_formats = {
-				notification = "%T",
-				notification_history = "%FT%T",
-			},
-			timeout = 1000,
-			top_down = false,
-		},
 	},
 }

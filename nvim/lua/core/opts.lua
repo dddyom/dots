@@ -1,80 +1,23 @@
 local opt = vim.opt
 
-opt.spelloptions:append("camel")
-opt.viewoptions:remove("folds")
-opt.sessionoptions:remove({ "buffers", "folds" })
-opt.shada = { "'1000", "<50", "s10", "h" }
-opt.errorbells = true -- Trigger bell on error
-opt.visualbell = true -- Use visual bell instead of beeping
-opt.hidden = true -- Hide buffers when abandoned instead of unload
-opt.virtualedit = "block" -- Position cursor anywhere in visual block
-opt.termguicolors = true
-opt.mouse = "a"
-opt.clipboard = "unnamedplus"
-opt.timeoutlen = 300
-opt.updatetime = 300
-opt.history = 100
-opt.expandtab = true
-opt.shiftwidth = 4
-opt.tabstop = 4
-opt.softtabstop = 4
-opt.smartcase = true
-opt.ignorecase = true
-opt.infercase = true -- Adjust case in insert completion mode
-opt.incsearch = true
-opt.wrap = false
-opt.syntax = "on"
-opt.number = true
-opt.cursorline = true
-opt.signcolumn = "yes"
-opt.scrolloff = 20
-opt.sidescrolloff = 20
-opt.splitbelow = true
-opt.splitright = true
-opt.pumheight = 10
-opt.fileencoding = "utf-8"
-opt.swapfile = false
-opt.writebackup = false
-opt.undofile = true
-opt.completeopt = { "menu", "menuone", "noselect" }
-opt.backspace = opt.backspace + { "nostop" }
-opt.shortmess = opt.shortmess + "I"
-opt.cmdheight = 0
-opt.conceallevel = 3
-opt.inccommand = "nosplit"
-opt.grepformat = "%f:%l:%c:%m"
-opt.path:append("**") -- Find recursively
-
-opt.linebreak = true -- Break long lines at 'breakat'
-opt.breakat = "\\ \\	;:,!?" -- Long lines break chars
-opt.startofline = false -- Cursor in same column for few commands
-opt.splitbelow = true -- Splits open bottom right
-opt.splitright = true
-opt.breakindentopt = { shift = 2, min = 20 }
-opt.complete:append("k")
-opt.complete:remove("u")
-opt.complete:remove("t")
-
-if vim.fn.executable("rg") then
-	opt.grepprg = "rg --vimgrep --no-heading" .. (opt.smartcase and " --smart-case" or "") .. " --"
-elseif vim.fn.executable("ag") then
-	opt.grepprg = "ag --vimgrep" .. (opt.smartcase and " --smart-case" or "") .. " --"
-end
-
-opt.diffopt:append({ "iwhite", "indent-heuristic", "algorithm:patience" })
-
-opt.wildmode = "longest:full,full" -- Command-line completion mode
-
-opt.listchars = {
+-----------------------------------------------------------------------------
+-- UI и Визуальные Настройки
+-----------------------------------------------------------------------------
+opt.termguicolors = true -- Поддержка 24-битных цветов
+opt.number = true -- Отображение номеров строк
+opt.cursorline = true -- Подсветка текущей строки
+opt.signcolumn = "yes" -- Всегда показывать колонку знаков
+opt.syntax = "on" -- Включить синтаксическую подсветку
+opt.listchars = { -- Символы, заменяющие скрытые символы
 	tab = "  ",
 	extends = "⟫",
 	precedes = "⟪",
 	nbsp = "␣",
 	trail = "·",
 }
-opt.fillchars = {
-	foldopen = "󰅀", -- 󰅀 
-	foldclose = "󰅂", -- 󰅂 
+opt.fillchars = { -- Символы для различных UI-элементов
+	foldopen = "󰅀",
+	foldclose = "󰅂",
 	fold = " ",
 	foldsep = " ",
 	diff = "╱",
@@ -87,19 +30,99 @@ opt.fillchars = {
 	vertright = "┣",
 	verthoriz = "╋",
 }
--- Misc
--- ===
 
+-----------------------------------------------------------------------------
+-- Буферы, вкладки и сессии
+-----------------------------------------------------------------------------
+opt.hidden = true -- Буферы остаются открытыми, даже если переключиться на другой
+opt.sessionoptions:remove({ "buffers", "folds" }) -- Не сохранять буферы и свёртки в сессиях
+opt.viewoptions:remove("folds") -- Не запоминать свёртки
+
+-----------------------------------------------------------------------------
+-- Ввод и Поведение Курсора
+-----------------------------------------------------------------------------
+opt.mouse = "a" -- Разрешить работу мышью
+opt.virtualedit = "block" -- Разрешить курсору двигаться в пустые области в блок-режиме
+opt.backspace:append("nostop") -- Позволяет backspace удалять за границами вставки
+opt.infercase = true -- Автоматически определять регистр при автодополнении
+
+-----------------------------------------------------------------------------
+-- Настройки поиска
+-----------------------------------------------------------------------------
+opt.smartcase = true -- Учитывать регистр, если введён хотя бы один символ в верхнем регистре
+opt.ignorecase = true -- Игнорировать регистр при поиске
+opt.incsearch = true -- Инкрементальный поиск
+opt.hlsearch = true -- Подсветка найденных результатов поиска
+
+-----------------------------------------------------------------------------
+-- Производительность
+-----------------------------------------------------------------------------
+opt.timeoutlen = 300 -- Время ожидания для последовательностей команд (мс)
+opt.updatetime = 300 -- Время обновления событий (например, автосохранения) (мс)
+opt.history = 100 -- Количество команд в истории
+
+-----------------------------------------------------------------------------
+-- Работа с вкладками и отступами
+-----------------------------------------------------------------------------
+opt.expandtab = true -- Преобразовывать табы в пробелы
+opt.shiftwidth = 4 -- Размер отступа
+opt.tabstop = 4 -- Количество пробелов в табе
+opt.softtabstop = 4 -- Отступ для табуляции при редактировании
+opt.breakindentopt = { shift = 2, min = 20 } -- Дополнительные опции переноса строк
+
+-----------------------------------------------------------------------------
+-- Разделение окон
+-----------------------------------------------------------------------------
+opt.splitbelow = true -- Окна разделяются снизу
+opt.splitright = true -- Окна разделяются справа
+
+-----------------------------------------------------------------------------
+-- Файловые форматы и кодировки
+-----------------------------------------------------------------------------
+opt.fileencoding = "utf-8" -- Кодировка файлов
+opt.swapfile = false -- Отключение swap-файлов
+opt.writebackup = false -- Отключение резервных копий
+opt.undofile = true -- Включение возможности отмены после перезапуска
+
+-----------------------------------------------------------------------------
+-- Улучшение работы с командной строкой
+-----------------------------------------------------------------------------
+opt.wildmode = "longest:full,full" -- Улучшенная автодополняемая командная строка
+opt.completeopt = { "menu", "menuone", "noselect" } -- Улучшенное автодополнение
+opt.cmdheight = 0 -- Высота командной строки
+
+-----------------------------------------------------------------------------
+-- Настройки работы с grep (если `rg` или `ag` установлен)
+-----------------------------------------------------------------------------
+if vim.fn.executable("rg") then
+	opt.grepprg = "rg --vimgrep --no-heading" .. (opt.smartcase and " --smart-case" or "") .. " --"
+elseif vim.fn.executable("ag") then
+	opt.grepprg = "ag --vimgrep" .. (opt.smartcase and " --smart-case" or "") .. " --"
+end
+
+opt.grepformat = "%f:%l:%c:%m"
+
+-----------------------------------------------------------------------------
+-- Оптимизация `diff`
+-----------------------------------------------------------------------------
+opt.diffopt:append({ "iwhite", "indent-heuristic", "algorithm:patience" }) -- Улучшенный алгоритм сравнения в diff
+
+-----------------------------------------------------------------------------
+-- Отключение ненужных провайдеров (ускоряет Neovim)
+-----------------------------------------------------------------------------
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 
-vim.g.no_gitrebase_maps = 1 -- See share/nvim/runtime/ftplugin/gitrebase.vim
-vim.g.no_man_maps = 1 -- See share/nvim/runtime/ftplugin/man.vim
+-----------------------------------------------------------------------------
+-- Запрет стандартных команд для Git и man
+-----------------------------------------------------------------------------
+vim.g.no_gitrebase_maps = 1 -- Отключение встроенных карт для gitrebase
+vim.g.no_man_maps = 1 -- Отключение встроенных карт для man
 
--- Filetype detection
--- ===
-
+-----------------------------------------------------------------------------
+-- Определение типов файлов
+-----------------------------------------------------------------------------
 ---@diagnostic disable-next-line: missing-fields
 vim.filetype.add({
 	filename = {

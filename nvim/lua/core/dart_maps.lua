@@ -1,6 +1,13 @@
+-----------------------------------------------------------------------------
+-- Авто-команды для Flutter/Dart
+-----------------------------------------------------------------------------
 vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("flutter_commands", { clear = true }),
 	pattern = "dart",
 	callback = function()
+		-----------------------------------------------------------------------------
+		-- Команда `FRUN`: Запуск `flutter run` в новом окне tmux
+		-----------------------------------------------------------------------------
 		vim.api.nvim_create_user_command("FRUN", function()
 			if os.getenv("TMUX") == nil then
 				vim.notify("You are not running inside tmux. Please start tmux and try again.", vim.log.levels.ERROR)
@@ -15,34 +22,30 @@ vim.api.nvim_create_autocmd("FileType", {
 			end
 		end, { nargs = 0 })
 
+		-----------------------------------------------------------------------------
+		-- Команда `FlutterInput`: Отправка команд во Flutter через tmux
+		-----------------------------------------------------------------------------
 		vim.api.nvim_create_user_command("FlutterInput", function(input)
 			local send_command = "tmux send-keys -t ! '" .. input.args .. "' Enter"
 			os.execute(send_command)
 		end, { nargs = 1 })
+
+		-----------------------------------------------------------------------------
+		-- Keymaps для управления Flutter-приложением
+		-----------------------------------------------------------------------------
 		vim.keymap.set("n", "<leader>r", function()
 			vim.cmd("FlutterInput r")
 			vim.notify("Hot reload. 🔥🔥🔥", vim.log.levels.INFO)
-		end, {
-			desc = "Hot reload. 🔥🔥🔥",
-			noremap = true,
-			silent = true,
-		})
+		end, { desc = "Hot reload 🔥🔥🔥", noremap = true, silent = true })
+
 		vim.keymap.set("n", "<leader>R", function()
 			vim.cmd("FlutterInput R")
 			vim.notify("Hot restart. 🔥🔥🔥", vim.log.levels.INFO)
-		end, {
-			desc = "Hot restart. 🔥🔥🔥",
-			noremap = true,
-			silent = true,
-		})
+		end, { desc = "Hot restart 🔥🔥🔥", noremap = true, silent = true })
 
 		vim.keymap.set("n", "<leader>s", function()
 			vim.cmd("FlutterInput q")
-			vim.notify("Stop app. ", vim.log.levels.INFO)
-		end, {
-			desc = "Stop app",
-			noremap = true,
-			silent = true,
-		})
+			vim.notify("Stop app.", vim.log.levels.INFO)
+		end, { desc = "Stop app", noremap = true, silent = true })
 	end,
 })

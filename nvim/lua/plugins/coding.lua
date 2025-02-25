@@ -1,68 +1,60 @@
 return {
 	-----------------------------------------------------------------------------
+	-- Автоматическое закрытие парных скобок
 	{ "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
-	{ "vidocqh/auto-indent.nvim", opts = {}, event = "VimEnter" },
 	-----------------------------------------------------------------------------
+	-- Автодополнение с поддержкой сниппетов
 	{
 		"saghen/blink.cmp",
 		lazy = false,
 		dependencies = "rafamadriz/friendly-snippets",
-		version = "v0.3.0",
+		version = "v0.12.4",
 		opts = {
-			highlight = {
-				use_nvim_cmp_as_default = true,
-			},
-			nerd_font_variant = "mono",
 			keymap = {
-				show = "<C-space>",
-				hide = "<C-e>",
-				accept = "<Enter>",
-				select_prev = { "<S-Tab>" },
-				select_next = { "<Tab>" },
-				show_documentation = "<C-space>",
-				hide_documentation = "<C-space>",
-				scroll_documentation_up = "<C-b>",
-				scroll_documentation_down = "<C-f>",
-
-				snippet_forward = "<C-n>",
-				snippet_backward = "<C-p>",
+				preset = "default",
+				["<S-Tab>"] = { "select_prev", "fallback" },
+				["<Tab>"] = { "select_next", "fallback" },
 			},
-			accept = { auto_brackets = { enable = true } },
-			trigger = {
-				signature_help = {
-					enable = true,
-					show_on_insert_on_trigger_character = false,
-				},
-				completion = {
+			completion = {
+				trigger = {
 					show_on_insert_on_trigger_character = false,
 				},
 			},
-			kind_icons = require("core.icons").kinds,
+			signature = { enabled = true },
 		},
 	},
 	----------------------------------------------------------------------------
+	-- Генерация документации (Docstrings)
 	{
 		"jeangiraldoo/codedocs.nvim",
 		keys = {
 			{
 				"<leader>k",
-				"<cmd>lua require('codedocs').insert_docs()<CR>",
-				desc = "Inserts a docstring into the buffer",
+				function()
+					require("codedocs").insert_docs()
+				end,
+				desc = "Insert a docstring",
 			},
 		},
 	},
 	-----------------------------------------------------------------------------
+	-- Расширенные операции с окружением текста (замена, удаление, добавление)
 	{ "echasnovski/mini.surround", opts = {} },
 	-----------------------------------------------------------------------------
+	-- AI автодополнение кода
 	{
 		"monkoose/neocodeium",
 		event = "VeryLazy",
 		config = function()
 			local neocodeium = require("neocodeium")
 			neocodeium.setup({ silent = true })
-			vim.keymap.set("i", "<c-a>", neocodeium.accept)
-			vim.keymap.set("i", "<c-w>", neocodeium.accept_word)
-			vim.keymap.set("i", "<c-e>", neocodeium.accept_line)
+
+			-- Принятие предложений
+			vim.keymap.set("i", "<C-a>", neocodeium.accept, { desc = "Accept completion" })
+			vim.keymap.set("i", "<C-w>", neocodeium.accept_word, { desc = "Accept word" })
+			vim.keymap.set("i", "<C-e>", neocodeium.accept_line, { desc = "Accept line" })
+
+			-- Переключение AI-дополнения
 			local toggle = function()
 				require("neocodeium.commands").toggle()
 				local is_enabled = require("neocodeium.options").options.enabled
@@ -70,7 +62,7 @@ return {
 				vim.notify(message, vim.log.levels.INFO, { title = "NeoCodeium" })
 			end
 
-			vim.keymap.set("n", "<leader>x", toggle, { desc = "Toggle neocodeium" })
+			vim.keymap.set("n", "<leader>x", toggle, { desc = "Toggle AI completion" })
 		end,
 	},
 }

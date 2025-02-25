@@ -1,14 +1,19 @@
 return {
+	-----------------------------------------------------------------------------
+	-- LSP (Language Server Protocol)
 	{
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v2.x",
 		dependencies = {
-			"neovim/nvim-lspconfig",
-			"williamboman/mason-lspconfig.nvim",
+			"neovim/nvim-lspconfig", -- Базовая конфигурация LSP
+			"williamboman/mason-lspconfig.nvim", -- Интеграция Mason с lspconfig
 			{
-				"williamboman/mason.nvim",
+				"williamboman/mason.nvim", -- Установка LSP серверов и инструментов
+				version = "v1.10.0",
 				build = function()
-					pcall(vim.cmd, "MasonUpdate")
+					pcall(function()
+						vim.cmd("MasonUpdate")
+					end)
 				end,
 			},
 		},
@@ -16,15 +21,27 @@ return {
 			local lsp = require("lsp-zero").preset({})
 
 			require("mason").setup()
-			require("mason-lspconfig").setup({ ensure_installed = { "emmet_language_server", "lua_ls", "basedpyright", "ts_ls", "rust_analyzer" } })
-			lsp.on_attach(function(_, bufnr) lsp.default_keymaps({ buffer = bufnr }) end)
+			require("mason-lspconfig").setup({
+				ensure_installed = { "emmet_language_server", "lua_ls", "pyright", "ts_ls", "rust_analyzer" },
+			})
+
+			-- Установка базовых клавиш при подключении LSP
+			lsp.on_attach(function(_, bufnr)
+				lsp.default_keymaps({ buffer = bufnr })
+			end)
+
+			-- Установка кастомных значков для диагностики
 			lsp.set_sign_icons(require("core.icons").diagnostics)
+
 			local lspconfig = require("lspconfig")
 
+			-- Настройки для Lua
 			lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
-			lspconfig.basedpyright.setup({
+
+			-- Настройки для Python (pyright)
+			lspconfig.pyright.setup({
 				settings = {
-					basedpyright = {
+					pyright = {
 						typeCheckingMode = "basic",
 					},
 				},
@@ -40,34 +57,41 @@ return {
 					end
 				end,
 			})
+
+			-- Настройки для Dart
 			lspconfig.dartls.setup({})
 
+			-- Применение настроек LSP
 			lsp.setup()
-            -- stylua: ignore
-			vim.keymap.set("n", "z[", function() vim.diagnostic.goto_prev() end, { desc = "prev diagnostic", silent = true, nowait = true, noremap = true })
-            -- stylua: ignore
-			vim.keymap.set("n", "z]", function() vim.diagnostic.goto_next() end, { desc = "next diagnostic", silent = true, nowait = true, noremap = true })
-            -- stylua: ignore
-			vim.keymap.set("n", "D", function() vim.diagnostic.open_float() end, { desc = "Diagnostic float", silent = true, nowait = true, noremap = true })
-			vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true, desc = "Lsp definitions" })
+
+			-- Навигация по диагностике
+            -- stylua: ignore start
+			vim.keymap.set("n", "z[", function() vim.diagnostic.jump({ count = -1, float = true }) end, { desc = "Go to previous diagnostic", silent = true, nowait = true, noremap = true })
+			vim.keymap.set("n", "z]", function() vim.diagnostic.jump({ count = 1, float = true }) end, { desc = "Go to next diagnostic", silent = true, nowait = true, noremap = true })
+			vim.keymap.set("n", "D", function() vim.diagnostic.open_float() end, { desc = "Show diagnostic popup", silent = true, nowait = true, noremap = true })
+			-- stylua: ignore end
 		end,
 	},
 	-----------------------------------------------------------------------------
+	-- Предпросмотр определения, типа и реализации LSP
 	{
 		"rmagatti/goto-preview",
 		event = "LspAttach",
 		config = true,
 		opts = {
 			post_open_hook = function(buf, _)
-				vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = buf, silent = true })
+				vim.keymap.set("n", "q", function()
+					vim.cmd("close")
+				end, { buffer = buf, silent = true })
 			end,
 		},
-        -- stylua: ignore
 		keys = {
-			{ "gd", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", desc = "Preview definition", },
-			{ "gt", "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>", desc = "Preview type definition", },
-			{ "gi", "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", desc = "Preview implementation", },
-			{ "gpq", "<cmd>lua require('goto-preview').close_all_win()<CR>", desc = "close all lsp previews", },
+            -- stylua: ignore start
+			{ "gd", function() require("goto-preview").goto_preview_definition() end, desc = "Preview definition" },
+			{ "gt", function() require("goto-preview").goto_preview_type_definition() end, desc = "Preview type definition" },
+			{ "gi", function() require("goto-preview").goto_preview_implementation() end, desc = "Preview implementation" },
+			{ "gpq", function() require("goto-preview").close_all_win() end, desc = "Close all LSP previews" },
+			-- stylua: ignore end
 		},
 	},
 }
