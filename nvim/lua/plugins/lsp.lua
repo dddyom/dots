@@ -66,8 +66,8 @@ return {
 
 			-- Навигация по диагностике
             -- stylua: ignore start
-			vim.keymap.set("n", "z[", function() vim.diagnostic.jump({ count = -1, float = true }) end, { desc = "Go to previous diagnostic", silent = true, nowait = true, noremap = true })
-			vim.keymap.set("n", "z]", function() vim.diagnostic.jump({ count = 1, float = true }) end, { desc = "Go to next diagnostic", silent = true, nowait = true, noremap = true })
+			vim.keymap.set("n", "z[", function() vim.diagnostic.goto_prev() end, { desc = "Go to previous diagnostic", silent = true, nowait = true, noremap = true })
+			vim.keymap.set("n", "z]", function() vim.diagnostic.goto_next() end, { desc = "Go to next diagnostic", silent = true, nowait = true, noremap = true })
 			vim.keymap.set("n", "D", function() vim.diagnostic.open_float() end, { desc = "Show diagnostic popup", silent = true, nowait = true, noremap = true })
 			-- stylua: ignore end
 		end,
