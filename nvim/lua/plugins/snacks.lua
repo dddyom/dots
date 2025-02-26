@@ -20,6 +20,7 @@ return {
 
 		-- Визуализация отступов
 		indent = {
+
 			enabled = true,
 			animate = { enabled = false }, -- Отключение анимации
 			chunk = { enabled = true }, -- Включение подсветки логических блоков кода

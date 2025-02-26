@@ -6,7 +6,7 @@ return {
 		hint = "", --  󰌶 
 	},
 	buffers = {
-		modified = " 󰇤", -- ● 󰇤
+		modified = "󰇤", -- ● 󰇤
 		alternate_file = "", -- #
 		directory = "",
 		no_name = "[No name]", --  󱗆 󰇥
