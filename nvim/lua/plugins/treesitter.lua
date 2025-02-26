@@ -7,6 +7,7 @@ return {
 		main = "nvim-treesitter.configs",
 		build = ":TSUpdate",
 		dependencies = {
+
 			-- Фиксирование контекста текущего кода (например, заголовки функций)
 			{ "nvim-treesitter/nvim-treesitter-context", opts = { enable = true } },
 			-- Улучшенные комментарии через Treesitter

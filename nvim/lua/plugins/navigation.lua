@@ -38,6 +38,7 @@ return {
 			})
 		end,
 		keys = {
+            -- stylua: ignore
 			{ "``", function() require("oil").open_float() end, desc = "Open Oil" },
 		},
 	},
@@ -48,10 +49,12 @@ return {
 		"christoomey/vim-tmux-navigator",
 		lazy = false,
 		keys = {
+            -- stylua: ignore start
 			{ "<M-h>", function() vim.cmd("TmuxNavigateLeft") end, mode = { "n", "t" }, silent = true, desc = "Jump to left pane" },
 			{ "<M-j>", function() vim.cmd("TmuxNavigateDown") end, mode = { "n", "t" }, silent = true, desc = "Jump to lower pane" },
 			{ "<M-k>", function() vim.cmd("TmuxNavigateUp") end, mode = { "n", "t" }, silent = true, desc = "Jump to upper pane" },
 			{ "<M-l>", function() vim.cmd("TmuxNavigateRight") end, mode = { "n", "t" }, silent = true, desc = "Jump to right pane" },
+			-- stylua: ignore end
 		},
 	},
 
@@ -62,8 +65,17 @@ return {
 		event = "VeryLazy",
 		opts = {},
 		keys = {
+            -- stylua: ignore start
 			{ "c", mode = { "n" }, function() require("flash").jump() end, desc = "Flash Jump" },
 			{ "C", mode = { "n" }, function() require("flash").treesitter() end, desc = "Flash Treesitter Search" },
+			-- stylua: ignore end
 		},
+	},
+	{
+		"EL-MASTOR/bufferlist.nvim",
+		lazy = true,
+		cmd = "BufferList",
+		opts = {},
+		keys = { { "<C-space>", ":BufferList<CR>", desc = "Open bufferlist" } },
 	},
 }

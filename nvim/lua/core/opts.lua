@@ -3,8 +3,6 @@ local opt = vim.opt
 -----------------------------------------------------------------------------
 -- UI и Визуальные Настройки
 -----------------------------------------------------------------------------
-opt.clipboard = "unnamedplus" -- Буфер обмена, общий с pc
-opt.shortmess = opt.shortmess + "IS" -- Скрыть :into
 opt.termguicolors = true -- Поддержка 24-битных цветов
 opt.number = true -- Отображение номеров строк
 opt.cursorline = true -- Подсветка текущей строки
@@ -155,3 +153,31 @@ vim.filetype.add({
 		[".*/inventory/.*%.ini"] = "ansible_hosts",
 	},
 })
+
+
+-----------------------------------------------------------------------------
+-- Дополнительные настройки
+vim.opt.spelloptions:append("camel") -- Проверка орфографии в camelCase
+vim.opt.shada = { "'1000", "<50", "s10", "h" } -- Настройки истории и кеширования
+
+vim.opt.errorbells = true -- Звуковой сигнал при ошибке
+vim.opt.visualbell = true -- Визуальный сигнал вместо звукового
+
+vim.opt.clipboard = "unnamedplus" -- Использовать системный буфер обмена
+
+vim.opt.wrap = false -- Отключение автоматического переноса строк
+vim.opt.scrolloff = 20 -- Отступ строк сверху и снизу при скроллинге
+vim.opt.sidescrolloff = 20 -- Отступ по горизонтали при скроллинге
+vim.opt.pumheight = 10 -- Максимальное количество строк в popup-меню
+
+vim.opt.shortmess:append("I") -- Отключение `intro screen`
+vim.opt.conceallevel = 3 -- Скрывать некоторые символы (`markdown`, `json`, `tex`)
+vim.opt.inccommand = "nosplit" -- Интерактивный поиск и замена без разделения окна
+
+vim.opt.path:append("**") -- Поиск файлов рекурсивно
+
+vim.opt.linebreak = true -- Перенос длинных строк по `breakat`
+vim.opt.breakat = "\\ \\t;:,!?" -- Разрешённые символы для разрыва строк
+vim.opt.startofline = false -- Курсор остаётся в колонке при перемещениях
+
+vim.opt.complete:append("k") -- Автодополнение с учётом ключевых слов

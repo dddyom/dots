@@ -21,6 +21,7 @@ return {
 					WildMenu = { fg = "#0A0E14", bg = "#FFCC66" },
 					Visual = { fg = "#0A0E14", bg = "#FFCC66" },
 					LspInlayHint = { fg = "#464D5E" },
+					LineNr = { fg = "#464D5E" },
 					Pmenu = { bg = "#0F131A", fg = "#BFBDB6" },
 					PmenuSel = { bg = "#FFCC66", fg = "#0A0E14" },
 				},
@@ -46,22 +47,12 @@ return {
 				},
 
 				sections = {
-					-- Отображение количества открытых буферов и изменённых буферов
 					lualine_a = {
 						{
-							function()
-								local buffers = vim.fn.getbufinfo({ buflisted = 1 })
-								local total = #buffers
-								local modified = 0
-
-								for _, buf in ipairs(buffers) do
-									if buf.changed == 1 then
-										modified = modified + 1
-									end
-								end
-
-								return string.format("● %d | 󰇤 %d", total, modified)
-							end,
+							"filename",
+							symbols = {
+								modified = "󰇤",
+							},
 						},
 					},
 					lualine_b = {},

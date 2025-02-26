@@ -22,7 +22,7 @@ return {
 
 			require("mason").setup()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "emmet_language_server", "lua_ls", "pyright", "ts_ls", "rust_analyzer" },
+				ensure_installed = { "emmet_language_server", "lua_ls", "basedpyright", "ts_ls", "rust_analyzer" },
 			})
 
 			-- Установка базовых клавиш при подключении LSP
@@ -38,10 +38,10 @@ return {
 			-- Настройки для Lua
 			lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 
-			-- Настройки для Python (pyright)
-			lspconfig.pyright.setup({
+			-- Настройки для Python (basedpyright)
+			lspconfig.basedpyright.setup({
 				settings = {
-					pyright = {
+					basedpyright = {
 						typeCheckingMode = "basic",
 					},
 				},
@@ -87,7 +87,7 @@ return {
 		},
 		keys = {
             -- stylua: ignore start
-			{ "gd", function() require("goto-preview").goto_preview_definition() end, desc = "Preview definition" },
+			{ "gD", function() require("goto-preview").goto_preview_definition() end, desc = "Preview definition" },
 			{ "gt", function() require("goto-preview").goto_preview_type_definition() end, desc = "Preview type definition" },
 			{ "gi", function() require("goto-preview").goto_preview_implementation() end, desc = "Preview implementation" },
 			{ "gpq", function() require("goto-preview").close_all_win() end, desc = "Close all LSP previews" },
