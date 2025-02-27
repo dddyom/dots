@@ -2,6 +2,7 @@ return {
 	-----------------------------------------------------------------------------
 	-- Подсветка синтаксиса, работа с AST и улучшенные отступы
 	{
+
 		"nvim-treesitter/nvim-treesitter",
 		event = { "BufReadPost", "BufNewFile" },
 		main = "nvim-treesitter.configs",

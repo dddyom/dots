@@ -79,8 +79,8 @@ return {
 		{ "gr", function() Snacks.picker.lsp_references({ jump_to_single_result = true }) end, desc = "Find LSP references" },
 		{ "<leader>fa", function() vim.lsp.buf.code_action({ apply = true }) end, desc = "Apply LSP code actions" },
 
-        { "<leader>fs", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
-        { "<leader>fS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+        { "<leader>fs", function() Snacks.picker.lsp_symbols({ layout = { preset = "vscode", preview = "main" } }) end, desc = "LSP Symbols" },
+        { "<leader>fS", function() Snacks.picker.lsp_workspace_symbols({ layout = { preset = "vscode", preview = "main" } }) end, desc = "LSP Workspace Symbols" },
 
 		---@diagnostic enable: undefined-global
 		-- stylua: ignore end

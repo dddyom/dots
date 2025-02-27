@@ -1,15 +1,15 @@
 return {
 	diagnostics = {
-		error = "✘", --   ✘
-		warn = "󰀪", -- 󰀪 󰳤 󱦄 󱗓 
-		info = "ⁱ", --    ⁱ 󰋼 󰋽
-		hint = "", --  󰌶 
+		error = "✘ ", --   ✘
+		warn = "󰀪 ", -- 󰀪 󰳤 󱦄 󱗓 
+		info = " ", --    ⁱ 󰋼 󰋽
+		hint = " ", --  󰌶 
 	},
 	buffers = {
-		modified = "󰇤", -- ● 󰇤
-		alternate_file = "", -- #
-		directory = "",
-		no_name = "[No name]", --  󱗆 󰇥
+		modified = "󰇤", -- Иконка для измененного файла
+		readonly = "", -- Иконка для файла только для чтения
+		unnamed = "", -- Иконка для безымянного файла
+		newfile = "", -- Иконка для нового файла
 	},
 	notifier = {
 		debug = "",

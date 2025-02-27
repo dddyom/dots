@@ -8,7 +8,7 @@ return {
 
 	-- Подсветка цветов внутри кода (например, `#FF0000` будет подсвечен красным)
 	{ "brenoprata10/nvim-highlight-colors", config = true },
-
+	{ "aaron-p1/match-visual.nvim" },
 	-----------------------------------------------------------------------------
 	-- Цветовая схема Ayu с пользовательскими настройками
 	{
@@ -50,12 +50,16 @@ return {
 					lualine_a = {
 						{
 							"filename",
-							symbols = {
-								modified = "󰇤",
-							},
+							symbols = require("core.icons").buffers,
 						},
 					},
-					lualine_b = {},
+					lualine_b = {
+						{
+							"diagnostics",
+							symbols = require("core.icons").diagnostics,
+						},
+					},
+
 					lualine_c = {},
 					lualine_x = { "fileformat", "filetype" },
 

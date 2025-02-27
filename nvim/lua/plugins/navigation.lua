@@ -7,7 +7,7 @@ return {
 	-- Файловый менеджер внутри буфера с поддержкой Git-статуса
 	{
 		"stevearc/oil.nvim",
-		dependencies = { "SirZenith/oil-vcs-status" },
+		dependencies = { "SirZenith/oil-vcs-status", { "JezerM/oil-lsp-diagnostics.nvim", opts = {} } },
 		config = function()
 			require("oil").setup({
 				win_options = {
