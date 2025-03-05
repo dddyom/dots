@@ -18,6 +18,8 @@ return {
 					CursorLine = { bg = "#0F1D3E", fg = "" },
 					CurSearch = { fg = "#0A0E14", bg = "#F07178" },
 					WildMenu = { fg = "#0A0E14", bg = "#FFCC66" },
+
+					NonText = { fg = "#707A8C" },
 					Visual = { fg = "#0A0E14", bg = "#FFCC66" },
 					LspInlayHint = { fg = "#464D5E" },
 					LineNr = { fg = "#464D5E" },
