@@ -71,21 +71,4 @@ return {
 			-- stylua: ignore end
 		},
 	},
-	-----------------------------------------------------------------------------
-	-- Навигация по буферам
-	{
-		"EL-MASTOR/bufferlist.nvim",
-		lazy = true,
-		cmd = "BufferList",
-		opts = {
-			icons = {
-				prompt = " ",
-				save_prompt = "󰆓 ",
-				line = "▎",
-				modified = "󰇤",
-			},
-			top_prompt = false,
-		},
-		keys = { { "<C-space>", ":BufferList<CR>", desc = "Open bufferlist" } },
-	},
 }

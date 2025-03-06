@@ -69,9 +69,10 @@ return {
 		{ "<leader>f", "", desc = "Find" },
 		{ "<leader>ff", function() Snacks.picker.files() end, desc = "Find files" },
 		{ "<leader>fw", function() Snacks.picker.grep() end, desc = "Find by word" },
-		{ "<leader>fc", function() Snacks.picker.command_history() end, desc = "Find by word" },
 
-		-- { "<leader><leader>", function() Snacks.picker.buffers() end, desc = "Find opened buffers" },
+		{ "<leader>fc", function() Snacks.picker.command_history({ layout = { preset = "vscode" } }) end, desc = "Find by word" },
+
+        { "<c-space>", function() Snacks.picker.buffers() end, desc = "Buffers" },
 
 		{ "<leader>fh", function() Snacks.picker.help() end, desc = "Find in help tags" },
 
