@@ -56,6 +56,7 @@ vim.api.nvim_create_autocmd("CursorMoved", {
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup("close_with_q"),
 	pattern = {
+        "grug-far",
 		"toggleterm",
 		"blame",
 		"checkhealth",
@@ -67,7 +68,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		"notify",
 		"PlenaryTestPopup",
 		"qf",
-		"spectre_panel",
 		"startuptime",
 		"tsplayground",
 		"oil",

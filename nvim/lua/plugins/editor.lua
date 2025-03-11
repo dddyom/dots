@@ -10,22 +10,27 @@ return {
 			-- stylua: ignore
 			{ "<space>j", function() require("treesj").toggle() end, desc = "Toggle split/join" },
 		},
-		config = true,
 		opts = { use_default_keymaps = false },
 	},
 	-----------------------------------------------------------------------------
 	-- Поиск и замена с предварительным просмотром
+
 	{
-		"nvim-pack/nvim-spectre",
+		"MagicDuck/grug-far.nvim",
 		event = "BufRead",
-		init = function()
-			-- stylua: ignore start
-			vim.keymap.set("n", "<leader>r", "", { desc = "Replace (Spectre)" })
-			vim.keymap.set("n", "<leader>S", function() require("spectre").toggle() end, { desc = "Toggle Spectre" })
-			vim.keymap.set("n", "<leader>rR", function() require("spectre").open_visual({ select_word = true }) end, { desc = "Search current word" })
-			vim.keymap.set("v", "<leader>rR", function() vim.cmd("esc") require("spectre").open_visual() end, { desc = "Search current word" })
-			vim.keymap.set("n", "<leader>rr", function() require("spectre").open_file_search({ select_word = true }) end, { desc = "Search in current file" })
+		keys = {
+            -- stylua: ignore start
+			{ "<leader>R", function() require("grug-far").open() end, desc = "Toggle grug-far" },
+			-- 🔍 Найти текущее слово в проекте
+			{ "<leader>rR", function() require("grug-far").open({ prefills = { search = vim.fn.expand("<cword>") } }) end, desc = "Search current word in project" },
+			-- 🔍 Найти текущее слово в текущем файле
+			{ "<leader>rr", function() require("grug-far").open({ prefills = { paths = vim.fn.expand("%"), search = vim.fn.expand("<cword>") } }) end, desc = "Search current word in current file" },
+			-- 🔍 Найти выделенный текст в проекте
+			{ "<leader>rR", function() require("grug-far").with_visual_selection() end, mode = "v", desc = "Search selected text in project" },
+			-- 🔍 Найти выделенный текст в текущем файле
+			{ "<leader>rr", function() require("grug-far").with_visual_selection({ prefills = { paths = vim.fn.expand("%") } }) end, mode = "v", desc = "Search selected text in current file" },
 			-- stylua: ignore end
-		end,
+		},
+		config = true,
 	},
 }
