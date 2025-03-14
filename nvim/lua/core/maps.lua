@@ -149,3 +149,18 @@ vim.keymap.set("n", "Q", '(reg_recording()==""&&reg_executing()==""?":norm! @q\r
 
 -- stylua: ignore
 vim.keymap.set("n", "cq", ':let b:_t=input(">",keytrans(@q))|let @q=(trim(b:_t)!=""?nvim_replace_termcodes(b:_t,1,1,1):@q)\r')
+
+local function smart_delete(key)
+	local l = vim.api.nvim_win_get_cursor(0)[1]
+	local line = vim.api.nvim_buf_get_lines(0, l - 1, l, true)[1]
+	return (line:match("^%s*$") and '"_' or "") .. key
+end
+
+local keys = { "d", "dd", "x", "c", "s", "C", "S", "X" } -- Define a list of keys to apply the smart delete functionality
+
+-- Set keymaps for both normal and visual modes
+for _, key in pairs(keys) do
+	vim.keymap.set({ "n", "v" }, key, function()
+		return smart_delete(key)
+	end, { noremap = true, expr = true, desc = "Smart delete" })
+end
