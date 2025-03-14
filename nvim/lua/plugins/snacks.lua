@@ -41,6 +41,12 @@ return {
 				frecency = true, -- Использование частоты открытия файлов для приоритезации результатов
 			},
 			win = {
+				preview = {
+					wo = {
+						relativenumber = false,
+						number = false,
+					},
+				},
 				input = {
 					keys = {
 						["<Esc>"] = { "close", mode = { "n", "i" } },
