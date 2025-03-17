@@ -22,7 +22,14 @@ return {
 
 			require("mason").setup()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "emmet_language_server", "lua_ls", "basedpyright", "ts_ls", "rust_analyzer" },
+				ensure_installed = {
+					"emmet_language_server",
+					"lua_ls",
+					"basedpyright",
+					"ts_ls",
+					"rust_analyzer",
+					"volar",
+				},
 			})
 
 			-- Установка базовых клавиш при подключении LSP
@@ -56,6 +63,33 @@ return {
 						client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
 					end
 				end,
+			})
+
+			lspconfig.ts_ls.setup({
+				init_options = {
+					plugins = {
+						{
+							-- Name of the TypeScript plugin for Vue
+							name = "@vue/typescript-plugin",
+
+							-- Location of the Vue language server module (path defined in step 1)
+							location = require("mason-registry").get_package("vue-language-server"):get_install_path()
+								.. "/node_modules/@vue/language-server",
+
+							-- Specify the languages the plugin applies to (in this case, Vue files)
+							languages = { "vue" },
+						},
+					},
+				},
+
+				-- Specify the file types that will trigger the TypeScript language server
+				filetypes = {
+					"typescript", -- TypeScript files (.ts)
+					"javascript", -- JavaScript files (.js)
+					"javascriptreact", -- React files with JavaScript (.jsx)
+					"typescriptreact", -- React files with TypeScript (.tsx)
+					"vue", -- Vue.js single-file components (.vue)
+				},
 			})
 
 			-- Настройки для Dart

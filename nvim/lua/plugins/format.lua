@@ -45,13 +45,16 @@ return {
 		ft("javascript"):fmt("prettier")
 		ft("tsx"):fmt("prettier")
 		ft("typescriptreact"):fmt("prettier")
+		ft("vue"):fmt("prettier")
 		ft("css"):fmt("prettier")
 		ft("yaml"):fmt("prettier")
 		ft("markdown"):fmt("prettier")
 
 		ft("rust"):fmt("rustfmt")
-		ft("json"):fmt("jq")
 		ft("dart"):fmt("dart")
+
+		ft("json"):fmt("jq")
+		ft("jsonc"):fmt("jq")
 
 		vim.g.guard_config = {
 			fmt_on_save = false,
