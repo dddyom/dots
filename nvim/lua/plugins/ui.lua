@@ -41,7 +41,6 @@ return {
 
 			require("lualine").setup({
 				options = {
-					icons_enabled = false,
 					theme = custom_ayu,
 					component_separators = "",
 					section_separators = "",

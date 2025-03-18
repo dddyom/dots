@@ -69,14 +69,11 @@ return {
 				init_options = {
 					plugins = {
 						{
-							-- Name of the TypeScript plugin for Vue
 							name = "@vue/typescript-plugin",
 
-							-- Location of the Vue language server module (path defined in step 1)
 							location = require("mason-registry").get_package("vue-language-server"):get_install_path()
 								.. "/node_modules/@vue/language-server",
 
-							-- Specify the languages the plugin applies to (in this case, Vue files)
 							languages = { "vue" },
 						},
 					},
