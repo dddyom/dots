@@ -43,6 +43,7 @@ end
 -----------------------------------------------------------------------------
 local get_print_text = function(filetype)
 	local print_commands = {
+		vue = { print_text = [[console.warn()]], start_insert = "%(" },
 		javascript = { print_text = [[console.warn()]], start_insert = "%(" },
 		typescript = { print_text = [[console.warn()]], start_insert = "%(" },
 		javascriptreact = { print_text = [[console.warn()]], start_insert = "%(" },

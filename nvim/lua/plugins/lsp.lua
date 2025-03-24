@@ -53,10 +53,11 @@ return {
 					},
 				},
 				on_init = function(client)
-					local venv_path = vim.fn.trim(vim.fn.system("poetry env info -p"))
+                    local venv_path = vim.fn.trim(vim.fn.system("poetry env info -p 2>/dev/null"))
 					local python_path = venv_path .. "/bin/python"
 
 					if vim.fn.filereadable(python_path) == 1 then
+                        vim.env.VIRTUAL_ENV = venv_path
 						client.config.settings.python = {
 							pythonPath = python_path,
 						}
@@ -70,10 +71,7 @@ return {
 					plugins = {
 						{
 							name = "@vue/typescript-plugin",
-
-							location = require("mason-registry").get_package("vue-language-server"):get_install_path()
-								.. "/node_modules/@vue/language-server",
-
+							location = "/home/d/.npm-packages/lib/node_modules/@vue/typescript-plugin",
 							languages = { "vue" },
 						},
 					},
@@ -81,11 +79,11 @@ return {
 
 				-- Specify the file types that will trigger the TypeScript language server
 				filetypes = {
-					"typescript", -- TypeScript files (.ts)
-					"javascript", -- JavaScript files (.js)
-					"javascriptreact", -- React files with JavaScript (.jsx)
-					"typescriptreact", -- React files with TypeScript (.tsx)
-					"vue", -- Vue.js single-file components (.vue)
+					"typescript",
+					"javascript",
+					"javascriptreact",
+					"typescriptreact",
+					"vue",
 				},
 			})
 

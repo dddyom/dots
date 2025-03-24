@@ -51,7 +51,7 @@ return {
 		ft("markdown"):fmt("prettier")
 
 		ft("rust"):fmt("rustfmt")
-		ft("dart"):fmt("dart")
+		-- ft("dart"):fmt("dart")
 
 		ft("json"):fmt("jq")
 		ft("jsonc"):fmt("jq")
