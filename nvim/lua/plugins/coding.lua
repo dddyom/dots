@@ -88,4 +88,23 @@ return {
 			vim.keymap.set("n", "<leader>x", toggle, { desc = "Toggle AI completion" })
 		end,
 	},
+	{
+		"kiyoon/python-import.nvim",
+		build = "uv tool install . --force --reinstall",
+		keys = {
+			{
+				"<C-i>",
+				function()
+					require("python_import.api").add_import_current_word_and_move_cursor()
+				end,
+				mode = { "i", "n" },
+				silent = true,
+				desc = "Add python import",
+				ft = "python",
+			},
+		},
+		opts = {
+			custom_function = function(winnr, word, ts_node) end,
+		},
+	},
 }
