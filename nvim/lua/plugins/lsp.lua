@@ -53,11 +53,11 @@ return {
 					},
 				},
 				on_init = function(client)
-                    local venv_path = vim.fn.trim(vim.fn.system("poetry env info -p 2>/dev/null"))
+					local venv_path = vim.fn.trim(vim.fn.system("poetry env info -p 2>/dev/null"))
 					local python_path = venv_path .. "/bin/python"
 
 					if vim.fn.filereadable(python_path) == 1 then
-                        vim.env.VIRTUAL_ENV = venv_path
+						vim.env.VIRTUAL_ENV = venv_path
 						client.config.settings.python = {
 							pythonPath = python_path,
 						}
@@ -95,9 +95,15 @@ return {
 
 			-- Навигация по диагностике
             -- stylua: ignore start
-			vim.keymap.set("n", "z[", function() vim.diagnostic.goto_prev() end, { desc = "Go to previous diagnostic", silent = true, nowait = true, noremap = true })
-			vim.keymap.set("n", "z]", function() vim.diagnostic.goto_next() end, { desc = "Go to next diagnostic", silent = true, nowait = true, noremap = true })
-			vim.keymap.set("n", "D", function() vim.diagnostic.open_float() end, { desc = "Show diagnostic popup", silent = true, nowait = true, noremap = true })
+			vim.keymap.set("n", "z[", function() vim.diagnostic.jump({ count = -1 }) end, { desc = "Go to previous diagnostic", silent = true, nowait = true, noremap = true })
+			vim.keymap.set("n", "z]", function() vim.diagnostic.jump({ count = 1 }) end, { desc = "Go to next diagnostic", silent = true, nowait = true, noremap = true })
+			-- stylua: ignore end
+			vim.keymap.set("n", "D", function()
+				local _, win = vim.diagnostic.open_float()
+				if win and vim.api.nvim_win_is_valid(win) then
+					vim.api.nvim_set_current_win(win)
+				end
+			end, { desc = "Focus diagnostic float" })
 			-- stylua: ignore end
 		end,
 	},
