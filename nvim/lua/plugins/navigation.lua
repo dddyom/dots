@@ -1,7 +1,16 @@
 return {
 	-----------------------------------------------------------------------------
 	-- Быстрая навигация по файлам, буферам и командам
-	{ "otavioschwanck/arrow.nvim", opts = { show_icons = true, leader_key = ";", buffer_leader_key = "m" } },
+	{
+		"otavioschwanck/arrow.nvim",
+		opts = {
+			show_icons = true,
+			always_show_path = true,
+			separate_by_branch = true,
+			leader_key = ";",
+			buffer_leader_key = "m",
+		},
+	},
 	-----------------------------------------------------------------------------
 	-- Файловый менеджер внутри буфера с поддержкой Git-статуса
 	{
