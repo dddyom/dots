@@ -56,7 +56,7 @@ return {
 					local venv_path = vim.fn.trim(vim.fn.system("poetry env info -p 2>/dev/null"))
 					local python_path = venv_path .. "/bin/python"
 
-					if vim.fn.filereadable(python_path) == 1 then
+					if venv_path ~= "" and vim.fn.filereadable(python_path) == 1 then
 						vim.env.VIRTUAL_ENV = venv_path
 						client.config.settings.python = {
 							pythonPath = python_path,
