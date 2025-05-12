@@ -9,7 +9,6 @@ return {
 			"williamboman/mason-lspconfig.nvim", -- Интеграция Mason с lspconfig
 			{
 				"williamboman/mason.nvim", -- Установка LSP серверов и инструментов
-				version = "v1.10.0",
 				build = function()
 					pcall(function()
 						vim.cmd("MasonUpdate")
