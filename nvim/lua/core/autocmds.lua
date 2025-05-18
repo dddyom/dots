@@ -38,6 +38,31 @@ au({ "LspAttach", "InsertEnter", "InsertLeave" }, "*", function(event)
 	vim.lsp.inlay_hint.enable(enabled, { bufnr = event.buf })
 end, augroup("lsp_inlay_hints"))
 
+au({ "LspAttach" }, "*", function(args)
+	local opts = { buffer = args.buf, noremap = true, silent = true }
+	local map = vim.keymap.set
+
+	map("n", "gd", vim.lsp.buf.definition, opts)
+	map("n", "gr", vim.lsp.buf.references, opts)
+	map("n", "gi", vim.lsp.buf.implementation, opts)
+	map("n", "K", vim.lsp.buf.hover, opts)
+	map("n", "<leader>rn", vim.lsp.buf.rename, opts)
+	map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+
+	map("n", "z[", function()
+		vim.diagnostic.jump({ count = -1 })
+	end, opts)
+	map("n", "z]", function()
+		vim.diagnostic.jump({ count = 1 })
+	end, opts)
+	map("n", "D", function()
+		local _, win = vim.diagnostic.open_float()
+		if win and vim.api.nvim_win_is_valid(win) then
+			vim.api.nvim_set_current_win(win)
+		end
+	end, opts)
+end, augroup("lsp_maps"))
+
 -----------------------------------------------------------------------------
 -- Авто-отключение подсветки поиска при движении курсора
 -----------------------------------------------------------------------------

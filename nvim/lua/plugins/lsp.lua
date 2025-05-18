@@ -1,68 +1,81 @@
+local function get_python_path(workspace)
+	local util = require("lspconfig.util")
+	local path = util.path
+
+	-- 1. if venv is activated
+	if vim.env.VIRTUAL_ENV then
+		return path.join(vim.env.VIRTUAL_ENV, "bin", "python")
+	end
+
+	-- 2. poetry
+	local poetry_lock = path.join(workspace, "poetry.lock")
+	if util.path.exists(poetry_lock) then
+		local venv = vim.fn.trim(vim.fn.system("poetry env info -p 2>/dev/null")):gsub("\n", "")
+		return path.join(venv, "bin", "python")
+	end
+
+	-- 3. venv in workspace
+	local venv = path.join(workspace, "venv", "bin", "python")
+	if util.path.exists(venv) then
+		return venv
+	end
+
+	return "python"
+end
+
 return {
-	-----------------------------------------------------------------------------
-	-- LSP (Language Server Protocol)
 	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v2.x",
+		"neovim/nvim-lspconfig",
 		dependencies = {
-			"neovim/nvim-lspconfig", -- Базовая конфигурация LSP
-			"williamboman/mason-lspconfig.nvim", -- Интеграция Mason с lspconfig
-			{
-				"williamboman/mason.nvim", -- Установка LSP серверов и инструментов
-				build = function()
-					pcall(function()
-						vim.cmd("MasonUpdate")
-					end)
-				end,
-			},
+			"mason-org/mason.nvim",
+			"mason-org/mason-lspconfig.nvim",
 		},
 		config = function()
-			local lsp = require("lsp-zero").preset({})
-
 			require("mason").setup()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"emmet_language_server",
 					"lua_ls",
-					"basedpyright",
+					"pyright",
 					"ts_ls",
 					"rust_analyzer",
 					"volar",
 				},
+				automatic_enable = false,
 			})
-
-			-- Установка базовых клавиш при подключении LSP
-			lsp.on_attach(function(_, bufnr)
-				lsp.default_keymaps({ buffer = bufnr })
-			end)
-
-			-- Установка кастомных значков для диагностики
-			lsp.set_sign_icons(require("core.icons").diagnostics)
 
 			local lspconfig = require("lspconfig")
 
-			-- Настройки для Lua
-			lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
-
-			-- Настройки для Python (basedpyright)
-			lspconfig.basedpyright.setup({
-				settings = {
-					basedpyright = {
-						typeCheckingMode = "basic",
+			local icons = require("core.icons").diagnostics
+			vim.diagnostic.config({
+				signs = {
+					enable = true,
+					text = {
+						[vim.diagnostic.severity.ERROR] = icons.error,
+						[vim.diagnostic.severity.WARN] = icons.warn,
+						[vim.diagnostic.severity.INFO] = icons.info,
+						[vim.diagnostic.severity.HINT] = icons.hint,
 					},
 				},
-				on_init = function(client)
-					local venv_path = vim.fn.trim(vim.fn.system("poetry env info -p 2>/dev/null"))
-					local python_path = venv_path .. "/bin/python"
+			})
 
-					if venv_path ~= "" and vim.fn.filereadable(python_path) == 1 then
-						vim.env.VIRTUAL_ENV = venv_path
-						client.config.settings.python = {
-							pythonPath = python_path,
-						}
-						client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-					end
+			lspconfig.pyright.setup({
+				settings = {
+					pyright = {
+						typeCheckingMode = "basic",
+						analysis = {
+							autoSearchPaths = true,
+							diagnosticMode = "openFilesOnly",
+							useLibraryCodeForTypes = true,
+						},
+					},
+				},
+				before_init = function(_, config)
+					config.settings.python = {
+						pythonPath = get_python_path(config.root_dir),
+					}
 				end,
+				root_dir = require("lspconfig.util").find_git_ancestor,
 			})
 
 			lspconfig.ts_ls.setup({
@@ -88,21 +101,6 @@ return {
 
 			-- Настройки для Dart
 			lspconfig.dartls.setup({})
-
-			-- Применение настроек LSP
-			lsp.setup()
-
-			-- Навигация по диагностике
-            -- stylua: ignore start
-			vim.keymap.set("n", "z[", function() vim.diagnostic.jump({ count = -1 }) end, { desc = "Go to previous diagnostic", silent = true, nowait = true, noremap = true })
-			vim.keymap.set("n", "z]", function() vim.diagnostic.jump({ count = 1 }) end, { desc = "Go to next diagnostic", silent = true, nowait = true, noremap = true })
-			-- stylua: ignore end
-			vim.keymap.set("n", "D", function()
-				local _, win = vim.diagnostic.open_float()
-				if win and vim.api.nvim_win_is_valid(win) then
-					vim.api.nvim_set_current_win(win)
-				end
-			end, { desc = "Focus diagnostic float" })
 			-- stylua: ignore end
 		end,
 	},
