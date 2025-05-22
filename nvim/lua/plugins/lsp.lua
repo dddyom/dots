@@ -39,7 +39,6 @@ return {
 					"pyright",
 					"ts_ls",
 					"rust_analyzer",
-					"volar",
 				},
 				automatic_enable = false,
 			})
@@ -99,7 +98,6 @@ return {
 				},
 			})
 
-			-- Настройки для Dart
 			lspconfig.dartls.setup({})
 			-- stylua: ignore end
 		end,
