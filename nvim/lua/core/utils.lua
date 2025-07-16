@@ -43,14 +43,14 @@ end
 -----------------------------------------------------------------------------
 local get_print_text = function(filetype)
 	local print_commands = {
-		vue = { print_text = [[console.warn()]], start_insert = "%(" },
-		javascript = { print_text = [[console.warn()]], start_insert = "%(" },
-		typescript = { print_text = [[console.warn()]], start_insert = "%(" },
-		javascriptreact = { print_text = [[console.warn()]], start_insert = "%(" },
-		typescriptreact = { print_text = [[console.warn()]], start_insert = "%(" },
-		html = { print_text = [[console.warn()]], start_insert = "%(" },
-		htmldjango = { print_text = [[console.warn()]], start_insert = "%(" },
-		python = { print_text = [[print(f'\033[93m{}\033[0m')]], start_insert = "{" },
+		vue = { print_text = [[console.log()]], start_insert = "%(" },
+		javascript = { print_text = [[console.log()]], start_insert = "%(" },
+		typescript = { print_text = [[console.log()]], start_insert = "%(" },
+		javascriptreact = { print_text = [[console.log()]], start_insert = "%(" },
+		typescriptreact = { print_text = [[console.log()]], start_insert = "%(" },
+		html = { print_text = [[console.log)]], start_insert = "%(" },
+		htmldjango = { print_text = [[console.log()]], start_insert = "%(" },
+		python = { print_text = [[print()]], start_insert = "%(" },
 		lua = { print_text = [[vim.print()]], start_insert = "%(" },
 		dart = { print_text = [[print();]], start_insert = "%(" },
 	}

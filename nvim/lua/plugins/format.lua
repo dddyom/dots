@@ -41,6 +41,7 @@ return {
 			},
 			fname = true,
 		})
+		ft("python"):fmt("isort"):lint("flake8")
 		ft("typescript"):fmt("prettier")
 		ft("javascript"):fmt("prettier")
 		ft("tsx"):fmt("prettier")

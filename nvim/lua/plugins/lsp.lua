@@ -20,6 +20,11 @@ local function get_python_path(workspace)
 		return venv
 	end
 
+	local venv = path.join(workspace, ".venv", "bin", "python")
+	if util.path.exists(venv) then
+		return venv
+	end
+
 	return "python"
 end
 
