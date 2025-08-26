@@ -72,22 +72,21 @@ return {
 		{ "<leader>nh", function() Snacks.notifier.show_history() end, desc = "Show notifications history" },
 		{ "<leader>nd", function() Snacks.notifier.hide() end, desc = "Close all notifications" },
 
-		{ "<leader>f", "", desc = "Find" },
-		{ "<leader>ff", function() Snacks.picker.files() end, desc = "Find files" },
-		{ "<leader>fw", function() Snacks.picker.grep() end, desc = "Find by word" },
+		-- { "<leader>ff", function() Snacks.picker.files() end, desc = "Find files" },
+		{ "fw", function() Snacks.picker.grep() end, desc = "Find by word" },
 
-		{ "<leader>fc", function() Snacks.picker.command_history({ layout = { preset = "vscode" } }) end, desc = "Find by word" },
+		{ "fc", function() Snacks.picker.command_history({ layout = { preset = "vscode" } }) end, desc = "Find by word" },
 
         { "<c-space>", function() Snacks.picker.buffers() end, desc = "Buffers" },
 
-		{ "<leader>fh", function() Snacks.picker.help() end, desc = "Find in help tags" },
+		{ "fh", function() Snacks.picker.help() end, desc = "Find in help tags" },
 
 		{ "gd", function() Snacks.picker.lsp_definitions({ jump_to_single_result = true }) end, desc = "Go to definition" },
 		{ "gr", function() Snacks.picker.lsp_references({ jump_to_single_result = true }) end, desc = "Find LSP references" },
-		{ "<leader>fa", function() vim.lsp.buf.code_action({ apply = true }) end, desc = "Apply LSP code actions" },
+		{ "fa", function() vim.lsp.buf.code_action({ apply = true }) end, desc = "Apply LSP code actions" },
 
-        { "<leader>fs", function() Snacks.picker.lsp_symbols({ layout = { preset = "vscode", preview = "main" } }) end, desc = "LSP Symbols" },
-        { "<leader>fS", function() Snacks.picker.lsp_workspace_symbols({ layout = { preset = "vscode", preview = "main" } }) end, desc = "LSP Workspace Symbols" },
+        { "fs", function() Snacks.picker.lsp_symbols({ layout = { preset = "vscode", preview = "main" } }) end, desc = "LSP Symbols" },
+        { "fS", function() Snacks.picker.lsp_workspace_symbols({ layout = { preset = "vscode", preview = "main" } }) end, desc = "LSP Workspace Symbols" },
 
 		---@diagnostic enable: undefined-global
 		-- stylua: ignore end

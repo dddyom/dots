@@ -79,4 +79,13 @@ return {
 			-- stylua: ignore end
 		},
 	},
+
+	{
+		"dmtrKovalenko/fff.nvim",
+		build = "cargo build --release",
+		opts = {},
+		-- stylua: ignore start
+		keys = { { "ff", function() require("fff").find_files() end, desc = "Find files", } },
+		-- stylua: ignore end
+	},
 }
