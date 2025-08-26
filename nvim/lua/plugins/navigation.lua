@@ -83,7 +83,12 @@ return {
 	{
 		"dmtrKovalenko/fff.nvim",
 		build = "cargo build --release",
-		opts = {},
+		opts = {
+			keymaps = {
+				move_up = { "<Up>", "<C-p>", "<C-k>" },
+				move_down = { "<Down>", "<C-n>", "<C-j>" },
+			},
+		},
 		-- stylua: ignore start
 		keys = { { "ff", function() require("fff").find_files() end, desc = "Find files", } },
 		-- stylua: ignore end
