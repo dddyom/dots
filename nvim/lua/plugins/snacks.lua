@@ -72,7 +72,7 @@ return {
 		{ "<leader>nh", function() Snacks.notifier.show_history() end, desc = "Show notifications history" },
 		{ "<leader>nd", function() Snacks.notifier.hide() end, desc = "Close all notifications" },
 
-		-- { "<leader>ff", function() Snacks.picker.files() end, desc = "Find files" },
+		{ "ff", function() Snacks.picker.files() end, desc = "Find files" },
 		{ "fw", function() Snacks.picker.grep() end, desc = "Find by word" },
 
 		{ "fc", function() Snacks.picker.command_history({ layout = { preset = "vscode" } }) end, desc = "Find by word" },
