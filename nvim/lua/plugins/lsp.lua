@@ -48,8 +48,6 @@ return {
 				automatic_enable = false,
 			})
 
-			local lspconfig = require("lspconfig")
-
 			local icons = require("core.icons").diagnostics
 			vim.diagnostic.config({
 				signs = {
@@ -63,26 +61,30 @@ return {
 				},
 			})
 
-			lspconfig.pyright.setup({
+			vim.lsp.config("pyright", {
 				settings = {
-					pyright = {
-						typeCheckingMode = "basic",
+					python = {
 						analysis = {
+							typeCheckingMode = "basic",
 							autoSearchPaths = true,
 							diagnosticMode = "openFilesOnly",
 							useLibraryCodeForTypes = true,
 						},
 					},
 				},
-				before_init = function(_, config)
-					config.settings.python = {
-						pythonPath = get_python_path(config.root_dir),
-					}
+				before_init = function(_, cfg)
+					cfg.settings.python.pythonPath = get_python_path(cfg.root_dir or vim.loop.cwd())
 				end,
-				root_dir = require("lspconfig.util").find_git_ancestor,
+				root_markers = {
+					"pyproject.toml",
+					"poetry.lock",
+					"setup.cfg",
+					"setup.py",
+					".git",
+				},
 			})
-
-			lspconfig.ts_ls.setup({
+			vim.lsp.enable("pyright")
+			vim.lsp.config("ts_ls", {
 				init_options = {
 					plugins = {
 						{
@@ -92,19 +94,17 @@ return {
 						},
 					},
 				},
-
-				-- Specify the file types that will trigger the TypeScript language server
 				filetypes = {
-					"typescript",
 					"javascript",
 					"javascriptreact",
+					"javascript.jsx",
+					"typescript",
 					"typescriptreact",
+					"typescript.tsx",
 					"vue",
 				},
 			})
-
-			lspconfig.dartls.setup({})
-			-- stylua: ignore end
+			vim.lsp.enable("ts_ls")
 		end,
 	},
 	-----------------------------------------------------------------------------
