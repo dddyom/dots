@@ -43,9 +43,8 @@ return {
 					"lua_ls",
 					"pyright",
 					"ts_ls",
-					"rust_analyzer",
 				},
-				automatic_enable = false,
+				automatic_enable = true,
 			})
 
 			local icons = require("core.icons").diagnostics

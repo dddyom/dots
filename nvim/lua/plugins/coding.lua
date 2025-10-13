@@ -64,30 +64,6 @@ return {
 	-- Расширенные операции с окружением текста (замена, удаление, добавление)
 	{ "echasnovski/mini.surround", opts = {} },
 	-----------------------------------------------------------------------------
-	-- AI автодополнение кода
-	{
-		"monkoose/neocodeium",
-		event = "VeryLazy",
-		config = function()
-			local neocodeium = require("neocodeium")
-			neocodeium.setup({ silent = true })
-
-			-- Принятие предложений
-			vim.keymap.set("i", "<C-a>", neocodeium.accept, { desc = "Accept completion" })
-			vim.keymap.set("i", "<C-w>", neocodeium.accept_word, { desc = "Accept word" })
-			vim.keymap.set("i", "<C-e>", neocodeium.accept_line, { desc = "Accept line" })
-
-			-- Переключение AI-дополнения
-			local toggle = function()
-				require("neocodeium.commands").toggle()
-				local is_enabled = require("neocodeium.options").options.enabled
-				local message = "AI completion " .. (is_enabled and "enabled" or "disabled") .. "."
-				vim.notify(message, vim.log.levels.INFO, { title = "NeoCodeium" })
-			end
-
-			vim.keymap.set("n", "<leader>x", toggle, { desc = "Toggle AI completion" })
-		end,
-	},
 	{
 		"kiyoon/python-import.nvim",
 		build = "uv tool install . --force --reinstall",
