@@ -49,16 +49,10 @@ return {
 	----------------------------------------------------------------------------
 	-- Генерация документации (Docstrings)
 	{
-		"jeangiraldoo/codedocs.nvim",
-		keys = {
-			{
-				"<leader>k",
-				function()
-					require("codedocs").insert_docs()
-				end,
-				desc = "Insert a docstring",
-			},
-		},
+		"danymat/neogen",
+		config = true,
+		version = "*",
+		keys = { { "<leader>k", function() require("neogen").generate() end, mode = { "n" }, silent = true, desc = "Add docstring" } },
 	},
 	-----------------------------------------------------------------------------
 	-- Расширенные операции с окружением текста (замена, удаление, добавление)
