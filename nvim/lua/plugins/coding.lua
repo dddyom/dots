@@ -52,11 +52,36 @@ return {
 		"danymat/neogen",
 		config = true,
 		version = "*",
-		keys = { { "<leader>k", function() require("neogen").generate() end, mode = { "n" }, silent = true, desc = "Add docstring" } },
+		keys = {
+			{
+				"<leader>k",
+				function()
+					require("neogen").generate()
+				end,
+				mode = { "n" },
+				silent = true,
+				desc = "Add docstring",
+			},
+		},
 	},
 	-----------------------------------------------------------------------------
 	-- Расширенные операции с окружением текста (замена, удаление, добавление)
-	{ "echasnovski/mini.surround", opts = {} },
+	{
+		"echasnovski/mini.surround",
+		opts = {
+			mappings = {
+				add = "za", -- Add surrounding in Normal and Visual modes
+				delete = "zd", -- Delete surrounding
+				find = "zf", -- Find surrounding (to the right)
+				find_left = "zF", -- Find surrounding (to the left)
+				highlight = "zh", -- Highlight surrounding
+				replace = "zr", -- Replace surrounding
+
+				suffix_last = "l", -- Suffix to search with "prev" method
+				suffix_next = "n", -- Suffix to search with "next" method
+			},
+		},
+	},
 	-----------------------------------------------------------------------------
 	{
 		"kiyoon/python-import.nvim",

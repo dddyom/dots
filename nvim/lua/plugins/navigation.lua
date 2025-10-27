@@ -27,6 +27,7 @@ return {
 						return name == ".." or name == "__pycache__"
 					end,
 				},
+				float = { padding = 0, win_options = { winblend = 20 } },
 			})
 			require("oil-vcs-status").setup({
 				status_symbol = require("core.icons").git, -- Иконки для отображения статуса Git
@@ -67,16 +68,13 @@ return {
 	},
 
 	-----------------------------------------------------------------------------
-	-- Улучшенная подсветка поиска (аналог EasyMotion)
 	{
-		"folke/flash.nvim",
+		"ggandor/leap.nvim",
 		event = "VeryLazy",
-		opts = {},
-		keys = {
-            -- stylua: ignore start
-			{ "c", mode = { "n" }, function() require("flash").jump() end, desc = "Flash Jump" },
-			{ "C", mode = { "n" }, function() require("flash").treesitter() end, desc = "Flash Treesitter Search" },
-			-- stylua: ignore end
-		},
+		config = function()
+			vim.keymap.set({ "n", "x", "o" }, "c", "<Plug>(leap)", { remap = true, silent = true, desc = "Leap" })
+            vim.api.nvim_set_hl(0, 'LeapLabel', { link = 'Visual' })
+            vim.api.nvim_set_hl(0, 'LeapLabelSelected', { link = 'CurSearch' })
+		end,
 	},
 }
