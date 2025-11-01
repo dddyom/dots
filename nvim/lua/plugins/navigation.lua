@@ -69,12 +69,26 @@ return {
 
 	-----------------------------------------------------------------------------
 	{
-		"ggandor/leap.nvim",
-		event = "VeryLazy",
-		config = function()
-			vim.keymap.set({ "n", "x", "o" }, "c", "<Plug>(leap)", { remap = true, silent = true, desc = "Leap" })
-            vim.api.nvim_set_hl(0, 'LeapLabel', { link = 'Visual' })
-            vim.api.nvim_set_hl(0, 'LeapLabelSelected', { link = 'CurSearch' })
-		end,
+		"folke/flash.nvim",
+		opts = {
+			highlight = {
+				backdrop = false,
+			},
+			jump = {
+				autojump = true,
+				nohlsearch = true,
+			},
+			labels = "asdfqwerzxcv",
+			modes = {
+				char = { enabled = false },
+				search = {
+					enabled = true,
+					highlight = { backdrop = false },
+					jump = { autojump = false },
+				},
+			},
+			prompt = { win_config = { border = "none" } },
+			search = { wrap = true },
+		},
 	},
 }
