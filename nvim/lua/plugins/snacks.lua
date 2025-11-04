@@ -81,6 +81,7 @@ return {
 
 		{ "fh", function() Snacks.picker.help() end, desc = "Find in help tags" },
 
+		{ "<leader>gm", function() Snacks.picker.gh_pr() end, desc = "Github merge requests" },
 		{ "gd", function() Snacks.picker.lsp_definitions({ jump_to_single_result = true }) end, desc = "Go to definition" },
 		{ "gr", function() Snacks.picker.lsp_references({ jump_to_single_result = true }) end, desc = "Find LSP references" },
 		{ "fa", function() vim.lsp.buf.code_action({ apply = true }) end, desc = "Apply LSP code actions" },
