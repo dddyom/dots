@@ -1,19 +1,14 @@
 return {
 	-----------------------------------------------------------------------------
-
-	-- Поддержка иконок для плагинов и файловых типов
-	{ "nvim-tree/nvim-web-devicons", lazy = false },
-
-	-- Фреймворк для создания UI-компонентов в Neovim
-	{ "MunifTanjim/nui.nvim", lazy = false },
-
-	-- Подсветка цветов внутри кода (например, `#FF0000` будет подсвечен красным)
+	-- Подсветка цветов (#fff, rgb(), и т.п.)
 	{ "brenoprata10/nvim-highlight-colors", config = true },
 
-	-- Resize для cmdheight
+	-- Авто-ресайз cmdheight
 	{ "jake-stewart/auto-cmdheight.nvim", lazy = false, opts = {} },
+
 	-----------------------------------------------------------------------------
-	-- Цветовая схема Ayu с пользовательскими настройками
+	-- Цветовая схема Ayu + оверрайды
+	-----------------------------------------------------------------------------
 	{
 		"Shatur/neovim-ayu",
 		config = function()
@@ -36,12 +31,14 @@ return {
 	},
 
 	-----------------------------------------------------------------------------
-	-- Статусная строка Lualine с кастомной темой и отображением буферов
+	-- Lualine: статус/таблайн + tmux / project / arrow
+	-----------------------------------------------------------------------------
 	{
 		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons", lazy = false },
 		config = function()
 			local custom_ayu = require("lualine.themes.ayu")
-			custom_ayu.normal.c.bg = "#0000000" -- Прозрачный фон
+			custom_ayu.normal.c.bg = "#0000000" -- псевдо-прозрачный фон
 
 			require("lualine").setup({
 				options = {
@@ -54,24 +51,36 @@ return {
 					lualine_a = {
 						{
 							"filename",
-							symbols = require("core.icons").buffers,
+							symbols = {
+								modified = "󰇤",
+								readonly = "",
+								unnamed = "",
+								newfile = "",
+							},
 						},
 					},
 					lualine_b = {
 						{
 							"diagnostics",
-							symbols = require("core.icons").diagnostics,
+							symbols = {
+								{
+									error = "✘ ",
+									warn = "󰀪 ",
+									info = " ",
+									hint = " ",
+								},
+							},
 						},
 					},
 
 					lualine_c = {},
 					lualine_x = { "fileformat", "filetype" },
 
-					-- Отображение имени текущей TMUX-сессии, если TMUX запущен
+					-- TMUX-сессия справа, если tmux запущен
 					lualine_y = {
 						{
 							function()
-								local session_name = require("core.utils").tmux_session_name()
+								local session_name = require("core.utils.tmux_session_name").tmux_session_name()
 								if session_name == nil then
 									return ""
 								else
@@ -86,12 +95,12 @@ return {
 					lualine_z = { "location" },
 				},
 
-				-- Верхняя панель с названием проекта и буферов
+				-- Верхняя линия: проект + буферы + arrow + git
 				tabline = {
 					lualine_a = {
 						{
 							function()
-								return require("core.utils").get_project_name(vim.fn.getcwd())
+								return require("core.utils.project_name").get_project_name(vim.fn.getcwd())
 							end,
 						},
 					},

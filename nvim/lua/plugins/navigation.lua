@@ -1,8 +1,9 @@
 return {
 	-----------------------------------------------------------------------------
-	-- Быстрая навигация по файлам, буферам и командам
+	-- Arrow: быстрые маркеры/прыжки по файлам и буферам
 	{
 		"otavioschwanck/arrow.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
 			show_icons = true,
 			always_show_path = true,
@@ -11,30 +12,34 @@ return {
 			buffer_leader_key = "m",
 		},
 	},
+
 	-----------------------------------------------------------------------------
-	-- Файловый менеджер внутри буфера с поддержкой Git-статуса
+	-- Oil: файловый менеджер в виде буфера
 	{
 		"stevearc/oil.nvim",
-		dependencies = { "SirZenith/oil-vcs-status", { "JezerM/oil-lsp-diagnostics.nvim", opts = {} } },
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+			"SirZenith/oil-vcs-status",
+		},
 		config = function()
 			require("oil").setup({
 				win_options = {
-					signcolumn = "number", -- Отображение знаков слева от номера строки
+					signcolumn = "number",
 				},
 				view_options = {
-					show_hidden = true, -- Показывать скрытые файлы
+					show_hidden = true,
 					is_always_hidden = function(name, _)
 						return name == ".." or name == "__pycache__"
 					end,
 				},
 				float = { padding = 0, win_options = { winblend = 20 } },
 			})
+
 			require("oil-vcs-status").setup({
-				status_symbol = require("core.icons").git, -- Иконки для отображения статуса Git
-				status_hl_group = require("core.colors").oil_vcs_status, -- Подсветка статусов Git
+				status_hl_group = require("core.colors").oil_vcs_status,
 			})
 
-			-- Автоматическая обработка переименования файлов
+			-- При переименовании файлов обновлять ссылки через Snacks
 			vim.api.nvim_create_autocmd("User", {
 				pattern = "OilActionsPost",
 				callback = function(event)
@@ -53,21 +58,22 @@ return {
 	},
 
 	-----------------------------------------------------------------------------
-	-- Навигация между окнами Neovim и Tmux
+	-- Навигация между tmux / nvim сплитами
 	{
 		"christoomey/vim-tmux-navigator",
 		lazy = false,
 		keys = {
             -- stylua: ignore start
-			{ "<M-h>", function() vim.cmd("TmuxNavigateLeft") end, mode = { "n", "t" }, silent = true, desc = "Jump to left pane" },
-			{ "<M-j>", function() vim.cmd("TmuxNavigateDown") end, mode = { "n", "t" }, silent = true, desc = "Jump to lower pane" },
-			{ "<M-k>", function() vim.cmd("TmuxNavigateUp") end, mode = { "n", "t" }, silent = true, desc = "Jump to upper pane" },
+			{ "<M-h>", function() vim.cmd("TmuxNavigateLeft") end,  mode = { "n", "t" }, silent = true, desc = "Jump to left pane" },
+			{ "<M-j>", function() vim.cmd("TmuxNavigateDown") end,  mode = { "n", "t" }, silent = true, desc = "Jump to lower pane" },
+			{ "<M-k>", function() vim.cmd("TmuxNavigateUp") end,    mode = { "n", "t" }, silent = true, desc = "Jump to upper pane" },
 			{ "<M-l>", function() vim.cmd("TmuxNavigateRight") end, mode = { "n", "t" }, silent = true, desc = "Jump to right pane" },
 			-- stylua: ignore end
 		},
 	},
 
 	-----------------------------------------------------------------------------
+	-- Flash: расширенный поиск/прыжки
 	{
 		"folke/flash.nvim",
 		opts = {

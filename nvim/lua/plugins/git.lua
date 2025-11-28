@@ -1,6 +1,7 @@
 return {
 	{
 		"tanvirtin/vgit.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
 		branch = "v1.0.x",
 		event = "VimEnter",
 		config = true,

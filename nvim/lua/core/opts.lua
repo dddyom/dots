@@ -1,98 +1,76 @@
 local opt = vim.opt
 
 -----------------------------------------------------------------------------
--- UI и Визуальные Настройки
+-- UI
 -----------------------------------------------------------------------------
-opt.termguicolors = true -- Поддержка 24-битных цветов
-opt.number = true -- Отображение номеров строк
-opt.cursorline = true -- Подсветка текущей строки
-opt.signcolumn = "yes" -- Всегда показывать колонку знаков
-opt.syntax = "on" -- Включить синтаксическую подсветку
-opt.listchars = { -- Символы, заменяющие скрытые символы
-	tab = "  ",
-	extends = "⟫",
-	precedes = "⟪",
-	nbsp = "␣",
-	trail = "·",
-}
-opt.fillchars = { -- Символы для различных UI-элементов
-	foldopen = "󰅀",
-	foldclose = "󰅂",
-	fold = " ",
-	foldsep = " ",
-	diff = "╱",
-	eob = " ",
-	horiz = "━",
-	horizup = "┻",
-	horizdown = "┳",
-	vert = "┃",
-	vertleft = "┫",
-	vertright = "┣",
-	verthoriz = "╋",
-}
+opt.termguicolors = true
+opt.number = true
+opt.cursorline = true
+opt.signcolumn = "yes"
+opt.syntax = "on"
 
 -----------------------------------------------------------------------------
--- Буферы, вкладки и сессии
+-- Буферы, сессии, folds
 -----------------------------------------------------------------------------
-opt.hidden = true -- Буферы остаются открытыми, даже если переключиться на другой
-opt.sessionoptions:remove({ "buffers", "folds" }) -- Не сохранять буферы и свёртки в сессиях
-opt.viewoptions:remove("folds") -- Не запоминать свёртки
+opt.hidden = true
+opt.sessionoptions:remove({ "buffers", "folds" })
+opt.viewoptions:remove("folds")
 
 -----------------------------------------------------------------------------
--- Ввод и Поведение Курсора
+-- Ввод и курсор
 -----------------------------------------------------------------------------
-opt.mouse = "a" -- Разрешить работу мышью
-opt.virtualedit = "block" -- Разрешить курсору двигаться в пустые области в блок-режиме
-opt.backspace:append("nostop") -- Позволяет backspace удалять за границами вставки
-opt.infercase = true -- Автоматически определять регистр при автодополнении
+opt.mouse = "a"
+opt.virtualedit = "block"
+opt.backspace:append("nostop")
+opt.infercase = true
 
 -----------------------------------------------------------------------------
--- Настройки поиска
+-- Поиск
 -----------------------------------------------------------------------------
-opt.smartcase = true -- Учитывать регистр, если введён хотя бы один символ в верхнем регистре
-opt.ignorecase = true -- Игнорировать регистр при поиске
-opt.incsearch = true -- Инкрементальный поиск
-opt.hlsearch = true -- Подсветка найденных результатов поиска
+opt.smartcase = true
+opt.ignorecase = true
+opt.incsearch = true
+opt.hlsearch = true
 
 -----------------------------------------------------------------------------
 -- Производительность
 -----------------------------------------------------------------------------
-opt.timeoutlen = 300 -- Время ожидания для последовательностей команд (мс)
-opt.updatetime = 300 -- Время обновления событий (например, автосохранения) (мс)
-opt.history = 100 -- Количество команд в истории
+opt.timeoutlen = 300
+opt.updatetime = 300
+opt.history = 100
 
 -----------------------------------------------------------------------------
--- Работа с вкладками и отступами
+-- Отступы и табы
 -----------------------------------------------------------------------------
-opt.expandtab = true -- Преобразовывать табы в пробелы
-opt.shiftwidth = 4 -- Размер отступа
-opt.tabstop = 4 -- Количество пробелов в табе
-opt.softtabstop = 4 -- Отступ для табуляции при редактировании
-opt.breakindentopt = { shift = 2, min = 20 } -- Дополнительные опции переноса строк
+opt.expandtab = true
+opt.shiftwidth = 4
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.breakindentopt = { shift = 2, min = 20 }
 
 -----------------------------------------------------------------------------
--- Разделение окон
+-- Сплиты
 -----------------------------------------------------------------------------
-opt.splitbelow = true -- Окна разделяются снизу
-opt.splitright = true -- Окна разделяются справа
+opt.splitbelow = true
+opt.splitright = true
 
 -----------------------------------------------------------------------------
--- Файловые форматы и кодировки
+-- Файлы и история изменений
 -----------------------------------------------------------------------------
-opt.fileencoding = "utf-8" -- Кодировка файлов
-opt.swapfile = false -- Отключение swap-файлов
-opt.writebackup = false -- Отключение резервных копий
-opt.undofile = true -- Включение возможности отмены после перезапуска
+opt.fileencoding = "utf-8"
+opt.swapfile = false
+opt.writebackup = false
+opt.undofile = true
 
 -----------------------------------------------------------------------------
--- Улучшение работы с командной строкой
+-- Командная строка и completion
 -----------------------------------------------------------------------------
-opt.wildmode = "longest:full,full" -- Улучшенная автодополняемая командная строка
-opt.completeopt = { "menu", "menuone", "noselect" } -- Улучшенное автодополнение
-opt.cmdheight = 0 -- Высота командной строки
+opt.wildmode = "longest:full,full"
+opt.completeopt = { "menu", "menuone", "noselect" }
+opt.cmdheight = 0
 
 -----------------------------------------------------------------------------
--- Настройки работы с grep (если `rg` или `ag` установлен)
+-- grep (rg/ag)
 -----------------------------------------------------------------------------
 if vim.fn.executable("rg") then
 	opt.grepprg = "rg --vimgrep --no-heading" .. (opt.smartcase and " --smart-case" or "") .. " --"
@@ -103,25 +81,25 @@ end
 opt.grepformat = "%f:%l:%c:%m"
 
 -----------------------------------------------------------------------------
--- Оптимизация `diff`
+-- diff-настройки
 -----------------------------------------------------------------------------
-opt.diffopt:append({ "iwhite", "indent-heuristic", "algorithm:patience" }) -- Улучшенный алгоритм сравнения в diff
+opt.diffopt:append({ "iwhite", "indent-heuristic", "algorithm:patience" })
 
 -----------------------------------------------------------------------------
--- Отключение ненужных провайдеров (ускоряет Neovim)
+-- Отключение лишних провайдеров
 -----------------------------------------------------------------------------
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 
 -----------------------------------------------------------------------------
--- Запрет стандартных команд для Git и man
+-- Отключение стандартных git/man-мэпов
 -----------------------------------------------------------------------------
-vim.g.no_gitrebase_maps = 1 -- Отключение встроенных карт для gitrebase
-vim.g.no_man_maps = 1 -- Отключение встроенных карт для man
+vim.g.no_gitrebase_maps = 1
+vim.g.no_man_maps = 1
 
 -----------------------------------------------------------------------------
--- Определение типов файлов
+-- Дополнительные filetype-правила
 -----------------------------------------------------------------------------
 ---@diagnostic disable-next-line: missing-fields
 vim.filetype.add({
@@ -151,33 +129,32 @@ vim.filetype.add({
 		[".*/roles/.*/tasks/.*%.ya?ml"] = "yaml.ansible",
 		[".*/roles/.*/handlers/.*%.ya?ml"] = "yaml.ansible",
 		[".*/inventory/.*%.ini"] = "ansible_hosts",
+		[".*/%.env"] = "sh",
+		[".*/%.env%..*"] = "sh",
 	},
 })
 
-
 -----------------------------------------------------------------------------
--- Дополнительные настройки
------------------------------------------------------------------------------
-vim.opt.spelloptions:append("camel") -- Проверка орфографии в camelCase
-vim.opt.shada = { "'1000", "<50", "s10", "h" } -- Настройки истории и кеширования
+vim.opt.spelloptions:append("camel") -- spell для camelCase
+vim.opt.shada = { "'1000", "<50", "s10", "h" }
 
-vim.opt.errorbells = true -- Звуковой сигнал при ошибке
-vim.opt.visualbell = true -- Визуальный сигнал вместо звукового
+vim.opt.errorbells = true
+vim.opt.visualbell = true
 
-vim.opt.clipboard = "unnamedplus" -- Использовать системный буфер обмена
+vim.opt.clipboard = "unnamedplus"
 
-vim.opt.wrap = false -- Отключение автоматического переноса строк
-vim.opt.scrolloff = 20 -- Отступ строк сверху и снизу при скроллинге
-vim.opt.sidescrolloff = 20 -- Отступ по горизонтали при скроллинге
-vim.opt.pumheight = 10 -- Максимальное количество строк в popup-меню
+vim.opt.wrap = false
+vim.opt.scrolloff = 20
+vim.opt.sidescrolloff = 20
+vim.opt.pumheight = 10
 
-vim.opt.conceallevel = 3 -- Скрывать некоторые символы (`markdown`, `json`, `tex`)
-vim.opt.inccommand = "nosplit" -- Интерактивный поиск и замена без разделения окна
+vim.opt.conceallevel = 3
+vim.opt.inccommand = "nosplit"
 
-vim.opt.path:append("**") -- Поиск файлов рекурсивно
+vim.opt.path:append("**")
 
-vim.opt.linebreak = true -- Перенос длинных строк по `breakat`
-vim.opt.breakat = "\\ \\t;:,!?" -- Разрешённые символы для разрыва строк
-vim.opt.startofline = false -- Курсор остаётся в колонке при перемещениях
+vim.opt.linebreak = true
+vim.opt.breakat = "\\ \\t;:,!?"
+vim.opt.startofline = false
 
-vim.opt.complete:append("k") -- Автодополнение с учётом ключевых слов
+vim.opt.complete:append("k")

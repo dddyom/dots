@@ -1,4 +1,5 @@
 local function djlint_fmt(buf, range, acc)
+	-- Синхронный форматтер через djlint (coroutine + vim.system)
 	local co = assert(coroutine.running())
 	vim.schedule(function()
 		vim.cmd("silent! write")
@@ -27,6 +28,7 @@ return {
 	config = function()
 		local ft = require("guard.filetype")
 
+		-- Форматтеры по filetype
 		ft("lua"):fmt("stylua")
 		ft("htmldjango"):fmt({ fn = djlint_fmt })
 		ft("html"):fmt({ fn = djlint_fmt })
@@ -52,11 +54,11 @@ return {
 		ft("markdown"):fmt("prettier")
 
 		ft("rust"):fmt("rustfmt")
-		-- ft("dart"):fmt("dart")
 
 		ft("json"):fmt("jq")
 		ft("jsonc"):fmt("jq")
 
+		-- Глобальные настройки guard
 		vim.g.guard_config = {
 			fmt_on_save = false,
 			lsp_as_default_formatter = false,
@@ -64,7 +66,8 @@ return {
 			auto_lint = true,
 			lint_interval = 500,
 		}
-		-- 	-- Клавиша для форматирования
+
+		-- Ручной формат файла
 		vim.keymap.set("n", "<leader>w", function()
 			vim.cmd("Guard fmt")
 		end, { noremap = true, silent = true, desc = "Format file" })

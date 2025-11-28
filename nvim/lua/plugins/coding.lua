@@ -1,9 +1,14 @@
 return {
 	-----------------------------------------------------------------------------
-	-- Автоматическое закрытие парных скобок
-	{ "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
+	-- Пары скобок в insert-режиме
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		opts = {},
+	},
+
 	-----------------------------------------------------------------------------
-	-- Автодополнение с поддержкой сниппетов
+	-- Автодополнение (blink.cmp)
 	{
 		"saghen/blink.cmp",
 		lazy = false,
@@ -42,12 +47,23 @@ return {
 					auto_show = true,
 					auto_show_delay_ms = 500,
 				},
+				menu = {
+					auto_show = true,
+					draw = {
+						treesitter = { "lsp" },
+						columns = {
+							{ "kind_icon", "label", "label_description", gap = 1 },
+							{ "kind" },
+						},
+					},
+				},
 			},
 			signature = { enabled = true },
 		},
 	},
+
 	----------------------------------------------------------------------------
-	-- Генерация документации (Docstrings)
+	-- Генерация docstring по шаблонам
 	{
 		"danymat/neogen",
 		config = true,
@@ -64,25 +80,28 @@ return {
 			},
 		},
 	},
+
 	-----------------------------------------------------------------------------
-	-- Расширенные операции с окружением текста (замена, удаление, добавление)
+	-- mini.surround: работа с окружением текста
 	{
 		"echasnovski/mini.surround",
 		opts = {
 			mappings = {
-				add = "za", -- Add surrounding in Normal and Visual modes
-				delete = "zd", -- Delete surrounding
-				find = "zf", -- Find surrounding (to the right)
-				find_left = "zF", -- Find surrounding (to the left)
-				highlight = "zh", -- Highlight surrounding
-				replace = "zr", -- Replace surrounding
+				add = "za",
+				delete = "zd",
+				find = "zf",
+				find_left = "zF",
+				highlight = "zh",
+				replace = "zr",
 
-				suffix_last = "l", -- Suffix to search with "prev" method
-				suffix_next = "n", -- Suffix to search with "next" method
+				suffix_last = "l",
+				suffix_next = "n",
 			},
 		},
 	},
+
 	-----------------------------------------------------------------------------
+	-- Быстрый импорт по слову (Python)
 	{
 		"kiyoon/python-import.nvim",
 		build = "uv tool install . --force --reinstall",
@@ -102,6 +121,8 @@ return {
 			custom_function = function(winnr, word, ts_node) end,
 		},
 	},
+
+	-----------------------------------------------------------------------------
 	{
 		"gisketch/triforce.nvim",
 		dependencies = {
@@ -109,7 +130,7 @@ return {
 		},
 		config = function()
 			require("triforce").setup({
-				keymap = { show_profile = "<leader>tp" },
+				keymap = { show_profile = "<leader>t" },
 			})
 		end,
 	},
