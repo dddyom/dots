@@ -26,25 +26,6 @@ return {
 	},
 
 	-----------------------------------------------------------------------------
-	-- mini.surround: работа с окружением текста
-	{
-		"echasnovski/mini.surround",
-		opts = {
-			mappings = {
-				add = "za",
-				delete = "zd",
-				find = "zf",
-				find_left = "zF",
-				highlight = "zh",
-				replace = "zr",
-
-				suffix_last = "l",
-				suffix_next = "n",
-			},
-		},
-	},
-
-	-----------------------------------------------------------------------------
 	-- Быстрый импорт по слову (Python)
 	{
 		"kiyoon/python-import.nvim",

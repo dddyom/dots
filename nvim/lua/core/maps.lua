@@ -143,8 +143,27 @@ map(
 -----------------------------------------------------------------------------
 -- Расширенное управление макросами q / Q
 -----------------------------------------------------------------------------
-vim.keymap.set("n", "q", '(reg_recording()==""?"qq":"q")', { expr = true })
-vim.keymap.set("n", "Q", '(reg_recording()==""&&reg_executing()==""?":norm! @q\r":"")', { expr = true })
+map("n", "q", '(reg_recording()==""?"qq":"q")', { expr = true })
+map("n", "Q", '(reg_recording()==""&&reg_executing()==""?":norm! @q\r":"")', { expr = true })
 
 -- stylua: ignore
-vim.keymap.set("n", "cq", ':let b:_t=input(">",keytrans(@q))|let @q=(trim(b:_t)!=""?nvim_replace_termcodes(b:_t,1,1,1):@q)\r')
+map("n", "cq", ':let b:_t=input(">",keytrans(@q))|let @q=(trim(b:_t)!=""?nvim_replace_termcodes(b:_t,1,1,1):@q)\r')
+
+local surround_pairs = {
+	["{"] = "{}",
+	["}"] = "{}",
+	["["] = "[]",
+	["]"] = "[]",
+	["("] = "()",
+	[")"] = "()",
+	["'"] = "''",
+	['"'] = '""',
+	["`"] = "``",
+}
+
+for key, pair in pairs(surround_pairs) do
+	local left = pair:sub(1, 1)
+	local right = pair:sub(2, 2)
+
+	map("x", key, "c" .. left .. right .. "<Esc>Pg", { noremap = true, silent = true })
+end
