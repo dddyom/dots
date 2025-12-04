@@ -48,3 +48,6 @@ bspc rule -a crow-translate state=floating
 bspc rule -a Google-chrome state=floating center=on rectangle=800x600+0+0
 bspc rule -a Peek state=floating follow=on
 bspc rule -a Kooha state=floating follow=on
+
+bspc rule -a Blueberry.py state=floating follow=on rectangle=600x400+1300+660
+
