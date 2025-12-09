@@ -32,7 +32,7 @@ return {
 		build = "uv tool install . --force --reinstall",
 		keys = {
 			{
-				"<leader>i",
+				"<leader>I",
 				function()
 					require("python_import.api").add_import_current_word_and_move_cursor()
 				end,
