@@ -44,9 +44,7 @@ return {
 				pattern = "OilActionsPost",
 				callback = function(event)
 					if event.data.actions.type == "move" then
-						---@diagnostic disable: undefined-global
 						Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url)
-						---@diagnostic enable: undefined-global
 					end
 				end,
 			})

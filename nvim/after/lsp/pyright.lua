@@ -61,6 +61,10 @@ return {
 				autoSearchPaths = true,
 				diagnosticMode = "openFilesOnly",
 				useLibraryCodeForTypes = true,
+				-- diagnosticSeverityOverrides = {
+				-- 	reportArgumentType = "none",
+				--                 reportAssignmentType = "none",
+				-- },
 			},
 		},
 	},

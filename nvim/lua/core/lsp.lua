@@ -14,7 +14,7 @@ au({ "LspAttach" }, "*", function(args)
 	local map = vim.keymap.set
 
 	map("n", "gd", vim.lsp.buf.definition, opts)
-	map("n", "gr", vim.lsp.buf.references, opts)
+	map("n", "gR", vim.lsp.buf.references, opts)
 	map("n", "gi", vim.lsp.buf.implementation, opts)
 	map("n", "K", vim.lsp.buf.hover, opts)
 	map("n", "<leader>rn", vim.lsp.buf.rename, opts)

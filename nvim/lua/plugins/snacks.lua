@@ -56,8 +56,6 @@ return {
 
 	keys = {
 		-- stylua: ignore start
-		---@diagnostic disable: undefined-global
-
 		-- буферы
 		{ "<leader>b",  "", desc = "Buffers" },
 		{ "<M-q>",      function() Snacks.bufdelete.delete() end, desc = "Close current buffer" },
@@ -89,8 +87,6 @@ return {
 		{ "fa",         function() vim.lsp.buf.code_action({ apply = true }) end,                              desc = "Apply LSP code actions" },
 		{ "fs",         function() Snacks.picker.lsp_symbols({ layout = { preset = "vscode", preview = "main" } }) end,          desc = "LSP Symbols" },
 		{ "fS",         function() Snacks.picker.lsp_workspace_symbols({ layout = { preset = "vscode", preview = "main" } }) end, desc = "LSP Workspace Symbols" },
-
-		---@diagnostic enable: undefined-global
 		-- stylua: ignore end
 	},
 }
