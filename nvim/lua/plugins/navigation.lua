@@ -51,7 +51,7 @@ return {
 		end,
 		keys = {
             -- stylua: ignore
-			{ "``", function() require("oil").open_float() end, desc = "Open Oil" },
+			{ "`", function() require("oil").open_float() end, desc = "Open Oil" },
 		},
 	},
 
