@@ -7,6 +7,34 @@ return {
 	{ "jake-stewart/auto-cmdheight.nvim", lazy = false, opts = {} },
 
 	-----------------------------------------------------------------------------
+	-- Подсказки по клавишам: всплывают только после <Leader>
+	-----------------------------------------------------------------------------
+	{
+		"echasnovski/mini.clue",
+		event = "VeryLazy",
+		config = function()
+			local clue = require("mini.clue")
+			clue.setup({
+				triggers = {
+					{ mode = "n", keys = "<Leader>" },
+					{ mode = "x", keys = "<Leader>" },
+				},
+				-- заголовки групп; остальные хинты mini.clue возьмёт из desc keymap'ов
+				clues = {
+					{ mode = "n", keys = "<Leader>b", desc = "+Buffers" },
+					{ mode = "n", keys = "<Leader>n", desc = "+Notifications" },
+					{ mode = "n", keys = "<Leader>g", desc = "+Git" },
+					{ mode = "n", keys = "<Leader>o", desc = "+Obsidian" },
+				},
+				window = {
+					delay = 500,
+					config = { width = "auto" },
+				},
+			})
+		end,
+	},
+
+	-----------------------------------------------------------------------------
 	-- Цветовая схема Ayu + оверрайды
 	-----------------------------------------------------------------------------
 	{
