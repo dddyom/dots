@@ -10,8 +10,7 @@ local function obsidian_new()
 end
 
 return {
-	-- Picker, нужный obsidian.nvim (snacks.picker им не поддерживается).
-	-- Mappings подогнаны под snacks-стиль: <C-j>/<C-k> движение, <C-d>/<C-u> скролл.
+	-- obsidian.nvim не поддерживает snacks.picker; mappings подогнаны под snacks-стиль.
 	{
 		"echasnovski/mini.pick",
 		lazy = true,
@@ -48,6 +47,23 @@ return {
 			{ "<leader>oo", "<cmd>ObsidianQuickSwitch<CR>", desc = "Obsidian: quick switch" },
 			{ "<leader>on", obsidian_new,                   desc = "Obsidian: new note" },
 			{ "<leader>od", "<cmd>ObsidianToday<CR>",       desc = "Obsidian: today's daily" },
+			{
+				"<leader>op",
+				function()
+					local project = require("core.projects").find_by_path(vim.fn.getcwd())
+					if not project then
+						vim.notify("Obsidian: cwd не в реестре проектов (core.projects)", vim.log.levels.WARN)
+						return
+					end
+					local dir = vim.g.obsidian_vault .. "/projects/" .. project.name
+					if vim.fn.isdirectory(dir) == 0 then
+						vim.notify("Obsidian: " .. dir .. " не существует", vim.log.levels.WARN)
+						return
+					end
+					require("mini.pick").builtin.files({}, { source = { cwd = dir, name = "notes: " .. project.name } })
+				end,
+				desc = "Obsidian: notes for current project",
+			},
 			-- stylua: ignore end
 		},
 		opts = {
@@ -64,11 +80,9 @@ return {
 				folder = "daily",
 				date_format = "%Y-%m-%d",
 			},
-			-- templates: верни блок templates = { folder = "templates", ... }
-			-- если создашь ~/.sync/notes/templates/ и захочешь шаблоны
-			-- встроенный UI отключаем — рендером занимается render-markdown.nvim
-			ui = { enable = false },
-			-- gf по wikilink: пускаем стандартный gf, если под курсором не [[link]]
+			-- Захочешь шаблоны — создай ~/.sync/notes/templates/ и добавь
+			-- templates = { folder = "templates", date_format = ..., time_format = ... }
+			ui = { enable = false }, -- рендер берёт на себя render-markdown.nvim
 			mappings = {
 				["gf"] = {
 					action = function()
@@ -77,7 +91,6 @@ return {
 					opts = { noremap = false, expr = true, buffer = true },
 				},
 			},
-			-- что делать при создании ссылки на несуществующую заметку
 			new_notes_location = "current_dir",
 		},
 	},

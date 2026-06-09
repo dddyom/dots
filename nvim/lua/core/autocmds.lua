@@ -46,7 +46,7 @@ end, augroup("close_with_q"))
 au({ "BufRead", "BufNewFile" }, "*.html", "set filetype=htmldjango", augroup("set_filetype_htmldjango"))
 
 -----------------------------------------------------------------------------
--- Markdown: :MdPdf (pandoc+xelatex), toggle checkbox на <CR>, <leader>p/<leader>e
+-- Markdown: <CR> toggle checkbox, <leader>p/e/E, :MdPdf, :MdToVault
 -----------------------------------------------------------------------------
 local function md_toggle_checkbox(linenr)
 	local line = vim.api.nvim_buf_get_lines(0, linenr - 1, linenr, false)[1] or ""
@@ -114,10 +114,20 @@ au("FileType", "markdown", function(event)
 		vim.tbl_extend("force", kopts, { desc = "Markdown → PDF + reveal in Thunar" })
 	)
 
-	-- Obsidian-команды, активные только для md внутри vault'а
 	local path = vim.api.nvim_buf_get_name(buf)
 	local vault = vim.g.obsidian_vault or ""
-	if vault ~= "" and path:sub(1, #vault) == vault then
+	local in_vault = vault ~= "" and path:sub(1, #vault) == vault
+
+	if not in_vault then
+		vim.keymap.set(
+			"n",
+			"<leader>om",
+			"<cmd>MdToVault<CR>",
+			vim.tbl_extend("force", kopts, { desc = "Markdown → Obsidian vault" })
+		)
+	end
+
+	if in_vault then
 		vim.keymap.set(
 			"n",
 			"<leader>ob",
@@ -138,7 +148,6 @@ au("FileType", "markdown", function(event)
 		)
 	end
 
-	-- :MdToVault [имя] — переместить текущий md в vault, открыть на новом месте
 	vim.api.nvim_buf_create_user_command(buf, "MdToVault", function(o)
 		local src = vim.api.nvim_buf_get_name(buf)
 		if src == "" or vim.bo[buf].buftype ~= "" then
@@ -154,23 +163,80 @@ au("FileType", "markdown", function(event)
 			vim.notify("MdToVault: уже внутри vault'а", vim.log.levels.INFO)
 			return
 		end
+
+		local project = require("core.projects").find_by_path(src)
+		local subdir = project and ("/projects/" .. project.name) or ""
+		local dest_dir = v .. subdir
+
 		local name = (o.args ~= "" and o.args) or vim.fn.fnamemodify(src, ":t")
 		if not name:match("%.md$") then
 			name = name .. ".md"
 		end
-		local dest = v .. "/" .. name
+		local dest = dest_dir .. "/" .. name
 		if vim.fn.filereadable(dest) == 1 then
 			vim.notify("MdToVault: " .. dest .. " уже существует", vim.log.levels.ERROR)
 			return
 		end
+		vim.fn.mkdir(dest_dir, "p")
+
 		if vim.bo[buf].modified then
 			vim.cmd("write")
 		end
+
+		local extra = {}
+		if project then
+			extra["project"] = project.name
+			local src_dir = vim.fn.fnamemodify(src, ":h")
+			local remote = vim.fn.systemlist({ "git", "-C", src_dir, "remote", "get-url", "origin" })
+			if vim.v.shell_error == 0 and remote[1] and remote[1] ~= "" then
+				extra["git_remote"] = remote[1]
+			end
+			local sha = vim.fn.systemlist({ "git", "-C", src_dir, "rev-parse", "HEAD" })
+			if vim.v.shell_error == 0 and sha[1] and sha[1] ~= "" then
+				extra["git_commit"] = sha[1]
+			end
+		end
+
 		local ok, err = vim.uv.fs_rename(src, dest)
 		if not ok then
 			vim.notify("MdToVault: " .. tostring(err), vim.log.levels.ERROR)
 			return
 		end
+
+		if next(extra) then
+			local lines = vim.fn.readfile(dest)
+			local has_fm = lines[1] == "---"
+			local insert_at, new_lines = 1, {}
+			if has_fm then
+				for i = 2, #lines do
+					if lines[i] == "---" then
+						insert_at = i
+						break
+					end
+				end
+				for i = 1, insert_at - 1 do
+					table.insert(new_lines, lines[i])
+				end
+				for k, val in pairs(extra) do
+					table.insert(new_lines, k .. ": " .. val)
+				end
+				for i = insert_at, #lines do
+					table.insert(new_lines, lines[i])
+				end
+			else
+				table.insert(new_lines, "---")
+				for k, val in pairs(extra) do
+					table.insert(new_lines, k .. ": " .. val)
+				end
+				table.insert(new_lines, "---")
+				table.insert(new_lines, "")
+				for _, l in ipairs(lines) do
+					table.insert(new_lines, l)
+				end
+			end
+			vim.fn.writefile(new_lines, dest)
+		end
+
 		vim.cmd("edit " .. vim.fn.fnameescape(dest))
 		pcall(vim.api.nvim_buf_delete, buf, { force = false })
 		vim.notify("MdToVault: " .. dest)
@@ -203,16 +269,44 @@ au("FileType", "markdown", function(event)
 		local stem = vim.fn.fnamemodify(src, ":t:r")
 		local out = "/tmp/" .. stem .. ".pdf"
 		vim.notify("MdPdf: " .. vim.fn.fnamemodify(out, ":t") .. " …")
-		-- weasyprint = HTML/CSS → PDF, без TeX. Кириллица и шрифты — через системный font config.
+
+		-- Стиль документа. Главная ручка размера — `font-size` у html.
+		local css_path = "/tmp/_mdpdf_style.css"
+		local css = [[
+@page { size: A4; margin: 1.8cm 2cm; }
+html { font-size: 10.5pt; }
+body { font-family: "DejaVu Sans", "Liberation Sans", sans-serif; color: #1f1f1f; line-height: 1.45; }
+h1 { font-size: 1.55em; margin: 0 0 0.4em; border-bottom: 1px solid #ddd; padding-bottom: 0.15em; }
+h2 { font-size: 1.28em; margin: 1em 0 0.3em; }
+h3 { font-size: 1.12em; margin: 0.85em 0 0.25em; }
+h4, h5, h6 { font-size: 1em; margin: 0.7em 0 0.2em; }
+p { margin: 0.4em 0; }
+ul, ol { margin: 0.3em 0; padding-left: 1.5em; }
+li { margin: 0.1em 0; }
+code { font-family: "DejaVu Sans Mono", "Liberation Mono", monospace; font-size: 0.9em; background: #f3f3f3; padding: 0 0.25em; border-radius: 3px; }
+pre { background: #f6f8fa; padding: 0.6em 0.8em; border-radius: 4px; font-size: 0.85em; line-height: 1.4; overflow-x: auto; white-space: pre-wrap; }
+pre code { background: transparent; padding: 0; font-size: 1em; }
+blockquote { margin: 0.5em 0; padding: 0.2em 0.8em; border-left: 3px solid #d0d0d0; color: #555; }
+table { border-collapse: collapse; font-size: 0.95em; margin: 0.5em 0; }
+th, td { border: 1px solid #ccc; padding: 0.25em 0.55em; vertical-align: top; }
+th { background: #f0f0f0; text-align: left; }
+img { max-width: 100%; }
+a { color: #0366d6; text-decoration: none; }
+hr { border: none; border-top: 1px solid #ddd; margin: 1em 0; }
+]]
+		local f = io.open(css_path, "w")
+		if f then
+			f:write(css)
+			f:close()
+		end
+
 		vim.system({
 			"pandoc",
 			src,
 			"-o", out,
 			"--pdf-engine=weasyprint",
-			"-V", "margin-left=2cm",
-			"-V", "margin-right=2cm",
-			"-V", "margin-top=2cm",
-			"-V", "margin-bottom=2cm",
+			"--standalone",
+			"--css=" .. css_path,
 		}, { text = true }, function(res)
 			vim.schedule(function()
 				if res.code ~= 0 then
@@ -222,7 +316,6 @@ au("FileType", "markdown", function(event)
 				vim.fn.setreg("+", out)
 				vim.notify("MdPdf готов: " .. out .. "\n(путь в +)")
 				if o.bang then
-					-- :MdPdf! — открыть файл-менеджер (Thunar) с выделением PDF
 					vim.system({
 						"dbus-send",
 						"--session",
